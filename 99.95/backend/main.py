@@ -5,16 +5,17 @@ import json
 import os 
 import pytz
 
-#create function to extract dates relavent to today from given ics file
+# create function to extract dates relavent to today from given ics file
 def events_today(ics_file):
   # read ics file
   cal = icalendar.Calendar.from_ical(open(ics_file, 'rb').read())
 
   # get today's date
-  today = datetime.date(2024, 8, 22)
+  today = datetime.date(2024, 8, 20)
 
   # create lists to return
   events_today = []
+  events_location = []
   events_start = []
   events_end = []
   
@@ -41,25 +42,21 @@ def events_today(ics_file):
 
             # append to list as STRINGS
             events_today.append(component.get('summary'))
+            events_location.append(component.get('location'))
             events_start.append(sydney_start.strftime("%Y-%m-%d %H:%M:%S"))
             events_end.append(sydney_end.strftime("%Y-%m-%d %H:%M:%S"))
 
-  return events_today, events_start, events_end
+  return events_today, events_location, events_start, events_end
 
 # inputs ics path and extract relavent data
 ics_file_path = os.path.join('99.95','backend', 'Aarav.ics')
-todays_events, todays_start, todays_end = events_today(ics_file_path)
+todays_events, todays_locations, todays_start, todays_end = events_today(ics_file_path)
 
 # print relavent data
 for i in range(len(todays_events)):
-   print('- ', todays_events[i], 'from', todays_start[i], 'to', todays_end[i])
+   print('- ', todays_events[i], 'in', todays_locations[i], 'from', todays_start[i], 'to', todays_end[i])
 
-# merge data into datastructure
-data = {
-    "events": todays_events,
-    "start_times": todays_start,
-    "end_times": todays_end
-}
+# create fuction to import data  
 
 
 
