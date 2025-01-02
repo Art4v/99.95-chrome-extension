@@ -1,0 +1,42 @@
+html, body {
+    background-color: #1f1f1e;
+    color: #fffefe;
+    font-family: 'Varela', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notif {
+    text-align: center;
+}
+
+.blocks {
+    height: 90vh;
+    width: 40vw;
+}
+
+.b1,
+.b2,
+.b3,
+.b4,
+.b5 {
+    height: 15%;
+    width: 100%;
+    margin-bottom: 1%;
+    background-color: #1f1f1e;
+    border-radius: 10px;
+    border: 6px solid #fffefe;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.b1 p,
+.b2 p,
+.b3 p,
+.b4 p,
+.b5 p {
+    font-size: 2rem;
+    margin-left: 3px;
+}
