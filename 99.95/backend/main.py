@@ -11,11 +11,12 @@ def events_today(ics_file):
   cal = icalendar.Calendar.from_ical(open(ics_file, 'rb').read())
 
   # get today's date
-  today = datetime.date(2024, 8, 20)
+  today = datetime.date(2024, 8, 22)
 
   # create lists to return
   events_today = []
   events_location = []
+  events_teacher = []
   events_start = []
   events_end = []
   
@@ -43,21 +44,34 @@ def events_today(ics_file):
             # append to list as STRINGS
             events_today.append(component.get('summary'))
             events_location.append(component.get('location'))
+            events_teacher.append(component.get('description'))
             events_start.append(sydney_start.strftime("%Y-%m-%d %H:%M:%S"))
             events_end.append(sydney_end.strftime("%Y-%m-%d %H:%M:%S"))
 
-  return events_today, events_location, events_start, events_end
+  return events_today, events_location, events_teacher, events_start, events_end
 
 # inputs ics path and extract relavent data
 ics_file_path = os.path.join('99.95','backend', 'Aarav.ics')
-todays_events, todays_locations, todays_start, todays_end = events_today(ics_file_path)
+todays_events, todays_locations, todays_teacher, todays_start, todays_end = events_today(ics_file_path)
 
 # print relavent data
 for i in range(len(todays_events)):
-   print('- ', todays_events[i], 'in', todays_locations[i], 'from', todays_start[i], 'to', todays_end[i])
+   print('\n', todays_events[i], 'in', todays_locations[i], 'with', todays_teacher[i], 'from', todays_start[i], 'to', todays_end[i])
 
-# create fuction to import data  
+# create json file
+json_path = "99.95/backend/output.json"
+with open(json_path , "w") as f:
+   json.dump([], f, indent=4)
 
+# copy json file as a variable list
+with open (json_path) as f:
+   data = json.load(f)
 
+# append variable list
+for i in range(len(todays_events)):
+   temp = {"Class": todays_events[i], "Location": todays_locations[i], "Teacher": todays_teacher[i],"Start Time": todays_start[i], "End Time": todays_end[i]}
+   data.append(temp)
 
-    
+# copy variable list back to json file
+with open(json_path, 'w') as f:
+   json.dump(data, f, indent=4)
