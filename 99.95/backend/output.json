@@ -1,5 +1,1053 @@
 [
     {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-22 08:50:00",
+        "End Time": "2024-07-22 09:50:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-22 09:50:00",
+        "End Time": "2024-07-22 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-22 10:50:00",
+        "End Time": "2024-07-22 11:00:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-22 11:25:00",
+        "End Time": "2024-07-22 12:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-22 12:25:00",
+        "End Time": "2024-07-22 13:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-22 14:05:00",
+        "End Time": "2024-07-22 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-23 08:50:00",
+        "End Time": "2024-07-23 09:50:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-23 09:50:00",
+        "End Time": "2024-07-23 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-23 10:50:00",
+        "End Time": "2024-07-23 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-23 11:25:00",
+        "End Time": "2024-07-23 12:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-23 12:25:00",
+        "End Time": "2024-07-23 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-23 14:05:00",
+        "End Time": "2024-07-23 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-24 08:50:00",
+        "End Time": "2024-07-24 09:45:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-24 09:45:00",
+        "End Time": "2024-07-24 10:40:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-24 11:15:00",
+        "End Time": "2024-07-24 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-24 12:40:00",
+        "End Time": "2024-07-24 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-24 13:35:00",
+        "End Time": "2024-07-24 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-07-25 07:45:00",
+        "End Time": "2024-07-25 08:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-25 08:50:00",
+        "End Time": "2024-07-25 09:50:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-25 09:50:00",
+        "End Time": "2024-07-25 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-25 10:50:00",
+        "End Time": "2024-07-25 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-25 11:25:00",
+        "End Time": "2024-07-25 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-25 12:25:00",
+        "End Time": "2024-07-25 13:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-25 14:05:00",
+        "End Time": "2024-07-25 15:05:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-26 08:50:00",
+        "End Time": "2024-07-26 09:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-26 09:50:00",
+        "End Time": "2024-07-26 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-26 10:50:00",
+        "End Time": "2024-07-26 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-26 11:25:00",
+        "End Time": "2024-07-26 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-26 14:05:00",
+        "End Time": "2024-07-26 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-29 08:50:00",
+        "End Time": "2024-07-29 09:50:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-29 09:50:00",
+        "End Time": "2024-07-29 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-29 10:50:00",
+        "End Time": "2024-07-29 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-29 11:25:00",
+        "End Time": "2024-07-29 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-29 12:25:00",
+        "End Time": "2024-07-29 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-29 14:05:00",
+        "End Time": "2024-07-29 15:05:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-07-30 09:50:00",
+        "End Time": "2024-07-30 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-07-30 10:50:00",
+        "End Time": "2024-07-30 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-30 11:25:00",
+        "End Time": "2024-07-30 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-30 12:25:00",
+        "End Time": "2024-07-30 13:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-30 14:05:00",
+        "End Time": "2024-07-30 15:05:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-07-31 08:50:00",
+        "End Time": "2024-07-31 09:45:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.5",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-07-31 11:15:00",
+        "End Time": "2024-07-31 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 4",
+        "Start Time": "2024-07-31 12:40:00",
+        "End Time": "2024-07-31 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 5",
+        "Start Time": "2024-07-31 13:35:00",
+        "End Time": "2024-07-31 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-08-01 07:45:00",
+        "End Time": "2024-08-01 08:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-01 08:50:00",
+        "End Time": "2024-08-01 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: C1.4",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-01 09:50:00",
+        "End Time": "2024-08-01 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-01 10:50:00",
+        "End Time": "2024-08-01 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-01 11:25:00",
+        "End Time": "2024-08-01 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-01 12:25:00",
+        "End Time": "2024-08-01 13:25:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-01 14:05:00",
+        "End Time": "2024-08-01 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-02 08:50:00",
+        "End Time": "2024-08-02 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-02 09:50:00",
+        "End Time": "2024-08-02 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-02 10:50:00",
+        "End Time": "2024-08-02 11:00:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-02 11:25:00",
+        "End Time": "2024-08-02 12:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-02 12:25:00",
+        "End Time": "2024-08-02 13:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-02 14:05:00",
+        "End Time": "2024-08-02 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-05 08:50:00",
+        "End Time": "2024-08-05 09:50:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-05 09:50:00",
+        "End Time": "2024-08-05 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-05 10:50:00",
+        "End Time": "2024-08-05 11:00:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-05 11:25:00",
+        "End Time": "2024-08-05 12:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-05 12:25:00",
+        "End Time": "2024-08-05 13:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-05 14:05:00",
+        "End Time": "2024-08-05 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-06 08:50:00",
+        "End Time": "2024-08-06 09:50:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-06 09:50:00",
+        "End Time": "2024-08-06 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-06 10:50:00",
+        "End Time": "2024-08-06 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-06 11:25:00",
+        "End Time": "2024-08-06 12:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-06 12:25:00",
+        "End Time": "2024-08-06 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-06 14:05:00",
+        "End Time": "2024-08-06 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-07 08:50:00",
+        "End Time": "2024-08-07 09:45:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-07 09:45:00",
+        "End Time": "2024-08-07 10:40:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-07 11:15:00",
+        "End Time": "2024-08-07 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-07 12:40:00",
+        "End Time": "2024-08-07 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-07 13:35:00",
+        "End Time": "2024-08-07 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-08-08 07:45:00",
+        "End Time": "2024-08-08 08:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-08 08:50:00",
+        "End Time": "2024-08-08 09:50:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-08 09:50:00",
+        "End Time": "2024-08-08 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-08 10:50:00",
+        "End Time": "2024-08-08 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-08 11:25:00",
+        "End Time": "2024-08-08 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-08 12:25:00",
+        "End Time": "2024-08-08 13:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-08 14:05:00",
+        "End Time": "2024-08-08 15:05:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-09 08:50:00",
+        "End Time": "2024-08-09 09:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-09 09:50:00",
+        "End Time": "2024-08-09 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-09 10:50:00",
+        "End Time": "2024-08-09 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-09 11:25:00",
+        "End Time": "2024-08-09 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-09 14:05:00",
+        "End Time": "2024-08-09 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-12 08:50:00",
+        "End Time": "2024-08-12 09:50:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-12 09:50:00",
+        "End Time": "2024-08-12 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-12 10:50:00",
+        "End Time": "2024-08-12 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-12 11:25:00",
+        "End Time": "2024-08-12 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-12 12:25:00",
+        "End Time": "2024-08-12 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-12 14:05:00",
+        "End Time": "2024-08-12 15:05:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-13 09:50:00",
+        "End Time": "2024-08-13 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-13 10:50:00",
+        "End Time": "2024-08-13 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-13 11:25:00",
+        "End Time": "2024-08-13 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-13 12:25:00",
+        "End Time": "2024-08-13 13:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-13 14:05:00",
+        "End Time": "2024-08-13 15:05:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-14 08:50:00",
+        "End Time": "2024-08-14 09:45:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.5",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-14 11:15:00",
+        "End Time": "2024-08-14 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-14 12:40:00",
+        "End Time": "2024-08-14 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-14 13:35:00",
+        "End Time": "2024-08-14 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-08-15 07:45:00",
+        "End Time": "2024-08-15 08:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-15 08:50:00",
+        "End Time": "2024-08-15 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: C1.4",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-15 09:50:00",
+        "End Time": "2024-08-15 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-15 10:50:00",
+        "End Time": "2024-08-15 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-15 11:25:00",
+        "End Time": "2024-08-15 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-15 12:25:00",
+        "End Time": "2024-08-15 13:25:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-15 14:05:00",
+        "End Time": "2024-08-15 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-16 08:50:00",
+        "End Time": "2024-08-16 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-16 09:50:00",
+        "End Time": "2024-08-16 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-16 10:50:00",
+        "End Time": "2024-08-16 11:00:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-16 11:25:00",
+        "End Time": "2024-08-16 12:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-16 12:25:00",
+        "End Time": "2024-08-16 13:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-16 14:05:00",
+        "End Time": "2024-08-16 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-19 08:50:00",
+        "End Time": "2024-08-19 09:50:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-19 09:50:00",
+        "End Time": "2024-08-19 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-19 10:50:00",
+        "End Time": "2024-08-19 11:00:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-19 11:25:00",
+        "End Time": "2024-08-19 12:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-19 12:25:00",
+        "End Time": "2024-08-19 13:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-19 14:05:00",
+        "End Time": "2024-08-19 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-20 08:50:00",
+        "End Time": "2024-08-20 09:50:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-20 09:50:00",
+        "End Time": "2024-08-20 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-20 10:50:00",
+        "End Time": "2024-08-20 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-20 11:25:00",
+        "End Time": "2024-08-20 12:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-20 12:25:00",
+        "End Time": "2024-08-20 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-20 14:05:00",
+        "End Time": "2024-08-20 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-21 08:50:00",
+        "End Time": "2024-08-21 09:45:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-21 09:45:00",
+        "End Time": "2024-08-21 10:40:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-21 11:15:00",
+        "End Time": "2024-08-21 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-21 12:40:00",
+        "End Time": "2024-08-21 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-21 13:35:00",
+        "End Time": "2024-08-21 14:30:00"
+    },
+    {
         "Class": "11ENMNTB: English Mentoring Yr11",
         "Location": "Room: L1.4",
         "Teacher": "Teacher: Miss Lucinda Joura",
@@ -54,5 +1102,1181 @@
         "Period": "Period: 5",
         "Start Time": "2024-08-22 14:05:00",
         "End Time": "2024-08-22 15:05:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-23 08:50:00",
+        "End Time": "2024-08-23 09:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-23 09:50:00",
+        "End Time": "2024-08-23 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-23 10:50:00",
+        "End Time": "2024-08-23 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-23 11:25:00",
+        "End Time": "2024-08-23 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-23 14:05:00",
+        "End Time": "2024-08-23 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-26 08:50:00",
+        "End Time": "2024-08-26 09:50:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-26 09:50:00",
+        "End Time": "2024-08-26 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-26 10:50:00",
+        "End Time": "2024-08-26 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-26 11:25:00",
+        "End Time": "2024-08-26 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-26 12:25:00",
+        "End Time": "2024-08-26 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-26 14:05:00",
+        "End Time": "2024-08-26 15:05:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-27 09:50:00",
+        "End Time": "2024-08-27 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-27 10:50:00",
+        "End Time": "2024-08-27 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-27 11:25:00",
+        "End Time": "2024-08-27 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-27 12:25:00",
+        "End Time": "2024-08-27 13:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-27 14:05:00",
+        "End Time": "2024-08-27 15:05:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-28 08:50:00",
+        "End Time": "2024-08-28 09:45:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.5",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-28 11:15:00",
+        "End Time": "2024-08-28 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-28 12:40:00",
+        "End Time": "2024-08-28 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-28 13:35:00",
+        "End Time": "2024-08-28 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-08-29 07:45:00",
+        "End Time": "2024-08-29 08:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-29 08:50:00",
+        "End Time": "2024-08-29 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: C1.4",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-29 09:50:00",
+        "End Time": "2024-08-29 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-29 10:50:00",
+        "End Time": "2024-08-29 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-29 11:25:00",
+        "End Time": "2024-08-29 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-29 12:25:00",
+        "End Time": "2024-08-29 13:25:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-29 14:05:00",
+        "End Time": "2024-08-29 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-08-30 08:50:00",
+        "End Time": "2024-08-30 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-08-30 09:50:00",
+        "End Time": "2024-08-30 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-08-30 10:50:00",
+        "End Time": "2024-08-30 11:00:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-08-30 11:25:00",
+        "End Time": "2024-08-30 12:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 4",
+        "Start Time": "2024-08-30 12:25:00",
+        "End Time": "2024-08-30 13:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-08-30 14:05:00",
+        "End Time": "2024-08-30 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-02 08:50:00",
+        "End Time": "2024-09-02 09:50:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-02 09:50:00",
+        "End Time": "2024-09-02 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-02 10:50:00",
+        "End Time": "2024-09-02 11:00:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-02 11:25:00",
+        "End Time": "2024-09-02 12:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-02 12:25:00",
+        "End Time": "2024-09-02 13:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-02 14:05:00",
+        "End Time": "2024-09-02 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-03 08:50:00",
+        "End Time": "2024-09-03 09:50:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-03 09:50:00",
+        "End Time": "2024-09-03 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-03 10:50:00",
+        "End Time": "2024-09-03 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-03 11:25:00",
+        "End Time": "2024-09-03 12:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-03 12:25:00",
+        "End Time": "2024-09-03 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-03 14:05:00",
+        "End Time": "2024-09-03 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-04 08:50:00",
+        "End Time": "2024-09-04 09:45:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-04 09:45:00",
+        "End Time": "2024-09-04 10:40:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-04 11:15:00",
+        "End Time": "2024-09-04 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-04 12:40:00",
+        "End Time": "2024-09-04 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-04 13:35:00",
+        "End Time": "2024-09-04 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-09-05 07:45:00",
+        "End Time": "2024-09-05 08:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-05 08:50:00",
+        "End Time": "2024-09-05 09:50:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-05 09:50:00",
+        "End Time": "2024-09-05 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-05 10:50:00",
+        "End Time": "2024-09-05 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-05 11:25:00",
+        "End Time": "2024-09-05 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-05 12:25:00",
+        "End Time": "2024-09-05 13:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-05 14:05:00",
+        "End Time": "2024-09-05 15:05:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-06 08:50:00",
+        "End Time": "2024-09-06 09:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-06 09:50:00",
+        "End Time": "2024-09-06 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-06 10:50:00",
+        "End Time": "2024-09-06 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-06 11:25:00",
+        "End Time": "2024-09-06 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-06 14:05:00",
+        "End Time": "2024-09-06 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-09 08:50:00",
+        "End Time": "2024-09-09 09:50:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-09 09:50:00",
+        "End Time": "2024-09-09 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-09 10:50:00",
+        "End Time": "2024-09-09 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-09 11:25:00",
+        "End Time": "2024-09-09 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-09 12:25:00",
+        "End Time": "2024-09-09 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-09 14:05:00",
+        "End Time": "2024-09-09 15:05:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-10 09:50:00",
+        "End Time": "2024-09-10 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-10 10:50:00",
+        "End Time": "2024-09-10 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-10 11:25:00",
+        "End Time": "2024-09-10 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-10 12:25:00",
+        "End Time": "2024-09-10 13:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-10 14:05:00",
+        "End Time": "2024-09-10 15:05:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-11 08:50:00",
+        "End Time": "2024-09-11 09:45:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.5",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-11 11:15:00",
+        "End Time": "2024-09-11 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-11 12:40:00",
+        "End Time": "2024-09-11 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-11 13:35:00",
+        "End Time": "2024-09-11 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-09-12 07:45:00",
+        "End Time": "2024-09-12 08:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-12 08:50:00",
+        "End Time": "2024-09-12 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: C1.4",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-12 09:50:00",
+        "End Time": "2024-09-12 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-12 10:50:00",
+        "End Time": "2024-09-12 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-12 11:25:00",
+        "End Time": "2024-09-12 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-12 12:25:00",
+        "End Time": "2024-09-12 13:25:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-12 14:05:00",
+        "End Time": "2024-09-12 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-13 08:50:00",
+        "End Time": "2024-09-13 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-13 09:50:00",
+        "End Time": "2024-09-13 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-13 10:50:00",
+        "End Time": "2024-09-13 11:00:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-13 11:25:00",
+        "End Time": "2024-09-13 12:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-13 12:25:00",
+        "End Time": "2024-09-13 13:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-13 14:05:00",
+        "End Time": "2024-09-13 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-16 08:50:00",
+        "End Time": "2024-09-16 09:50:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-16 09:50:00",
+        "End Time": "2024-09-16 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-16 10:50:00",
+        "End Time": "2024-09-16 11:00:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-16 11:25:00",
+        "End Time": "2024-09-16 12:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-16 12:25:00",
+        "End Time": "2024-09-16 13:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-16 14:05:00",
+        "End Time": "2024-09-16 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-17 08:50:00",
+        "End Time": "2024-09-17 09:50:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-17 09:50:00",
+        "End Time": "2024-09-17 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-17 10:50:00",
+        "End Time": "2024-09-17 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-17 11:25:00",
+        "End Time": "2024-09-17 12:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-17 12:25:00",
+        "End Time": "2024-09-17 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-17 14:05:00",
+        "End Time": "2024-09-17 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-18 08:50:00",
+        "End Time": "2024-09-18 09:45:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-18 09:45:00",
+        "End Time": "2024-09-18 10:40:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-18 11:15:00",
+        "End Time": "2024-09-18 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-18 12:40:00",
+        "End Time": "2024-09-18 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Luke McCann",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-18 13:35:00",
+        "End Time": "2024-09-18 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-09-19 07:45:00",
+        "End Time": "2024-09-19 08:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-19 08:50:00",
+        "End Time": "2024-09-19 09:50:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-19 09:50:00",
+        "End Time": "2024-09-19 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-19 10:50:00",
+        "End Time": "2024-09-19 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-19 11:25:00",
+        "End Time": "2024-09-19 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-19 12:25:00",
+        "End Time": "2024-09-19 13:25:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-19 14:05:00",
+        "End Time": "2024-09-19 15:05:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-20 08:50:00",
+        "End Time": "2024-09-20 09:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-20 09:50:00",
+        "End Time": "2024-09-20 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-20 10:50:00",
+        "End Time": "2024-09-20 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-20 11:25:00",
+        "End Time": "2024-09-20 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-20 14:05:00",
+        "End Time": "2024-09-20 15:05:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-23 08:50:00",
+        "End Time": "2024-09-23 09:50:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-23 09:50:00",
+        "End Time": "2024-09-23 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-23 10:50:00",
+        "End Time": "2024-09-23 11:00:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-23 11:25:00",
+        "End Time": "2024-09-23 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-23 12:25:00",
+        "End Time": "2024-09-23 13:25:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: A2.3",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-23 14:05:00",
+        "End Time": "2024-09-23 15:05:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-24 09:50:00",
+        "End Time": "2024-09-24 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-24 10:50:00",
+        "End Time": "2024-09-24 11:00:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-24 11:25:00",
+        "End Time": "2024-09-24 12:25:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-24 12:25:00",
+        "End Time": "2024-09-24 13:25:00"
+    },
+    {
+        "Class": "11X1MT5: Mathematics Extension Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-24 14:05:00",
+        "End Time": "2024-09-24 15:05:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-25 08:50:00",
+        "End Time": "2024-09-25 09:45:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.5",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-25 11:15:00",
+        "End Time": "2024-09-25 12:10:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-25 12:40:00",
+        "End Time": "2024-09-25 13:35:00"
+    },
+    {
+        "Class": "BOZTOA/B: Boys OzTag OpenA/B SPT",
+        "Location": "",
+        "Teacher": "Teacher: Mr Rajakrishnar Sekaran",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-25 13:35:00",
+        "End Time": "2024-09-25 14:30:00"
+    },
+    {
+        "Class": "11ENMNTB: English Mentoring Yr11",
+        "Location": "Room: L1.4",
+        "Teacher": "Teacher: Miss Lucinda Joura",
+        "Period": "Period: BS",
+        "Start Time": "2024-09-26 07:45:00",
+        "End Time": "2024-09-26 08:50:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-26 08:50:00",
+        "End Time": "2024-09-26 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: C1.4",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-26 09:50:00",
+        "End Time": "2024-09-26 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-26 10:50:00",
+        "End Time": "2024-09-26 11:00:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-26 11:25:00",
+        "End Time": "2024-09-26 12:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-26 12:25:00",
+        "End Time": "2024-09-26 13:25:00"
+    },
+    {
+        "Class": "11X1EN2: English Extension 1 Yr11",
+        "Location": "Room: L1.3",
+        "Teacher": "Teacher: Ms Dora Kindis",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-26 14:05:00",
+        "End Time": "2024-09-26 15:05:00"
+    },
+    {
+        "Class": "11CHEM3: Chemistry Yr11",
+        "Location": "Room: C0.1",
+        "Teacher": "Teacher: Miss Sandra Fernandez",
+        "Period": "Period: 1",
+        "Start Time": "2024-09-27 08:50:00",
+        "End Time": "2024-09-27 09:50:00"
+    },
+    {
+        "Class": "11ECO3: Economics Yr11",
+        "Location": "Room: L1.2",
+        "Teacher": "Teacher: Miss Lauren Silvestro",
+        "Period": "Period: 2",
+        "Start Time": "2024-09-27 09:50:00",
+        "End Time": "2024-09-27 10:50:00"
+    },
+    {
+        "Class": "11CR8: Connect@Ruse Yr11",
+        "Location": "Room: T2.6",
+        "Teacher": "Teacher: Mr Richard Grant",
+        "Period": "Period: CR",
+        "Start Time": "2024-09-27 10:50:00",
+        "End Time": "2024-09-27 11:00:00"
+    },
+    {
+        "Class": "11ENC2: English Advanced Yr11",
+        "Location": "Room: L1.1",
+        "Teacher": "Teacher: Mrs Catherine Fleming",
+        "Period": "Period: 3",
+        "Start Time": "2024-09-27 11:25:00",
+        "End Time": "2024-09-27 12:25:00"
+    },
+    {
+        "Class": "11PHY4: Physics Yr11",
+        "Location": "Room: P2.2",
+        "Teacher": "Teacher: Mr Parminder Singh",
+        "Period": "Period: 4",
+        "Start Time": "2024-09-27 12:25:00",
+        "End Time": "2024-09-27 13:25:00"
+    },
+    {
+        "Class": "11MT5: Mathematics Advanced Yr11",
+        "Location": "Room: C2.6",
+        "Teacher": "Teacher: Ms Daiyi Mao",
+        "Period": "Period: 5",
+        "Start Time": "2024-09-27 14:05:00",
+        "End Time": "2024-09-27 15:05:00"
     }
 ]
