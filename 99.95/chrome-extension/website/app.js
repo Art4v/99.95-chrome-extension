@@ -55,6 +55,27 @@ function renderSchedule(schedule) {
     const blocksContainer = document.querySelector('.blocks');
     blocksContainer.innerHTML = ''; // Clear existing content
 
+    // Add recess and lunch periods to the schedule in chronological order
+    const recess = {
+        period: 'R',
+        name: 'Recess',
+        start_time: '2024-07-22T10:30:00',
+        end_time: '2024-07-22T10:50:00',
+        teacher: '',
+        location: ''
+    };
+    const lunch = {
+        period: 'L',
+        name: 'Lunch',
+        start_time: '2024-07-22T12:25:00',
+        end_time: '2024-07-22T12:55:00',
+        teacher: '',
+        location: ''
+    };
+
+    schedule.push(recess, lunch);
+    schedule.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+
     schedule.forEach((entry) => {
         const block = document.createElement('div');
         block.className = 'b';
@@ -74,7 +95,10 @@ function renderSchedule(schedule) {
         const teacherDetails = document.createElement('h4');
         const startTime = new Date(entry.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const endTime = new Date(entry.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        teacherDetails.textContent = `${startTime} – ${endTime}: ${entry.teacher}`;
+        teacherDetails.textContent = `${startTime} – ${endTime}`;
+        if (entry.teacher) {
+            teacherDetails.textContent += `: ${entry.teacher}`;
+        }
         details.appendChild(className);
         details.appendChild(teacherDetails);
 
