@@ -17,6 +17,7 @@ def events_today(ics_file):
   events_today = []
   events_location = []
   events_teacher = []
+  events_period = []
   events_start = []
   events_end = []
   
@@ -44,19 +45,25 @@ def events_today(ics_file):
             # append to list as STRINGS
             events_today.append(component.get('summary'))
             events_location.append(component.get('location'))
-            events_teacher.append(component.get('description'))
             events_start.append(sydney_start.strftime("%Y-%m-%d %H:%M:%S"))
             events_end.append(sydney_end.strftime("%Y-%m-%d %H:%M:%S"))
 
-  return events_today, events_location, events_teacher, events_start, events_end
+            temp = component.get('description')
+            events_teacher.append(temp.splitlines()[0])
+            events_period.append(temp.splitlines()[1])
+
+  return events_today, events_location, events_teacher, events_period, events_start, events_end
 
 # inputs ics path and extract relavent data
 ics_file_path = os.path.join('99.95','backend', 'Aarav.ics')
-todays_events, todays_locations, todays_teacher, todays_start, todays_end = events_today(ics_file_path)
+todays_events, todays_locations, todays_teacher, todays_period, todays_start, todays_end = events_today(ics_file_path)
 
 # print relavent data
 for i in range(len(todays_events)):
-   print('\n', todays_events[i], 'in', todays_locations[i], 'with', todays_teacher[i], 'from', todays_start[i], 'to', todays_end[i])
+   print('\n', todays_events[i], 'in', todays_locations[i], 'with', todays_teacher[i], todays_period[i], 'from', todays_start[i], 'to', todays_end[i])
+
+
+# ***
 
 # create json file
 json_path = "99.95/backend/output.json"
@@ -69,7 +76,7 @@ with open (json_path) as f:
 
 # append variable list
 for i in range(len(todays_events)):
-   temp = {"Class": todays_events[i], "Location": todays_locations[i], "Teacher": todays_teacher[i],"Start Time": todays_start[i], "End Time": todays_end[i]}
+   temp = {"Class": todays_events[i], "Location": todays_locations[i], "Teacher": todays_teacher[i], "Period": todays_period[i] ,"Start Time": todays_start[i], "End Time": todays_end[i]}
    data.append(temp)
 
 # copy variable list back to json file
