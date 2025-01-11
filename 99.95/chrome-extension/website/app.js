@@ -14,13 +14,12 @@ async function fetchSchedule(date) {
 }
 
 // Function to find the next class
-function getNextClass(schedule) {
-    const now = new Date('2024-07-22T07:50:00'); // Fixed date and time for testing
-    return schedule.find((entry) => new Date(entry.start_time) > now) || null;
+function getNextClass(schedule, simulatedNow) {
+    return schedule.find((entry) => new Date(entry.start_time) > simulatedNow) || null;
 }
 
 // Function to start the countdown for the next class
-function startCountdown(nextClass) {
+function startCountdown(nextClass, simulatedNow) {
     const notif = document.querySelector('.notif');
     if (!nextClass) {
         notif.innerHTML = '<h1>No more classes today</h1>';
@@ -29,7 +28,8 @@ function startCountdown(nextClass) {
 
     const nextClassTime = new Date(nextClass.start_time);
     const updateCountdown = () => {
-        const now = new Date('2024-07-22T07:50:00'); // Fixed date and time for testing
+        const now = simulatedNow; // Use simulated now for testing
+        simulatedNow.setSeconds(simulatedNow.getSeconds() + 1); // Increment simulated time
         const timeDiff = Math.max(0, nextClassTime - now);
         const hours = String(Math.floor(timeDiff / (1000 * 60 * 60))).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
@@ -116,14 +116,15 @@ function renderSchedule(schedule) {
     });
 }
 
-// Function to initialize with a fixed date for testing
+// Function to initialize with a fixed date and real-time time
 async function initializeFixedDate() {
     const fixedDate = '2024-07-22'; // Fixed date for testing
     const schedule = await fetchSchedule(fixedDate);
     renderSchedule(schedule);
 
-    const nextClass = getNextClass(schedule);
-    startCountdown(nextClass);
+    const simulatedNow = new Date('2024-07-22T07:05:00'); // Simulated time for testing
+    const nextClass = getNextClass(schedule, simulatedNow);
+    startCountdown(nextClass, simulatedNow);
 }
 
 // Set up event listeners and initialize
