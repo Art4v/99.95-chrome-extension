@@ -1,7 +1,7 @@
 // Function to fetch data from the JSON file
 async function fetchSchedule(date) {
     try {
-        const response = await fetch('schedule.json'); // Path to your JSON file
+        const response = await fetch('output.json'); // Path to your JSON file
         if (!response.ok) {
             throw new Error('Failed to load schedule data.');
         }
