@@ -27,9 +27,11 @@ function startCountdown(nextClass, simulatedNow) {
     }
 
     const nextClassTime = new Date(nextClass.start_time);
+    let timer;
+
     const updateCountdown = () => {
-        const now = simulatedNow; // Use simulated now for testing
-        simulatedNow.setSeconds(simulatedNow.getSeconds() + 1); // Increment simulated time
+        const now = simulatedNow;
+        simulatedNow.setSeconds(simulatedNow.getSeconds() + 1);
         const timeDiff = Math.max(0, nextClassTime - now);
         const hours = String(Math.floor(timeDiff / (1000 * 60 * 60))).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
@@ -43,11 +45,16 @@ function startCountdown(nextClass, simulatedNow) {
         if (timeDiff <= 0) {
             clearInterval(timer);
             notif.innerHTML = `<h1>${nextClass.name} is starting now!</h1>`;
+
+            setTimeout(() => {
+                const nextNextClass = getNextClass(schedule, simulatedNow);
+                startCountdown(nextNextClass, simulatedNow);
+            }, 10000);
         }
     };
 
     updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
+    timer = setInterval(updateCountdown, 1000);
 }
 
 // Function to render the schedule for a specific date
@@ -122,7 +129,8 @@ async function initializeFixedDate() {
     const schedule = await fetchSchedule(fixedDate);
     renderSchedule(schedule);
 
-    const simulatedNow = new Date('2024-07-22T07:05:00'); // Simulated time for testing
+    const simulatedNow = new Date(); // Real-time time with fixed date
+    simulatedNow.setFullYear(2024, 6, 22); // Set to July 22, 2024
     const nextClass = getNextClass(schedule, simulatedNow);
     startCountdown(nextClass, simulatedNow);
 }
