@@ -4,6 +4,7 @@ import icalendar
 import json
 import os 
 import pytz
+import re
 
 # get timezone for sydney
 sydney_timezone = pytz.timezone('Australia/Sydney')
@@ -12,14 +13,23 @@ sydney_timezone = pytz.timezone('Australia/Sydney')
 ics_file_path = os.path.join('99.95','backend', 'Aarav.ics')
 cal = icalendar.Calendar.from_ical(open(ics_file_path, 'rb').read())
 
-# get the directory of the current Python script
-script_dir = os.path.dirname(__file__)
+# get the directory of the project folder
+proj_dir = os.path.dirname(os.path.dirname(__file__))
 
 # Define the path for the JSON file in the same directory
-json_file = os.path.join(script_dir, "output.json")
+json_file = os.path.join(proj_dir, "chrome-extension", "output.json")
 
 # create master dictionary
 master_dict = {}
+
+# create blacklist to filter out redundant words
+blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"]
+
+# create function to filter out redundant words in string
+def filter(input):
+    # make a list of words to filter from "name"
+    return " ".join(word for word in input.split() if word not in blacklist)
+
 
 # create a function to read data from ics file and store immediately in master_dict
 def ical_to_json(date):    
@@ -40,12 +50,12 @@ def ical_to_json(date):
                 # get end date and convert to sydney time in preperation to append to the array
                 end_date = component.get('dtend').dt
                 end_date = end_date.replace(tzinfo=pytz.utc)
-                sydney_end = end_date.astimezone(sydney_timezone)                
+                sydney_end = end_date.astimezone(sydney_timezone)
 
                 # append nameless object (dictionary) with relevant data to array
                 master_dict[str(date.date())].append({
                     "class": str(component.get('summary').partition(": ")[0]),
-                    "name": str(component.get('summary').partition(": ")[2]),
+                    "name": filter(str(component.get('summary').partition(": ")[2])),
                     "location": str(component.get('location').partition(": ")[2]),
                     "teacher": str(component.get('description').splitlines()[0].partition(": ")[2]),
                     "period": str(component.get('description').splitlines()[1].partition(": ")[2]),
@@ -86,7 +96,6 @@ def first_date(cal):
 # run ical_to_json accross all dates in calenda
 for i in range(days_covered_by(cal)):
     ical_to_json(first_date(cal) + timedelta(days = i))
-
 
 # dump master_dict to json
 with open(json_file, "w") as f:
