@@ -17,7 +17,7 @@ cal = icalendar.Calendar.from_ical(open(ics_file_path, 'rb').read())
 proj_dir = os.path.dirname(os.path.dirname(__file__))
 
 # Define the path for the JSON file in the same directory
-json_file = os.path.join(proj_dir, "chrome-extension", "output.json")
+json_file = os.path.join(proj_dir, "chrome-extension", "website", "output.json")
 
 # create master dictionary
 master_dict = {}
