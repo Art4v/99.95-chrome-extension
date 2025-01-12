@@ -66,16 +66,16 @@ function renderSchedule(schedule) {
     const recess = {
         period: 'R',
         name: 'Recess',
-        start_time: '2024-07-22T10:30:00',
-        end_time: '2024-07-22T10:50:00',
+        start_time: '2024-07-22T11:00:00',
+        end_time: '2024-07-22T11:25:00',
         teacher: '',
         location: ''
     };
     const lunch = {
         period: 'L',
         name: 'Lunch',
-        start_time: '2024-07-22T12:25:00',
-        end_time: '2024-07-22T12:55:00',
+        start_time: '2024-07-22T13:25:00',
+        end_time: '2024-07-22T14:05:00',
         teacher: '',
         location: ''
     };
