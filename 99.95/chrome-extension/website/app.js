@@ -14,12 +14,12 @@ async function fetchSchedule(date) {
 }
 
 // Function to find the next class
-function getNextClass(schedule, simulatedNow) {
-    return schedule.find((entry) => new Date(entry.start_time) > simulatedNow) || null;
+function getNextClass(schedule, now) {
+    return schedule.find((entry) => new Date(entry.start_time) > now) || null;
 }
 
 // Function to start the countdown for the next class
-function startCountdown(nextClass, simulatedNow) {
+function startCountdown(nextClass, now) {
     const notif = document.querySelector('.notif');
     if (!nextClass) {
         notif.innerHTML = '<h1>No more classes today</h1>';
@@ -30,9 +30,8 @@ function startCountdown(nextClass, simulatedNow) {
     let timer;
 
     const updateCountdown = () => {
-        const now = simulatedNow;
-        simulatedNow.setSeconds(simulatedNow.getSeconds() + 1);
-        const timeDiff = Math.max(0, nextClassTime - now);
+        const currentTime = new Date(); // Use real current time
+        const timeDiff = Math.max(0, nextClassTime - currentTime);
         const hours = String(Math.floor(timeDiff / (1000 * 60 * 60))).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % (1000 * 60)) / 1000)).padStart(2, '0');
@@ -47,8 +46,8 @@ function startCountdown(nextClass, simulatedNow) {
             notif.innerHTML = `<h1>${nextClass.name} is starting now!</h1>`;
 
             setTimeout(() => {
-                const nextNextClass = getNextClass(schedule, simulatedNow);
-                startCountdown(nextNextClass, simulatedNow);
+                const nextNextClass = getNextClass(schedule, currentTime);
+                startCountdown(nextNextClass, currentTime);
             }, 10000);
         }
     };
@@ -62,25 +61,7 @@ function renderSchedule(schedule) {
     const blocksContainer = document.querySelector('.blocks');
     blocksContainer.innerHTML = ''; // Clear existing content
 
-    // Add recess and lunch periods to the schedule in chronological order
-    const recess = {
-        period: 'R',
-        name: 'Recess',
-        start_time: '2024-07-22T11:00:00',
-        end_time: '2024-07-22T11:25:00',
-        teacher: '',
-        location: ''
-    };
-    const lunch = {
-        period: 'L',
-        name: 'Lunch',
-        start_time: '2024-07-22T13:25:00',
-        end_time: '2024-07-22T14:05:00',
-        teacher: '',
-        location: ''
-    };
-
-    schedule.push(recess, lunch);
+    // Sort the schedule by start time
     schedule.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 
     schedule.forEach((entry) => {
@@ -123,19 +104,18 @@ function renderSchedule(schedule) {
     });
 }
 
-// Function to initialize with a fixed date and real-time time
-async function initializeFixedDate() {
-    const fixedDate = '2024-07-22'; // Fixed date for testing
-    const schedule = await fetchSchedule(fixedDate);
+// Function to initialize with the current date and time
+async function initialize() {
+    const now = new Date(); // Use the current date and time
+    const currentDate = now.toISOString().split('T')[0]; // Get the current date in YYYY-MM-DD format
+    const schedule = await fetchSchedule(currentDate);
     renderSchedule(schedule);
 
-    const simulatedNow = new Date(); // Real-time time with fixed date
-    simulatedNow.setFullYear(2024, 6, 22); // Set to July 22, 2024
-    const nextClass = getNextClass(schedule, simulatedNow);
-    startCountdown(nextClass, simulatedNow);
+    const nextClass = getNextClass(schedule, now);
+    startCountdown(nextClass, now);
 }
 
 // Set up event listeners and initialize
 document.addEventListener('DOMContentLoaded', async () => {
-    await initializeFixedDate(); // Initialize with the fixed date
+    await initialize(); // Initialize with the current date and time
 });
