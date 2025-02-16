@@ -1,2685 +1,2157 @@
 {
-    "2024-07-22": [
+    "2025-02-06": [
         {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
             "period": "1",
-            "start_time": "2024-07-22T08:50:00",
-            "end_time": "2024-07-22T09:50:00"
+            "start_time": "2025-02-06T08:50:00",
+            "end_time": "2025-02-06T09:50:00"
         },
         {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "2",
-            "start_time": "2024-07-22T09:50:00",
-            "end_time": "2024-07-22T10:50:00"
-        },
-        {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2024-07-22T10:50:00",
-            "end_time": "2024-07-22T11:00:00"
+            "start_time": "2025-02-06T10:50:00",
+            "end_time": "2025-02-06T11:05:00"
         },
         {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.1",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-07-22T11:25:00",
-            "end_time": "2024-07-22T12:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-07-22T12:25:00",
-            "end_time": "2024-07-22T13:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.1",
-            "teacher": "Mr Parminder Singh",
-            "period": "5",
-            "start_time": "2024-07-22T14:05:00",
-            "end_time": "2024-07-22T15:05:00"
-        }
-    ],
-    "2024-07-23": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-07-23T08:50:00",
-            "end_time": "2024-07-23T09:50:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-07-23T09:50:00",
-            "end_time": "2024-07-23T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-07-23T10:50:00",
-            "end_time": "2024-07-23T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-07-23T11:25:00",
-            "end_time": "2024-07-23T12:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "4",
-            "start_time": "2024-07-23T12:25:00",
-            "end_time": "2024-07-23T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-07-23T14:05:00",
-            "end_time": "2024-07-23T15:05:00"
-        }
-    ],
-    "2024-07-24": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-07-24T08:50:00",
-            "end_time": "2024-07-24T09:45:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-07-24T09:45:00",
-            "end_time": "2024-07-24T10:40:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-07-24T11:15:00",
-            "end_time": "2024-07-24T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "4",
-            "start_time": "2024-07-24T12:40:00",
-            "end_time": "2024-07-24T13:35:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "5",
-            "start_time": "2024-07-24T13:35:00",
-            "end_time": "2024-07-24T14:30:00"
-        }
-    ],
-    "2024-07-25": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-07-25T07:45:00",
-            "end_time": "2024-07-25T08:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "1",
-            "start_time": "2024-07-25T08:50:00",
-            "end_time": "2024-07-25T09:50:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "2",
-            "start_time": "2024-07-25T09:50:00",
-            "end_time": "2024-07-25T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-07-25T10:50:00",
-            "end_time": "2024-07-25T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-07-25T11:25:00",
-            "end_time": "2024-07-25T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-07-25T12:25:00",
-            "end_time": "2024-07-25T13:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "5",
-            "start_time": "2024-07-25T14:05:00",
-            "end_time": "2024-07-25T15:05:00"
-        }
-    ],
-    "2024-07-26": [
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-07-26T08:50:00",
-            "end_time": "2024-07-26T09:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-07-26T09:50:00",
-            "end_time": "2024-07-26T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-07-26T10:50:00",
-            "end_time": "2024-07-26T11:00:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "3",
-            "start_time": "2024-07-26T11:25:00",
-            "end_time": "2024-07-26T12:25:00"
+            "start_time": "2025-02-06T11:30:00",
+            "end_time": "2025-02-06T12:30:00"
         },
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "L1.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "5",
-            "start_time": "2024-07-26T14:05:00",
-            "end_time": "2024-07-26T15:05:00"
-        }
-    ],
-    "2024-07-27": [],
-    "2024-07-28": [],
-    "2024-07-29": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-07-29T08:50:00",
-            "end_time": "2024-07-29T09:50:00"
-        },
-        {
-            "class": "11X1MT5",
+            "class": "12X1MT3",
             "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-07-29T09:50:00",
-            "end_time": "2024-07-29T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-07-29T10:50:00",
-            "end_time": "2024-07-29T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-07-29T11:25:00",
-            "end_time": "2024-07-29T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-07-29T12:25:00",
-            "end_time": "2024-07-29T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-07-29T14:05:00",
-            "end_time": "2024-07-29T15:05:00"
-        }
-    ],
-    "2024-07-30": [
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-07-30T09:50:00",
-            "end_time": "2024-07-30T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-07-30T10:50:00",
-            "end_time": "2024-07-30T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-07-30T11:25:00",
-            "end_time": "2024-07-30T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "4",
-            "start_time": "2024-07-30T12:25:00",
-            "end_time": "2024-07-30T13:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-07-30T14:05:00",
-            "end_time": "2024-07-30T15:05:00"
-        }
-    ],
-    "2024-07-31": [
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-07-31T08:50:00",
-            "end_time": "2024-07-31T09:45:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.5",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-07-31T11:15:00",
-            "end_time": "2024-07-31T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "4",
-            "start_time": "2024-07-31T12:40:00",
-            "end_time": "2024-07-31T13:35:00"
+            "start_time": "2025-02-06T12:30:00",
+            "end_time": "2025-02-06T13:30:00"
         },
         {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "5",
+            "start_time": "2025-02-06T14:05:00",
+            "end_time": "2025-02-06T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-02-06T15:05:00",
+            "end_time": "2025-02-06T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-02-06T16:30:00",
+            "end_time": "2025-02-06T17:30:00"
+        }
+    ],
+    "2025-02-07": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
-            "period": "5",
-            "start_time": "2024-07-31T13:35:00",
-            "end_time": "2024-07-31T14:30:00"
-        }
-    ],
-    "2024-08-01": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-08-01T07:45:00",
-            "end_time": "2024-08-01T08:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
             "period": "1",
-            "start_time": "2024-08-01T08:50:00",
-            "end_time": "2024-08-01T09:50:00"
+            "start_time": "2025-02-07T08:50:00",
+            "end_time": "2025-02-07T09:50:00"
         },
         {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "C1.4",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-01T09:50:00",
-            "end_time": "2024-08-01T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-01T10:50:00",
-            "end_time": "2024-08-01T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-08-01T11:25:00",
-            "end_time": "2024-08-01T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-01T12:25:00",
-            "end_time": "2024-08-01T13:25:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "5",
-            "start_time": "2024-08-01T14:05:00",
-            "end_time": "2024-08-01T15:05:00"
-        }
-    ],
-    "2024-08-02": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-02T08:50:00",
-            "end_time": "2024-08-02T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-02T09:50:00",
-            "end_time": "2024-08-02T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-02T10:50:00",
-            "end_time": "2024-08-02T11:00:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-08-02T11:25:00",
-            "end_time": "2024-08-02T12:25:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
-            "period": "4",
-            "start_time": "2024-08-02T12:25:00",
-            "end_time": "2024-08-02T13:25:00"
+            "period": "2",
+            "start_time": "2025-02-07T09:50:00",
+            "end_time": "2025-02-07T10:50:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-08-02T14:05:00",
-            "end_time": "2024-08-02T15:05:00"
-        }
-    ],
-    "2024-08-03": [],
-    "2024-08-04": [],
-    "2024-08-05": [
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-07T10:50:00",
+            "end_time": "2025-02-07T11:05:00"
+        },
         {
-            "class": "11CHEM3",
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "3",
+            "start_time": "2025-02-07T11:30:00",
+            "end_time": "2025-02-07T12:30:00"
+        },
+        {
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-05T08:50:00",
-            "end_time": "2024-08-05T09:50:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "2",
-            "start_time": "2024-08-05T09:50:00",
-            "end_time": "2024-08-05T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-05T10:50:00",
-            "end_time": "2024-08-05T11:00:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.1",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-08-05T11:25:00",
-            "end_time": "2024-08-05T12:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
             "period": "4",
-            "start_time": "2024-08-05T12:25:00",
-            "end_time": "2024-08-05T13:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.1",
-            "teacher": "Mr Parminder Singh",
-            "period": "5",
-            "start_time": "2024-08-05T14:05:00",
-            "end_time": "2024-08-05T15:05:00"
+            "start_time": "2025-02-07T12:30:00",
+            "end_time": "2025-02-07T13:30:00"
         }
     ],
-    "2024-08-06": [
+    "2025-02-08": [],
+    "2025-02-09": [],
+    "2025-02-10": [
         {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-08-06T08:50:00",
-            "end_time": "2024-08-06T09:50:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-08-06T09:50:00",
-            "end_time": "2024-08-06T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-06T10:50:00",
-            "end_time": "2024-08-06T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-08-06T11:25:00",
-            "end_time": "2024-08-06T12:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "4",
-            "start_time": "2024-08-06T12:25:00",
-            "end_time": "2024-08-06T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-08-06T14:05:00",
-            "end_time": "2024-08-06T15:05:00"
-        }
-    ],
-    "2024-08-07": [
-        {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-07T08:50:00",
-            "end_time": "2024-08-07T09:45:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
             "period": "2",
-            "start_time": "2024-08-07T09:45:00",
-            "end_time": "2024-08-07T10:40:00"
+            "start_time": "2025-02-10T09:50:00",
+            "end_time": "2025-02-10T10:50:00"
         },
         {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-08-07T11:15:00",
-            "end_time": "2024-08-07T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "4",
-            "start_time": "2024-08-07T12:40:00",
-            "end_time": "2024-08-07T13:35:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "5",
-            "start_time": "2024-08-07T13:35:00",
-            "end_time": "2024-08-07T14:30:00"
-        }
-    ],
-    "2024-08-08": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-08-08T07:45:00",
-            "end_time": "2024-08-08T08:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "1",
-            "start_time": "2024-08-08T08:50:00",
-            "end_time": "2024-08-08T09:50:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "2",
-            "start_time": "2024-08-08T09:50:00",
-            "end_time": "2024-08-08T10:50:00"
-        },
-        {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-08T10:50:00",
-            "end_time": "2024-08-08T11:00:00"
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-02-10T10:50:00",
+            "end_time": "2025-02-10T11:05:00"
         },
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-08-08T11:25:00",
-            "end_time": "2024-08-08T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-08T12:25:00",
-            "end_time": "2024-08-08T13:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "5",
-            "start_time": "2024-08-08T14:05:00",
-            "end_time": "2024-08-08T15:05:00"
-        }
-    ],
-    "2024-08-09": [
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-08-09T08:50:00",
-            "end_time": "2024-08-09T09:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-08-09T09:50:00",
-            "end_time": "2024-08-09T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-09T10:50:00",
-            "end_time": "2024-08-09T11:00:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "3",
-            "start_time": "2024-08-09T11:25:00",
-            "end_time": "2024-08-09T12:25:00"
+            "start_time": "2025-02-10T11:30:00",
+            "end_time": "2025-02-10T12:30:00"
         },
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "L1.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "5",
-            "start_time": "2024-08-09T14:05:00",
-            "end_time": "2024-08-09T15:05:00"
-        }
-    ],
-    "2024-08-10": [],
-    "2024-08-11": [],
-    "2024-08-12": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-08-12T08:50:00",
-            "end_time": "2024-08-12T09:50:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-08-12T09:50:00",
-            "end_time": "2024-08-12T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-12T10:50:00",
-            "end_time": "2024-08-12T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-08-12T11:25:00",
-            "end_time": "2024-08-12T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-12T12:25:00",
-            "end_time": "2024-08-12T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-08-12T14:05:00",
-            "end_time": "2024-08-12T15:05:00"
-        }
-    ],
-    "2024-08-13": [
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-08-13T09:50:00",
-            "end_time": "2024-08-13T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-13T10:50:00",
-            "end_time": "2024-08-13T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-08-13T11:25:00",
-            "end_time": "2024-08-13T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "4",
-            "start_time": "2024-08-13T12:25:00",
-            "end_time": "2024-08-13T13:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-08-13T14:05:00",
-            "end_time": "2024-08-13T15:05:00"
-        }
-    ],
-    "2024-08-14": [
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-08-14T08:50:00",
-            "end_time": "2024-08-14T09:45:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.5",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-08-14T11:15:00",
-            "end_time": "2024-08-14T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "4",
-            "start_time": "2024-08-14T12:40:00",
-            "end_time": "2024-08-14T13:35:00"
+            "start_time": "2025-02-10T12:30:00",
+            "end_time": "2025-02-10T13:30:00"
         },
         {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "5",
-            "start_time": "2024-08-14T13:35:00",
-            "end_time": "2024-08-14T14:30:00"
+            "start_time": "2025-02-10T14:05:00",
+            "end_time": "2025-02-10T15:05:00"
         }
     ],
-    "2024-08-15": [
+    "2025-02-11": [
         {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-08-15T07:45:00",
-            "end_time": "2024-08-15T08:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "1",
-            "start_time": "2024-08-15T08:50:00",
-            "end_time": "2024-08-15T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "C1.4",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-15T09:50:00",
-            "end_time": "2024-08-15T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-15T10:50:00",
-            "end_time": "2024-08-15T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-08-15T11:25:00",
-            "end_time": "2024-08-15T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-15T12:25:00",
-            "end_time": "2024-08-15T13:25:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "5",
-            "start_time": "2024-08-15T14:05:00",
-            "end_time": "2024-08-15T15:05:00"
-        }
-    ],
-    "2024-08-16": [
-        {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
             "period": "1",
-            "start_time": "2024-08-16T08:50:00",
-            "end_time": "2024-08-16T09:50:00"
+            "start_time": "2025-02-11T08:50:00",
+            "end_time": "2025-02-11T09:50:00"
         },
         {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-16T09:50:00",
-            "end_time": "2024-08-16T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-16T10:50:00",
-            "end_time": "2024-08-16T11:00:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-08-16T11:25:00",
-            "end_time": "2024-08-16T12:25:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
-            "period": "4",
-            "start_time": "2024-08-16T12:25:00",
-            "end_time": "2024-08-16T13:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-08-16T14:05:00",
-            "end_time": "2024-08-16T15:05:00"
-        }
-    ],
-    "2024-08-17": [],
-    "2024-08-18": [],
-    "2024-08-19": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-19T08:50:00",
-            "end_time": "2024-08-19T09:50:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
             "period": "2",
-            "start_time": "2024-08-19T09:50:00",
-            "end_time": "2024-08-19T10:50:00"
+            "start_time": "2025-02-11T09:50:00",
+            "end_time": "2025-02-11T10:50:00"
         },
         {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2024-08-19T10:50:00",
-            "end_time": "2024-08-19T11:00:00"
+            "start_time": "2025-02-11T10:50:00",
+            "end_time": "2025-02-11T11:05:00"
         },
         {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.1",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-08-19T11:25:00",
-            "end_time": "2024-08-19T12:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-19T12:25:00",
-            "end_time": "2024-08-19T13:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.1",
-            "teacher": "Mr Parminder Singh",
-            "period": "5",
-            "start_time": "2024-08-19T14:05:00",
-            "end_time": "2024-08-19T15:05:00"
-        }
-    ],
-    "2024-08-20": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-08-20T08:50:00",
-            "end_time": "2024-08-20T09:50:00"
-        },
-        {
-            "class": "11MT5",
+            "class": "12MT3",
             "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-08-20T09:50:00",
-            "end_time": "2024-08-20T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-20T10:50:00",
-            "end_time": "2024-08-20T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
             "period": "3",
-            "start_time": "2024-08-20T11:25:00",
-            "end_time": "2024-08-20T12:25:00"
+            "start_time": "2025-02-11T11:30:00",
+            "end_time": "2025-02-11T12:30:00"
         },
         {
-            "class": "11ENC2",
+            "class": "12ENG2",
             "name": "English Advanced",
             "location": "L1.1",
             "teacher": "Mrs Catherine Fleming",
             "period": "4",
-            "start_time": "2024-08-20T12:25:00",
-            "end_time": "2024-08-20T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-08-20T14:05:00",
-            "end_time": "2024-08-20T15:05:00"
+            "start_time": "2025-02-11T12:30:00",
+            "end_time": "2025-02-11T13:30:00"
         }
     ],
-    "2024-08-21": [
+    "2025-02-12": [
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-21T08:50:00",
-            "end_time": "2024-08-21T09:45:00"
-        },
-        {
-            "class": "11MT5",
+            "class": "12MT3",
             "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
             "period": "2",
-            "start_time": "2024-08-21T09:45:00",
-            "end_time": "2024-08-21T10:40:00"
+            "start_time": "2025-02-12T09:50:00",
+            "end_time": "2025-02-12T10:50:00"
         },
         {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-08-21T11:15:00",
-            "end_time": "2024-08-21T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "4",
-            "start_time": "2024-08-21T12:40:00",
-            "end_time": "2024-08-21T13:35:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "5",
-            "start_time": "2024-08-21T13:35:00",
-            "end_time": "2024-08-21T14:30:00"
-        }
-    ],
-    "2024-08-22": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-08-22T07:45:00",
-            "end_time": "2024-08-22T08:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "1",
-            "start_time": "2024-08-22T08:50:00",
-            "end_time": "2024-08-22T09:50:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "2",
-            "start_time": "2024-08-22T09:50:00",
-            "end_time": "2024-08-22T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-22T10:50:00",
-            "end_time": "2024-08-22T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
             "period": "3",
-            "start_time": "2024-08-22T11:25:00",
-            "end_time": "2024-08-22T12:25:00"
-        },
+            "start_time": "2025-02-12T11:10:00",
+            "end_time": "2025-02-12T12:10:00"
+        }
+    ],
+    "2025-02-13": [
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-22T12:25:00",
-            "end_time": "2024-08-22T13:25:00"
-        },
-        {
-            "class": "11ENC2",
+            "class": "12ENG2",
             "name": "English Advanced",
             "location": "L1.1",
             "teacher": "Mrs Catherine Fleming",
-            "period": "5",
-            "start_time": "2024-08-22T14:05:00",
-            "end_time": "2024-08-22T15:05:00"
-        }
-    ],
-    "2024-08-23": [
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
             "period": "1",
-            "start_time": "2024-08-23T08:50:00",
-            "end_time": "2024-08-23T09:50:00"
+            "start_time": "2025-02-13T08:50:00",
+            "end_time": "2025-02-13T09:50:00"
         },
         {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-08-23T09:50:00",
-            "end_time": "2024-08-23T10:50:00"
-        },
-        {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2024-08-23T10:50:00",
-            "end_time": "2024-08-23T11:00:00"
+            "start_time": "2025-02-13T10:50:00",
+            "end_time": "2025-02-13T11:05:00"
         },
         {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-08-23T11:25:00",
-            "end_time": "2024-08-23T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "L1.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "5",
-            "start_time": "2024-08-23T14:05:00",
-            "end_time": "2024-08-23T15:05:00"
-        }
-    ],
-    "2024-08-24": [],
-    "2024-08-25": [],
-    "2024-08-26": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-08-26T08:50:00",
-            "end_time": "2024-08-26T09:50:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-08-26T09:50:00",
-            "end_time": "2024-08-26T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-26T10:50:00",
-            "end_time": "2024-08-26T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-08-26T11:25:00",
-            "end_time": "2024-08-26T12:25:00"
-        },
-        {
-            "class": "11MT5",
+            "class": "12MT3",
             "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-26T12:25:00",
-            "end_time": "2024-08-26T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-08-26T14:05:00",
-            "end_time": "2024-08-26T15:05:00"
-        }
-    ],
-    "2024-08-27": [
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-08-27T09:50:00",
-            "end_time": "2024-08-27T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-27T10:50:00",
-            "end_time": "2024-08-27T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-08-27T11:25:00",
-            "end_time": "2024-08-27T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "4",
-            "start_time": "2024-08-27T12:25:00",
-            "end_time": "2024-08-27T13:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-08-27T14:05:00",
-            "end_time": "2024-08-27T15:05:00"
-        }
-    ],
-    "2024-08-28": [
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-08-28T08:50:00",
-            "end_time": "2024-08-28T09:45:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.5",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-08-28T11:15:00",
-            "end_time": "2024-08-28T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "4",
-            "start_time": "2024-08-28T12:40:00",
-            "end_time": "2024-08-28T13:35:00"
+            "start_time": "2025-02-13T12:30:00",
+            "end_time": "2025-02-13T13:30:00"
         },
         {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "5",
+            "start_time": "2025-02-13T14:05:00",
+            "end_time": "2025-02-13T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-02-13T15:05:00",
+            "end_time": "2025-02-13T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-02-13T16:30:00",
+            "end_time": "2025-02-13T17:30:00"
+        }
+    ],
+    "2025-02-14": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "BS",
+            "start_time": "2025-02-14T07:45:00",
+            "end_time": "2025-02-14T08:50:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-02-14T08:50:00",
+            "end_time": "2025-02-14T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-02-14T09:50:00",
+            "end_time": "2025-02-14T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-14T10:50:00",
+            "end_time": "2025-02-14T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "5",
-            "start_time": "2024-08-28T13:35:00",
-            "end_time": "2024-08-28T14:30:00"
+            "start_time": "2025-02-14T14:05:00",
+            "end_time": "2025-02-14T15:05:00"
         }
     ],
-    "2024-08-29": [
+    "2025-02-15": [],
+    "2025-02-16": [],
+    "2025-02-17": [
         {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-08-29T07:45:00",
-            "end_time": "2024-08-29T08:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "1",
-            "start_time": "2024-08-29T08:50:00",
-            "end_time": "2024-08-29T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "C1.4",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-29T09:50:00",
-            "end_time": "2024-08-29T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-29T10:50:00",
-            "end_time": "2024-08-29T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-08-29T11:25:00",
-            "end_time": "2024-08-29T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-08-29T12:25:00",
-            "end_time": "2024-08-29T13:25:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "5",
-            "start_time": "2024-08-29T14:05:00",
-            "end_time": "2024-08-29T15:05:00"
-        }
-    ],
-    "2024-08-30": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-08-30T08:50:00",
-            "end_time": "2024-08-30T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-08-30T09:50:00",
-            "end_time": "2024-08-30T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-08-30T10:50:00",
-            "end_time": "2024-08-30T11:00:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-08-30T11:25:00",
-            "end_time": "2024-08-30T12:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "4",
-            "start_time": "2024-08-30T12:25:00",
-            "end_time": "2024-08-30T13:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-08-30T14:05:00",
-            "end_time": "2024-08-30T15:05:00"
-        }
-    ],
-    "2024-08-31": [],
-    "2024-09-01": [],
-    "2024-09-02": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-09-02T08:50:00",
-            "end_time": "2024-09-02T09:50:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "2",
-            "start_time": "2024-09-02T09:50:00",
-            "end_time": "2024-09-02T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-02T10:50:00",
-            "end_time": "2024-09-02T11:00:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.1",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-09-02T11:25:00",
-            "end_time": "2024-09-02T12:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-02T12:25:00",
-            "end_time": "2024-09-02T13:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.1",
-            "teacher": "Mr Parminder Singh",
-            "period": "5",
-            "start_time": "2024-09-02T14:05:00",
-            "end_time": "2024-09-02T15:05:00"
-        }
-    ],
-    "2024-09-03": [
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "1",
-            "start_time": "2024-09-03T08:50:00",
-            "end_time": "2024-09-03T09:50:00"
+            "start_time": "2025-02-17T08:50:00",
+            "end_time": "2025-02-17T09:50:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-03T09:50:00",
-            "end_time": "2024-09-03T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-03T10:50:00",
-            "end_time": "2024-09-03T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-09-03T11:25:00",
-            "end_time": "2024-09-03T12:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "4",
-            "start_time": "2024-09-03T12:25:00",
-            "end_time": "2024-09-03T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-09-03T14:05:00",
-            "end_time": "2024-09-03T15:05:00"
-        }
-    ],
-    "2024-09-04": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-09-04T08:50:00",
-            "end_time": "2024-09-04T09:45:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-04T09:45:00",
-            "end_time": "2024-09-04T10:40:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-09-04T11:15:00",
-            "end_time": "2024-09-04T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "4",
-            "start_time": "2024-09-04T12:40:00",
-            "end_time": "2024-09-04T13:35:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "5",
-            "start_time": "2024-09-04T13:35:00",
-            "end_time": "2024-09-04T14:30:00"
-        }
-    ],
-    "2024-09-05": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-09-05T07:45:00",
-            "end_time": "2024-09-05T08:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "1",
-            "start_time": "2024-09-05T08:50:00",
-            "end_time": "2024-09-05T09:50:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "2",
-            "start_time": "2024-09-05T09:50:00",
-            "end_time": "2024-09-05T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-05T10:50:00",
-            "end_time": "2024-09-05T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-09-05T11:25:00",
-            "end_time": "2024-09-05T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-05T12:25:00",
-            "end_time": "2024-09-05T13:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "5",
-            "start_time": "2024-09-05T14:05:00",
-            "end_time": "2024-09-05T15:05:00"
-        }
-    ],
-    "2024-09-06": [
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-09-06T08:50:00",
-            "end_time": "2024-09-06T09:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-09-06T09:50:00",
-            "end_time": "2024-09-06T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-06T10:50:00",
-            "end_time": "2024-09-06T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-09-06T11:25:00",
-            "end_time": "2024-09-06T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "L1.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "5",
-            "start_time": "2024-09-06T14:05:00",
-            "end_time": "2024-09-06T15:05:00"
-        }
-    ],
-    "2024-09-07": [],
-    "2024-09-08": [],
-    "2024-09-09": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-09-09T08:50:00",
-            "end_time": "2024-09-09T09:50:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-09T09:50:00",
-            "end_time": "2024-09-09T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-09T10:50:00",
-            "end_time": "2024-09-09T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-09-09T11:25:00",
-            "end_time": "2024-09-09T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-09T12:25:00",
-            "end_time": "2024-09-09T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-09-09T14:05:00",
-            "end_time": "2024-09-09T15:05:00"
-        }
-    ],
-    "2024-09-10": [
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-09-10T09:50:00",
-            "end_time": "2024-09-10T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-10T10:50:00",
-            "end_time": "2024-09-10T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-09-10T11:25:00",
-            "end_time": "2024-09-10T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "4",
-            "start_time": "2024-09-10T12:25:00",
-            "end_time": "2024-09-10T13:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-09-10T14:05:00",
-            "end_time": "2024-09-10T15:05:00"
-        }
-    ],
-    "2024-09-11": [
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-09-11T08:50:00",
-            "end_time": "2024-09-11T09:45:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.5",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-09-11T11:15:00",
-            "end_time": "2024-09-11T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
-            "period": "4",
-            "start_time": "2024-09-11T12:40:00",
-            "end_time": "2024-09-11T13:35:00"
+            "period": "2",
+            "start_time": "2025-02-17T09:50:00",
+            "end_time": "2025-02-17T10:50:00"
         },
         {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-02-17T10:50:00",
+            "end_time": "2025-02-17T11:05:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-02-17T11:30:00",
+            "end_time": "2025-02-17T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-02-17T12:30:00",
+            "end_time": "2025-02-17T13:30:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "5",
-            "start_time": "2024-09-11T13:35:00",
-            "end_time": "2024-09-11T14:30:00"
+            "start_time": "2025-02-17T14:05:00",
+            "end_time": "2025-02-17T15:05:00"
         }
     ],
-    "2024-09-12": [
+    "2025-02-18": [
         {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-09-12T07:45:00",
-            "end_time": "2024-09-12T08:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
             "period": "1",
-            "start_time": "2024-09-12T08:50:00",
-            "end_time": "2024-09-12T09:50:00"
+            "start_time": "2025-02-18T08:50:00",
+            "end_time": "2025-02-18T09:50:00"
         },
         {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "C1.4",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-09-12T09:50:00",
-            "end_time": "2024-09-12T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-12T10:50:00",
-            "end_time": "2024-09-12T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-09-12T11:25:00",
-            "end_time": "2024-09-12T12:25:00"
-        },
-        {
-            "class": "11MT5",
+            "class": "12MT3",
             "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-12T12:25:00",
-            "end_time": "2024-09-12T13:25:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "5",
-            "start_time": "2024-09-12T14:05:00",
-            "end_time": "2024-09-12T15:05:00"
-        }
-    ],
-    "2024-09-13": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-09-13T08:50:00",
-            "end_time": "2024-09-13T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
             "period": "2",
-            "start_time": "2024-09-13T09:50:00",
-            "end_time": "2024-09-13T10:50:00"
+            "start_time": "2025-02-18T09:50:00",
+            "end_time": "2025-02-18T10:50:00"
         },
         {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2024-09-13T10:50:00",
-            "end_time": "2024-09-13T11:00:00"
+            "start_time": "2025-02-18T10:50:00",
+            "end_time": "2025-02-18T11:05:00"
         },
         {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-09-13T11:25:00",
-            "end_time": "2024-09-13T12:25:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "4",
-            "start_time": "2024-09-13T12:25:00",
-            "end_time": "2024-09-13T13:25:00"
+            "start_time": "2025-02-18T12:30:00",
+            "end_time": "2025-02-18T13:30:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C2.1",
+            "teacher": "Miss Sandra Fernandez",
             "period": "5",
-            "start_time": "2024-09-13T14:05:00",
-            "end_time": "2024-09-13T15:05:00"
+            "start_time": "2025-02-18T14:05:00",
+            "end_time": "2025-02-18T15:05:00"
         }
     ],
-    "2024-09-14": [],
-    "2024-09-15": [],
-    "2024-09-16": [
+    "2025-02-19": [
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-09-16T08:50:00",
-            "end_time": "2024-09-16T09:50:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "2",
-            "start_time": "2024-09-16T09:50:00",
-            "end_time": "2024-09-16T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-16T10:50:00",
-            "end_time": "2024-09-16T11:00:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.1",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-09-16T11:25:00",
-            "end_time": "2024-09-16T12:25:00"
-        },
-        {
-            "class": "11X1MT5",
+            "class": "12X1MT3",
             "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-16T12:25:00",
-            "end_time": "2024-09-16T13:25:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.1",
-            "teacher": "Mr Parminder Singh",
-            "period": "5",
-            "start_time": "2024-09-16T14:05:00",
-            "end_time": "2024-09-16T15:05:00"
-        }
-    ],
-    "2024-09-17": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
             "period": "1",
-            "start_time": "2024-09-17T08:50:00",
-            "end_time": "2024-09-17T09:50:00"
+            "start_time": "2025-02-19T08:50:00",
+            "end_time": "2025-02-19T09:50:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-17T09:50:00",
-            "end_time": "2024-09-17T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-17T10:50:00",
-            "end_time": "2024-09-17T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-09-17T11:25:00",
-            "end_time": "2024-09-17T12:25:00"
-        },
-        {
-            "class": "11ENC2",
+            "class": "12ENG2",
             "name": "English Advanced",
             "location": "L1.1",
             "teacher": "Mrs Catherine Fleming",
-            "period": "4",
-            "start_time": "2024-09-17T12:25:00",
-            "end_time": "2024-09-17T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-09-17T14:05:00",
-            "end_time": "2024-09-17T15:05:00"
+            "period": "2",
+            "start_time": "2025-02-19T09:50:00",
+            "end_time": "2025-02-19T10:50:00"
         }
     ],
-    "2024-09-18": [
+    "2025-02-20": [
         {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
             "period": "1",
-            "start_time": "2024-09-18T08:50:00",
-            "end_time": "2024-09-18T09:45:00"
+            "start_time": "2025-02-20T08:50:00",
+            "end_time": "2025-02-20T09:50:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-18T09:45:00",
-            "end_time": "2024-09-18T10:40:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-09-18T11:15:00",
-            "end_time": "2024-09-18T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "4",
-            "start_time": "2024-09-18T12:40:00",
-            "end_time": "2024-09-18T13:35:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
-            "teacher": "Mr Luke McCann",
-            "period": "5",
-            "start_time": "2024-09-18T13:35:00",
-            "end_time": "2024-09-18T14:30:00"
-        }
-    ],
-    "2024-09-19": [
-        {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-09-19T07:45:00",
-            "end_time": "2024-09-19T08:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "1",
-            "start_time": "2024-09-19T08:50:00",
-            "end_time": "2024-09-19T09:50:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "L1.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "2",
-            "start_time": "2024-09-19T09:50:00",
-            "end_time": "2024-09-19T10:50:00"
-        },
-        {
-            "class": "11CR8",
+            "class": "12CR2",
             "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2024-09-19T10:50:00",
-            "end_time": "2024-09-19T11:00:00"
+            "start_time": "2025-02-20T10:50:00",
+            "end_time": "2025-02-20T11:05:00"
         },
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-09-19T11:25:00",
-            "end_time": "2024-09-19T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-19T12:25:00",
-            "end_time": "2024-09-19T13:25:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "5",
-            "start_time": "2024-09-19T14:05:00",
-            "end_time": "2024-09-19T15:05:00"
-        }
-    ],
-    "2024-09-20": [
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-09-20T08:50:00",
-            "end_time": "2024-09-20T09:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-09-20T09:50:00",
-            "end_time": "2024-09-20T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-20T10:50:00",
-            "end_time": "2024-09-20T11:00:00"
-        },
-        {
-            "class": "11PHY4",
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "3",
-            "start_time": "2024-09-20T11:25:00",
-            "end_time": "2024-09-20T12:25:00"
+            "start_time": "2025-02-20T11:30:00",
+            "end_time": "2025-02-20T12:30:00"
         },
         {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "L1.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "5",
-            "start_time": "2024-09-20T14:05:00",
-            "end_time": "2024-09-20T15:05:00"
-        }
-    ],
-    "2024-09-21": [],
-    "2024-09-22": [],
-    "2024-09-23": [
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "1",
-            "start_time": "2024-09-23T08:50:00",
-            "end_time": "2024-09-23T09:50:00"
-        },
-        {
-            "class": "11X1MT5",
+            "class": "12X1MT3",
             "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "2",
-            "start_time": "2024-09-23T09:50:00",
-            "end_time": "2024-09-23T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-23T10:50:00",
-            "end_time": "2024-09-23T11:00:00"
-        },
-        {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "3",
-            "start_time": "2024-09-23T11:25:00",
-            "end_time": "2024-09-23T12:25:00"
-        },
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-23T12:25:00",
-            "end_time": "2024-09-23T13:25:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "A2.3",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "5",
-            "start_time": "2024-09-23T14:05:00",
-            "end_time": "2024-09-23T15:05:00"
-        }
-    ],
-    "2024-09-24": [
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "2",
-            "start_time": "2024-09-24T09:50:00",
-            "end_time": "2024-09-24T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-24T10:50:00",
-            "end_time": "2024-09-24T11:00:00"
-        },
-        {
-            "class": "11PHY4",
-            "name": "Physics",
-            "location": "P2.2",
-            "teacher": "Mr Parminder Singh",
-            "period": "3",
-            "start_time": "2024-09-24T11:25:00",
-            "end_time": "2024-09-24T12:25:00"
-        },
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "4",
-            "start_time": "2024-09-24T12:25:00",
-            "end_time": "2024-09-24T13:25:00"
-        },
-        {
-            "class": "11X1MT5",
-            "name": "Mathematics Extension",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "5",
-            "start_time": "2024-09-24T14:05:00",
-            "end_time": "2024-09-24T15:05:00"
-        }
-    ],
-    "2024-09-25": [
-        {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "1",
-            "start_time": "2024-09-25T08:50:00",
-            "end_time": "2024-09-25T09:45:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.5",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "3",
-            "start_time": "2024-09-25T11:15:00",
-            "end_time": "2024-09-25T12:10:00"
-        },
-        {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "4",
-            "start_time": "2024-09-25T12:40:00",
-            "end_time": "2024-09-25T13:35:00"
+            "start_time": "2025-02-20T12:30:00",
+            "end_time": "2025-02-20T13:30:00"
         },
         {
-            "class": "BOZTOA/B",
-            "name": "Boys OzTag OpenA/B SPT",
-            "location": "",
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "5",
+            "start_time": "2025-02-20T14:05:00",
+            "end_time": "2025-02-20T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-02-20T15:05:00",
+            "end_time": "2025-02-20T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-02-20T16:30:00",
+            "end_time": "2025-02-20T17:30:00"
+        }
+    ],
+    "2025-02-21": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-02-21T08:50:00",
+            "end_time": "2025-02-21T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-02-21T09:50:00",
+            "end_time": "2025-02-21T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-21T10:50:00",
+            "end_time": "2025-02-21T11:05:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "3",
+            "start_time": "2025-02-21T11:30:00",
+            "end_time": "2025-02-21T12:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "4",
+            "start_time": "2025-02-21T12:30:00",
+            "end_time": "2025-02-21T13:30:00"
+        }
+    ],
+    "2025-02-22": [],
+    "2025-02-23": [],
+    "2025-02-24": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "2",
+            "start_time": "2025-02-24T09:50:00",
+            "end_time": "2025-02-24T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-02-24T10:50:00",
+            "end_time": "2025-02-24T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-02-24T11:30:00",
+            "end_time": "2025-02-24T12:30:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-02-24T12:30:00",
+            "end_time": "2025-02-24T13:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "5",
-            "start_time": "2024-09-25T13:35:00",
-            "end_time": "2024-09-25T14:30:00"
+            "start_time": "2025-02-24T14:05:00",
+            "end_time": "2025-02-24T15:05:00"
         }
     ],
-    "2024-09-26": [
+    "2025-02-25": [
         {
-            "class": "11ENMNTB",
-            "name": "English Mentoring",
-            "location": "L1.4",
-            "teacher": "Miss Lucinda Joura",
-            "period": "BS",
-            "start_time": "2024-09-26T07:45:00",
-            "end_time": "2024-09-26T08:50:00"
-        },
-        {
-            "class": "11ENC2",
-            "name": "English Advanced",
-            "location": "L1.1",
-            "teacher": "Mrs Catherine Fleming",
-            "period": "1",
-            "start_time": "2024-09-26T08:50:00",
-            "end_time": "2024-09-26T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "C1.4",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-09-26T09:50:00",
-            "end_time": "2024-09-26T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-26T10:50:00",
-            "end_time": "2024-09-26T11:00:00"
-        },
-        {
-            "class": "11CHEM3",
+            "class": "12CHEM3",
             "name": "Chemistry",
             "location": "C0.1",
             "teacher": "Miss Sandra Fernandez",
-            "period": "3",
-            "start_time": "2024-09-26T11:25:00",
-            "end_time": "2024-09-26T12:25:00"
+            "period": "1",
+            "start_time": "2025-02-25T08:50:00",
+            "end_time": "2025-02-25T09:50:00"
         },
         {
-            "class": "11MT5",
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-02-25T09:50:00",
+            "end_time": "2025-02-25T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-25T10:50:00",
+            "end_time": "2025-02-25T11:05:00"
+        },
+        {
+            "class": "12MT3",
             "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
-            "period": "4",
-            "start_time": "2024-09-26T12:25:00",
-            "end_time": "2024-09-26T13:25:00"
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "3",
+            "start_time": "2025-02-25T11:30:00",
+            "end_time": "2025-02-25T12:30:00"
         },
         {
-            "class": "11X1EN2",
-            "name": "English Extension 1",
-            "location": "L1.3",
-            "teacher": "Ms Dora Kindis",
-            "period": "5",
-            "start_time": "2024-09-26T14:05:00",
-            "end_time": "2024-09-26T15:05:00"
-        }
-    ],
-    "2024-09-27": [
-        {
-            "class": "11CHEM3",
-            "name": "Chemistry",
-            "location": "C0.1",
-            "teacher": "Miss Sandra Fernandez",
-            "period": "1",
-            "start_time": "2024-09-27T08:50:00",
-            "end_time": "2024-09-27T09:50:00"
-        },
-        {
-            "class": "11ECO3",
-            "name": "Economics",
-            "location": "L1.2",
-            "teacher": "Miss Lauren Silvestro",
-            "period": "2",
-            "start_time": "2024-09-27T09:50:00",
-            "end_time": "2024-09-27T10:50:00"
-        },
-        {
-            "class": "11CR8",
-            "name": "Connect@Ruse",
-            "location": "T2.6",
-            "teacher": "Mr Richard Grant",
-            "period": "CR",
-            "start_time": "2024-09-27T10:50:00",
-            "end_time": "2024-09-27T11:00:00"
-        },
-        {
-            "class": "11ENC2",
+            "class": "12ENG2",
             "name": "English Advanced",
             "location": "L1.1",
             "teacher": "Mrs Catherine Fleming",
-            "period": "3",
-            "start_time": "2024-09-27T11:25:00",
-            "end_time": "2024-09-27T12:25:00"
+            "period": "4",
+            "start_time": "2025-02-25T12:30:00",
+            "end_time": "2025-02-25T13:30:00"
+        }
+    ],
+    "2025-02-26": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-02-26T09:50:00",
+            "end_time": "2025-02-26T10:50:00"
         },
         {
-            "class": "11PHY4",
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-02-26T11:10:00",
+            "end_time": "2025-02-26T12:10:00"
+        }
+    ],
+    "2025-02-27": [
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "1",
+            "start_time": "2025-02-27T08:50:00",
+            "end_time": "2025-02-27T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-27T10:50:00",
+            "end_time": "2025-02-27T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-02-27T12:30:00",
+            "end_time": "2025-02-27T13:30:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "5",
+            "start_time": "2025-02-27T14:05:00",
+            "end_time": "2025-02-27T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-02-27T15:05:00",
+            "end_time": "2025-02-27T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-02-27T16:30:00",
+            "end_time": "2025-02-27T17:30:00"
+        }
+    ],
+    "2025-02-28": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "BS",
+            "start_time": "2025-02-28T07:45:00",
+            "end_time": "2025-02-28T08:50:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-02-28T08:50:00",
+            "end_time": "2025-02-28T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-02-28T09:50:00",
+            "end_time": "2025-02-28T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-02-28T10:50:00",
+            "end_time": "2025-02-28T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-02-28T14:05:00",
+            "end_time": "2025-02-28T15:05:00"
+        }
+    ],
+    "2025-03-01": [],
+    "2025-03-02": [],
+    "2025-03-03": [
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "1",
+            "start_time": "2025-03-03T08:50:00",
+            "end_time": "2025-03-03T09:50:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-03T09:50:00",
+            "end_time": "2025-03-03T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-03-03T10:50:00",
+            "end_time": "2025-03-03T11:05:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-03-03T11:30:00",
+            "end_time": "2025-03-03T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-03-03T12:30:00",
+            "end_time": "2025-03-03T13:30:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-03T14:05:00",
+            "end_time": "2025-03-03T15:05:00"
+        }
+    ],
+    "2025-03-04": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-04T08:50:00",
+            "end_time": "2025-03-04T09:50:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-04T09:50:00",
+            "end_time": "2025-03-04T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-04T10:50:00",
+            "end_time": "2025-03-04T11:05:00"
+        },
+        {
+            "class": "12PHY4",
             "name": "Physics",
             "location": "P2.2",
             "teacher": "Mr Parminder Singh",
             "period": "4",
-            "start_time": "2024-09-27T12:25:00",
-            "end_time": "2024-09-27T13:25:00"
+            "start_time": "2025-03-04T12:30:00",
+            "end_time": "2025-03-04T13:30:00"
         },
         {
-            "class": "11MT5",
-            "name": "Mathematics Advanced",
-            "location": "C2.6",
-            "teacher": "Ms Daiyi Mao",
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C2.1",
+            "teacher": "Miss Sandra Fernandez",
             "period": "5",
-            "start_time": "2024-09-27T14:05:00",
-            "end_time": "2024-09-27T15:05:00"
+            "start_time": "2025-03-04T14:05:00",
+            "end_time": "2025-03-04T15:05:00"
+        }
+    ],
+    "2025-03-05": [
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-05T08:50:00",
+            "end_time": "2025-03-05T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-03-05T09:50:00",
+            "end_time": "2025-03-05T10:50:00"
+        }
+    ],
+    "2025-03-06": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-03-06T08:50:00",
+            "end_time": "2025-03-06T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-06T10:50:00",
+            "end_time": "2025-03-06T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-03-06T11:30:00",
+            "end_time": "2025-03-06T12:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-06T12:30:00",
+            "end_time": "2025-03-06T13:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "5",
+            "start_time": "2025-03-06T14:05:00",
+            "end_time": "2025-03-06T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-03-06T15:05:00",
+            "end_time": "2025-03-06T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-03-06T16:30:00",
+            "end_time": "2025-03-06T17:30:00"
+        }
+    ],
+    "2025-03-07": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-07T08:50:00",
+            "end_time": "2025-03-07T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-03-07T09:50:00",
+            "end_time": "2025-03-07T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-07T10:50:00",
+            "end_time": "2025-03-07T11:05:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "3",
+            "start_time": "2025-03-07T11:30:00",
+            "end_time": "2025-03-07T12:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "4",
+            "start_time": "2025-03-07T12:30:00",
+            "end_time": "2025-03-07T13:30:00"
+        }
+    ],
+    "2025-03-08": [],
+    "2025-03-09": [],
+    "2025-03-10": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "2",
+            "start_time": "2025-03-10T09:50:00",
+            "end_time": "2025-03-10T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-03-10T10:50:00",
+            "end_time": "2025-03-10T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-03-10T11:30:00",
+            "end_time": "2025-03-10T12:30:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-10T12:30:00",
+            "end_time": "2025-03-10T13:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-10T14:05:00",
+            "end_time": "2025-03-10T15:05:00"
+        }
+    ],
+    "2025-03-11": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-03-11T08:50:00",
+            "end_time": "2025-03-11T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-03-11T09:50:00",
+            "end_time": "2025-03-11T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-11T10:50:00",
+            "end_time": "2025-03-11T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "3",
+            "start_time": "2025-03-11T11:30:00",
+            "end_time": "2025-03-11T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-03-11T12:30:00",
+            "end_time": "2025-03-11T13:30:00"
+        }
+    ],
+    "2025-03-12": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-12T09:50:00",
+            "end_time": "2025-03-12T10:50:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-03-12T11:10:00",
+            "end_time": "2025-03-12T12:10:00"
+        }
+    ],
+    "2025-03-13": [
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "1",
+            "start_time": "2025-03-13T08:50:00",
+            "end_time": "2025-03-13T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-13T10:50:00",
+            "end_time": "2025-03-13T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-13T12:30:00",
+            "end_time": "2025-03-13T13:30:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "5",
+            "start_time": "2025-03-13T14:05:00",
+            "end_time": "2025-03-13T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-03-13T15:05:00",
+            "end_time": "2025-03-13T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-03-13T16:30:00",
+            "end_time": "2025-03-13T17:30:00"
+        }
+    ],
+    "2025-03-14": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "BS",
+            "start_time": "2025-03-14T07:45:00",
+            "end_time": "2025-03-14T08:50:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-14T08:50:00",
+            "end_time": "2025-03-14T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-03-14T09:50:00",
+            "end_time": "2025-03-14T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-14T10:50:00",
+            "end_time": "2025-03-14T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-14T14:05:00",
+            "end_time": "2025-03-14T15:05:00"
+        }
+    ],
+    "2025-03-15": [],
+    "2025-03-16": [],
+    "2025-03-17": [
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "1",
+            "start_time": "2025-03-17T08:50:00",
+            "end_time": "2025-03-17T09:50:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-17T09:50:00",
+            "end_time": "2025-03-17T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-03-17T10:50:00",
+            "end_time": "2025-03-17T11:05:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-03-17T11:30:00",
+            "end_time": "2025-03-17T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-03-17T12:30:00",
+            "end_time": "2025-03-17T13:30:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-17T14:05:00",
+            "end_time": "2025-03-17T15:05:00"
+        }
+    ],
+    "2025-03-18": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-18T08:50:00",
+            "end_time": "2025-03-18T09:50:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-18T09:50:00",
+            "end_time": "2025-03-18T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-18T10:50:00",
+            "end_time": "2025-03-18T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "4",
+            "start_time": "2025-03-18T12:30:00",
+            "end_time": "2025-03-18T13:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C2.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "5",
+            "start_time": "2025-03-18T14:05:00",
+            "end_time": "2025-03-18T15:05:00"
+        }
+    ],
+    "2025-03-19": [
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-19T08:50:00",
+            "end_time": "2025-03-19T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-03-19T09:50:00",
+            "end_time": "2025-03-19T10:50:00"
+        }
+    ],
+    "2025-03-20": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-03-20T08:50:00",
+            "end_time": "2025-03-20T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-20T10:50:00",
+            "end_time": "2025-03-20T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-03-20T11:30:00",
+            "end_time": "2025-03-20T12:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-20T12:30:00",
+            "end_time": "2025-03-20T13:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "5",
+            "start_time": "2025-03-20T14:05:00",
+            "end_time": "2025-03-20T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-03-20T15:05:00",
+            "end_time": "2025-03-20T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-03-20T16:30:00",
+            "end_time": "2025-03-20T17:30:00"
+        }
+    ],
+    "2025-03-21": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-21T08:50:00",
+            "end_time": "2025-03-21T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-03-21T09:50:00",
+            "end_time": "2025-03-21T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-21T10:50:00",
+            "end_time": "2025-03-21T11:05:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "3",
+            "start_time": "2025-03-21T11:30:00",
+            "end_time": "2025-03-21T12:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "4",
+            "start_time": "2025-03-21T12:30:00",
+            "end_time": "2025-03-21T13:30:00"
+        }
+    ],
+    "2025-03-22": [],
+    "2025-03-23": [],
+    "2025-03-24": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "2",
+            "start_time": "2025-03-24T09:50:00",
+            "end_time": "2025-03-24T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-03-24T10:50:00",
+            "end_time": "2025-03-24T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-03-24T11:30:00",
+            "end_time": "2025-03-24T12:30:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-24T12:30:00",
+            "end_time": "2025-03-24T13:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-24T14:05:00",
+            "end_time": "2025-03-24T15:05:00"
+        }
+    ],
+    "2025-03-25": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-03-25T08:50:00",
+            "end_time": "2025-03-25T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-03-25T09:50:00",
+            "end_time": "2025-03-25T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-25T10:50:00",
+            "end_time": "2025-03-25T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "3",
+            "start_time": "2025-03-25T11:30:00",
+            "end_time": "2025-03-25T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-03-25T12:30:00",
+            "end_time": "2025-03-25T13:30:00"
+        }
+    ],
+    "2025-03-26": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-26T09:50:00",
+            "end_time": "2025-03-26T10:50:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-03-26T11:10:00",
+            "end_time": "2025-03-26T12:10:00"
+        }
+    ],
+    "2025-03-27": [
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "1",
+            "start_time": "2025-03-27T08:50:00",
+            "end_time": "2025-03-27T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-27T10:50:00",
+            "end_time": "2025-03-27T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-03-27T12:30:00",
+            "end_time": "2025-03-27T13:30:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "5",
+            "start_time": "2025-03-27T14:05:00",
+            "end_time": "2025-03-27T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-03-27T15:05:00",
+            "end_time": "2025-03-27T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-03-27T16:30:00",
+            "end_time": "2025-03-27T17:30:00"
+        }
+    ],
+    "2025-03-28": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "BS",
+            "start_time": "2025-03-28T07:45:00",
+            "end_time": "2025-03-28T08:50:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-03-28T08:50:00",
+            "end_time": "2025-03-28T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-03-28T09:50:00",
+            "end_time": "2025-03-28T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-03-28T10:50:00",
+            "end_time": "2025-03-28T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-28T14:05:00",
+            "end_time": "2025-03-28T15:05:00"
+        }
+    ],
+    "2025-03-29": [],
+    "2025-03-30": [],
+    "2025-03-31": [
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "1",
+            "start_time": "2025-03-31T08:50:00",
+            "end_time": "2025-03-31T09:50:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-03-31T09:50:00",
+            "end_time": "2025-03-31T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-03-31T10:50:00",
+            "end_time": "2025-03-31T11:05:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-03-31T11:30:00",
+            "end_time": "2025-03-31T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-03-31T12:30:00",
+            "end_time": "2025-03-31T13:30:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-03-31T14:05:00",
+            "end_time": "2025-03-31T15:05:00"
+        }
+    ],
+    "2025-04-01": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-04-01T08:50:00",
+            "end_time": "2025-04-01T09:50:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-04-01T09:50:00",
+            "end_time": "2025-04-01T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-01T10:50:00",
+            "end_time": "2025-04-01T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "4",
+            "start_time": "2025-04-01T12:30:00",
+            "end_time": "2025-04-01T13:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C2.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "5",
+            "start_time": "2025-04-01T14:05:00",
+            "end_time": "2025-04-01T15:05:00"
+        }
+    ],
+    "2025-04-02": [
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-04-02T08:50:00",
+            "end_time": "2025-04-02T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-04-02T09:50:00",
+            "end_time": "2025-04-02T10:50:00"
+        }
+    ],
+    "2025-04-03": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-04-03T08:50:00",
+            "end_time": "2025-04-03T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-03T10:50:00",
+            "end_time": "2025-04-03T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-04-03T11:30:00",
+            "end_time": "2025-04-03T12:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-04-03T12:30:00",
+            "end_time": "2025-04-03T13:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "5",
+            "start_time": "2025-04-03T14:05:00",
+            "end_time": "2025-04-03T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-04-03T15:05:00",
+            "end_time": "2025-04-03T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-04-03T16:30:00",
+            "end_time": "2025-04-03T17:30:00"
+        }
+    ],
+    "2025-04-04": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-04-04T08:50:00",
+            "end_time": "2025-04-04T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-04-04T09:50:00",
+            "end_time": "2025-04-04T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-04T10:50:00",
+            "end_time": "2025-04-04T11:05:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "3",
+            "start_time": "2025-04-04T11:30:00",
+            "end_time": "2025-04-04T12:30:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "4",
+            "start_time": "2025-04-04T12:30:00",
+            "end_time": "2025-04-04T13:30:00"
+        }
+    ],
+    "2025-04-05": [],
+    "2025-04-06": [],
+    "2025-04-07": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "2",
+            "start_time": "2025-04-07T09:50:00",
+            "end_time": "2025-04-07T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "Assem",
+            "start_time": "2025-04-07T10:50:00",
+            "end_time": "2025-04-07T11:05:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "3",
+            "start_time": "2025-04-07T11:30:00",
+            "end_time": "2025-04-07T12:30:00"
+        },
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-04-07T12:30:00",
+            "end_time": "2025-04-07T13:30:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-04-07T14:05:00",
+            "end_time": "2025-04-07T15:05:00"
+        }
+    ],
+    "2025-04-08": [
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "1",
+            "start_time": "2025-04-08T08:50:00",
+            "end_time": "2025-04-08T09:50:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "2",
+            "start_time": "2025-04-08T09:50:00",
+            "end_time": "2025-04-08T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-08T10:50:00",
+            "end_time": "2025-04-08T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "3",
+            "start_time": "2025-04-08T11:30:00",
+            "end_time": "2025-04-08T12:30:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "4",
+            "start_time": "2025-04-08T12:30:00",
+            "end_time": "2025-04-08T13:30:00"
+        }
+    ],
+    "2025-04-09": [
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "2",
+            "start_time": "2025-04-09T09:50:00",
+            "end_time": "2025-04-09T10:50:00"
+        },
+        {
+            "class": "12CHEM3",
+            "name": "Chemistry",
+            "location": "C0.1",
+            "teacher": "Miss Sandra Fernandez",
+            "period": "3",
+            "start_time": "2025-04-09T11:10:00",
+            "end_time": "2025-04-09T12:10:00"
+        }
+    ],
+    "2025-04-10": [
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "1",
+            "start_time": "2025-04-10T08:50:00",
+            "end_time": "2025-04-10T09:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-10T10:50:00",
+            "end_time": "2025-04-10T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "4",
+            "start_time": "2025-04-10T12:30:00",
+            "end_time": "2025-04-10T13:30:00"
+        },
+        {
+            "class": "12PHY4",
+            "name": "Physics",
+            "location": "P2.2",
+            "teacher": "Mr Parminder Singh",
+            "period": "5",
+            "start_time": "2025-04-10T14:05:00",
+            "end_time": "2025-04-10T15:05:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS1",
+            "start_time": "2025-04-10T15:05:00",
+            "end_time": "2025-04-10T16:30:00"
+        },
+        {
+            "class": "12X1SC",
+            "name": "Science Extension",
+            "location": "LIBCC",
+            "teacher": "Doctor Carina Dennis",
+            "period": "AS2",
+            "start_time": "2025-04-10T16:30:00",
+            "end_time": "2025-04-10T17:30:00"
+        }
+    ],
+    "2025-04-11": [
+        {
+            "class": "12X2MT3",
+            "name": "Mathematics Extension 2",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "BS",
+            "start_time": "2025-04-11T07:45:00",
+            "end_time": "2025-04-11T08:50:00"
+        },
+        {
+            "class": "12X1MT3",
+            "name": "Mathematics Extension",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "1",
+            "start_time": "2025-04-11T08:50:00",
+            "end_time": "2025-04-11T09:50:00"
+        },
+        {
+            "class": "12ENG2",
+            "name": "English Advanced",
+            "location": "L1.1",
+            "teacher": "Mrs Catherine Fleming",
+            "period": "2",
+            "start_time": "2025-04-11T09:50:00",
+            "end_time": "2025-04-11T10:50:00"
+        },
+        {
+            "class": "12CR2",
+            "name": "Connect@Ruse",
+            "location": "LIBSS",
+            "teacher": "Mr Jason Driscoll",
+            "period": "CR",
+            "start_time": "2025-04-11T10:50:00",
+            "end_time": "2025-04-11T11:05:00"
+        },
+        {
+            "class": "12MT3",
+            "name": "Mathematics Advanced",
+            "location": "C2.3",
+            "teacher": "Mr Rajakrishnar Sekaran",
+            "period": "5",
+            "start_time": "2025-04-11T14:05:00",
+            "end_time": "2025-04-11T15:05:00"
         }
     ]
 }
