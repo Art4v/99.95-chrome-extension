@@ -6,6 +6,7 @@ async function fetchSchedule(date) {
             throw new Error('Failed to load schedule data.');
         }
         const data = await response.json();
+        console.log("Fetched Schedule for", date, ":", data[date]); // Debugging
         return data[date] || [];
     } catch (error) {
         console.error(error);
@@ -14,12 +15,12 @@ async function fetchSchedule(date) {
 }
 
 // Function to find the next class
-function getNextClass(schedule, simulatedNow) {
-    return schedule.find((entry) => new Date(entry.start_time) > simulatedNow) || null;
+function getNextClass(schedule, now) {
+    return schedule.find((entry) => new Date(entry.start_time) > now) || null;
 }
 
 // Function to start the countdown for the next class
-function startCountdown(nextClass, simulatedNow) {
+function startCountdown(nextClass, now) {
     const notif = document.querySelector('.notif');
     if (!nextClass) {
         notif.innerHTML = '<h1>No more classes today</h1>';
@@ -30,9 +31,8 @@ function startCountdown(nextClass, simulatedNow) {
     let timer;
 
     const updateCountdown = () => {
-        const now = simulatedNow;
-        simulatedNow.setSeconds(simulatedNow.getSeconds() + 1);
-        const timeDiff = Math.max(0, nextClassTime - now);
+        const currentTime = new Date(); // Use real current time
+        const timeDiff = Math.max(0, nextClassTime - currentTime);
         const hours = String(Math.floor(timeDiff / (1000 * 60 * 60))).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % (1000 * 60)) / 1000)).padStart(2, '0');
@@ -47,8 +47,8 @@ function startCountdown(nextClass, simulatedNow) {
             notif.innerHTML = `<h1>${nextClass.name} is starting now!</h1>`;
 
             setTimeout(() => {
-                const nextNextClass = getNextClass(schedule, simulatedNow);
-                startCountdown(nextNextClass, simulatedNow);
+                const nextNextClass = getNextClass(schedule, currentTime);
+                startCountdown(nextNextClass, currentTime);
             }, 10000);
         }
     };
@@ -57,31 +57,44 @@ function startCountdown(nextClass, simulatedNow) {
     timer = setInterval(updateCountdown, 1000);
 }
 
-// Function to render the schedule for a specific date
-function renderSchedule(schedule) {
-    const blocksContainer = document.querySelector('.blocks');
-    blocksContainer.innerHTML = ''; // Clear existing content
-
-    // Add recess and lunch periods to the schedule in chronological order
+// Function to add recess and lunch to the schedule
+function addRecessAndLunch(schedule, date) {
     const recess = {
         period: 'R',
         name: 'Recess',
-        start_time: '2024-07-22T11:00:00',
-        end_time: '2024-07-22T11:25:00',
+        start_time: `${date}T11:00:00`,
+        end_time: `${date}T11:25:00`,
         teacher: '',
         location: ''
     };
     const lunch = {
         period: 'L',
         name: 'Lunch',
-        start_time: '2024-07-22T13:25:00',
-        end_time: '2024-07-22T14:05:00',
+        start_time: `${date}T13:25:00`,
+        end_time: `${date}T14:05:00`,
         teacher: '',
         location: ''
     };
 
+    // Add recess and lunch to the schedule
     schedule.push(recess, lunch);
+
+    // Sort the schedule by start time
     schedule.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
+}
+
+// Function to render the schedule for a specific date
+function renderSchedule(schedule, date) {
+    const blocksContainer = document.querySelector('.blocks');
+    blocksContainer.innerHTML = ''; // Clear existing content
+
+    if (schedule.length === 0) {
+        blocksContainer.innerHTML = '<h1>No classes today!</h1>';
+        return;
+    }
+
+    // Add recess and lunch to the schedule
+    addRecessAndLunch(schedule, date);
 
     schedule.forEach((entry) => {
         const block = document.createElement('div');
@@ -123,19 +136,42 @@ function renderSchedule(schedule) {
     });
 }
 
-// Function to initialize with a fixed date and real-time time
-async function initializeFixedDate() {
-    const fixedDate = '2024-07-22'; // Fixed date for testing
-    const schedule = await fetchSchedule(fixedDate);
-    renderSchedule(schedule);
+// Function to check if the current day is a weekend
+function isWeekend(date) {
+    const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
+    return dayOfWeek === 0 || dayOfWeek === 6;
+}
 
-    const simulatedNow = new Date(); // Real-time time with fixed date
-    simulatedNow.setFullYear(2024, 6, 22); // Set to July 22, 2024
-    const nextClass = getNextClass(schedule, simulatedNow);
-    startCountdown(nextClass, simulatedNow);
+// Function to initialize with the current date and time
+async function initialize() {
+    const now = new Date();
+    const currentDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0]; // Adjust for time zone
+    console.log("Current Date:", currentDate); // Debugging
+
+    // Check if it's a weekend
+    if (isWeekend(now)) {
+        const blocksContainer = document.querySelector('.blocks');
+        blocksContainer.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
+        const notif = document.querySelector('.notif');
+        notif.innerHTML = '<h1>Enjoy your day off!</h1>';
+        return;
+    }
+
+    const schedule = await fetchSchedule(currentDate);
+    renderSchedule(schedule, currentDate);
+
+    // If there are no classes today, update the notification
+    if (schedule.length === 0) {
+        const notif = document.querySelector('.notif');
+        notif.innerHTML = '<h1>No classes today!</h1>';
+        return;
+    }
+
+    const nextClass = getNextClass(schedule, now);
+    startCountdown(nextClass, now);
 }
 
 // Set up event listeners and initialize
 document.addEventListener('DOMContentLoaded', async () => {
-    await initializeFixedDate(); // Initialize with the fixed date
+    await initialize(); // Initialize with the current date and time
 });
