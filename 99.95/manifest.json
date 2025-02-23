@@ -4,9 +4,9 @@
     "version": "1.0.0",
     "description": "An extension to display a class schedule countdown based on the current time.",
     "icons": {
-      "16": "chrome-extension/assets/favicon.ico",
-      "48": "chrome-extension/assets/favicon.ico",
-      "128": "chrome-extension/assets/favicon.ico"
+      "16": "chrome-extension/assets/favicon.png",
+      "48": "chrome-extension/assets/favicon.png",
+      "128": "chrome-extension/assets/favicon.png"
     },
     "permissions": [
       "storage",
@@ -22,9 +22,9 @@
     "action": {
       "default_popup": "chrome-extension/popup/popup.html",
       "default_icon": {
-        "16": "chrome-extension/assets/favicon.ico",
-        "48": "chrome-extension/assets/favicon.ico",
-        "128": "chrome-extension/assets/favicon.ico"
+        "16": "chrome-extension/assets/favicon.png",
+        "48": "chrome-extension/assets/favicon.png",
+        "128": "chrome-extension/assets/favicon.png"
       }
     },
     "web_accessible_resources": [
