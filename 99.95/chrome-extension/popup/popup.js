@@ -104,16 +104,16 @@ function addRecessAndLunch(schedule, date) {
     const recess = {
         period: 'R',
         name: 'Recess',
-        start_time: `${date}T11:00:00`,
-        end_time: `${date}T11:25:00`,
+        start_time: `${date}T10:00:00`,
+        end_time: `${date}T10:30:00`,
         teacher: '',
         location: ''
     };
     const lunch = {
         period: 'L',
         name: 'Lunch',
-        start_time: `${date}T13:25:00`,
-        end_time: `${date}T14:05:00`,
+        start_time: `${date}T12:10:00`,
+        end_time: `${date}T12:40:00`,
         teacher: '',
         location: ''
     };
