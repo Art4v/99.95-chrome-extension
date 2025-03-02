@@ -1,63 +1,148 @@
-html, body {
-    background-color: #1f1f1e;
+/* Change the html selector to target only body */
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    
+    /* Move background properties here */
+    background-color: #1a1a1a;
+    background-image: 
+        linear-gradient(rgba(156, 146, 172, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(156, 146, 172, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
     color: #f9fafd;
     font-family: 'Varela', Arial, sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
+}
+
+/* Remove background properties from html selector */
+html {
     height: auto;
     width: 400px;
     margin: 0;
 }
 
+/* Updated light mode with darker grid lines */
+body.light-mode {
+    background-color: #f8f4e6; /* Creamy off-white */
+    background-image: 
+        linear-gradient(rgba(100, 100, 100, 0.1) 1px, transparent 1px), 
+        linear-gradient(90deg, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
+    color: #2a2a2a; 
+}
+
+
+body.light-mode .blocks {
+    background: rgba(255, 255, 255, 0.6); 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+}
+
+
+body.light-mode .b {
+    background: rgba(255, 255, 255, 0.7); 
+    border: 1px solid rgba(0, 0, 0, 0.1); 
+}
+/* Notification Section */
 .notif {
     text-align: center;
-}
-
-.blocks {
-    height: 600px;
-    width: 95%;
-}
-
-.b {
-    height: 9%;
+    max-width: 600px;
     width: 100%;
-    margin-bottom: 1%;
-    background-color: #1f1f1e;
-    border-radius: 10px;
-    border: 4px solid #f9fafd;
+    padding: 0 20px;
+}
+
+/* Glassmorphism container */
+.blocks {
+    width: 100%;
+    max-width: 500px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-sizing: border-box;
+}
+
+/* Each timetable row */
+.b {
+    height: 70px;
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
-    padding: 3px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease;
+    overflow: hidden;
 }
 
-.bp {
-    font-size: 1rem;
-    margin: 0 4%;
+.b:hover {
+    transform: translateY(-2px);
 }
 
-.bt {
-    height: 100%;
+
+.b h1 {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    margin: 0 15px 0 0;
+    white-space: nowrap;
+    font-weight: 500; /* Medium weight for a modern look */
 }
 
-.b p {
-    font-size: 1.2rem;
+.bt p {
+    font-size: 1rem;
     margin: 0;
+    white-space: nowrap;
 }
 
-.b h4 {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: lightgray;
-    margin: 0;
+.bt h4 {
+    font-size: 0.65rem;
+    margin: 3px 0 0 0;
 }
 
 .br {
     margin-left: auto;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 80%;
+    max-width: 400px;
+    height: 12px;
+    background-color: rgba(68, 68, 68, 0.3);
+    border-radius: 6px;
+    margin: 15px auto;
+    overflow: hidden;
+    display: none;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 0%;
+    transition: width 1s linear;
+}
+
+/* Toggle Button */
+.toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    background-color: #f3f70c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
 }

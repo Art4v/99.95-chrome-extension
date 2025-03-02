@@ -76,7 +76,7 @@ body.light-mode .b {
     border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding-left: 15px;
     box-sizing: border-box;
     transition: transform 0.2s ease;
     overflow: hidden;
@@ -88,6 +88,7 @@ body.light-mode .b {
 
 
 .b h1 {
+    display: flex;
     font-family: 'Inter', sans-serif;
     font-size: 1.8rem;
     margin: 0 15px 0 0;
