@@ -106,10 +106,9 @@ body.light-mode .b {
     margin: 3px 0 0 0;
 }
 
-.br h1 {
-    font-size: 1.3rem;
+.br {
     margin-left: auto;
-    padding-left: 15px;
+    font-size: 1.6rem;
 }
 
 /* Progress Bar */
