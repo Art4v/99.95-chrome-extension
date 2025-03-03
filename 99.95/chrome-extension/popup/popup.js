@@ -1,12 +1,9 @@
 // Function to fetch data from the JSON file
 async function fetchSchedule(date) {
     try {
-        const response = await fetch('output.json'); // Path to your JSON file
-        if (!response.ok) {
-            throw new Error('Failed to load schedule data.');
-        }
+        const response = await fetch('output.json');
+        if (!response.ok) throw new Error('Failed to load schedule data.');
         const data = await response.json();
-        console.log("Fetched Schedule for", date, ":", data[date]); // Debugging
         return data[date] || [];
     } catch (error) {
         console.error(error);
@@ -19,37 +16,82 @@ function getNextClass(schedule, now) {
     return schedule.find((entry) => new Date(entry.start_time) > now) || null;
 }
 
-// Function to start the countdown for the next class
-function startCountdown(nextClass, now) {
+// Function to find current class
+function getCurrentClass(schedule, now) {
+    return schedule.find(entry => {
+        const start = new Date(entry.start_time);
+        const end = new Date(entry.end_time);
+        return now >= start && now <= end;
+    }) || null;
+}
+
+// Countdown function with progress bar
+function startCountdown(target, isCurrentClass, schedule) {
     const notif = document.querySelector('.notif');
-    if (!nextClass) {
+    const progressContainer = document.querySelector('.progress-container');
+    const progressBar = document.querySelector('.progress-bar');
+
+    if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
+        progressContainer.style.display = 'none';
         return;
     }
 
-    const nextClassTime = new Date(nextClass.start_time);
+    const targetTime = isCurrentClass 
+        ? new Date(target.end_time) 
+        : new Date(target.start_time);
+
+    // Determine start time for progress calculation
+    let countdownStartTime;
+    if (isCurrentClass) {
+        countdownStartTime = new Date(target.start_time);
+    } else {
+        countdownStartTime = new Date();
+    }
+
+    progressContainer.style.display = 'block';
+
     let timer;
 
     const updateCountdown = () => {
-        const currentTime = new Date(); // Use real current time
-        const timeDiff = Math.max(0, nextClassTime - currentTime);
-        const hours = String(Math.floor(timeDiff / (1000 * 60 * 60))).padStart(2, '0');
-        const minutes = String(Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-        const seconds = String(Math.floor((timeDiff % (1000 * 60)) / 1000)).padStart(2, '0');
+        const currentTime = new Date();
+        const timeDiff = Math.max(0, targetTime - currentTime);
 
+        // Calculate progress
+        const totalDuration = targetTime - countdownStartTime;
+        const elapsed = currentTime - countdownStartTime;
+        const percentage = totalDuration > 0 ? (elapsed / totalDuration) * 100 : 0;
+
+        progressBar.style.width = `${Math.min(percentage, 100)}%`;
+
+        // Update countdown display
+        const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
+        const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
+        const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
+
+        // Only show "With teacher in room" if teacher is specified
         notif.innerHTML = `
-            <h1>${nextClass.name} in ${hours}:${minutes}:${seconds}</h1>
-            <h2>With ${nextClass.teacher} in ${nextClass.location}</h2>
+            <h1>${isCurrentClass ? `${target.name} ends in` : `${target.name} in`} ${hours}:${minutes}:${seconds}</h1>
+            ${target.teacher ? `<h2>With ${target.teacher} in ${target.location}</h2>` : ''}
         `;
 
         if (timeDiff <= 0) {
             clearInterval(timer);
-            notif.innerHTML = `<h1>${nextClass.name} is starting now!</h1>`;
-
-            setTimeout(() => {
-                const nextNextClass = getNextClass(schedule, currentTime);
-                startCountdown(nextNextClass, currentTime);
-            }, 10000);
+            if (isCurrentClass) {
+                const nextClass = getNextClass(schedule, currentTime);
+                startCountdown(nextClass, false, schedule);
+            } else {
+                const current = getCurrentClass(schedule, currentTime);
+                if (current) {
+                    startCountdown(current, true, schedule);
+                } else {
+                    notif.innerHTML = `<h1>${target.name} is starting now!</h1>`;
+                    setTimeout(() => {
+                        const nextClass = getNextClass(schedule, currentTime);
+                        startCountdown(nextClass, false, schedule);
+                    }, 10000);
+                }
+            }
         }
     };
 
@@ -57,7 +99,7 @@ function startCountdown(nextClass, now) {
     timer = setInterval(updateCountdown, 1000);
 }
 
-// Function to add recess and lunch to the schedule
+// Insert Recess and Lunch automatically
 function addRecessAndLunch(schedule, date) {
     const recess = {
         period: 'R',
@@ -76,38 +118,32 @@ function addRecessAndLunch(schedule, date) {
         location: ''
     };
 
-    // Add recess and lunch to the schedule
     schedule.push(recess, lunch);
-
-    // Sort the schedule by start time
     schedule.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
 }
 
-// Function to render the schedule for a specific date
+// Render the schedule
 function renderSchedule(schedule, date) {
     const blocksContainer = document.querySelector('.blocks');
-    blocksContainer.innerHTML = ''; // Clear existing content
+    blocksContainer.innerHTML = '';
 
     if (schedule.length === 0) {
         blocksContainer.innerHTML = '<h1>No classes today!</h1>';
         return;
     }
 
-    // Add recess and lunch to the schedule
     addRecessAndLunch(schedule, date);
 
     schedule.forEach((entry) => {
         const block = document.createElement('div');
         block.className = 'b';
 
-        // Period
         const period = document.createElement('div');
         period.className = 'bp';
         const periodText = document.createElement('h1');
         periodText.textContent = entry.period;
         period.appendChild(periodText);
 
-        // Details
         const details = document.createElement('div');
         details.className = 'bt';
         const className = document.createElement('p');
@@ -122,7 +158,6 @@ function renderSchedule(schedule, date) {
         details.appendChild(className);
         details.appendChild(teacherDetails);
 
-        // Room
         const room = document.createElement('div');
         room.className = 'br';
         const roomText = document.createElement('h1');
@@ -136,42 +171,54 @@ function renderSchedule(schedule, date) {
     });
 }
 
-// Function to check if the current day is a weekend
+// Check if weekend
 function isWeekend(date) {
-    const dayOfWeek = date.getDay(); // 0 = Sunday, 6 = Saturday
-    return dayOfWeek === 0 || dayOfWeek === 6;
+    return date.getDay() === 0 || date.getDay() === 6;
 }
 
-// Function to initialize with the current date and time
+// Main initialization
 async function initialize() {
     const now = new Date();
-    const currentDate = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().split('T')[0]; // Adjust for time zone
-    console.log("Current Date:", currentDate); // Debugging
+    const currentDate = new Date(
+        now.getTime() - now.getTimezoneOffset() * 60000
+    ).toISOString().split('T')[0];
 
-    // Check if it's a weekend
     if (isWeekend(now)) {
-        const blocksContainer = document.querySelector('.blocks');
-        blocksContainer.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
-        const notif = document.querySelector('.notif');
-        notif.innerHTML = '<h1>Enjoy your day off!</h1>';
+        document.querySelector('.blocks').innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
+        document.querySelector('.notif').innerHTML = '<h1>Enjoy your day off!</h1>';
         return;
     }
 
     const schedule = await fetchSchedule(currentDate);
     renderSchedule(schedule, currentDate);
 
-    // If there are no classes today, update the notification
     if (schedule.length === 0) {
-        const notif = document.querySelector('.notif');
-        notif.innerHTML = '<h1>No classes today!</h1>';
+        document.querySelector('.notif').innerHTML = '<h1>No classes today!</h1>';
         return;
     }
 
-    const nextClass = getNextClass(schedule, now);
-    startCountdown(nextClass, now);
+    const currentClass = getCurrentClass(schedule, now);
+    if (currentClass) {
+        startCountdown(currentClass, true, schedule);
+    } else {
+        const nextClass = getNextClass(schedule, now);
+        startCountdown(nextClass, false, schedule);
+    }
 }
 
-// Set up event listeners and initialize
+// DOMContentLoaded
 document.addEventListener('DOMContentLoaded', async () => {
-    await initialize(); // Initialize with the current date and time
+    await initialize();
+});
+
+// Toggle button for switching background + text color
+document.addEventListener("DOMContentLoaded", function () {
+    const toggleButton = document.createElement("button");
+    toggleButton.innerText = "Toggle Background";
+    toggleButton.classList.add("toggle-btn");
+    document.body.appendChild(toggleButton);
+
+    toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("light-mode");
+    });
 });
