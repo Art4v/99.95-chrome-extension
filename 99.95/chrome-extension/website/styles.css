@@ -7,9 +7,6 @@ body {
     
     /* Move background properties here */
     background-color: #1a1a1a;
-    background-image: 
-        linear-gradient(rgba(156, 146, 172, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(156, 146, 172, 0.1) 1px, transparent 1px);
     background-size: 20px 20px;
     color: #f9fafd;
     font-family: 'Varela', Arial, sans-serif;
@@ -26,9 +23,6 @@ html {
 /* Updated light mode with darker grid lines */
 body.light-mode {
     background-color: #f8f4e6; /* Creamy off-white */
-    background-image: 
-        linear-gradient(rgba(100, 100, 100, 0.1) 1px, transparent 1px), 
-        linear-gradient(90deg, rgba(100, 100, 100, 0.1) 1px, transparent 1px);
     color: #2a2a2a; 
 }
 
@@ -135,10 +129,10 @@ body.light-mode .b {
 .toggle-btn {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     padding: 10px 15px;
     font-size: 1rem;
-    background-color: #f3f70c;
+    background-color: #2eb2ff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
