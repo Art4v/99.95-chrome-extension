@@ -4,7 +4,6 @@ import icalendar
 import json
 import os 
 import pytz
-import re
 
 # get timezone for sydney
 sydney_timezone = pytz.timezone('Australia/Sydney')
