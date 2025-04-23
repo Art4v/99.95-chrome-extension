@@ -30,7 +30,6 @@ def filter(input):
     # make a list of words to filter from "name"
     return " ".join(word for word in input.split() if word not in blacklist)
 
-
 # create a function to read data from ics file and store immediately in master_dict
 def ical_to_json(date):    
     # create an array (list) in the master dictionary named after the date
