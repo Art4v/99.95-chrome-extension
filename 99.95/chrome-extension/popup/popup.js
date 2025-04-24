@@ -99,29 +99,6 @@ function startCountdown(target, isCurrentClass, schedule) {
     timer = setInterval(updateCountdown, 1000);
 }
 
-// Insert Recess and Lunch automatically
-function addRecessAndLunch(schedule, date) {
-    const recess = {
-        period: 'R',
-        name: 'Recess',
-        start_time: `${date}T11:00:00`,
-        end_time: `${date}T11:25:00`,
-        teacher: '',
-        location: ''
-    };
-    const lunch = {
-        period: 'L',
-        name: 'Lunch',
-        start_time: `${date}T13:25:00`,
-        end_time: `${date}T14:05:00`,
-        teacher: '',
-        location: ''
-    };
-
-    schedule.push(recess, lunch);
-    schedule.sort((a, b) => new Date(a.start_time) - new Date(b.start_time));
-}
-
 // Render the schedule
 function renderSchedule(schedule, date) {
     const blocksContainer = document.querySelector('.blocks');
@@ -131,8 +108,6 @@ function renderSchedule(schedule, date) {
         blocksContainer.innerHTML = '<h1>No classes today!</h1>';
         return;
     }
-
-    addRecessAndLunch(schedule, date);
 
     schedule.forEach((entry) => {
         const block = document.createElement('div');
