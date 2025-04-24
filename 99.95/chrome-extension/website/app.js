@@ -5,6 +5,12 @@ function formatTimeRange(start, end) {
     return `${startTime} – ${endTime}`;
 }
 
+// Utility to get today's date in local ISO format (YYYY-MM-DD)
+function getLocalISODateString(date) {
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
+        .toISOString().split('T')[0];
+}
+
 // Function to fetch data from the JSON file
 async function fetchSchedule(date, filePath = 'output.json') {
     try {
@@ -155,9 +161,7 @@ function isWeekend(date) {
 // Main initialization
 async function initialize() {
     const now = new Date();
-    const currentDate = new Date(
-        now.getTime() - now.getTimezoneOffset() * 60000
-    ).toISOString().split('T')[0];
+    const currentDate = getLocalISODateString(now);
 
     if (isWeekend(now)) {
         document.querySelector('.blocks').innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
