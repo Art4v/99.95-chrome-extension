@@ -1,56 +1,37 @@
-/* Change the html selector to target only body */
+/* HTML Root Settings */
+html {
+    height: 100%;
+}
+
+/* Body Styles (Dark Mode Default) */
 body {
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
-    
-    /* Move background properties here */
+
     background-color: #1a1a1a;
     background-size: 20px 20px;
     color: #f9fafd;
     font-family: 'Varela', Arial, sans-serif;
+
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* Remove background properties from html selector */
-html {
-    height: 100%;
-}
-
-/* Updated light mode with darker grid lines */
+/* Light Mode Theme Overrides */
 body.light-mode {
     background-color: #f8f4e6; /* Creamy off-white */
-    color: #2a2a2a; 
+    color: #2a2a2a;
 }
 
-
-body.light-mode .blocks {
-    background: rgba(255, 255, 255, 0.6); 
-    border: 1px solid rgba(0, 0, 0, 0.1); 
-}
-
-
-body.light-mode .b {
-    background: rgba(255, 255, 255, 0.7); 
-    border: 1px solid rgba(0, 0, 0, 0.1); 
-}
-/* Notification Section */
-.notif {
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
-    padding: 0 20px;
-}
-
-/* Glassmorphism container */
+/* Glassmorphism Container */
 .blocks {
     width: 100%;
     max-width: 500px;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.05); 
+    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(8px);
     border-radius: 15px;
     margin: 20px 0;
@@ -59,7 +40,13 @@ body.light-mode .b {
     box-sizing: border-box;
 }
 
-/* Each timetable row */
+/* Light Mode Overrides for Blocks */
+body.light-mode .blocks {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Each Timetable Row */
 .b {
     height: 70px;
     width: 100%;
@@ -80,14 +67,21 @@ body.light-mode .b {
     transform: translateY(-2px);
 }
 
+/* Light Mode Overrides for .b Rows */
+body.light-mode .b {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 
+
+/* Row Text Content */
 .b h1 {
     display: flex;
     font-family: 'Inter', sans-serif;
     font-size: 1.8rem;
     margin: 0 15px 0 0;
     white-space: nowrap;
-    font-weight: 500; /* Medium weight for a modern look */
+    font-weight: 500;
 }
 
 .bt p {
@@ -104,6 +98,14 @@ body.light-mode .b {
 .br {
     margin-left: auto;
     font-size: 1.6rem;
+}
+
+/* Notification Section */
+.notif {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 0 20px;
 }
 
 /* Progress Bar */
@@ -125,7 +127,7 @@ body.light-mode .b {
     transition: width 1s linear;
 }
 
-/* Toggle Button */
+/* Theme Toggle Button */
 .toggle-btn {
     position: fixed;
     bottom: 20px;
@@ -137,4 +139,5 @@ body.light-mode .b {
     border-radius: 5px;
     cursor: pointer;
     z-index: 100;
+    transition: background-color 0.3s, color 0.3s;
 }
