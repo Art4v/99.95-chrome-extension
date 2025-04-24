@@ -1,7 +1,14 @@
+// Utility to format time range
+function formatTimeRange(start, end) {
+    const startTime = new Date(start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const endTime = new Date(end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    return `${startTime} – ${endTime}`;
+}
+
 // Function to fetch data from the JSON file
-async function fetchSchedule(date) {
+async function fetchSchedule(date, filePath = 'output.json') {
     try {
-        const response = await fetch('output.json');
+        const response = await fetch(filePath);
         if (!response.ok) throw new Error('Failed to load schedule data.');
         const data = await response.json();
         return data[date] || [];
@@ -13,7 +20,8 @@ async function fetchSchedule(date) {
 
 // Function to find the next class
 function getNextClass(schedule, now) {
-    return schedule.find((entry) => new Date(entry.start_time) > now) || null;
+    return [...schedule].sort((a, b) => new Date(a.start_time) - new Date(b.start_time))
+        .find((entry) => new Date(entry.start_time) > now) || null;
 }
 
 // Function to find current class
@@ -24,6 +32,8 @@ function getCurrentClass(schedule, now) {
         return now >= start && now <= end;
     }) || null;
 }
+
+let globalTimer; // Ensures only one timer at a time
 
 // Countdown function with progress bar
 function startCountdown(target, isCurrentClass, schedule) {
@@ -41,42 +51,35 @@ function startCountdown(target, isCurrentClass, schedule) {
         ? new Date(target.end_time) 
         : new Date(target.start_time);
 
-    // Determine start time for progress calculation
-    let countdownStartTime;
-    if (isCurrentClass) {
-        countdownStartTime = new Date(target.start_time);
-    } else {
-        countdownStartTime = new Date();
-    }
+    const countdownStartTime = isCurrentClass
+        ? new Date(target.start_time)
+        : new Date();
 
     progressContainer.style.display = 'block';
 
-    let timer;
+    if (globalTimer) clearInterval(globalTimer);
 
     const updateCountdown = () => {
         const currentTime = new Date();
         const timeDiff = Math.max(0, targetTime - currentTime);
 
-        // Calculate progress
         const totalDuration = targetTime - countdownStartTime;
         const elapsed = currentTime - countdownStartTime;
         const percentage = totalDuration > 0 ? (elapsed / totalDuration) * 100 : 0;
 
         progressBar.style.width = `${Math.min(percentage, 100)}%`;
 
-        // Update countdown display
         const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
-        // Only show "With teacher in room" if teacher is specified
         notif.innerHTML = `
             <h1>${isCurrentClass ? `${target.name} ends in` : `${target.name} in`} ${hours}:${minutes}:${seconds}</h1>
             ${target.teacher ? `<h2>With ${target.teacher} in ${target.location}</h2>` : ''}
         `;
 
         if (timeDiff <= 0) {
-            clearInterval(timer);
+            clearInterval(globalTimer);
             if (isCurrentClass) {
                 const nextClass = getNextClass(schedule, currentTime);
                 startCountdown(nextClass, false, schedule);
@@ -96,7 +99,7 @@ function startCountdown(target, isCurrentClass, schedule) {
     };
 
     updateCountdown();
-    timer = setInterval(updateCountdown, 1000);
+    globalTimer = setInterval(updateCountdown, 1000);
 }
 
 // Render the schedule
@@ -124,9 +127,7 @@ function renderSchedule(schedule, date) {
         const className = document.createElement('p');
         className.textContent = entry.name;
         const teacherDetails = document.createElement('h4');
-        const startTime = new Date(entry.start_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        const endTime = new Date(entry.end_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        teacherDetails.textContent = `${startTime} – ${endTime}`;
+        teacherDetails.textContent = formatTimeRange(entry.start_time, entry.end_time);
         if (entry.teacher) {
             teacherDetails.textContent += `: ${entry.teacher}`;
         }
@@ -181,16 +182,14 @@ async function initialize() {
     }
 }
 
-// DOMContentLoaded
+// Unified DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     await initialize();
-});
 
-// Toggle button for switching background + text color
-document.addEventListener("DOMContentLoaded", function () {
     const toggleButton = document.createElement("button");
     toggleButton.innerText = "Toggle Background";
     toggleButton.classList.add("toggle-btn");
+    toggleButton.setAttribute("aria-label", "Toggle light/dark mode");
     document.body.appendChild(toggleButton);
 
     toggleButton.addEventListener("click", function () {
