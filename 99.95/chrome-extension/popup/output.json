@@ -2107,15 +2107,15 @@
             "end_time": "2025-04-10T17:30:00"
         }
     ],
-    "2025-04-11": [
+    "2025-04-24": [
         {
             "class": "12X2MT3",
             "name": "Mathematics Extension 2",
             "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "BS",
-            "start_time": "2025-04-11T07:45:00",
-            "end_time": "2025-04-11T08:50:00"
+            "start_time": "2025-04-24T17:45:00",
+            "end_time": "2025-04-24T18:50:00"
         },
         {
             "class": "12X1MT3",
@@ -2123,8 +2123,8 @@
             "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "1",
-            "start_time": "2025-04-11T08:50:00",
-            "end_time": "2025-04-11T09:50:00"
+            "start_time": "2025-04-24T18:50:00",
+            "end_time": "2025-04-24T19:50:00"
         },
         {
             "class": "12ENG2",
@@ -2132,8 +2132,8 @@
             "location": "L1.1",
             "teacher": "Mrs Catherine Fleming",
             "period": "2",
-            "start_time": "2025-04-11T09:50:00",
-            "end_time": "2025-04-11T10:50:00"
+            "start_time": "2025-04-24T19:50:00",
+            "end_time": "2025-04-24T20:50:00"
         },
         {
             "class": "12CR2",
@@ -2141,8 +2141,8 @@
             "location": "LIBSS",
             "teacher": "Mr Jason Driscoll",
             "period": "CR",
-            "start_time": "2025-04-11T10:50:00",
-            "end_time": "2025-04-11T11:05:00"
+            "start_time": "2025-04-24T20:50:00",
+            "end_time": "2025-04-24T21:05:00"
         },
         {
             "class": "12MT3",
@@ -2150,8 +2150,8 @@
             "location": "C2.3",
             "teacher": "Mr Rajakrishnar Sekaran",
             "period": "5",
-            "start_time": "2025-04-11T14:05:00",
-            "end_time": "2025-04-11T15:05:00"
+            "start_time": "2025-04-24T23:05:00",
+            "end_time": "2025-04-24T23:50:00"
         }
     ]
 }
