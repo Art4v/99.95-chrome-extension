@@ -130,16 +130,36 @@ body.light-mode .b {
 
 /* Toggle Button */
 .toggle-btn {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     left: 20px;
     padding: 10px 15px;
     font-size: 0.8rem;
-    background-color: #2eb2ff;
-    border: none;
+    background-color: #333; /* Dark gray background */
+    border: 1px solid #f8f4e6; /* White outline */
+    color: #f8f4e6; /* White text */
     border-radius: 5px;
     cursor: pointer;
     z-index: 100;
+    width: calc(100% - 40px);
+    transition: all 0.2s ease;
+}
+
+body.light-mode .toggle-btn {
+    background-color: #f8f4e6; /* White background */
+    border: 1px solid #2a2a2a; /* Dark gray outline */
+    color: #2a2a2a; /* Dark gray text */
+}
+
+/* Add hover states */
+.toggle-btn:hover {
+    background-color: #444;
+    border-color: #f8f7f2;
+}
+
+body.light-mode .toggle-btn:hover {
+    background-color: #f8f7f2;
+    border-color: #1a1a1a;
 }
 
 .sidebar {
@@ -159,6 +179,12 @@ body.light-mode .b {
     transition: transform 0.3s ease;
     z-index: 1000;
     box-sizing: border-box;
+}
+
+body.light-mode .sidebar {
+    background-color: #f8f4e6; /* Match body light mode background */
+    color: #2a2a2a; /* Match body light mode text color */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Lighter shadow for light mode */
 }
 
 .sidebar.visible {
@@ -194,8 +220,29 @@ body.light-mode .hamburger {
     text-align: left;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+body.light-mode .sidebar-btn {
+    background: rgba(0, 0, 0, 0.05); /* Lighter background for buttons */
+    color: #2a2a2a; /* Dark text for light mode */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Matching other light mode borders */
 }
 
 .sidebar-btn:hover {
     background-color: #555;
+}
+
+body.light-mode .sidebar-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Lighter hover state */
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+body.light-mode .sidebar-footer {
+    border-top: 1px solid rgba(0,0,0,0.1);
 }

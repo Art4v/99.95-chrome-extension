@@ -19,6 +19,9 @@ function injectSidebarUI() {
         <button class="sidebar-btn">Home</button>
         <button class="sidebar-btn">Settings</button>
         <button class="sidebar-btn">About</button>
+        <div class="sidebar-footer">
+            <button class="toggle-btn">Toggle Background</button>
+        </div>
     `;
 
     const hamburger = document.createElement("button");
@@ -32,6 +35,12 @@ function injectSidebarUI() {
     hamburger.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
         sidebar.classList.toggle("visible");
+    });
+
+    // Add toggle button functionality
+    const toggleButton = sidebar.querySelector('.toggle-btn');
+    toggleButton.addEventListener("click", function () {
+        document.body.classList.toggle("light-mode");
     });
 }
 
@@ -230,16 +239,5 @@ async function initialize() {
 // Unified DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     await initialize();
-
-    const toggleButton = document.createElement("button");
-    toggleButton.innerText = "Toggle Background";
-    toggleButton.classList.add("toggle-btn");
-    toggleButton.setAttribute("aria-label", "Toggle light/dark mode");
-    document.body.appendChild(toggleButton);
-
-    toggleButton.addEventListener("click", function () {
-        document.body.classList.toggle("light-mode");
-    });
-
     injectSidebarUI();
 });
