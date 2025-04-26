@@ -134,10 +134,6 @@ function startCountdown(target, isCurrentClass, schedule) {
         const currentTime = new Date();
         const timeDiff = Math.max(0, targetTime - currentTime);
 
-        const totalDuration = targetTime - countdownStartTime;
-        const elapsed = currentTime - countdownStartTime;
-        const percentage = totalDuration > 0 ? (elapsed / totalDuration) * 100 : 0;
-
         const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
