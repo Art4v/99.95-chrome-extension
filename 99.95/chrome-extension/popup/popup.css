@@ -110,40 +110,6 @@ body.light-mode .b {
     font-size: 1.4rem;
 }
 
-/* Toggle Button */
-.toggle-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    padding: 10px 15px;
-    font-size: 0.8rem;
-    background-color: #333; /* Dark gray background */
-    border: 1px solid #f8f4e6; /* White outline */
-    color: #f8f4e6; /* White text */
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 100;
-    width: calc(100% - 40px);
-    transition: all 0.2s ease;
-}
-
-body.light-mode .toggle-btn {
-    background-color: #f8f4e6; /* White background */
-    border: 1px solid #2a2a2a; /* Dark gray outline */
-    color: #2a2a2a; /* Dark gray text */
-}
-
-/* Add hover states */
-.toggle-btn:hover {
-    background-color: #444;
-    border-color: #f8f7f2;
-}
-
-body.light-mode .toggle-btn:hover {
-    background-color: #f8f7f2;
-    border-color: #1a1a1a;
-}
-
 .sidebar {
     position: fixed;
     top: 0;
@@ -156,6 +122,7 @@ body.light-mode .toggle-btn:hover {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2); /* Shadow direction adjusted */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     gap: 10px;
     transform: translateX(100%); /* Changed from -100% */
     transition: transform 0.3s ease;
@@ -222,6 +189,11 @@ body.light-mode .sidebar-btn:hover {
     background-color: rgba(0, 0, 0, 0.1); /* Lighter hover state */
 }
 
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto; /* Scrollable if needed */
+}
+
 .sidebar-section {
     margin-bottom: 1rem;
 }
@@ -239,9 +211,71 @@ body.light-mode .sidebar-heading {
 }
 
 .sidebar-footer {
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid #444;
+    position: relative;
+}
+
+/* Upload Button Style */
+.upload-btn {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    background-color: #333;
+    border: 1px solid #f8f4e6;
+    color: #f8f4e6;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+body.light-mode .upload-btn {
+    background-color: #f8f4e6;
+    border: 1px solid #2a2a2a;
+    color: #2a2a2a;
+}
+
+.upload-btn:hover {
+    background-color: #444;
+}
+
+body.light-mode .upload-btn:hover {
+    background-color: #f8f7f2;
+    border-color: #1a1a1a;
+}
+
+/* Toggle Button Style */
+.toggle-btn {
+    padding: 10px 15px;
+    font-size: 0.8rem;
+    background-color: #333;
+    border: 1px solid #f8f4e6;
+    color: #f8f4e6;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+    margin-left: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+body.light-mode .toggle-btn {
+    background-color: #f8f4e6;
+    border: 1px solid #2a2a2a;
+    color: #2a2a2a;
+}
+
+.toggle-btn:hover {
+    background-color: #444;
+    border-color: #f8f7f2;
+}
+
+body.light-mode .toggle-btn:hover {
+    background-color: #f8f7f2;
+    border-color: #1a1a1a;
 }
 
 body.light-mode .sidebar-footer {

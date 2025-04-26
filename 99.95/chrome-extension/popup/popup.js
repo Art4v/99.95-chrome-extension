@@ -16,17 +16,20 @@ function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar hidden";
     sidebar.innerHTML = `
-        <div class="sidebar-section">
-            <h2 class="sidebar-heading">Reference Sheets</h2>
-            <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
-            <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Reference Sheet</button>
-            <button class="sidebar-btn" data-pdf="physics.pdf">Physics Reference Sheet</button>
-        </div>
-        <div class="sidebar-section">
-            <h2 class="sidebar-heading">Utilities</h2>
-            <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
+        <div class="sidebar-content">
+            <div class="sidebar-section">
+                <h2 class="sidebar-heading">Reference Sheets</h2>
+                <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
+                <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Reference Sheet</button>
+                <button class="sidebar-btn" data-pdf="physics.pdf">Physics Reference Sheet</button>
+            </div>
+            <div class="sidebar-section">
+                <h2 class="sidebar-heading">Utilities</h2>
+                <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
+            </div>
         </div>
         <div class="sidebar-footer">
+            <button class="upload-btn">Upload Timetable</button>
             <button class="toggle-btn">Toggle Background</button>
         </div>
     `;
@@ -63,6 +66,12 @@ function injectSidebarUI() {
     toggleButton.addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
         localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+    });
+
+    // Placeholder: Upload timetable functionality
+    const uploadButton = sidebar.querySelector('.upload-btn');
+    uploadButton.addEventListener("click", () => {
+        alert('Upload Timetable feature coming soon!');
     });
 
     // Handle button clicks for PDFs or URLs
