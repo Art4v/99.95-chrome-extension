@@ -1,8 +1,9 @@
 /* Change the html selector to target only body */
 body {
-    min-height: 100vh;
+    height: 600px;
+    width: 800px;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
     
     /* Move background properties here */
@@ -18,8 +19,8 @@ body {
 
 /* Remove background properties from html selector */
 html {
-    height: auto;
-    width: 400px;
+    height: 600px;
+    width: 800px;
     margin: 0;
 }
 
@@ -221,6 +222,7 @@ body.light-mode .hamburger {
     cursor: pointer;
     font-size: 16px;
     transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 body.light-mode .sidebar-btn {
@@ -245,4 +247,39 @@ body.light-mode .sidebar-btn:hover {
 
 body.light-mode .sidebar-footer {
     border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.pdf-viewer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.pdf-viewer.hidden {
+    display: none;
+}
+
+.pdf-frame {
+    width: 80%;
+    height: 90%;
+    border: none;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.close-pdf {
+    background: #fff;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+    z-index: 10000;
 }
