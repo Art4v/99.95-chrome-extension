@@ -16,10 +16,16 @@ function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar hidden";
     sidebar.innerHTML = `
-        <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
-        <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Reference Sheet</button>
-        <button class="sidebar-btn" data-pdf="physics.pdf">Physics Reference Sheet</button>
-        <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
+        <div class="sidebar-section">
+            <h2 class="sidebar-heading">Reference Sheets</h2>
+            <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
+            <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Reference Sheet</button>
+            <button class="sidebar-btn" data-pdf="physics.pdf">Physics Reference Sheet</button>
+        </div>
+        <div class="sidebar-section">
+            <h2 class="sidebar-heading">Utilities</h2>
+            <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
+        </div>
         <div class="sidebar-footer">
             <button class="toggle-btn">Toggle Background</button>
         </div>
