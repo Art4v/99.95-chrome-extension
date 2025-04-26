@@ -37,7 +37,7 @@ p {
 }
 
 .custom-upload-btn {
-    background-color: #6488EA;
+    background-color: #FF746C;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -49,7 +49,7 @@ p {
 }
 
 .custom-upload-btn:hover {
-    background-color: #7293ec;
+    background-color: #ffa19c;
     transform: scale(1.02);
 }
 
@@ -89,12 +89,12 @@ ol li {
 
 ol li::marker {
     font-weight: bold;
-    color: #6488EA; /* Same green as your buttons for consistency */
+    color: #FF746C; /* Same green as your buttons for consistency */
     font-size: 1.1em;
 }
 
 button {
-    background-color: #6488EA;
+    background-color: #FF746C;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -109,7 +109,7 @@ button {
 }
 
 button:hover {
-    background-color: #7293ec;
+    background-color: #ffa19c;
     transform: scale(1.02);
 }
 
@@ -127,7 +127,7 @@ button:disabled {
 
 .success {
     background-color: rgba(76, 175, 80, 0.2);
-    border: 1px solid #6488EA;
+    border: 1px solid #FF746C;
     color: #2e7d32;
 }
 
