@@ -18,7 +18,7 @@ function injectSidebarUI() {
     sidebar.innerHTML = `
         <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Datasheet</button>
         <button class="sidebar-btn" data-pdf="physics.pdf">Physics Datasheet</button>
-        <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos Calculator</button>
+        <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
         <div class="sidebar-footer">
             <button class="toggle-btn">Toggle Background</button>
         </div>
