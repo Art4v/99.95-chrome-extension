@@ -283,3 +283,38 @@ body.light-mode .sidebar-footer {
     cursor: pointer;
     z-index: 10000;
 }
+
+.embed-viewer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.embed-viewer.hidden {
+    display: none;
+}
+
+.embed-frame {
+    width: 90%;
+    height: 90%;
+    border: none;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+}
+
+.close-embed {
+    background: #fff;
+    border: none;
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    cursor: pointer;
+    z-index: 10000;
+}

@@ -16,9 +16,9 @@ function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar hidden";
     sidebar.innerHTML = `
-        <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
         <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Datasheet</button>
         <button class="sidebar-btn" data-pdf="physics.pdf">Physics Datasheet</button>
+        <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos Calculator</button>
         <div class="sidebar-footer">
             <button class="toggle-btn">Toggle Background</button>
         </div>
@@ -29,50 +29,49 @@ function injectSidebarUI() {
     hamburger.setAttribute("aria-label", "Toggle Sidebar");
     hamburger.textContent = "☰";
 
-    const pdfViewer = document.createElement("div");
-    pdfViewer.className = "pdf-viewer hidden";
-    pdfViewer.innerHTML = `
-        <button class="close-pdf">×</button>
-        <iframe class="pdf-frame" frameborder="0"></iframe>
+    const embedViewer = document.createElement("div");
+    embedViewer.className = "embed-viewer hidden";
+    embedViewer.innerHTML = `
+        <button class="close-embed">×</button>
+        <iframe class="embed-frame" frameborder="0"></iframe>
     `;
 
     document.body.appendChild(hamburger);
     document.body.appendChild(sidebar);
-    document.body.appendChild(pdfViewer);
+    document.body.appendChild(embedViewer);
 
     hamburger.addEventListener("click", () => {
         sidebar.classList.toggle("hidden");
         sidebar.classList.toggle("visible");
     });
 
-    // Background mode toggle
-    const toggleButton = sidebar.querySelector('.toggle-btn');
-    toggleButton.addEventListener("click", function () {
-        document.body.classList.toggle("light-mode");
-        const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
-        localStorage.setItem("theme", mode);
-    });
-
-    // Apply theme from localStorage
+    // Restore saved theme
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
         document.body.classList.add("light-mode");
     }
 
-    // Handle PDF loading
+    // Background toggle
+    const toggleButton = sidebar.querySelector('.toggle-btn');
+    toggleButton.addEventListener("click", () => {
+        document.body.classList.toggle("light-mode");
+        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+    });
+
+    // Handle button clicks for PDFs or URLs
     sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            const file = btn.getAttribute('data-pdf');
-            const frame = pdfViewer.querySelector('.pdf-frame');
-            frame.src = file;
-            pdfViewer.classList.remove('hidden');
+            const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
+            const frame = embedViewer.querySelector('.embed-frame');
+            frame.src = src;
+            embedViewer.classList.remove('hidden');
         });
     });
 
-    // Close PDF
-    pdfViewer.querySelector('.close-pdf').addEventListener('click', () => {
-        pdfViewer.classList.add('hidden');
-        pdfViewer.querySelector('.pdf-frame').src = "";
+    // Close embed viewer
+    embedViewer.querySelector('.close-embed').addEventListener('click', () => {
+        embedViewer.classList.add('hidden');
+        embedViewer.querySelector('.embed-frame').src = "";
     });
 }
 
