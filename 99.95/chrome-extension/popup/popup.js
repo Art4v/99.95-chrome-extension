@@ -16,6 +16,7 @@ function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar hidden";
     sidebar.innerHTML = `
+        <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
         <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Datasheet</button>
         <button class="sidebar-btn" data-pdf="physics.pdf">Physics Datasheet</button>
         <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
