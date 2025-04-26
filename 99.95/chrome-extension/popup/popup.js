@@ -111,15 +111,12 @@ function getCurrentClass(schedule, now) {
 let globalTimer; // Ensures only one timer at a time
 let lastNotifHTML = '';
 
-// Countdown function with progress bar
+// Countdown function
 function startCountdown(target, isCurrentClass, schedule) {
     const notif = document.querySelector('.notif');
-    const progressContainer = document.querySelector('.progress-container');
-    const progressBar = document.querySelector('.progress-bar');
 
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
-        progressContainer.style.display = 'none';
         return;
     }
 
@@ -131,8 +128,6 @@ function startCountdown(target, isCurrentClass, schedule) {
         ? new Date(target.start_time)
         : new Date();
 
-    progressContainer.style.display = 'block';
-
     if (globalTimer) clearInterval(globalTimer);
 
     const updateCountdown = () => {
@@ -142,8 +137,6 @@ function startCountdown(target, isCurrentClass, schedule) {
         const totalDuration = targetTime - countdownStartTime;
         const elapsed = currentTime - countdownStartTime;
         const percentage = totalDuration > 0 ? (elapsed / totalDuration) * 100 : 0;
-
-        progressBar.style.width = `${Math.min(percentage, 100)}%`;
 
         const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
