@@ -37,10 +37,17 @@ function injectSidebarUI() {
         sidebar.classList.toggle("visible");
     });
 
+    // Apply persisted theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+    }
+
     // Add toggle button functionality
     const toggleButton = sidebar.querySelector('.toggle-btn');
     toggleButton.addEventListener("click", function () {
-        document.body.classList.toggle("light-mode");
+        const isLightMode = document.body.classList.toggle("light-mode");
+        localStorage.setItem("theme", isLightMode ? "light" : "dark");
     });
 }
 
