@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Upload</title>
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+    <div class="upload-container">
+        <h1>Upload Timetable</h1>
+        <ol>
+            <li>Login to Sentral</li>
+            <li>Navigate to your timetable and select "Export as ICS" on the top right</li>
+            <li>Save your timetable file on your PC</li>
+            <li>Click 'Choose File' on this page and select your timetable file</li>
+            <li>Click 'Upload Timetable' and you're done!</li>
+        </ol>
+        
+        <div class="file-input-wrapper">
+            <label for="ics-upload" class="custom-upload-btn">Choose File</label>
+            <input type="file" id="ics-upload" class="hidden" accept=".ics">
+            <p id="file-name" class="file-name hidden"></p> <!-- new preview -->
+        </div>        
+        
+        <button id="upload-button">Upload Timetable</button>
+        
+        <div id="status-message" class="status hidden"></div>
+    </div>
+    <script src="landing.js"></script>
+</body>
+</html>

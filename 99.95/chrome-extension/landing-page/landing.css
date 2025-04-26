@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+    margin: 0;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.upload-container {
+    background-color: rgba(255, 255, 255, 0.75); /* Light frosted look */
+    backdrop-filter: blur(6px);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #222;
+    margin-top: 0;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.file-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.custom-upload-btn {
+    background-color: #6488EA;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.custom-upload-btn:hover {
+    background-color: #7293ec;
+    transform: scale(1.02);
+}
+
+#ics-upload.hidden {
+    display: none;
+}
+
+.file-name {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.hidden {
+    display: none;
+}
+
+.file-name.error {
+    color: #c62828;
+    font-weight: bold;
+}
+
+ol {
+    margin-left: 20px;
+    padding-left: 20px;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+    list-style-position: inside; /* Makes numbers inside the container */
+}
+
+ol li {
+    margin-bottom: 10px;
+    padding-left: 5px;
+    position: relative;
+}
+
+ol li::marker {
+    font-weight: bold;
+    color: #6488EA; /* Same green as your buttons for consistency */
+    font-size: 1.1em;
+}
+
+button {
+    background-color: #6488EA;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #7293ec;
+    transform: scale(1.02);
+}
+
+button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+.status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.success {
+    background-color: rgba(76, 175, 80, 0.2);
+    border: 1px solid #6488EA;
+    color: #2e7d32;
+}
+
+.error {
+    background-color: rgba(244, 67, 54, 0.2);
+    border: 1px solid #F44336;
+    color: #c62828;
+}
+
+.hidden {
+    display: none;
+}
