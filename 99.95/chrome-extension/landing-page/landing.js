@@ -17,5 +17,31 @@ fileInput.addEventListener('change', () => {
     } else {
         fileNameDisplay.textContent = '';
         fileNameDisplay.classList.add('hidden');
+
     }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const fileInput = document.getElementById('ics-upload');
+    if (!fileInput) {
+        console.error("Element with id 'ics-upload' not found.");
+        return;
+    }
+
+    fileInput.addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const fileContent = e.target.result;
+
+            chrome.storage.local.set({ 'input.ics': fileContent }, () => {
+                console.log('ICS file saved as input.ics');
+                chrome.runtime.sendMessage({ type: 'storageUpdate' });
+            });
+        };
+        reader.readAsText(file);
+    });
 });

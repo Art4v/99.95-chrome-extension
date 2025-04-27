@@ -29,7 +29,7 @@
     },
     "web_accessible_resources": [
       {
-        "resources": ["chrome-extension/website/output.json"],
+        "resources": ["chrome-extension/website/output.json", "chrome-extension/website/popup.html", "chrome-extension/website/landing.html", "chrome-extension/website/output.json"],
         "matches": ["<all_urls>"]
       }
     ]

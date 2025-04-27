@@ -68,11 +68,21 @@ function injectSidebarUI() {
         localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
     });
 
-    // Placeholder: Upload timetable functionality
-    const uploadButton = sidebar.querySelector('.upload-btn');
-    uploadButton.addEventListener("click", () => {
-        alert('Upload Timetable feature coming soon!');
+    // Upload timetable functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const clearBtn = document.getElementById('upload-btn');
+        clearBtn.addEventListener('click', () => {
+            chrome.storage.local.clear(() => {
+                // Optional: Show confirmation message
+                console.log('All storage data cleared!');
+                alert('All data has been removed!');
+                chrome.runtime.sendMessage({ type: 'storageUpdate' });
+                // Optional: Update UI or close popup
+                window.close();
+            });
+        });
     });
+
 
     // Handle button clicks for PDFs or URLs
     sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
