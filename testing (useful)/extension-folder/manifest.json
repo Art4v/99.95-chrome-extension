@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "ICS to JSON Parser",
+  "version": "1.0",
+  "description": "Parse ICS files to JSON format and store in Chrome storage",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon.png"
+    }
+  }
+}
