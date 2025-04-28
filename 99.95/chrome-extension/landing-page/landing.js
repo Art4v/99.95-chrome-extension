@@ -36,10 +36,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const reader = new FileReader();
         reader.onload = function(e) {
             const fileContent = e.target.result;
-
-            chrome.storage.local.set({ 'input.ics': fileContent }, () => {
-                console.log('ICS file saved as input.ics');
-                chrome.runtime.sendMessage({ type: 'storageUpdate' });
+            chrome.storage.local.set({ ical: fileContent }, () => {
+                console.log('ICS file saved as ical');
+                chrome.runtime.sendMessage({ type: 'storageUpdated' });
             });
         };
         reader.readAsText(file);

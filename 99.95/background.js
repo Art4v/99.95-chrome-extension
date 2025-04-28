@@ -16,12 +16,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Core function to update popup based on storage state
 function updatePopup() {
-    chrome.storage.local.get('output', (data) => {
+    chrome.storage.local.get('ical', (data) => {
       try {
-        const popupPath = data.output 
+        const popupPath = data.ical 
           ? 'chrome-extension/popup/popup.html'
           : 'chrome-extension/landing-page/landing.html';
-  
+
         chrome.action.setPopup({ popup: popupPath });
         
         // Safe message passing with error handling
@@ -37,38 +37,38 @@ function updatePopup() {
         chrome.action.setPopup({ popup: 'assets/landing.html' });
       }
     });
+}
+
+// ================= Event Listeners =================
+chrome.storage.onChanged.addListener((changes, area) => {
+  if (area === 'local' && 'ical' in changes) updatePopup();
+});
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.type === 'storageUpdated') updatePopup();
+});
+
+chrome.action.onClicked.addListener(updatePopup);
+
+// ================= Error Handling =================
+// Handle message errors globally
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.type === 'error') {
+    console.error('Received error report:', message.error);
   }
-  
-  // ================= Event Listeners =================
-  chrome.storage.onChanged.addListener((changes, area) => {
-    if (area === 'local' && 'output' in changes) updatePopup();
-  });
-  
-  chrome.runtime.onMessage.addListener((message) => {
-    if (message.type === 'storageUpdated') updatePopup();
-  });
-  
-  chrome.action.onClicked.addListener(updatePopup);
-  
-  // ================= Error Handling =================
-  // Handle message errors globally
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.type === 'error') {
-      console.error('Received error report:', message.error);
-    }
-  });
-  
-  // ================= Initialization =================
-  chrome.runtime.onStartup.addListener(updatePopup);
-  chrome.runtime.onInstalled.addListener(updatePopup);
-  
-  // Safety check interval (every 5 minutes)
-  const SAFETY_CHECK_INTERVAL = 300000;
-  setInterval(updatePopup, SAFETY_CHECK_INTERVAL);
-  
-  // Initial check with error suppression
-  try {
-    updatePopup();
-  } catch (error) {
-    console.debug('Initialization error:', error.message);
-  }
+});
+
+// ================= Initialization =================
+chrome.runtime.onStartup.addListener(updatePopup);
+chrome.runtime.onInstalled.addListener(updatePopup);
+
+// Safety check interval (every 5 minutes)
+const SAFETY_CHECK_INTERVAL = 300000;
+setInterval(updatePopup, SAFETY_CHECK_INTERVAL);
+
+// Initial check with error suppression
+try {
+  updatePopup();
+} catch (error) {
+  console.debug('Initialization error:', error.message);
+}

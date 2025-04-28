@@ -68,21 +68,47 @@ function injectSidebarUI() {
         localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
     });
 
-    // Upload timetable functionality
-    document.addEventListener('DOMContentLoaded', () => {
-        const clearBtn = document.getElementById('upload-btn');
-        clearBtn.addEventListener('click', () => {
-            chrome.storage.local.clear(() => {
-                // Optional: Show confirmation message
-                console.log('All storage data cleared!');
-                alert('All data has been removed!');
-                chrome.runtime.sendMessage({ type: 'storageUpdate' });
-                // Optional: Update UI or close popup
+    // --- Upload timetable functionality ---
+
+    // Create a hidden file input for uploading .ics files
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.ics';
+    fileInput.style.display = 'none';
+    document.body.appendChild(fileInput);
+
+    const uploadBtn = sidebar.querySelector('.upload-btn');
+    uploadBtn.addEventListener('click', () => {
+        fileInput.value = ''; // Reset file input
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const icalData = e.target.result;
+            chrome.storage.local.set({ ical: icalData }, () => {
+                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                    alert('Timetable uploaded!');
+                    window.close();
+                });
+            });
+        };
+        reader.readAsText(file);
+    });
+
+    // Right-click to clear timetable
+    uploadBtn.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        chrome.storage.local.remove('ical', () => {
+            chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                alert('Timetable removed!');
                 window.close();
             });
         });
     });
-
 
     // Handle button clicks for PDFs or URLs
     sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
@@ -284,6 +310,6 @@ async function initialize() {
 
 // Unified DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
-    await initialize();
     injectSidebarUI();
+    await initialize();
 });
