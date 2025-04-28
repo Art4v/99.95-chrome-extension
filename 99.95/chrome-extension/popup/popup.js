@@ -127,24 +127,6 @@ function injectSidebarUI() {
     });
 }
 
-// Cached schedule to avoid re-fetching
-let cachedSchedule = {};
-
-// Function to fetch data from the JSON file
-async function fetchSchedule(date, filePath = 'output.json') {
-    if (cachedSchedule[date]) return cachedSchedule[date];
-    try {
-        const response = await fetch(filePath);
-        if (!response.ok) throw new Error('Failed to load schedule data.');
-        const data = await response.json();
-        cachedSchedule[date] = data[date] || [];
-        return cachedSchedule[date];
-    } catch (error) {
-        console.error(error);
-        return [];
-    }
-}
-
 // Function to find the next class (assumes sorted input)
 function getNextClass(schedule, now) {
     return schedule.find((entry) => new Date(entry.start_time) > now) || null;
