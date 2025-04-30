@@ -35,7 +35,7 @@ function injectSidebarUI() {
             </div>
         </div>
         <div class="sidebar-footer">
-            <button class="upload-btn">Upload Timetable</button>
+            <button class="upload-btn">Upload New Timetable</button>
             <button class="toggle-btn">Toggle Background</button>
         </div>
     `;

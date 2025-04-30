@@ -3,7 +3,7 @@ body {
     height: 600px;
     width: 800px;
     margin: 0;
-    padding: 0;
+    padding: 1%;
     box-sizing: border-box;
     
     /* Move background properties here */

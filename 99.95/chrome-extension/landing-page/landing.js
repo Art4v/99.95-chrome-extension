@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', function() {
           statusDiv.classList.add('success');
           chrome.runtime.sendMessage({ type: 'storageUpdated' }); // Notify background if needed
           console.log(`Parsed ICS data stored (${outputText.length} characters)`);
+          alert('Timetable uploaded successfully!');
+          window.close();
         });
   
       } catch (error) {
