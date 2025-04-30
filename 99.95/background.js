@@ -19,8 +19,8 @@ function updatePopup() {
     chrome.storage.local.get('parsedIcsData', (data) => {
       try {
         const popupPath = data.parsedIcsData 
-          ? 'chrome-extension/popup/popup.html'
-          : 'chrome-extension/landing-page/landing.html';
+          ? 'popup/popup.html'
+          : 'landing-page/landing.html';
         chrome.action.setPopup({ popup: popupPath });
         
         // Safe message passing with error handling
