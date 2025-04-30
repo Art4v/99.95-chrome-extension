@@ -16,12 +16,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 // Core function to update popup based on storage state
 function updatePopup() {
-    chrome.storage.local.get('ical', (data) => {
+    chrome.storage.local.get('parsedIcsData', (data) => {
       try {
-        const popupPath = data.ical 
+        const popupPath = data.parsedIcsData 
           ? 'chrome-extension/popup/popup.html'
           : 'chrome-extension/landing-page/landing.html';
-
         chrome.action.setPopup({ popup: popupPath });
         
         // Safe message passing with error handling
