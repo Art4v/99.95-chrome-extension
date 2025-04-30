@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Class Schedule Countdown",
+    "name": "99.95",
     "version": "1.0.0",
     "description": "An extension to display a class schedule countdown based on the current time.",
     "icons": {
@@ -29,7 +29,7 @@
     },
     "web_accessible_resources": [
       {
-        "resources": ["chrome-extension/website/output.json"],
+        "resources": ["chrome-extension/website/output.json", "chrome-extension/website/popup.html", "chrome-extension/website/landing.html", "chrome-extension/website/output.json"],
         "matches": ["<all_urls>"]
       }
     ]
