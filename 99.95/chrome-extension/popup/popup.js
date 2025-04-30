@@ -1,7 +1,13 @@
+// Utility to combine date and time string into a Date object
+function getDateTime(dateString, timeString) {
+    // dateString: "2025-04-30", timeString: "08:50"
+    return new Date(`${dateString}T${timeString}:00`);
+}
+
 // Utility to format time range
-function formatTimeRange(start, end) {
-    const startTime = new Date(start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const endTime = new Date(end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+function formatTimeRange(date, start, end) {
+    const startTime = getDateTime(date, start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const endTime = getDateTime(date, end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     return `${startTime} – ${endTime}`;
 }
 
@@ -11,7 +17,7 @@ function getLocalISODateString(date) {
         .toISOString().split('T')[0];
 }
 
-// Inject sidebar and hamburger button
+// Inject sidebar and hamburger button (unchanged)
 function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar hidden";
@@ -128,15 +134,15 @@ function injectSidebarUI() {
 }
 
 // Function to find the next class (assumes sorted input)
-function getNextClass(schedule, now) {
-    return schedule.find((entry) => new Date(entry.start_time) > now) || null;
+function getNextClass(schedule, now, date) {
+    return schedule.find((entry) => getDateTime(date, entry.s) > now) || null;
 }
 
 // Function to find current class
-function getCurrentClass(schedule, now) {
+function getCurrentClass(schedule, now, date) {
     return schedule.find(entry => {
-        const start = new Date(entry.start_time);
-        const end = new Date(entry.end_time);
+        const start = getDateTime(date, entry.s);
+        const end = getDateTime(date, entry.e);
         return now >= start && now <= end;
     }) || null;
 }
@@ -145,7 +151,7 @@ let globalTimer; // Ensures only one timer at a time
 let lastNotifHTML = '';
 
 // Countdown function
-function startCountdown(target, isCurrentClass, schedule) {
+function startCountdown(target, isCurrentClass, schedule, date) {
     const notif = document.querySelector('.notif');
 
     if (!target) {
@@ -154,11 +160,11 @@ function startCountdown(target, isCurrentClass, schedule) {
     }
 
     const targetTime = isCurrentClass 
-        ? new Date(target.end_time) 
-        : new Date(target.start_time);
+        ? getDateTime(date, target.e)
+        : getDateTime(date, target.s);
 
     const countdownStartTime = isCurrentClass
-        ? new Date(target.start_time)
+        ? getDateTime(date, target.s)
         : new Date();
 
     if (globalTimer) clearInterval(globalTimer);
@@ -172,8 +178,8 @@ function startCountdown(target, isCurrentClass, schedule) {
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
         const newHTML = `
-            <h1>${isCurrentClass ? `${target.name} ends in` : `${target.name} in`} ${hours}:${minutes}:${seconds}</h1>
-            ${target.teacher ? `<h2>With ${target.teacher} in ${target.location}</h2>` : ''}
+            <h1>${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}</h1>
+            ${target.t ? `<h2>With ${target.t} in ${target.l}</h2>` : ''}
         `;
 
         if (newHTML !== lastNotifHTML) {
@@ -184,17 +190,17 @@ function startCountdown(target, isCurrentClass, schedule) {
         if (timeDiff <= 0) {
             clearInterval(globalTimer);
             if (isCurrentClass) {
-                const nextClass = getNextClass(schedule, currentTime);
-                startCountdown(nextClass, false, schedule);
+                const nextClass = getNextClass(schedule, currentTime, date);
+                startCountdown(nextClass, false, schedule, date);
             } else {
-                const current = getCurrentClass(schedule, currentTime);
+                const current = getCurrentClass(schedule, currentTime, date);
                 if (current) {
-                    startCountdown(current, true, schedule);
+                    startCountdown(current, true, schedule, date);
                 } else {
-                    notif.innerHTML = `<h1>${target.name} is starting now!</h1>`;
+                    notif.innerHTML = `<h1>${target.n} is starting now!</h1>`;
                     setTimeout(() => {
-                        const nextClass = getNextClass(schedule, currentTime);
-                        startCountdown(nextClass, false, schedule);
+                        const nextClass = getNextClass(schedule, currentTime, date);
+                        startCountdown(nextClass, false, schedule, date);
                     }, 10000);
                 }
             }
@@ -206,24 +212,24 @@ function startCountdown(target, isCurrentClass, schedule) {
 }
 
 // Render block element
-function createScheduleBlock(entry) {
+function createScheduleBlock(entry, date) {
     const block = document.createElement('div');
     block.className = 'b';
 
     const period = document.createElement('div');
     period.className = 'bp';
     const periodText = document.createElement('h1');
-    periodText.textContent = entry.period;
+    periodText.textContent = entry.p;
     period.appendChild(periodText);
 
     const details = document.createElement('div');
     details.className = 'bt';
     const className = document.createElement('p');
-    className.textContent = entry.name;
+    className.textContent = entry.n;
     const teacherDetails = document.createElement('h4');
-    teacherDetails.textContent = formatTimeRange(entry.start_time, entry.end_time);
-    if (entry.teacher) {
-        teacherDetails.textContent += `: ${entry.teacher}`;
+    teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e);
+    if (entry.t) {
+        teacherDetails.textContent += `: ${entry.t}`;
     }
     details.appendChild(className);
     details.appendChild(teacherDetails);
@@ -231,7 +237,7 @@ function createScheduleBlock(entry) {
     const room = document.createElement('div');
     room.className = 'br';
     const roomText = document.createElement('h1');
-    roomText.textContent = entry.location;
+    roomText.textContent = entry.l;
     room.appendChild(roomText);
 
     block.appendChild(period);
@@ -252,7 +258,7 @@ function renderSchedule(schedule, date) {
     }
 
     schedule.forEach((entry) => {
-        const block = createScheduleBlock(entry);
+        const block = createScheduleBlock(entry, date);
         blocksContainer.appendChild(block);
     });
 }
@@ -260,6 +266,25 @@ function renderSchedule(schedule, date) {
 // Check if weekend
 function isWeekend(date) {
     return date.getDay() === 0 || date.getDay() === 6;
+}
+
+// Function to fetch schedule from chrome.storage.local instead of output.json
+async function fetchSchedule(date) {
+    return new Promise((resolve) => {
+        chrome.storage.local.get('parsedIcsData', (data) => {
+            if (!data.parsedIcsData) {
+                resolve([]);
+                return;
+            }
+            try {
+                const allData = JSON.parse(data.parsedIcsData);
+                resolve(allData[date] || []);
+            } catch (e) {
+                console.error('Failed to parse timetable data:', e);
+                resolve([]);
+            }
+        });
+    });
 }
 
 // Main initialization
@@ -281,12 +306,12 @@ async function initialize() {
         return;
     }
 
-    const currentClass = getCurrentClass(schedule, now);
+    const currentClass = getCurrentClass(schedule, now, currentDate);
     if (currentClass) {
-        startCountdown(currentClass, true, schedule);
+        startCountdown(currentClass, true, schedule, currentDate);
     } else {
-        const nextClass = getNextClass(schedule, now);
-        startCountdown(nextClass, false, schedule);
+        const nextClass = getNextClass(schedule, now, currentDate);
+        startCountdown(nextClass, false, schedule, currentDate);
     }
 }
 
