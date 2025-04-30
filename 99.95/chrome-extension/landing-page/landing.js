@@ -1,7 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('ics-upload'); // matches your input ID
+    const fileNameDisplay = document.getElementById('file-name');
     const parseButton = document.getElementById('upload-button'); // matches your button ID
     const statusDiv = document.getElementById('file-name'); // matches your status display
+
+    // Show selected file name under the choose file button
+    fileInput.addEventListener('change', function() {
+        if (fileInput.files.length > 0) {
+          fileNameDisplay.textContent = `Selected file: ${fileInput.files[0].name}`;
+          fileNameDisplay.classList.remove('hidden', 'error');
+        } else {
+          fileNameDisplay.textContent = '';
+          fileNameDisplay.classList.add('hidden');
+        }
+    });
   
     parseButton.addEventListener('click', function() {
       if (fileInput.files.length > 0) {
