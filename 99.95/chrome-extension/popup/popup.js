@@ -94,13 +94,73 @@ function injectSidebarUI() {
         if (!file) return;
         const reader = new FileReader();
         reader.onload = function(e) {
-            const icalData = e.target.result;
-            chrome.storage.local.set({ ical: icalData }, () => {
-                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                    alert('Timetable uploaded!');
-                    window.close();
+            const icsData = e.target.result;
+            try {
+                // Parse ICS using ICAL.js and moment.js
+                const cal = new ICAL.Component(ICAL.parse(icsData));
+                const events = cal.getAllSubcomponents('vevent');
+                const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
+                function filter(input) {
+                    return input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
+                }
+                const allDates = [];
+                events.forEach(event => {
+                    const start = moment(event.getFirstPropertyValue('dtstart').toString());
+                    const sydneyStart = start.clone().tz('Australia/Sydney');
+                    allDates.push(sydneyStart);
                 });
-            });
+                allDates.sort((a, b) => a - b);
+                if (allDates.length === 0) throw new Error('No events found in the ICS file.');
+                const firstDate = allDates[0];
+                const lastDate = allDates[allDates.length - 1];
+                const days = lastDate.diff(firstDate, 'days') + 1;
+                const outputData = {};
+                for (let i = 0; i < days; i++) {
+                    const currentDate = firstDate.clone().add(i, 'days');
+                    const dateString = currentDate.format('YYYY-MM-DD');
+                    outputData[dateString] = [];
+                    events.forEach(event => {
+                        const startDate = moment(event.getFirstPropertyValue('dtstart').toString());
+                        const sydneyStart = startDate.clone().tz('Australia/Sydney');
+                        if (sydneyStart.format('YYYY-MM-DD') === dateString) {
+                            const endDate = moment(event.getFirstPropertyValue('dtend').toString());
+                            const sydneyEnd = endDate.clone().tz('Australia/Sydney');
+                            const summary = event.getFirstPropertyValue('summary') || '';
+                            const summaryParts = summary.split(': ');
+                            const classInfo = summaryParts[0];
+                            const name = summaryParts.length > 1 ? summaryParts[1] : '';
+                            const location = event.getFirstPropertyValue('location') || '';
+                            const locationParts = location.split(': ');
+                            const locationValue = locationParts.length > 1 ? locationParts[1] : '';
+                            const description = event.getFirstPropertyValue('description') || '';
+                            const descriptionLines = description.split('\n');
+                            const teacherParts = descriptionLines[0] ? descriptionLines[0].split(': ') : ['', ''];
+                            const periodParts = descriptionLines.length > 1 && descriptionLines[1] ? descriptionLines[1].split(': ') : ['', ''];
+                            const teacher = teacherParts.length > 1 ? teacherParts[1] : '';
+                            const period = periodParts.length > 1 ? periodParts[1] : '';
+                            outputData[dateString].push({
+                                "c": classInfo,
+                                "n": filter(name),
+                                "l": locationValue,
+                                "t": teacher,
+                                "p": period,
+                                "s": sydneyStart.format('HH:mm'),
+                                "e": sydneyEnd.format('HH:mm')
+                            });
+                        }
+                    });
+                    outputData[dateString].sort((a, b) => a.s.localeCompare(b.s));
+                }
+                const outputText = JSON.stringify(outputData);
+                chrome.storage.local.set({ parsedIcsData: outputText }, () => {
+                    chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                        alert('Timetable uploaded!');
+                        window.close();
+                    });
+                });
+            } catch (err) {
+                alert('Failed to parse ICS file: ' + err.message);
+            }
         };
         reader.readAsText(file);
     });
