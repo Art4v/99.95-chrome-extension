@@ -21,12 +21,6 @@
         "48": "assets/favicon.png",
         "128": "assets/favicon.png"
       }
-    },
-    "web_accessible_resources": [
-      {
-        "resources": ["website/output.json", "website/popup.html", "website/landing.html", "website/output.json"],
-        "matches": ["<all_urls>"]
-      }
-    ]
+    }
   }
   
