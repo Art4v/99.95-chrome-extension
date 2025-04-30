@@ -9,12 +9,7 @@
       "128": "assets/favicon.png"
     },
     "permissions": [
-      "storage",
-      "activeTab"
-    ],
-    "host_permissions": [
-      "http://*/",
-      "https://*/"
+      "storage"
     ],
     "background": {
       "service_worker": "background.js"
