@@ -237,9 +237,21 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
+        // Build teacher/room line based on presence
+        let detailsLine = '';
+        const hasTeacher = target.t && target.t.trim().length > 0;
+        const hasRoom = target.l && target.l.trim().length > 0;
+        if (hasTeacher && hasRoom) {
+            detailsLine = `<h2>With ${target.t} in ${target.l}</h2>`;
+        } else if (hasTeacher) {
+            detailsLine = `<h2>With ${target.t}</h2>`;
+        } else if (hasRoom) {
+            detailsLine = `<h2>In ${target.l}</h2>`;
+        }
+
         const newHTML = `
             <h1>${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}</h1>
-            ${target.t ? `<h2>With ${target.t} in ${target.l}</h2>` : ''}
+            ${detailsLine}
         `;
 
         if (newHTML !== lastNotifHTML) {
