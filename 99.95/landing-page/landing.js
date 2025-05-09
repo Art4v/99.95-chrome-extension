@@ -4,14 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const parseButton = document.getElementById('upload-button'); // matches your button ID
     const statusDiv = document.getElementById('file-name'); // matches your status display
 
+    // Initially disable the upload button
+    parseButton.disabled = true;
+
     // Show selected file name under the choose file button
     fileInput.addEventListener('change', function() {
         if (fileInput.files.length > 0) {
           fileNameDisplay.textContent = `Selected file: ${fileInput.files[0].name}`;
           fileNameDisplay.classList.remove('hidden', 'error');
+          parseButton.disabled = false;
         } else {
           fileNameDisplay.textContent = '';
           fileNameDisplay.classList.add('hidden');
+          parseButton.disabled = true;
         }
     });
   

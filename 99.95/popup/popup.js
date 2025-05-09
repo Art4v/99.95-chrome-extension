@@ -25,18 +25,22 @@ function injectSidebarUI() {
         <div class="sidebar-content">
             <div class="sidebar-section">
                 <h2 class="sidebar-heading">Reference Sheets</h2>
-                <button class="sidebar-btn" data-pdf="mathematics.pdf">Mathematics Reference Sheet</button>
-                <button class="sidebar-btn" data-pdf="chemistry.pdf">Chemistry Reference Sheet</button>
-                <button class="sidebar-btn" data-pdf="physics.pdf">Physics Reference Sheet</button>
+                <div class="sidebar-divider">Maths</div>
+                <button class="sidebar-btn" data-pdf="newadvmath.pdf">Maths Adv/Ext1/2</button>
+                <button class="sidebar-btn" data-pdf="newstandardmath.pdf">Maths Standard</button>
+                <div class="sidebar-divider">Science</div>
+                <button class="sidebar-btn" data-pdf="newchem.pdf">Chemistry</button>
+                <button class="sidebar-btn" data-pdf="newphys.pdf">Physics</button>
             </div>
             <div class="sidebar-section">
                 <h2 class="sidebar-heading">Utilities</h2>
                 <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
             </div>
         </div>
-        <div class="sidebar-footer">
+        <div class="sidebar-footer" style="margin-top: 48px; position: relative;">
             <button class="upload-btn">Upload New Timetable</button>
             <button class="toggle-btn">Toggle Background</button>
+            <span style="position: fixed; right: 16px; bottom: 5px; color: #aaa; font-size: 0.72rem; pointer-events: none; user-select: none; z-index: 1200;">By Aarav B, Sai P, Andy L.</span>
         </div>
     `;
 
@@ -207,8 +211,10 @@ function getCurrentClass(schedule, now, date) {
     }) || null;
 }
 
-let globalTimer; // Ensures only one timer at a time
+let globalTimer;
 let lastNotifHTML = '';
+let progressBar;
+let progressBarContainer;
 
 // Countdown function
 function startCountdown(target, isCurrentClass, schedule, date) {
@@ -216,6 +222,7 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
+        if (progressBarContainer) progressBarContainer.remove();
         return;
     }
 
@@ -229,24 +236,38 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
     if (globalTimer) clearInterval(globalTimer);
 
+    if (!progressBarContainer) {
+        progressBarContainer = document.createElement('div');
+        progressBarContainer.className = 'progress-bar-container';
+        progressBar = document.createElement('div');
+        progressBar.className = 'progress-bar';
+        progressBarContainer.appendChild(progressBar);
+        notif.appendChild(progressBarContainer);
+    } else if (!notif.contains(progressBarContainer)) {
+        notif.appendChild(progressBarContainer);
+    }
+
     const updateCountdown = () => {
         const currentTime = new Date();
         const timeDiff = Math.max(0, targetTime - currentTime);
+        const total = targetTime - countdownStartTime;
+        const percent = total > 0 ? Math.max(0, Math.min(1, (currentTime - countdownStartTime) / total)) : 0;
+        progressBar.style.width = (percent * 100) + '%';
+        progressBar.setAttribute('aria-valuenow', (percent * 100));
 
         const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
-        // Build teacher/room line based on presence
         let detailsLine = '';
         const hasTeacher = target.t && target.t.trim().length > 0;
         const hasRoom = target.l && target.l.trim().length > 0;
         if (hasTeacher && hasRoom) {
-            detailsLine = `<h2>With ${target.t} in ${target.l}</h2>`;
+            detailsLine = `<h2>With ${target.t} in Room ${target.l}</h2>`;
         } else if (hasTeacher) {
             detailsLine = `<h2>With ${target.t}</h2>`;
         } else if (hasRoom) {
-            detailsLine = `<h2>In ${target.l}</h2>`;
+            detailsLine = `<h2>In Room ${target.l}</h2>`;
         }
 
         const newHTML = `
@@ -256,6 +277,7 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
         if (newHTML !== lastNotifHTML) {
             notif.innerHTML = newHTML;
+            notif.appendChild(progressBarContainer);
             lastNotifHTML = newHTML;
         }
 
@@ -270,6 +292,7 @@ function startCountdown(target, isCurrentClass, schedule, date) {
                     startCountdown(current, true, schedule, date);
                 } else {
                     notif.innerHTML = `<h1>${target.n} is starting now!</h1>`;
+                    if (progressBarContainer) progressBarContainer.remove();
                     setTimeout(() => {
                         const nextClass = getNextClass(schedule, currentTime, date);
                         startCountdown(nextClass, false, schedule, date);
@@ -284,9 +307,9 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 }
 
 // Render block element
-function createScheduleBlock(entry, date) {
+function createScheduleBlock(entry, date, isActive) {
     const block = document.createElement('div');
-    block.className = 'b';
+    block.className = 'b' + (isActive ? ' active' : '');
 
     const period = document.createElement('div');
     period.className = 'bp';
@@ -329,8 +352,12 @@ function renderSchedule(schedule, date) {
         return;
     }
 
+    const now = new Date();
     schedule.forEach((entry) => {
-        const block = createScheduleBlock(entry, date);
+        const start = getDateTime(date, entry.s);
+        const end = getDateTime(date, entry.e);
+        const isActive = now >= start && now <= end;
+        const block = createScheduleBlock(entry, date, isActive);
         blocksContainer.appendChild(block);
     });
 }

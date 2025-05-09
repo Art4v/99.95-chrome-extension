@@ -5,6 +5,10 @@ body {
     margin: 0;
     padding: 1%;
     box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
     
     /* Move background properties here */
     background-color: #1a1a1a;
@@ -17,11 +21,22 @@ body {
     position: relative;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 /* Remove background properties from html selector */
 html {
     height: 600px;
     width: 800px;
     margin: 0;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
 }
 
 /* Updated light mode with darker grid lines */
@@ -48,8 +63,40 @@ body.light-mode .b {
     width: 100%;
     padding: 0 20px;
 }
+.notif .progress-bar-container {
+    max-width: 500px;
+    width: 100%;
+    height: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.089);
+    border-radius: 6px;
+    margin: 10px auto 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
 
-/* Glassmorphism container */
+body.light-mode .notif .progress-bar-container {
+    border: 1px solid #6e6459;
+}
+
+.notif .progress-bar {
+    height: 8px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    margin: 0;
+    transition: width 0.3s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 10px 2px rgba(255,255,255,0.22), 0 0 2px 1px rgba(255,255,255,0.12);
+    border: none;
+    width: 0;
+}
+
+body.light-mode .notif .progress-bar {
+    background: #75624f;
+    box-shadow: 0 0 16px 2px #75624f88, 0 0 4px 1px #75624f44;
+}
+
+
 .blocks {
     width: 100%;
     max-width: 500px;
@@ -84,6 +131,19 @@ body.light-mode .b {
     transform: translateY(-2px);
 }
 
+.b.active {
+    box-shadow: 0 0 0 1.5px rgba(255,255,255,0.7), 0 0 12px 2px rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.10);
+    z-index: 2;
+    position: relative;
+}
+
+body.light-mode .b.active {
+    box-shadow: 0 0 0 1.5px #75624f, 0 0 12px 2px #75624f44;
+    border-color: #75624f;
+    background: rgba(117,98,79,0.13);
+}
 
 .b h1 {
     display: flex;
@@ -192,6 +252,12 @@ body.light-mode .sidebar-btn:hover {
 .sidebar-content {
     flex: 1;
     overflow-y: auto; /* Scrollable if needed */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar-content::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-section {
@@ -350,4 +416,32 @@ body.light-mode .sidebar-footer {
     right: 2rem;
     cursor: pointer;
     z-index: 10000;
+}
+
+.ref-btn {
+    min-width: 170px;
+    max-width: 170px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.08rem;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar-divider {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    color: #111;
+    margin: 18px 0 6px 0;
+    padding-left: 2px;
+    font-size: 0.92rem;
+    letter-spacing: 0.5px;
+}
+
+body:not(.light-mode) .sidebar-divider {
+    color: #fff;
 }
