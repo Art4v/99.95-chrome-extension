@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "99.95",
     "version": "1.1.0",
-    "description": "An extension to display a class schedule countdown based on the current time.",
+    "description": "An extension to display a class schedule countdown based on the current time. Comes with additional utility features, including integrated Desmos, NSW Mathematics, Physics, and Chemistry datasheets, and light/dark mode settings. More updates coming soon!",
     "icons": {
       "16": "assets/favicon.png",
       "48": "assets/favicon.png",
