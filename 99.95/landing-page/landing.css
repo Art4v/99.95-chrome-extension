@@ -156,3 +156,8 @@ button:disabled {
 .hidden {
     display: none;
 }
+
+body.dragover {
+    outline: 3px dashed #0078d7;
+    background: #f0f8ff;
+}

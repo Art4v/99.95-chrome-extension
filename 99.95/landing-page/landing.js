@@ -37,6 +37,45 @@ document.addEventListener('DOMContentLoaded', function() {
         statusDiv.classList.add('error');
       }
     });
+
+    // --- Drag and Drop Upload Support ---
+    // Use the whole body as drop zone
+    const dropZone = document.body;
+
+    dropZone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.name.endsWith('.ics')) {
+                // Set the file input's files property (triggers change event)
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(file);
+                fileInput.files = dataTransfer.files;
+                fileNameDisplay.textContent = `Selected file: ${file.name}`;
+                fileNameDisplay.classList.remove('hidden', 'error');
+                parseButton.disabled = false;
+                // Optionally, auto-parse:
+                // parseButton.click();
+            } else {
+                fileNameDisplay.textContent = 'Please drop a valid .ics file.';
+                fileNameDisplay.classList.remove('hidden');
+                fileNameDisplay.classList.add('error');
+                parseButton.disabled = true;
+            }
+        }
+    });
   
     function parseIcsData(icsData) {
       try {
