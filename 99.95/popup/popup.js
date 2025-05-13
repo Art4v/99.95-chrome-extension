@@ -38,6 +38,7 @@ function injectSidebarUI() {
             </div>
         </div>
         <div class="sidebar-footer" style="margin-top: 48px; position: relative;">
+            <button class="scrollbar-toggle-btn" title="Toggle Scrollbar">Toggle Scrollbar</button>
             <button class="upload-btn">Upload New Timetable</button>
             <button class="toggle-btn">Toggle Background</button>
             <span style="position: fixed; right: 16px; bottom: 5px; color: #aaa; font-size: 0.72rem; pointer-events: none; user-select: none; z-index: 1200;">By Aarav B, Sai P, Andy L.</span>
@@ -194,6 +195,28 @@ function injectSidebarUI() {
     embedViewer.querySelector('.close-embed').addEventListener('click', () => {
         embedViewer.classList.add('hidden');
         embedViewer.querySelector('.embed-frame').src = "";
+    });
+
+    // After sidebar is added to DOM:
+    const scrollbarToggleBtn = sidebar.querySelector('.scrollbar-toggle-btn');
+    // Set initial state from localStorage
+    const savedScrollbarPref = localStorage.getItem('scrollbar');
+    if (savedScrollbarPref === 'off') {
+        document.body.classList.add('scrollbar-off');
+        document.body.style.overflowY = 'hidden';
+    } else {
+        document.body.classList.remove('scrollbar-off');
+        document.body.style.overflowY = 'scroll';
+    }
+    scrollbarToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('scrollbar-off');
+        if (document.body.classList.contains('scrollbar-off')) {
+            document.body.style.overflowY = 'hidden';
+            localStorage.setItem('scrollbar', 'off');
+        } else {
+            document.body.style.overflowY = 'scroll';
+            localStorage.setItem('scrollbar', 'on');
+        }
     });
 }
 
