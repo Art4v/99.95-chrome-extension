@@ -151,8 +151,7 @@ function injectSidebarUI() {
                     }
                     chrome.storage.local.set({ parsedIcsData: JSON.stringify(outputData) }, () => {
                         chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                            alert('Timetable uploaded!');
-                            window.close();
+                            window.location.reload();
                         });
                     });
                 } catch (err) {
@@ -167,8 +166,8 @@ function injectSidebarUI() {
             e.preventDefault();
             chrome.storage.local.remove('parsedIcsData', () => {
                 chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                    alert('Timetable removed!');
-                    window.close();
+         
+                    window.location.href = '../landing-page/landing.html';
                 });
             });
         });
@@ -180,6 +179,15 @@ function injectSidebarUI() {
             const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
             const frame = embedViewer.querySelector('.embed-frame');
             frame.src = src;
+            
+     
+            embedViewer.classList.remove('pdf-view', 'desmos-view');
+            if (btn.getAttribute('data-pdf')) {
+                embedViewer.classList.add('pdf-view');
+            } else if (btn.getAttribute('data-url')) {
+                embedViewer.classList.add('desmos-view');
+            }
+            
             embedViewer.classList.remove('hidden');
         });
     });

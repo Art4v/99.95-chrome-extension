@@ -425,17 +425,80 @@ body.light-mode .sidebar-footer {
     height: 100%;
     border: none;
     box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    scrollbar-width: thin;
+    scrollbar-color: #64646444 transparent;
+}
+
+.embed-frame::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+.embed-frame::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px;
+}
+
+.embed-frame::-webkit-scrollbar-thumb {
+    background: #8a8a8a52 !important;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}
+
+body.light-mode .embed-frame::-webkit-scrollbar-thumb {
+    background: rgba(80, 80, 80, 0.5) !important;
 }
 
 .close-embed {
-    background: #fff;
-    border: none;
-    font-size: 2rem;
-    position: absolute;
-    top: 1rem;
-    right: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #2a2a2a;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    position: fixed;
+    right: 20px;
     cursor: pointer;
     z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-view .close-embed {
+    top: 60px;
+}
+
+.desmos-view .close-embed {
+    top: 170px;
+    right: 1px;
+}
+
+.close-embed:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.close-embed:active {
+    transform: translateY(0px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+body.light-mode .close-embed {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+
+}
+
+body.light-mode .close-embed:hover {
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .ref-btn {
