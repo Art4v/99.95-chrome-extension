@@ -214,10 +214,6 @@ body.light-mode .sidebar {
     transform: translateX(0);
 }
 
-.sidebar.hidden {
-    transform: translateX(100%); /* Changed from -100% */
-}
-
 .hamburger {
     position: fixed;
     top: 10px;

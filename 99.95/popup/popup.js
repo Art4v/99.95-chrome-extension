@@ -1,6 +1,7 @@
 // Dependency checks
 if (typeof moment === "undefined" || typeof ICAL === "undefined") {
     alert("Required libraries (moment.js, ical.js) are not loaded. Please check your extension setup.");
+    throw new Error("Required libraries not loaded.");
 }
 
 // Utility: Combine date and time string into a Date object (Australia/Sydney)
@@ -29,7 +30,6 @@ function injectSidebarUI() {
     sidebar.className = "sidebar";
     sidebar.setAttribute("role", "complementary");
     sidebar.setAttribute("aria-label", "Sidebar");
-    sidebar.classList.add("hidden");
     sidebar.innerHTML = `
         <div class="sidebar-content">
             <div class="sidebar-section">
@@ -72,10 +72,9 @@ function injectSidebarUI() {
 
     document.body.append(hamburger, sidebar, embedViewer);
 
-    // Sidebar toggle (only toggle .visible, use .hidden as default)
+    // Sidebar toggle (only toggle .visible)
     hamburger.addEventListener("click", () => {
         sidebar.classList.toggle("visible");
-        sidebar.classList.toggle("hidden");
     });
 
     // Restore theme
