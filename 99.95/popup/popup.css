@@ -461,10 +461,3 @@ body.light-mode .scrollbar-toggle-btn:hover {
     background-color: #f8f7f2;
     border-color: #1a1a1a;
 }
-
-body.light-mode .scrollbar-off {
-    scrollbar-width: none;
-}
-body.light-mode .scrollbar-off::-webkit-scrollbar {
-    display: none;
-}

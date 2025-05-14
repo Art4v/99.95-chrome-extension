@@ -203,18 +203,18 @@ function injectSidebarUI() {
     const savedScrollbarPref = localStorage.getItem('scrollbar');
     if (savedScrollbarPref === 'off') {
         document.body.classList.add('scrollbar-off');
-
+        document.body.style.overflowY = 'hidden';
     } else {
         document.body.classList.remove('scrollbar-off');
-
+        document.body.style.overflowY = 'scroll';
     }
     scrollbarToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('scrollbar-off');
         if (document.body.classList.contains('scrollbar-off')) {
-
+            document.body.style.overflowY = 'hidden';
             localStorage.setItem('scrollbar', 'off');
         } else {
-
+            document.body.style.overflowY = 'scroll';
             localStorage.setItem('scrollbar', 'on');
         }
     });
