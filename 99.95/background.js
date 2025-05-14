@@ -7,6 +7,17 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === "fetch_schedule") {
         // You can add logic to interact with JSON or other backend services
         sendResponse({ success: true });
+        return true; // Indicates async response (best practice)
+    }
+    if (message.type === 'storageUpdated') {
+        updatePopup();
+        sendResponse({ success: true }); // <-- Added sendResponse
+        return true;
+    }
+    if (message.type === 'error') {
+        console.error('Received error report:', message.error);
+        sendResponse({ received: true }); // <-- Added sendResponse
+        return true;
     }
 });
 
