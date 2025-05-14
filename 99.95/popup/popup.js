@@ -176,15 +176,20 @@ function injectSidebarUI() {
             const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
             const frame = embedViewer.querySelector('.embed-frame');
             frame.src = src;
-            
-     
+
             embedViewer.classList.remove('pdf-view', 'desmos-view');
             if (btn.getAttribute('data-pdf')) {
                 embedViewer.classList.add('pdf-view');
             } else if (btn.getAttribute('data-url')) {
                 embedViewer.classList.add('desmos-view');
             }
-            
+
+            const isCompact = localStorage.getItem('windowSize') === 'compact';
+            if (isCompact) {
+                document.documentElement.style.width = '800px';
+                document.body.style.width = '800px';
+            }
+
             embedViewer.classList.remove('hidden');
         });
     });
@@ -193,6 +198,12 @@ function injectSidebarUI() {
     embedViewer.querySelector('.close-embed').addEventListener('click', () => {
         embedViewer.classList.add('hidden');
         embedViewer.querySelector('.embed-frame').src = "";
+
+        const isCompact = localStorage.getItem('windowSize') === 'compact';
+        if (isCompact) {
+            document.documentElement.style.width = '630px';
+            document.body.style.width = '630px';
+        }
     });
 
     // Scrollbar toggle
