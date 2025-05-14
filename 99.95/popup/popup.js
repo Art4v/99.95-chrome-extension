@@ -1,26 +1,35 @@
-// Utility to combine date and time string into a Date object
-function getDateTime(dateString, timeString) {
-    // dateString: "2025-04-30", timeString: "08:50"
-    return new Date(`${dateString}T${timeString}:00`);
+// Dependency checks
+if (typeof moment === "undefined" || typeof ICAL === "undefined") {
+    alert("Required libraries (moment.js, ical.js) are not loaded. Please check your extension setup.");
+    throw new Error("Required libraries not loaded.");
 }
 
-// Utility to format time range
+// Utility: Combine date and time string into a Date object (Australia/Sydney)
+function getDateTime(dateString, timeString) {
+    // Use moment.tz for timezone consistency
+    return moment.tz(`${dateString}T${timeString}:00`, "Australia/Sydney").toDate();
+}
+
+// Utility: Format time range
 function formatTimeRange(date, start, end) {
-    const startTime = getDateTime(date, start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    const endTime = getDateTime(date, end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const opts = { hour: '2-digit', minute: '2-digit' };
+    const startTime = getDateTime(date, start).toLocaleTimeString([], opts);
+    const endTime = getDateTime(date, end).toLocaleTimeString([], opts);
     return `${startTime} – ${endTime}`;
 }
 
-// Utility to get today's date in local ISO format (YYYY-MM-DD)
+// Utility: Get today's date in local ISO format (YYYY-MM-DD)
 function getLocalISODateString(date) {
-    return new Date(date.getTime() - date.getTimezoneOffset() * 60000)
-        .toISOString().split('T')[0];
+    return moment.tz(date, "Australia/Sydney").format("YYYY-MM-DD");
 }
 
-// Inject sidebar and hamburger button (unchanged)
+// Inject sidebar, hamburger, and embed viewer UI
 function injectSidebarUI() {
+    // Sidebar
     const sidebar = document.createElement("div");
-    sidebar.className = "sidebar hidden";
+    sidebar.className = "sidebar";
+    sidebar.setAttribute("role", "complementary");
+    sidebar.setAttribute("aria-label", "Sidebar");
     sidebar.innerHTML = `
         <div class="sidebar-content">
             <div class="sidebar-section">
@@ -46,143 +55,126 @@ function injectSidebarUI() {
         </div>
     `;
 
+    // Hamburger
     const hamburger = document.createElement("button");
     hamburger.className = "hamburger";
     hamburger.setAttribute("aria-label", "Toggle Sidebar");
     hamburger.textContent = "☰";
 
+    // Embed Viewer
     const embedViewer = document.createElement("div");
     embedViewer.className = "embed-viewer hidden";
+    embedViewer.setAttribute("role", "dialog");
+    embedViewer.setAttribute("aria-modal", "true");
     embedViewer.innerHTML = `
-        <button class="close-embed">×</button>
+        <button class="close-embed" aria-label="Close">×</button>
         <iframe class="embed-frame" frameborder="0"></iframe>
     `;
 
-    document.body.appendChild(hamburger);
-    document.body.appendChild(sidebar);
-    document.body.appendChild(embedViewer);
+    document.body.append(hamburger, sidebar, embedViewer);
 
+    // Sidebar toggle (only toggle .visible)
     hamburger.addEventListener("click", () => {
-        sidebar.classList.toggle("hidden");
         sidebar.classList.toggle("visible");
     });
 
-    // Restore saved theme
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "light") {
+    // Restore theme
+    if (localStorage.getItem("theme") === "light") {
         document.body.classList.add("light-mode");
     }
 
     // Background toggle
-    const toggleButton = sidebar.querySelector('.toggle-btn');
-    toggleButton.addEventListener("click", () => {
+    sidebar.querySelector('.toggle-btn').addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
         localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
     });
 
     // --- Upload timetable functionality ---
+    if (!document.getElementById('ics-upload-input')) {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.ics';
+        fileInput.style.display = 'none';
+        fileInput.id = 'ics-upload-input';
+        document.body.appendChild(fileInput);
 
-    // Create a hidden file input for uploading .ics files
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.ics';
-    fileInput.style.display = 'none';
-    document.body.appendChild(fileInput);
+        const uploadBtn = sidebar.querySelector('.upload-btn');
+        uploadBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            fileInput.click();
+        });
 
-    const uploadBtn = sidebar.querySelector('.upload-btn');
-    uploadBtn.addEventListener('click', () => {
-        fileInput.value = ''; // Reset file input
-        fileInput.click();
-    });
-
-    fileInput.addEventListener('change', (event) => {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const icsData = e.target.result;
-            try {
-                // Parse ICS using ICAL.js and moment.js
-                const cal = new ICAL.Component(ICAL.parse(icsData));
-                const events = cal.getAllSubcomponents('vevent');
-                const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
-                function filter(input) {
-                    return input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
-                }
-                const allDates = [];
-                events.forEach(event => {
-                    const start = moment(event.getFirstPropertyValue('dtstart').toString());
-                    const sydneyStart = start.clone().tz('Australia/Sydney');
-                    allDates.push(sydneyStart);
-                });
-                allDates.sort((a, b) => a - b);
-                if (allDates.length === 0) throw new Error('No events found in the ICS file.');
-                const firstDate = allDates[0];
-                const lastDate = allDates[allDates.length - 1];
-                const days = lastDate.diff(firstDate, 'days') + 1;
-                const outputData = {};
-                for (let i = 0; i < days; i++) {
-                    const currentDate = firstDate.clone().add(i, 'days');
-                    const dateString = currentDate.format('YYYY-MM-DD');
-                    outputData[dateString] = [];
-                    events.forEach(event => {
-                        const startDate = moment(event.getFirstPropertyValue('dtstart').toString());
-                        const sydneyStart = startDate.clone().tz('Australia/Sydney');
-                        if (sydneyStart.format('YYYY-MM-DD') === dateString) {
-                            const endDate = moment(event.getFirstPropertyValue('dtend').toString());
-                            const sydneyEnd = endDate.clone().tz('Australia/Sydney');
-                            const summary = event.getFirstPropertyValue('summary') || '';
-                            const summaryParts = summary.split(': ');
-                            const classInfo = summaryParts[0];
-                            const name = summaryParts.length > 1 ? summaryParts[1] : '';
-                            const location = event.getFirstPropertyValue('location') || '';
-                            const locationParts = location.split(': ');
-                            const locationValue = locationParts.length > 1 ? locationParts[1] : '';
-                            const description = event.getFirstPropertyValue('description') || '';
-                            const descriptionLines = description.split('\n');
-                            const teacherParts = descriptionLines[0] ? descriptionLines[0].split(': ') : ['', ''];
-                            const periodParts = descriptionLines.length > 1 && descriptionLines[1] ? descriptionLines[1].split(': ') : ['', ''];
-                            const teacher = teacherParts.length > 1 ? teacherParts[1] : '';
-                            const period = periodParts.length > 1 ? periodParts[1] : '';
-                            outputData[dateString].push({
-                                "c": classInfo,
-                                "n": filter(name),
-                                "l": locationValue,
-                                "t": teacher,
-                                "p": period,
-                                "s": sydneyStart.format('HH:mm'),
-                                "e": sydneyEnd.format('HH:mm')
-                            });
-                        }
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const icsData = e.target.result;
+                    const cal = new ICAL.Component(ICAL.parse(icsData));
+                    const events = cal.getAllSubcomponents('vevent');
+                    const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
+                    const filter = input => input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
+                    const allDates = events.map(event => moment(event.getFirstPropertyValue('dtstart').toString()).tz('Australia/Sydney'));
+                    allDates.sort((a, b) => a - b);
+                    if (!allDates.length) throw new Error('No events found in the ICS file.');
+                    const firstDate = allDates[0], lastDate = allDates[allDates.length - 1];
+                    const days = lastDate.diff(firstDate, 'days') + 1;
+                    const outputData = {};
+                    for (let i = 0; i < days; i++) {
+                        const currentDate = firstDate.clone().add(i, 'days').format('YYYY-MM-DD');
+                        outputData[currentDate] = [];
+                        events.forEach(event => {
+                            const sydneyStart = moment(event.getFirstPropertyValue('dtstart').toString()).tz('Australia/Sydney');
+                            if (sydneyStart.format('YYYY-MM-DD') === currentDate) {
+                                const sydneyEnd = moment(event.getFirstPropertyValue('dtend').toString()).tz('Australia/Sydney');
+                                const summary = event.getFirstPropertyValue('summary') || '';
+                                const [classInfo, name = ''] = summary.split(': ');
+                                const location = event.getFirstPropertyValue('location') || '';
+                                const [, locationValue = ''] = location.split(': ');
+                                const description = event.getFirstPropertyValue('description') || '';
+                                const descriptionLines = description.split('\n');
+                                const [, teacher = ''] = (descriptionLines[0] || '').split(': ');
+                                const [, period = ''] = (descriptionLines[1] || '').split(': ');
+                                outputData[currentDate].push({
+                                    "c": classInfo,
+                                    "n": filter(name),
+                                    "l": locationValue,
+                                    "t": teacher,
+                                    "p": period,
+                                    "s": sydneyStart.format('HH:mm'),
+                                    "e": sydneyEnd.format('HH:mm')
+                                });
+                            }
+                        });
+                        outputData[currentDate].sort((a, b) => a.s.localeCompare(b.s));
+                    }
+                    chrome.storage.local.set({ parsedIcsData: JSON.stringify(outputData) }, () => {
+                        chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                            alert('Timetable uploaded!');
+                            window.close();
+                        });
                     });
-                    outputData[dateString].sort((a, b) => a.s.localeCompare(b.s));
+                } catch (err) {
+                    alert('Failed to parse ICS file: ' + err.message);
                 }
-                const outputText = JSON.stringify(outputData);
-                chrome.storage.local.set({ parsedIcsData: outputText }, () => {
-                    chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                        alert('Timetable uploaded!');
-                        window.close();
-                    });
-                });
-            } catch (err) {
-                alert('Failed to parse ICS file: ' + err.message);
-            }
-        };
-        reader.readAsText(file);
-    });
+            };
+            reader.readAsText(file);
+        });
 
-    // Right-click to clear timetable
-    uploadBtn.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        chrome.storage.local.remove('ical', () => {
-            chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                alert('Timetable removed!');
-                window.close();
+        // Right-click to clear timetable
+        uploadBtn.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            chrome.storage.local.remove('parsedIcsData', () => {
+                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                    alert('Timetable removed!');
+                    window.close();
+                });
             });
         });
-    });
+    }
 
-    // Handle button clicks for PDFs or URLs
+    // Sidebar PDF/URL buttons
     sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
@@ -198,22 +190,16 @@ function injectSidebarUI() {
         embedViewer.querySelector('.embed-frame').src = "";
     });
 
-    // After sidebar is added to DOM:
+    // Scrollbar toggle
     const scrollbarToggleBtn = sidebar.querySelector('.scrollbar-toggle-btn');
-    // Set initial state from localStorage
-    const savedScrollbarPref = localStorage.getItem('scrollbar');
-    if (savedScrollbarPref === 'off') {
+    if (localStorage.getItem('scrollbar') === 'off') {
         document.body.classList.add('scrollbar-off');
     } else {
         document.body.classList.remove('scrollbar-off');
     }
     scrollbarToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('scrollbar-off');
-        if (document.body.classList.contains('scrollbar-off')) {
-            localStorage.setItem('scrollbar', 'off');
-        } else {
-            localStorage.setItem('scrollbar', 'on');
-        }
+        localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
     });
 
     // Size toggle functionality
@@ -236,12 +222,12 @@ function injectSidebarUI() {
     });
 }
 
-// Function to find the next class (assumes sorted input)
+// Find the next class (assumes sorted input)
 function getNextClass(schedule, now, date) {
-    return schedule.find((entry) => getDateTime(date, entry.s) > now) || null;
+    return schedule.find(entry => getDateTime(date, entry.s) > now) || null;
 }
 
-// Function to find current class
+// Find current class
 function getCurrentClass(schedule, now, date) {
     return schedule.find(entry => {
         const start = getDateTime(date, entry.s);
@@ -250,29 +236,18 @@ function getCurrentClass(schedule, now, date) {
     }) || null;
 }
 
-let globalTimer;
-let lastNotifHTML = '';
-let progressBar;
-let progressBarContainer;
+let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer;
 
 // Countdown function
 function startCountdown(target, isCurrentClass, schedule, date) {
     const notif = document.querySelector('.notif');
-
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
         if (progressBarContainer) progressBarContainer.remove();
         return;
     }
-
-    const targetTime = isCurrentClass 
-        ? getDateTime(date, target.e)
-        : getDateTime(date, target.s);
-
-    const countdownStartTime = isCurrentClass
-        ? getDateTime(date, target.s)
-        : new Date();
-
+    const targetTime = getDateTime(date, isCurrentClass ? target.e : target.s);
+    const countdownStartTime = isCurrentClass ? getDateTime(date, target.s) : moment.tz("Australia/Sydney").toDate();
     if (globalTimer) clearInterval(globalTimer);
 
     if (!progressBarContainer) {
@@ -286,8 +261,8 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         notif.appendChild(progressBarContainer);
     }
 
-    const updateCountdown = () => {
-        const currentTime = new Date();
+    function updateCountdown() {
+        const currentTime = moment.tz("Australia/Sydney").toDate();
         const timeDiff = Math.max(0, targetTime - currentTime);
         const total = targetTime - countdownStartTime;
         const percent = total > 0 ? Math.max(0, Math.min(1, (currentTime - countdownStartTime) / total)) : 0;
@@ -299,13 +274,11 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
         let detailsLine = '';
-        const hasTeacher = target.t && target.t.trim().length > 0;
-        const hasRoom = target.l && target.l.trim().length > 0;
-        if (hasTeacher && hasRoom) {
+        if (target.t && target.l) {
             detailsLine = `<h2>With ${target.t} in Room ${target.l}</h2>`;
-        } else if (hasTeacher) {
+        } else if (target.t) {
             detailsLine = `<h2>With ${target.t}</h2>`;
-        } else if (hasRoom) {
+        } else if (target.l) {
             detailsLine = `<h2>In Room ${target.l}</h2>`;
         }
 
@@ -323,8 +296,7 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         if (timeDiff <= 0) {
             clearInterval(globalTimer);
             if (isCurrentClass) {
-                const nextClass = getNextClass(schedule, currentTime, date);
-                startCountdown(nextClass, false, schedule, date);
+                startCountdown(getNextClass(schedule, currentTime, date), false, schedule, date);
             } else {
                 const current = getCurrentClass(schedule, currentTime, date);
                 if (current) {
@@ -333,13 +305,12 @@ function startCountdown(target, isCurrentClass, schedule, date) {
                     notif.innerHTML = `<h1>${target.n} is starting now!</h1>`;
                     if (progressBarContainer) progressBarContainer.remove();
                     setTimeout(() => {
-                        const nextClass = getNextClass(schedule, currentTime, date);
-                        startCountdown(nextClass, false, schedule, date);
+                        startCountdown(getNextClass(schedule, currentTime, date), false, schedule, date);
                     }, 10000);
                 }
             }
         }
-    };
+    }
 
     updateCountdown();
     globalTimer = setInterval(updateCountdown, 1000);
@@ -361,12 +332,8 @@ function createScheduleBlock(entry, date, isActive) {
     const className = document.createElement('p');
     className.textContent = entry.n;
     const teacherDetails = document.createElement('h4');
-    teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e);
-    if (entry.t) {
-        teacherDetails.textContent += `: ${entry.t}`;
-    }
-    details.appendChild(className);
-    details.appendChild(teacherDetails);
+    teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e) + (entry.t ? `: ${entry.t}` : '');
+    details.append(className, teacherDetails);
 
     const room = document.createElement('div');
     room.className = 'br';
@@ -374,51 +341,42 @@ function createScheduleBlock(entry, date, isActive) {
     roomText.textContent = entry.l;
     room.appendChild(roomText);
 
-    block.appendChild(period);
-    block.appendChild(details);
-    block.appendChild(room);
-
+    block.append(period, details, room);
     return block;
 }
 
 // Render the schedule
 function renderSchedule(schedule, date) {
     const blocksContainer = document.querySelector('.blocks');
-    blocksContainer.innerHTML = '';
+    blocksContainer.innerHTML = schedule.length
+        ? ''
+        : '<h1>No classes today!</h1>';
 
-    if (schedule.length === 0) {
-        blocksContainer.innerHTML = '<h1>No classes today!</h1>';
-        return;
-    }
-
-    const now = new Date();
-    schedule.forEach((entry) => {
+    schedule.forEach(entry => {
         const start = getDateTime(date, entry.s);
         const end = getDateTime(date, entry.e);
+        // Use moment.tz for current time
+        const now = moment.tz("Australia/Sydney").toDate();
         const isActive = now >= start && now <= end;
-        const block = createScheduleBlock(entry, date, isActive);
-        blocksContainer.appendChild(block);
+        blocksContainer.appendChild(createScheduleBlock(entry, date, isActive));
     });
 }
 
 // Check if weekend
 function isWeekend(date) {
-    return date.getDay() === 0 || date.getDay() === 6;
+    const day = moment.tz(date, "Australia/Sydney").day();
+    return day === 0 || day === 6;
 }
 
-// Function to fetch schedule from chrome.storage.local instead of output.json
-async function fetchSchedule(date) {
-    return new Promise((resolve) => {
-        chrome.storage.local.get('parsedIcsData', (data) => {
-            if (!data.parsedIcsData) {
-                resolve([]);
-                return;
-            }
+// Fetch schedule from chrome.storage.local
+function fetchSchedule(date) {
+    return new Promise(resolve => {
+        chrome.storage.local.get('parsedIcsData', data => {
+            if (!data.parsedIcsData) return resolve([]);
             try {
                 const allData = JSON.parse(data.parsedIcsData);
                 resolve(allData[date] || []);
-            } catch (e) {
-                console.error('Failed to parse timetable data:', e);
+            } catch {
                 resolve([]);
             }
         });
@@ -427,7 +385,7 @@ async function fetchSchedule(date) {
 
 // Main initialization
 async function initialize() {
-    const now = new Date();
+    const now = moment.tz("Australia/Sydney").toDate();
     const currentDate = getLocalISODateString(now);
 
     if (isWeekend(now)) {
@@ -439,7 +397,7 @@ async function initialize() {
     const schedule = await fetchSchedule(currentDate);
     renderSchedule(schedule, currentDate);
 
-    if (schedule.length === 0) {
+    if (!schedule.length) {
         document.querySelector('.notif').innerHTML = '<h1>No classes today!</h1>';
         return;
     }
@@ -448,12 +406,11 @@ async function initialize() {
     if (currentClass) {
         startCountdown(currentClass, true, schedule, currentDate);
     } else {
-        const nextClass = getNextClass(schedule, now, currentDate);
-        startCountdown(nextClass, false, schedule, currentDate);
+        startCountdown(getNextClass(schedule, now, currentDate), false, schedule, currentDate);
     }
 }
 
-// Unified DOMContentLoaded handler
+// DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     injectSidebarUI();
     await initialize();
