@@ -99,10 +99,6 @@ function injectSidebarUI() {
         document.body.appendChild(fileInput);
 
         const uploadBtn = sidebar.querySelector('.upload-btn');
-        uploadBtn.addEventListener('click', () => {
-            fileInput.value = '';
-            fileInput.click();
-        });
 
         fileInput.addEventListener('change', (event) => {
             const file = event.target.files[0];
@@ -161,15 +157,16 @@ function injectSidebarUI() {
             reader.readAsText(file);
         });
 
-        // Right-click to clear timetable
-        uploadBtn.addEventListener('contextmenu', (e) => {
+
+        uploadBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            chrome.storage.local.remove('parsedIcsData', () => {
-                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-         
-                    window.location.href = '../landing-page/landing.html';
+            if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
+                chrome.storage.local.remove('parsedIcsData', () => {
+                    chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                        window.location.href = '../landing-page/landing.html';
+                    }); 
                 });
-            });
+            }
         });
     }
 
