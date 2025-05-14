@@ -252,7 +252,7 @@ function getCurrentClass(schedule, now, date) {
     }) || null;
 }
 
-let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer;
+let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer, displayedDate = null; // Track the currently displayed date
 
 // Countdown function
 function startCountdown(target, isCurrentClass, schedule, date) {
@@ -399,14 +399,47 @@ function fetchSchedule(date) {
     });
 }
 
-// Main initialization
-async function initialize() {
-    const now = moment.tz("Australia/Sydney").toDate();
-    const currentDate = getLocalISODateString(now);
+// --- Add navigation arrows and date display ---
+function injectNavigationUI() {
+    const navContainer = document.createElement('div');
+    navContainer.className = 'timetable-nav';
+    navContainer.style.display = 'flex';
+    navContainer.style.alignItems = 'center';
+    navContainer.style.justifyContent = 'center';
+    navContainer.style.marginBottom = '12px';
+    navContainer.innerHTML = `
+        <button class="nav-arrow left" aria-label="Previous Day" style="font-size:1.8rem;margin-right:16px;">&#8592;</button>
+        <span class="nav-date" style="font-size:1.1rem;font-weight:600;"></span>
+        <button class="nav-arrow right" aria-label="Next Day" style="font-size:1.8rem;margin-left:16px;">&#8594;</button>
+    `;
+    const blocks = document.querySelector('.blocks');
+    blocks.parentNode.insertBefore(navContainer, blocks);
+    return navContainer;
+}
 
-    if (isWeekend(now)) {
+// --- Update date display ---
+function updateNavDate(date) {
+    const navDate = document.querySelector('.nav-date');
+    navDate.textContent = moment.tz(date, "Australia/Sydney").format("dddd, D MMMM YYYY");
+}
+
+// --- Modified main initialization to accept a date ---
+async function initialize(dateOverride) {
+    const now = moment.tz("Australia/Sydney").toDate();
+    const todayDate = getLocalISODateString(now);
+    const currentDate = dateOverride || todayDate;
+    displayedDate = currentDate;
+
+    updateNavDate(currentDate);
+
+    if (isWeekend(currentDate)) {
         document.querySelector('.blocks').innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
-        document.querySelector('.notif').innerHTML = '<h1>Enjoy your day off!</h1>';
+        // Only update notif if viewing today
+        if (currentDate === todayDate) {
+            document.querySelector('.notif').innerHTML = '<h1>Enjoy your day off!</h1>';
+            if (globalTimer) clearInterval(globalTimer);
+            if (progressBarContainer) progressBarContainer.remove();
+        }
         return;
     }
 
@@ -414,20 +447,42 @@ async function initialize() {
     renderSchedule(schedule, currentDate);
 
     if (!schedule.length) {
-        document.querySelector('.notif').innerHTML = '<h1>No classes today!</h1>';
+        // Only update notif if viewing today
+        if (currentDate === todayDate) {
+            document.querySelector('.notif').innerHTML = '<h1>No classes today!</h1>';
+            if (globalTimer) clearInterval(globalTimer);
+            if (progressBarContainer) progressBarContainer.remove();
+        }
         return;
     }
 
-    const currentClass = getCurrentClass(schedule, now, currentDate);
-    if (currentClass) {
-        startCountdown(currentClass, true, schedule, currentDate);
-    } else {
-        startCountdown(getNextClass(schedule, now, currentDate), false, schedule, currentDate);
+    // Only update notif/countdown/progress bar if viewing today
+    if (currentDate === todayDate) {
+        const currentClass = getCurrentClass(schedule, now, currentDate);
+        if (currentClass) {
+            startCountdown(currentClass, true, schedule, currentDate);
+        } else {
+            startCountdown(getNextClass(schedule, now, currentDate), false, schedule, currentDate);
+        }
     }
+}
+
+// --- Navigation event handlers ---
+function setupNavigationHandlers() {
+    document.querySelector('.nav-arrow.left').addEventListener('click', async () => {
+        const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
+        await initialize(prev.format("YYYY-MM-DD"));
+    });
+    document.querySelector('.nav-arrow.right').addEventListener('click', async () => {
+        const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
+        await initialize(next.format("YYYY-MM-DD"));
+    });
 }
 
 // DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     injectSidebarUI();
+    injectNavigationUI();
+    setupNavigationHandlers();
     await initialize();
 });
