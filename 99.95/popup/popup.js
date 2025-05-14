@@ -203,18 +203,14 @@ function injectSidebarUI() {
     const savedScrollbarPref = localStorage.getItem('scrollbar');
     if (savedScrollbarPref === 'off') {
         document.body.classList.add('scrollbar-off');
-
     } else {
         document.body.classList.remove('scrollbar-off');
-
     }
     scrollbarToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('scrollbar-off');
         if (document.body.classList.contains('scrollbar-off')) {
-
             localStorage.setItem('scrollbar', 'off');
         } else {
-
             localStorage.setItem('scrollbar', 'on');
         }
     });
