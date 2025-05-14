@@ -297,6 +297,51 @@ body.light-mode .sidebar-heading {
     padding: 1rem;
     border-top: 1px solid #444;
     position: relative;
+    gap: 8px; /* Add consistent gap between buttons */
+}
+
+/* Common button styles for all footer buttons */
+.sidebar-footer button {
+    height: 38px;
+    flex: 1;
+    background: #333;
+    border: 1px solid #f8f4e6;
+    color: #f8f4e6;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    padding: 0 12px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0; /* Allow buttons to shrink if needed */
+}
+
+body.light-mode .sidebar-footer button {
+    background: #f8f4e6;
+    border: 1px solid #2a2a2a;
+    color: #2a2a2a;
+}
+
+.sidebar-footer button:hover {
+    background-color: #444;
+}
+
+body.light-mode .sidebar-footer button:hover {
+    background-color: #f8f7f2;
+    border-color: #1a1a1a;
+}
+
+/* Remove individual button styles since they're now handled by the common style */
+.scrollbar-toggle-btn,
+.size-toggle-btn,
+.upload-btn,
+.toggle-btn {
+    margin: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
 }
 
 /* Upload Button Style */
@@ -467,4 +512,47 @@ body.scrollbar-off {
 }
 body.scrollbar-off::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
+}
+
+/* Remove old size control styles */
+.size-control, .size-display, .slider, .slider::-webkit-slider-thumb, .slider::-moz-range-thumb,
+body.light-mode .size-control, body.light-mode .size-display, body.light-mode .slider,
+body.light-mode .slider::-webkit-slider-thumb, body.light-mode .slider::-moz-range-thumb {
+    display: none;
+}
+
+/* Add size toggle button style matching scrollbar toggle */
+.size-toggle-btn {
+    height: 38px;
+    min-width: 140px;
+    max-width: 180px;
+    background: #333;
+    border: 1px solid #f8f4e6;
+    color: #f8f4e6;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    padding: 0 12px;
+    white-space: nowrap;
+}
+
+body.light-mode .size-toggle-btn {
+    background: #f8f4e6;
+    border: 1px solid #2a2a2a;
+    color: #2a2a2a;
+}
+
+.size-toggle-btn:hover {
+    background-color: #444;
+}
+
+body.light-mode .size-toggle-btn:hover {
+    background-color: #f8f7f2;
+    border-color: #1a1a1a;
 }

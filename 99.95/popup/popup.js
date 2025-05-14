@@ -39,8 +39,9 @@ function injectSidebarUI() {
         </div>
         <div class="sidebar-footer" style="margin-top: 48px; position: relative;">
             <button class="scrollbar-toggle-btn" title="Toggle Scrollbar">Toggle Scrollbar</button>
-            <button class="upload-btn">Upload New Timetable</button>
-            <button class="toggle-btn">Toggle Background</button>
+            <button class="size-toggle-btn" title="Toggle Window Size">Small View</button>
+            <button class="upload-btn">Upload New</button>
+            <button class="toggle-btn">Toggle Theme</button>
             <span style="position: fixed; right: 16px; bottom: 5px; color: #aaa; font-size: 0.72rem; pointer-events: none; user-select: none; z-index: 1200;">By Aarav B, Sai P, Andy L.</span>
         </div>
     `;
@@ -213,6 +214,25 @@ function injectSidebarUI() {
         } else {
             localStorage.setItem('scrollbar', 'on');
         }
+    });
+
+    // Size toggle functionality
+    const sizeToggleBtn = sidebar.querySelector('.size-toggle-btn');
+    // Set initial state from localStorage
+    const savedSize = localStorage.getItem('windowSize');
+    if (savedSize === 'compact') {
+        document.documentElement.style.width = '630px';
+        document.body.style.width = '630px';
+        sizeToggleBtn.textContent = 'Full View';
+    }
+
+    sizeToggleBtn.addEventListener('click', () => {
+        const isCompact = document.documentElement.style.width === '630px';
+        const newWidth = isCompact ? '800px' : '630px';
+        document.documentElement.style.width = newWidth;
+        document.body.style.width = newWidth;
+        sizeToggleBtn.textContent = isCompact ? 'Compact View' : 'Full View';
+        localStorage.setItem('windowSize', isCompact ? 'full' : 'compact');
     });
 }
 
