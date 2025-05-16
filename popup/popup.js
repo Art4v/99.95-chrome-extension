@@ -652,7 +652,7 @@ function injectCalendarUI() {
     });
 }
 
-// Keyboard shortcuts for datasheets and Desmos
+// Keyboard shortcuts for datasheets, Desmos, and day navigation
 document.addEventListener('keydown', (e) => {
     // Ignore if typing in an input or textarea
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
@@ -666,16 +666,40 @@ document.addEventListener('keydown', (e) => {
         document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
     ];
 
+    // Datasheet/Desmos shortcuts
     if (e.key === '1' && sidebarBtns[0]) {
         sidebarBtns[0].click();
+        return;
     } else if (e.key === '2' && sidebarBtns[1]) {
         sidebarBtns[1].click();
+        return;
     } else if (e.key === '3' && sidebarBtns[2]) {
         sidebarBtns[2].click();
+        return;
     } else if (e.key === '4' && sidebarBtns[3]) {
         sidebarBtns[3].click();
+        return;
     } else if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) {
         sidebarBtns[4].click();
+        return;
+    }
+
+    // Left/right arrow navigation for days
+    if (e.key === 'q') {
+        const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
+        initialize(prev.format("YYYY-MM-DD"));
+        return;
+    }
+    if (e.key === 'e') {
+        const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
+        initialize(next.format("YYYY-MM-DD"));
+        return;
+    }
+    // 'w' key to go to current day
+    if (e.key === 'w' || e.key === 'W') {
+        const now = moment.tz("Australia/Sydney").toDate();
+        initialize(getLocalISODateString(now));
+        return;
     }
 });
 
