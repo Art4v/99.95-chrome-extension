@@ -54,7 +54,7 @@ function injectSidebarUI() {
                 <button class="toggle-btn">Toggle Theme</button>
             </div>
             <div class="sidebar-footer-info">
-                <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E for Navigation</span>
+                <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E or ←/↓/→ for Navigation</span>
                 <span class="sidebar-footer-credits">By Aarav B, Sai P, Andy L.</span>
             </div>
         </div>
