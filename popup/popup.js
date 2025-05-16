@@ -23,6 +23,9 @@ function getLocalISODateString(date) {
     return moment.tz(date, "Australia/Sydney").format("YYYY-MM-DD");
 }
 
+let notifElem, blocksElem, navDateElem;
+let sidebarBtns = []; // Add this global
+
 // Inject sidebar, hamburger, and embed viewer UI
 function injectSidebarUI() {
     // Sidebar
@@ -653,21 +656,11 @@ function injectCalendarUI() {
 
 // Keyboard shortcuts for datasheets, Desmos, and day navigation
 document.addEventListener('keydown', (e) => {
-    // Ignore if typing in an input or textarea
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-
-    // Map shortcuts to sidebar buttons
-    const sidebarBtns = [
-        document.querySelector('.sidebar-btn[data-pdf="newadvmath.pdf"]'),    // 1
-        document.querySelector('.sidebar-btn[data-pdf="newstandardmath.pdf"]'), // 2
-        document.querySelector('.sidebar-btn[data-pdf="newchem.pdf"]'),         // 3
-        document.querySelector('.sidebar-btn[data-pdf="newphys.pdf"]'),         // 4
-        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
-    ];
 
     const key = e.key.toLowerCase();
 
-    // Datasheet/Desmos shortcuts
+    // Use cached sidebarBtns
     if (e.key === '1' && sidebarBtns[0]) {
         sidebarBtns[0].click();
         return;
@@ -705,12 +698,21 @@ document.addEventListener('keydown', (e) => {
 
 // Update DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
-    // Cache elements after DOM is loaded
     notifElem = document.querySelector('.notif');
     blocksElem = document.querySelector('.blocks');
 
     injectSidebarUI();
     injectNavigationUI();
     injectCalendarUI();
+
+    // Cache sidebar buttons for keyboard shortcuts
+    sidebarBtns = [
+        document.querySelector('.sidebar-btn[data-pdf="newadvmath.pdf"]'),    // 1
+        document.querySelector('.sidebar-btn[data-pdf="newstandardmath.pdf"]'), // 2
+        document.querySelector('.sidebar-btn[data-pdf="newchem.pdf"]'),         // 3
+        document.querySelector('.sidebar-btn[data-pdf="newphys.pdf"]'),         // 4
+        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
+    ];
+
     await initialize();
 });
