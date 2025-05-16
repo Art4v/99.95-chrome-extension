@@ -684,19 +684,18 @@ document.addEventListener('keydown', (e) => {
         return;
     }
 
-    // Left/right arrow navigation for days
-    if (e.key === 'q') {
+    // Timetable navigation: q/ArrowLeft = previous, e/ArrowRight = next, w/ArrowDown = today
+    if (e.key === 'q' || e.key === 'Q' || e.key === 'ArrowLeft') {
         const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
         initialize(prev.format("YYYY-MM-DD"));
         return;
     }
-    if (e.key === 'e') {
+    if (e.key === 'e' || e.key === 'E' || e.key === 'ArrowRight') {
         const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
         initialize(next.format("YYYY-MM-DD"));
         return;
     }
-    // 'w' key to go to current day
-    if (e.key === 'w' || e.key === 'W') {
+    if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowDown') {
         const now = moment.tz("Australia/Sydney").toDate();
         initialize(getLocalISODateString(now));
         return;
