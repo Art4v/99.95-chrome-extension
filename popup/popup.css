@@ -929,7 +929,8 @@ body.light-mode .today-btn:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 12px;
+    margin-top: 10px;
+    margin-bottom: -10px !important;
     padding: 0 50px;
     min-height: 40px;
 }
