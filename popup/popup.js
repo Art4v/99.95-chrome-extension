@@ -263,7 +263,8 @@ let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer, displaye
 
 // Countdown function
 function startCountdown(target, isCurrentClass, schedule, date) {
-    const notif = document.querySelector('.notif');
+    // Use cached notifElem
+    const notif = notifElem;
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
         if (progressBarContainer) progressBarContainer.remove();
@@ -370,7 +371,8 @@ function createScheduleBlock(entry, date, isActive) {
 
 // Render the schedule
 function renderSchedule(schedule, date) {
-    const blocksContainer = document.querySelector('.blocks');
+    // Use cached blocksElem
+    const blocksContainer = blocksElem;
     blocksContainer.innerHTML = schedule.length
         ? ''
         : '<h1>No classes today!</h1>';
@@ -378,7 +380,6 @@ function renderSchedule(schedule, date) {
     schedule.forEach(entry => {
         const start = getDateTime(date, entry.s);
         const end = getDateTime(date, entry.e);
-        // Use moment.tz for current time
         const now = moment.tz("Australia/Sydney").toDate();
         const isActive = now >= start && now <= end;
         blocksContainer.appendChild(createScheduleBlock(entry, date, isActive));
@@ -423,10 +424,12 @@ function injectNavigationUI() {
             <button class="tomorrow-btn" aria-label="Go to Tomorrow">→</button>
         </div>
     `;
-    const blocks = document.querySelector('.blocks');
-    blocks.parentNode.insertBefore(navContainer, blocks);
+    // Use cached blocksElem
+    blocksElem.parentNode.insertBefore(navContainer, blocksElem);
 
-    // Add Yesterday/Tomorrow button click handlers
+    // Cache navDateElem
+    navDateElem = navContainer.querySelector('.nav-date');
+
     navContainer.querySelector('.yesterday-btn').addEventListener('click', () => {
         const yesterday = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
         initialize(yesterday.format('YYYY-MM-DD'));
@@ -442,8 +445,8 @@ function injectNavigationUI() {
 
 // --- Update date display ---
 function updateNavDate(date) {
-    const navDate = document.querySelector('.nav-date');
-    navDate.textContent = moment.tz(date, "Australia/Sydney").format("dddd, D MMMM YYYY");
+    // Use cached navDateElem
+    navDateElem.textContent = moment.tz(date, "Australia/Sydney").format("dddd, D MMMM YYYY");
 }
 
 // --- Modified main initialization to accept a date ---
@@ -456,10 +459,9 @@ async function initialize(dateOverride) {
     updateNavDate(currentDate);
 
     if (isWeekend(currentDate)) {
-        document.querySelector('.blocks').innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
-        // Only update notif if viewing today
+        blocksElem.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
         if (currentDate === todayDate) {
-            document.querySelector('.notif').innerHTML = '<h1>Enjoy your day off!</h1>';
+            notifElem.innerHTML = '<h1>Enjoy your day off!</h1>';
             if (globalTimer) clearInterval(globalTimer);
             if (progressBarContainer) progressBarContainer.remove();
         }
@@ -470,16 +472,14 @@ async function initialize(dateOverride) {
     renderSchedule(schedule, currentDate);
 
     if (!schedule.length) {
-        // Only update notif if viewing today
         if (currentDate === todayDate) {
-            document.querySelector('.notif').innerHTML = '<h1>No classes today!</h1>';
+            notifElem.innerHTML = '<h1>No classes today!</h1>';
             if (globalTimer) clearInterval(globalTimer);
             if (progressBarContainer) progressBarContainer.remove();
         }
         return;
     }
 
-    // Only update notif/countdown/progress bar if viewing today
     if (currentDate === todayDate) {
         const currentClass = getCurrentClass(schedule, now, currentDate);
         if (currentClass) {
@@ -490,7 +490,7 @@ async function initialize(dateOverride) {
     }
 }
 
-
+// Calendar UI
 function injectCalendarUI() {
 
     const calendarIcon = document.createElement('button');
@@ -516,11 +516,10 @@ function injectCalendarUI() {
         </div>
         <div class="date-picker-grid">
             <div class="date-picker-weekday">Su</div>
-
             <div class="date-picker-weekday">Mo</div>
             <div class="date-picker-weekday">Tu</div>
             <div class="date-picker-weekday">We</div>
-                <div class="date-picker-weekday">Th</div>
+            <div class="date-picker-weekday">Th</div>
             <div class="date-picker-weekday">Fr</div>
 
 
@@ -706,6 +705,10 @@ document.addEventListener('keydown', (e) => {
 
 // Update DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
+    // Cache elements after DOM is loaded
+    notifElem = document.querySelector('.notif');
+    blocksElem = document.querySelector('.blocks');
+
     injectSidebarUI();
     injectNavigationUI();
     injectCalendarUI();
