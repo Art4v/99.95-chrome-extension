@@ -666,6 +666,8 @@ document.addEventListener('keydown', (e) => {
         document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
     ];
 
+    const key = e.key.toLowerCase();
+
     // Datasheet/Desmos shortcuts
     if (e.key === '1' && sidebarBtns[0]) {
         sidebarBtns[0].click();
@@ -685,17 +687,17 @@ document.addEventListener('keydown', (e) => {
     }
 
     // Timetable navigation: q/ArrowLeft = previous, e/ArrowRight = next, w/ArrowDown = today
-    if (e.key === 'q' || e.key === 'Q' || e.key === 'ArrowLeft') {
+    if (key === 'q' || e.key === 'ArrowLeft') {
         const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
         initialize(prev.format("YYYY-MM-DD"));
         return;
     }
-    if (e.key === 'e' || e.key === 'E' || e.key === 'ArrowRight') {
+    if (key === 'e' || e.key === 'ArrowRight') {
         const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
         initialize(next.format("YYYY-MM-DD"));
         return;
     }
-    if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowDown') {
+    if (key === 'w' || e.key === 'ArrowDown') {
         const now = moment.tz("Australia/Sydney").toDate();
         initialize(getLocalISODateString(now));
         return;
