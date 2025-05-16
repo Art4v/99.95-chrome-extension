@@ -479,6 +479,33 @@ function setupNavigationHandlers() {
     });
 }
 
+// Keyboard shortcuts for datasheets and Desmos
+document.addEventListener('keydown', (e) => {
+    // Ignore if typing in an input or textarea
+    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    // Map shortcuts to sidebar buttons
+    const sidebarBtns = [
+        document.querySelector('.sidebar-btn[data-pdf="newadvmath.pdf"]'),    // 1
+        document.querySelector('.sidebar-btn[data-pdf="newstandardmath.pdf"]'), // 2
+        document.querySelector('.sidebar-btn[data-pdf="newchem.pdf"]'),         // 3
+        document.querySelector('.sidebar-btn[data-pdf="newphys.pdf"]'),         // 4
+        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
+    ];
+
+    if (e.key === '1' && sidebarBtns[0]) {
+        sidebarBtns[0].click();
+    } else if (e.key === '2' && sidebarBtns[1]) {
+        sidebarBtns[1].click();
+    } else if (e.key === '3' && sidebarBtns[2]) {
+        sidebarBtns[2].click();
+    } else if (e.key === '4' && sidebarBtns[3]) {
+        sidebarBtns[3].click();
+    } else if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) {
+        sidebarBtns[4].click();
+    }
+});
+
 // DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     injectSidebarUI();
