@@ -288,12 +288,29 @@ body.light-mode .sidebar-heading {
 
 .sidebar-footer {
     display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+    gap: 0;
+}
+
+.sidebar-footer-buttons {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.sidebar-footer-info {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    border-top: 1px solid #444;
-    position: relative;
-    gap: 8px; /* Add consistent gap between buttons */
+    width: 100%;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: #aaa;
+    gap: 12px;
+    padding: 0 2px;
+    user-select: none;
 }
 
 /* Common button styles for all footer buttons */
@@ -614,4 +631,386 @@ body.light-mode .size-toggle-btn {
 body.light-mode .size-toggle-btn:hover {
     background-color: #f8f7f2;
     border-color: #1a1a1a;
+}
+
+
+.calendar-icon {
+    position: fixed;
+    top: 16px;
+
+
+
+    left: 16px;
+    background: none;
+    border: none;
+
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+
+
+
+
+
+
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    z-index: 100;
+
+    color: #fff;
+}
+
+.calendar-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.light-mode .calendar-icon {
+    color: #333;
+}
+
+body.light-mode .calendar-icon:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.date-picker-popup {
+    position: fixed;
+    top: 50px;
+    left: 10px;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    z-index: 1200;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+.date-picker-popup.visible {
+    display: block;
+}
+
+body.light-mode .date-picker-popup {
+    background: #f8f4e6;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.date-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    min-height: 32px;
+    position: relative;
+    padding: 0 8px;
+}
+
+.date-picker-quick-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.date-picker-quick-nav.left {
+    left: -100px;
+}
+
+.date-picker-quick-nav.right {
+    right: -100px;
+}
+
+.date-picker-quick-nav button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+}
+
+.date-picker-quick-nav button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+body.light-mode .date-picker-quick-nav button {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+body.light-mode .date-picker-quick-nav button:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.date-picker-header:hover .date-picker-quick-nav {
+    opacity: 1;
+}
+
+.date-picker-month-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+    max-width: 200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.date-picker-month {
+    font-size: 1rem;
+    font-weight: 600;
+    min-width: 100px;
+    text-align: center;
+}
+
+.date-picker-nav {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    width: calc(100% - 16px);
+    justify-content: space-between;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.date-picker-nav button {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    pointer-events: auto;
+}
+
+.date-picker-nav button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .date-picker-nav button {
+    color: #333;
+}
+
+body.light-mode .date-picker-nav button:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.date-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.date-picker-weekday {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #888;
+    padding: 4px;
+}
+
+.date-picker-day {
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.date-picker-day:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.date-picker-day.today {
+    background: rgba(200, 162, 200, 0.3); /* Pastel purple */
+    font-weight: bold;
+}
+
+.date-picker-day.selected {
+    background: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+.date-picker-day.disabled {
+    color: #666;
+    cursor: not-allowed;
+}
+
+body.light-mode .date-picker-day:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .date-picker-day.today {
+    background: rgba(200, 162, 200, 0.4); 
+}
+
+body.light-mode .date-picker-day.selected {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .date-picker-day.disabled {
+    color: #999;
+}
+
+.date-picker-today {
+    text-align: center;
+    margin: 8px 0;
+}
+
+.today-btn {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: all 0.2s ease;
+    height: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.today-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+body.light-mode .today-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+body.light-mode .today-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+.timetable-nav {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    padding: 0 50px;
+    min-height: 40px;
+}
+
+.nav-quick-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.nav-quick-nav.left {
+    left: -25px;
+}
+
+.nav-quick-nav.right {
+    right: -25px;
+}
+
+.nav-quick-nav button {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: none;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.4rem;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-quick-nav button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-1px);
+}
+
+body.light-mode .nav-quick-nav button {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    color: #333;
+}
+
+body.light-mode .nav-quick-nav button:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.timetable-nav:hover .nav-quick-nav {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.timetable-nav:not(:hover) .nav-quick-nav {
+    opacity: 0;
+    transition: opacity 0.2s ease 1s;
+}
+
+.sidebar-footer-instructions {
+    text-align: left;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar-footer-credits {
+    text-align: right;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

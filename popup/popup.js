@@ -46,12 +46,17 @@ function injectSidebarUI() {
                 <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
             </div>
         </div>
-        <div class="sidebar-footer" style="margin-top: 48px; position: relative;">
-            <button class="scrollbar-toggle-btn" title="Toggle Scrollbar">Toggle Scrollbar</button>
-            <button class="size-toggle-btn" title="Toggle Window Size">Small View</button>
-            <button class="upload-btn">Upload New</button>
-            <button class="toggle-btn">Toggle Theme</button>
-            <span style="position: fixed; right: 16px; bottom: 5px; color: #aaa; font-size: 0.72rem; pointer-events: none; user-select: none; z-index: 1200;">By Aarav B, Sai P, Andy L.</span>
+        <div class="sidebar-footer" style="margin-top: 48px; position: relative; flex-direction: column;">
+            <div class="sidebar-footer-buttons" style="display: flex; gap: 8px; width: 100%;">
+                <button class="scrollbar-toggle-btn" title="Toggle Scrollbar">Toggle Scrollbar</button>
+                <button class="size-toggle-btn" title="Toggle Window Size">Small View</button>
+                <button class="upload-btn">Upload New</button>
+                <button class="toggle-btn">Toggle Theme</button>
+            </div>
+            <div class="sidebar-footer-info">
+                <span class="sidebar-footer-instructions">Press 1/2/3/4/D for Quick Navigation</span>
+                <span class="sidebar-footer-credits">By Aarav B, Sai P, Andy L.</span>
+            </div>
         </div>
     `;
 
@@ -226,6 +231,8 @@ function injectSidebarUI() {
         document.documentElement.style.width = '630px';
         document.body.style.width = '630px';
         sizeToggleBtn.textContent = 'Full View';
+    } else {
+        sizeToggleBtn.textContent = 'Compact View';
     }
 
     sizeToggleBtn.addEventListener('click', () => {
@@ -408,12 +415,28 @@ function injectNavigationUI() {
     navContainer.style.justifyContent = 'center';
     navContainer.style.marginBottom = '12px';
     navContainer.innerHTML = `
-        <button class="nav-arrow left" aria-label="Previous Day" style="font-size:1.8rem;margin-right:16px;">&#8592;</button>
+        <div class="nav-quick-nav left">
+            <button class="yesterday-btn" aria-label="Go to Yesterday">←</button>
+        </div>
         <span class="nav-date" style="font-size:1.1rem;font-weight:600;"></span>
-        <button class="nav-arrow right" aria-label="Next Day" style="font-size:1.8rem;margin-left:16px;">&#8594;</button>
+        <div class="nav-quick-nav right">
+            <button class="tomorrow-btn" aria-label="Go to Tomorrow">→</button>
+        </div>
     `;
     const blocks = document.querySelector('.blocks');
     blocks.parentNode.insertBefore(navContainer, blocks);
+
+    // Add Yesterday/Tomorrow button click handlers
+    navContainer.querySelector('.yesterday-btn').addEventListener('click', () => {
+        const yesterday = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
+        initialize(yesterday.format('YYYY-MM-DD'));
+    });
+
+    navContainer.querySelector('.tomorrow-btn').addEventListener('click', () => {
+        const tomorrow = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
+        initialize(tomorrow.format('YYYY-MM-DD'));
+    });
+
     return navContainer;
 }
 
@@ -467,15 +490,165 @@ async function initialize(dateOverride) {
     }
 }
 
-// --- Navigation event handlers ---
-function setupNavigationHandlers() {
-    document.querySelector('.nav-arrow.left').addEventListener('click', async () => {
-        const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
-        await initialize(prev.format("YYYY-MM-DD"));
+
+function injectCalendarUI() {
+
+    const calendarIcon = document.createElement('button');
+    calendarIcon.className = 'calendar-icon';
+    calendarIcon.innerHTML = '📅';
+    calendarIcon.setAttribute('aria-label', 'Open Calendar');
+
+    document.body.appendChild(calendarIcon);
+
+
+    const datePicker = document.createElement('div');
+    datePicker.className = 'date-picker-popup';
+    datePicker.innerHTML = `
+        <div class="date-picker-header">
+            <div class="date-picker-month-container">
+                <div class="date-picker-month"></div>
+                <button class="today-btn" aria-label="Go to Today">Today</button>
+            </div>
+            <div class="date-picker-nav">
+                <button class="prev-month" aria-label="Previous Month">◀</button>
+                <button class="next-month" aria-label="Next Month">▶</button>
+            </div>
+        </div>
+        <div class="date-picker-grid">
+            <div class="date-picker-weekday">Su</div>
+
+            <div class="date-picker-weekday">Mo</div>
+            <div class="date-picker-weekday">Tu</div>
+            <div class="date-picker-weekday">We</div>
+                <div class="date-picker-weekday">Th</div>
+            <div class="date-picker-weekday">Fr</div>
+
+
+            <div class="date-picker-weekday">Sa</div>
+        </div>
+    `;
+    document.body.appendChild(datePicker);
+
+    let currentMonth = moment.tz("Australia/Sydney");
+    let selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+
+
+    const now = moment.tz("Australia/Sydney");
+    const minDate = now.clone().subtract(2, 'years');
+    const maxDate = now.clone().add(2, 'years');
+
+    function isDateInRange(date) {
+        return date.isSameOrAfter(minDate, 'day') && date.isSameOrBefore(maxDate, 'day');
+    }
+
+    function goToToday() {
+        currentMonth = now.clone();
+        selectedDate = now.clone();
+        initialize(now.format('YYYY-MM-DD'));
+        renderCalendar();
+    }
+
+    function renderCalendar() {
+        const monthStart = currentMonth.clone().startOf('month');
+        const monthEnd = currentMonth.clone().endOf('month');
+        const startDate = monthStart.clone().startOf('week');
+        const endDate = monthEnd.clone().endOf('week');
+
+        datePicker.querySelector('.date-picker-month').textContent = currentMonth.format('MMMM YYYY');
+
+        const grid = datePicker.querySelector('.date-picker-grid');
+
+
+
+
+        while (grid.children.length > 7) {
+            grid.removeChild(grid.lastChild);
+        }
+
+        let currentDate = startDate.clone();
+        while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
+            const dayElement = document.createElement('div');
+            dayElement.className = 'date-picker-day';
+            dayElement.textContent = currentDate.date();
+
+            dayElement.dataset.date = currentDate.format('YYYY-MM-DD');
+
+
+            if (currentDate.isSame(now, 'day')) {
+                dayElement.classList.add('today');
+            }
+            if (currentDate.isSame(selectedDate, 'day')) {
+                dayElement.classList.add('selected');
+            }
+            
+
+            if (!currentDate.isSame(currentMonth, 'month') || !isDateInRange(currentDate)) {
+                dayElement.classList.add('disabled');
+            }
+
+
+            dayElement.addEventListener('click', () => {
+                if (!dayElement.classList.contains('disabled')) {
+                    const clickedDate = dayElement.dataset.date;
+                    selectedDate = moment.tz(clickedDate, "Australia/Sydney");
+                    initialize(clickedDate);
+                    datePicker.querySelectorAll('.date-picker-day').forEach(day => {
+                        day.classList.remove('selected');
+                    });
+
+                    dayElement.classList.add('selected');
+                }
+            });
+
+            grid.appendChild(dayElement);
+            currentDate.add(1, 'day');
+        }
+
+
+        const prevMonthBtn = datePicker.querySelector('.prev-month');
+        const nextMonthBtn = datePicker.querySelector('.next-month');
+        
+        prevMonthBtn.disabled = monthStart.isSameOrBefore(minDate, 'month');
+        nextMonthBtn.disabled = monthEnd.isSameOrAfter(maxDate, 'month');
+        
+        prevMonthBtn.style.opacity = prevMonthBtn.disabled ? '0.5' : '1';
+        nextMonthBtn.style.opacity = nextMonthBtn.disabled ? '0.5' : '1';
+    }
+
+
+
+    datePicker.querySelector('.today-btn').addEventListener('click', goToToday);
+
+    calendarIcon.addEventListener('click', () => {
+        currentMonth = moment.tz(displayedDate, "Australia/Sydney");
+        selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+
+        renderCalendar();
+        datePicker.classList.toggle('visible');
     });
-    document.querySelector('.nav-arrow.right').addEventListener('click', async () => {
-        const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
-        await initialize(next.format("YYYY-MM-DD"));
+
+
+    datePicker.querySelector('.prev-month').addEventListener('click', () => {
+        if (!datePicker.querySelector('.prev-month').disabled) {
+            currentMonth.subtract(1, 'month');
+            renderCalendar();
+        }
+    });
+
+    datePicker.querySelector('.next-month').addEventListener('click', () => {
+        if (!datePicker.querySelector('.next-month').disabled) {
+            currentMonth.add(1, 'month');
+            renderCalendar();
+        }
+    });
+
+
+
+
+    document.addEventListener('click', (event) => {
+        if (!datePicker.contains(event.target) && !calendarIcon.contains(event.target)) {
+            datePicker.classList.remove('visible');
+        }
     });
 }
 
@@ -506,10 +679,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// DOMContentLoaded handler
+// Update DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
     injectSidebarUI();
     injectNavigationUI();
-    setupNavigationHandlers();
+    injectCalendarUI();
     await initialize();
 });
