@@ -559,15 +559,13 @@ function injectCalendarUI() {
         datePicker.querySelector('.date-picker-month').textContent = currentMonth.format('MMMM YYYY');
 
         const grid = datePicker.querySelector('.date-picker-grid');
-
-
-
-
         while (grid.children.length > 7) {
             grid.removeChild(grid.lastChild);
         }
 
         let currentDate = startDate.clone();
+        const fragment = document.createDocumentFragment(); // Use fragment
+
         while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
             const dayElement = document.createElement('div');
             dayElement.className = 'date-picker-day';
@@ -602,9 +600,11 @@ function injectCalendarUI() {
                 }
             });
 
-            grid.appendChild(dayElement);
+            fragment.appendChild(dayElement);
             currentDate.add(1, 'day');
         }
+
+        grid.appendChild(fragment); // Batch append
 
 
         const prevMonthBtn = datePicker.querySelector('.prev-month');
