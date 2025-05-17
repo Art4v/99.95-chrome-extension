@@ -9,18 +9,31 @@
 <body>
     <div class="upload-container">
         <h1>Upload Timetable</h1>
+        
+        <div class="chromebook-hint" style="background:#fffbe6;border:1px solid #ffe58f;padding:10px 16px;margin-bottom:16px;border-radius:6px;">
+            <strong>Note for Chromebook users:</strong>
+            The "Choose File" button may not work on Chromebooks. Please <strong>drag and drop</strong> your ICS file anywhere on this page to upload your timetable.
+        </div>
+
         <ol>
-            <li>Login to Sentral</li>
-            <li>Navigate to your timetable and select "Export as ICS" on the top right</li>
-            <li>Save your timetable file on your PC</li>
-            <li>Click 'Choose File' on this page and select your timetable file, OR drag and drop the file into the window</li>
-            <li>Click 'Upload Timetable' and you're done!</li>
+            <li>Log in to Sentral.</li>
+            <li>Go to your timetable page.</li>
+            <li>Click <strong>Export as ICS</strong> (usually at the top right of the timetable).</li>
+            <li>Save the downloaded timetable file to your computer.</li>
+            <li>
+                <strong>To upload your timetable:</strong>
+                <ul>
+                    <li>Click <strong>Choose File</strong> below and select your downloaded ICS file, <em>or</em></li>
+                    <li>Drag and drop the ICS file anywhere on this page.</li>
+                </ul>
+            </li>
+            <li>Click <strong>Upload Timetable</strong> to finish.</li>
         </ol>
         
         <div class="file-input-wrapper">
             <label for="ics-upload" class="custom-upload-btn">Choose File</label>
             <input type="file" id="ics-upload" class="hidden" accept=".ics">
-            <p id="file-name" class="file-name hidden"></p> <!-- new preview -->
+            <p id="file-name" class="file-name hidden"></p>
         </div>        
         
         <button id="upload-button">Upload Timetable</button>
