@@ -47,7 +47,8 @@ p {
 
 .file-input-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
 }
@@ -74,7 +75,6 @@ p {
 }
 
 .file-name {
-    margin-top: 8px;
     font-size: 0.95rem;
     color: #555;
 }
