@@ -98,85 +98,17 @@ function injectSidebarUI() {
     });
 
     // --- Upload timetable functionality ---
-    if (!document.getElementById('ics-upload-input')) {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.ics';
-        fileInput.style.display = 'none';
-        fileInput.id = 'ics-upload-input';
-        document.body.appendChild(fileInput);
-
-        const uploadBtn = sidebar.querySelector('.upload-btn');
-
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const icsData = e.target.result;
-                    const cal = new ICAL.Component(ICAL.parse(icsData));
-                    const events = cal.getAllSubcomponents('vevent');
-                    const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
-                    const filter = input => input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
-                    const allDates = events.map(event => moment(event.getFirstPropertyValue('dtstart').toString()).tz('Australia/Sydney'));
-                    allDates.sort((a, b) => a - b);
-                    if (!allDates.length) throw new Error('No events found in the ICS file.');
-                    const firstDate = allDates[0], lastDate = allDates[allDates.length - 1];
-                    const days = lastDate.diff(firstDate, 'days') + 1;
-                    const outputData = {};
-                    for (let i = 0; i < days; i++) {
-                        const currentDate = firstDate.clone().add(i, 'days').format('YYYY-MM-DD');
-                        outputData[currentDate] = [];
-                        events.forEach(event => {
-                            const sydneyStart = moment(event.getFirstPropertyValue('dtstart').toString()).tz('Australia/Sydney');
-                            if (sydneyStart.format('YYYY-MM-DD') === currentDate) {
-                                const sydneyEnd = moment(event.getFirstPropertyValue('dtend').toString()).tz('Australia/Sydney');
-                                const summary = event.getFirstPropertyValue('summary') || '';
-                                const [classInfo, name = ''] = summary.split(': ');
-                                const location = event.getFirstPropertyValue('location') || '';
-                                const [, locationValue = ''] = location.split(': ');
-                                const description = event.getFirstPropertyValue('description') || '';
-                                const descriptionLines = description.split('\n');
-                                const [, teacher = ''] = (descriptionLines[0] || '').split(': ');
-                                const [, period = ''] = (descriptionLines[1] || '').split(': ');
-                                outputData[currentDate].push({
-                                    "c": classInfo,
-                                    "n": filter(name),
-                                    "l": locationValue,
-                                    "t": teacher,
-                                    "p": period,
-                                    "s": sydneyStart.format('HH:mm'),
-                                    "e": sydneyEnd.format('HH:mm')
-                                });
-                            }
-                        });
-                        outputData[currentDate].sort((a, b) => a.s.localeCompare(b.s));
-                    }
-                    chrome.storage.local.set({ parsedIcsData: JSON.stringify(outputData) }, () => {
-                        chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                            window.location.reload();
-                        });
-                    });
-                } catch (err) {
-                    alert('Failed to parse ICS file: ' + err.message);
-                }
-            };
-            reader.readAsText(file);
-        });
-
-
-        uploadBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
-                chrome.storage.local.remove('parsedIcsData', () => {
-                    chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                        window.location.href = '../landing-page/landing.html';
-                    }); 
-                });
-            }
-        });
-    }
+    const uploadBtn = sidebar.querySelector('.upload-btn');
+    uploadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
+            chrome.storage.local.remove('parsedIcsData', () => {
+                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                    window.location.href = '../landing-page/landing.html';
+                }); 
+            });
+        }
+    });
 
     // Sidebar PDF/URL buttons
     sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
