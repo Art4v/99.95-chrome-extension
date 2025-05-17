@@ -57,7 +57,7 @@ function injectSidebarUI() {
                 <button class="toggle-btn">Toggle Theme</button>
             </div>
             <div class="sidebar-footer-info">
-                <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E or ←/↓/→ for Navigation</span>
+                <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E or ←/↑/→ for Navigation</span>
                 <span class="sidebar-footer-credits">By Aarav B, Sai P, Andy L.</span>
             </div>
         </div>
@@ -610,7 +610,7 @@ document.addEventListener('keydown', (e) => {
         return;
     }
 
-    // Timetable navigation: q/ArrowLeft = previous, e/ArrowRight = next, w/ArrowDown = today
+    // Timetable navigation: q/ArrowLeft = previous, e/ArrowRight = next, w/ArrowUp = today
     if (key === 'q' || e.key === 'ArrowLeft') {
         const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
         initialize(prev.format("YYYY-MM-DD"));
@@ -621,7 +621,7 @@ document.addEventListener('keydown', (e) => {
         initialize(next.format("YYYY-MM-DD"));
         return;
     }
-    if (key === 'w' || e.key === 'ArrowDown') {
+    if (key === 'w' || e.key === 'ArrowUp') {
         const now = moment.tz("Australia/Sydney").toDate();
         initialize(getLocalISODateString(now));
         return;
