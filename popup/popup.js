@@ -205,6 +205,37 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         if (progressBarContainer) progressBarContainer.remove();
         return;
     }
+
+    // DEMO: Always show 10 minutes left in current class
+    if (DEMO_MODE) {
+        let detailsLine = '';
+        if (target.t && target.l) {
+            detailsLine = `<h2>With ${target.t} in Room ${target.l}</h2>`;
+        } else if (target.t) {
+            detailsLine = `<h2>With ${target.t}</h2>`;
+        } else if (target.l) {
+            detailsLine = `<h2>In Room ${target.l}</h2>`;
+        }
+        notif.innerHTML = `
+            <h1>${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} 00:10:48</h1>
+            ${detailsLine}
+        `;
+        // Show a full progress bar
+        if (!progressBarContainer) {
+            progressBarContainer = document.createElement('div');
+            progressBarContainer.className = 'progress-bar-container';
+            progressBar = document.createElement('div');
+            progressBar.className = 'progress-bar';
+            progressBarContainer.appendChild(progressBar);
+            notif.appendChild(progressBarContainer);
+        } else if (!notif.contains(progressBarContainer)) {
+            notif.appendChild(progressBarContainer);
+        }
+        progressBar.style.width = '84%';
+        progressBar.setAttribute('aria-valuenow', 50);
+        return;
+    }
+
     const targetTime = getDateTime(date, isCurrentClass ? target.e : target.s);
     const countdownStartTime = isCurrentClass ? getDateTime(date, target.s) : moment.tz("Australia/Sydney").toDate();
     if (globalTimer) clearInterval(globalTimer);
@@ -329,6 +360,10 @@ function isWeekend(date) {
 
 // Fetch schedule from chrome.storage.local
 function fetchSchedule(date) {
+    if (DEMO_MODE) {
+        // Always return the demo schedule for the demo date
+        return Promise.resolve(date === DEMO_DATE ? DEMO_SCHEDULE : []);
+    }
     return new Promise(resolve => {
         chrome.storage.local.get('parsedIcsData', data => {
             if (!data.parsedIcsData) return resolve([]);
@@ -407,7 +442,7 @@ async function initialize(dateOverride) {
     renderSchedule(schedule, currentDate);
 
     if (!schedule.length) {
-        if (currentDate === todayDate) {
+        if (currentDate === todayDate || (DEMO_MODE && currentDate === DEMO_DATE)) {
             notifElem.innerHTML = '<h1>No classes today!</h1>';
             if (globalTimer) clearInterval(globalTimer);
             if (progressBarContainer) progressBarContainer.remove();
@@ -415,7 +450,11 @@ async function initialize(dateOverride) {
         return;
     }
 
-    if (currentDate === todayDate) {
+    // --- FIX: Always show countdown for demo date in demo mode ---
+    if (
+        (DEMO_MODE && currentDate === DEMO_DATE) ||
+        (!DEMO_MODE && currentDate === todayDate)
+    ) {
         const currentClass = getCurrentClass(schedule, now, currentDate);
         if (currentClass) {
             startCountdown(currentClass, true, schedule, currentDate);
@@ -427,14 +466,12 @@ async function initialize(dateOverride) {
 
 // Calendar UI
 function injectCalendarUI() {
-
     const calendarIcon = document.createElement('button');
     calendarIcon.className = 'calendar-icon';
     calendarIcon.innerHTML = '📅';
     calendarIcon.setAttribute('aria-label', 'Open Calendar');
 
     document.body.appendChild(calendarIcon);
-
 
     const datePicker = document.createElement('div');
     datePicker.className = 'date-picker-popup';
@@ -456,18 +493,18 @@ function injectCalendarUI() {
             <div class="date-picker-weekday">We</div>
             <div class="date-picker-weekday">Th</div>
             <div class="date-picker-weekday">Fr</div>
-
-
             <div class="date-picker-weekday">Sa</div>
         </div>
     `;
     document.body.appendChild(datePicker);
 
-    let currentMonth = moment.tz("Australia/Sydney");
-    let selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+    // --- DEMO MODE: Use DEMO_DATE as "today" ---
+    const demoMoment = moment.tz(DEMO_DATE, "Australia/Sydney");
+    let currentMonth = DEMO_MODE ? demoMoment.clone() : moment.tz("Australia/Sydney");
+    let selectedDate = DEMO_MODE ? demoMoment.clone() : moment.tz(displayedDate, "Australia/Sydney");
 
-
-    const now = moment.tz("Australia/Sydney");
+    // Use DEMO_DATE as "now" in demo mode
+    const now = DEMO_MODE ? demoMoment : moment.tz("Australia/Sydney");
     const minDate = now.clone().subtract(2, 'years');
     const maxDate = now.clone().add(2, 'years');
 
@@ -496,7 +533,7 @@ function injectCalendarUI() {
         }
 
         let currentDate = startDate.clone();
-        const fragment = document.createDocumentFragment(); // Use fragment
+        const fragment = document.createDocumentFragment();
 
         while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
             const dayElement = document.createElement('div');
@@ -505,19 +542,17 @@ function injectCalendarUI() {
 
             dayElement.dataset.date = currentDate.format('YYYY-MM-DD');
 
-
+            // --- DEMO MODE: Highlight DEMO_DATE as today ---
             if (currentDate.isSame(now, 'day')) {
                 dayElement.classList.add('today');
             }
             if (currentDate.isSame(selectedDate, 'day')) {
                 dayElement.classList.add('selected');
             }
-            
 
             if (!currentDate.isSame(currentMonth, 'month') || !isDateInRange(currentDate)) {
                 dayElement.classList.add('disabled');
             }
-
 
             dayElement.addEventListener('click', () => {
                 if (!dayElement.classList.contains('disabled')) {
@@ -536,31 +571,28 @@ function injectCalendarUI() {
             currentDate.add(1, 'day');
         }
 
-        grid.appendChild(fragment); // Batch append
-
+        grid.appendChild(fragment);
 
         const prevMonthBtn = datePicker.querySelector('.prev-month');
         const nextMonthBtn = datePicker.querySelector('.next-month');
-        
+
         prevMonthBtn.disabled = monthStart.isSameOrBefore(minDate, 'month');
         nextMonthBtn.disabled = monthEnd.isSameOrAfter(maxDate, 'month');
-        
+
         prevMonthBtn.style.opacity = prevMonthBtn.disabled ? '0.5' : '1';
         nextMonthBtn.style.opacity = nextMonthBtn.disabled ? '0.5' : '1';
     }
 
-
-
     datePicker.querySelector('.today-btn').addEventListener('click', goToToday);
 
     calendarIcon.addEventListener('click', () => {
-        currentMonth = moment.tz(displayedDate, "Australia/Sydney");
-        selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+        // --- DEMO MODE: Always open on DEMO_DATE ---
+        currentMonth = DEMO_MODE ? demoMoment.clone() : moment.tz(displayedDate, "Australia/Sydney");
+        selectedDate = DEMO_MODE ? demoMoment.clone() : moment.tz(displayedDate, "Australia/Sydney");
 
         renderCalendar();
         datePicker.classList.toggle('visible');
     });
-
 
     datePicker.querySelector('.prev-month').addEventListener('click', () => {
         if (!datePicker.querySelector('.prev-month').disabled) {
@@ -575,9 +607,6 @@ function injectCalendarUI() {
             renderCalendar();
         }
     });
-
-
-
 
     document.addEventListener('click', (event) => {
         if (!datePicker.contains(event.target) && !calendarIcon.contains(event.target)) {
@@ -628,7 +657,19 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Update DOMContentLoaded handler
+// --- DEMO MODE FOR SCREENSHOTS ---
+const DEMO_MODE = true; // Set to false for normal use
+
+const DEMO_DATE = "2025-05-19"; // A Monday
+const DEMO_SCHEDULE = [
+    { p: "1", n: "Mathematics Advanced", t: "Ms Smith", l: "A1", s: "09:00", e: "09:50" },
+    { p: "2", n: "English Advanced", t: "Mr Brown", l: "B2", s: "09:55", e: "10:45" },
+    { p: "3", n: "Chemistry", t: "Dr Gray", l: "C3", s: "11:00", e: "11:50" },
+    { p: "4", n: "Physics", t: "Ms White", l: "D4", s: "11:55", e: "12:45" },
+    { p: "5", n: "Economics", t: "Mr Black", l: "E5", s: "13:30", e: "14:20" }
+];
+
+// --- Force demo date on load ---
 document.addEventListener('DOMContentLoaded', async () => {
     notifElem = document.querySelector('.notif');
     blocksElem = document.querySelector('.blocks');
@@ -646,5 +687,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
     ];
 
-    await initialize();
+    if (DEMO_MODE) {
+        await initialize(DEMO_DATE);
+    } else {
+        await initialize();
+    }
 });
