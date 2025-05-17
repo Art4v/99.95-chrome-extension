@@ -38,11 +38,11 @@ function injectSidebarUI() {
             <div class="sidebar-section">
                 <h2 class="sidebar-heading">Reference Sheets</h2>
                 <div class="sidebar-divider">Maths</div>
-                <button class="sidebar-btn" data-pdf="newadvmath.pdf">Maths Adv/Ext1/2</button>
-                <button class="sidebar-btn" data-pdf="newstandardmath.pdf">Maths Standard</button>
+                <button class="sidebar-btn" data-pdf="advmath.pdf">Maths Adv/Ext1/2</button>
+                <button class="sidebar-btn" data-pdf="standardmath.pdf">Maths Standard</button>
                 <div class="sidebar-divider">Science</div>
-                <button class="sidebar-btn" data-pdf="newchem.pdf">Chemistry</button>
-                <button class="sidebar-btn" data-pdf="newphys.pdf">Physics</button>
+                <button class="sidebar-btn" data-pdf="chem.pdf">Chemistry</button>
+                <button class="sidebar-btn" data-pdf="phys.pdf">Physics</button>
             </div>
             <div class="sidebar-section">
                 <h2 class="sidebar-heading">Utilities</h2>
@@ -639,10 +639,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Cache sidebar buttons for keyboard shortcuts
     sidebarBtns = [
-        document.querySelector('.sidebar-btn[data-pdf="newadvmath.pdf"]'),    // 1
-        document.querySelector('.sidebar-btn[data-pdf="newstandardmath.pdf"]'), // 2
-        document.querySelector('.sidebar-btn[data-pdf="newchem.pdf"]'),         // 3
-        document.querySelector('.sidebar-btn[data-pdf="newphys.pdf"]'),         // 4
+        document.querySelector('.sidebar-btn[data-pdf="advmath.pdf"]'),    // 1
+        document.querySelector('.sidebar-btn[data-pdf="standardmath.pdf"]'), // 2
+        document.querySelector('.sidebar-btn[data-pdf="chem.pdf"]'),         // 3
+        document.querySelector('.sidebar-btn[data-pdf="phys.pdf"]'),         // 4
         document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
     ];
 
