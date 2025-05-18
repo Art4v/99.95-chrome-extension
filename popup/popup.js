@@ -254,18 +254,19 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
         if (timeDiff <= 0) {
             clearInterval(globalTimer);
-            if (isCurrentClass) {
-                startCountdown(getNextClass(schedule, currentTime, date), false, schedule, date);
+            // Always check if a class is currently running
+            const current = getCurrentClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
+            if (current) {
+                renderSchedule(schedule, date); // <-- Add this line
+                startCountdown(current, true, schedule, date);
             } else {
-                const current = getCurrentClass(schedule, currentTime, date);
-                if (current) {
-                    startCountdown(current, true, schedule, date);
+                const next = getNextClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
+                if (next) {
+                    renderSchedule(schedule, date); // <-- Add this line
+                    startCountdown(next, false, schedule, date);
                 } else {
-                    notif.innerHTML = `<h1>${target.n} is starting now!</h1>`;
+                    notif.innerHTML = '<h1>No more classes today</h1>';
                     if (progressBarContainer) progressBarContainer.remove();
-                    setTimeout(() => {
-                        startCountdown(getNextClass(schedule, currentTime, date), false, schedule, date);
-                    }, 10000);
                 }
             }
         }
