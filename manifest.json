@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "99.95",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "description": "Displays a class schedule countdown with integrated datasheets, Desmos, and light/dark mode.",
     "icons": {
       "16": "assets/favicon.png",
