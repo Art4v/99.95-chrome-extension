@@ -232,13 +232,17 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
         const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
+        let teacher = (target.t || '').trim();
+        let room = (target.l || '').trim();
         let detailsLine = '';
-        if (target.t && target.l) {
-            detailsLine = `<h2>With ${target.t} in Room ${target.l}</h2>`;
-        } else if (target.t) {
-            detailsLine = `<h2>With ${target.t}</h2>`;
-        } else if (target.l) {
-            detailsLine = `<h2>In Room ${target.l}</h2>`;
+        if (teacher && room) {
+            detailsLine = `<h2>With ${teacher} in Room ${room}</h2>`;
+        } else if (teacher) {
+            detailsLine = `<h2>With ${teacher}</h2>`;
+        } else if (room) {
+            detailsLine = `<h2>In Room ${room}</h2>`;
+        } else {
+            detailsLine = '';
         }
 
         const newHTML = `
@@ -292,7 +296,8 @@ function createScheduleBlock(entry, date, isActive) {
     const className = document.createElement('p');
     className.textContent = entry.n;
     const teacherDetails = document.createElement('h4');
-    teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e) + (entry.t ? `: ${entry.t}` : '');
+    const teacherName = (entry.t || '').trim();
+    teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e) + (teacherName ? `: ${teacherName}` : '');
     details.append(className, teacherDetails);
 
     const room = document.createElement('div');
