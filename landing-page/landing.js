@@ -1,45 +1,51 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const fileInput = document.getElementById('ics-upload'); // matches your input ID
+    const fileInput = document.getElementById('ics-upload');
     const fileNameDisplay = document.getElementById('file-name');
-    const parseButton = document.getElementById('upload-button'); // matches your button ID
-    const statusDiv = document.getElementById('file-name'); // matches your status display
+    const parseButton = document.getElementById('upload-button');
+    // Use a separate status div for messages
+    let statusDiv = document.getElementById('status-message');
+    if (!statusDiv) {
+        statusDiv = document.createElement('div');
+        statusDiv.id = 'status-message';
+        statusDiv.className = 'hidden';
+        fileNameDisplay.parentNode.insertBefore(statusDiv, fileNameDisplay.nextSibling);
+    }
 
-    // Initially disable the upload button
     parseButton.disabled = true;
 
-    // Show selected file name under the choose file button
     fileInput.addEventListener('change', function() {
         if (fileInput.files.length > 0) {
-          fileNameDisplay.textContent = `Selected file: ${fileInput.files[0].name}`;
-          fileNameDisplay.classList.remove('hidden', 'error');
-          parseButton.disabled = false;
+            fileNameDisplay.textContent = `Selected file: ${fileInput.files[0].name}`;
+            fileNameDisplay.classList.remove('hidden', 'error');
+            parseButton.disabled = false;
+            statusDiv.textContent = '';
+            statusDiv.className = 'hidden';
         } else {
-          fileNameDisplay.textContent = '';
-          fileNameDisplay.classList.add('hidden');
-          parseButton.disabled = true;
+            fileNameDisplay.textContent = '';
+            fileNameDisplay.classList.add('hidden');
+            parseButton.disabled = true;
         }
     });
-  
+
     parseButton.addEventListener('click', function() {
-      if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-  
-        reader.onload = function(e) {
-          const icsData = e.target.result;
-          parseIcsData(icsData);
-        };
-  
-        reader.readAsText(file);
-      } else {
-        statusDiv.textContent = 'Please select an ICS file first.';
-        statusDiv.classList.remove('hidden');
-        statusDiv.classList.add('error');
-      }
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const icsData = e.target.result;
+                parseIcsData(icsData);
+            };
+
+            reader.readAsText(file);
+        } else {
+            statusDiv.textContent = 'Please select an ICS file first.';
+            statusDiv.classList.remove('hidden', 'success');
+            statusDiv.classList.add('error');
+        }
     });
 
-    // --- Drag and Drop Upload Support ---
-    // Use the whole body as drop zone
+    // Drag and Drop Support
     const dropZone = document.body;
 
     dropZone.addEventListener('dragover', function(e) {
@@ -59,136 +65,102 @@ document.addEventListener('DOMContentLoaded', function() {
         if (files.length > 0) {
             const file = files[0];
             if (file.name.endsWith('.ics')) {
-                // Set the file input's files property (triggers change event)
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 fileInput.files = dataTransfer.files;
                 fileNameDisplay.textContent = `Selected file: ${file.name}`;
                 fileNameDisplay.classList.remove('hidden', 'error');
                 parseButton.disabled = false;
-                // Optionally, auto-parse:
-                // parseButton.click();
+                statusDiv.textContent = '';
+                statusDiv.className = 'hidden';
             } else {
-                fileNameDisplay.textContent = 'Please drop a valid .ics file.';
-                fileNameDisplay.classList.remove('hidden');
-                fileNameDisplay.classList.add('error');
+                statusDiv.textContent = 'Please drop a valid .ics file.';
+                statusDiv.classList.remove('hidden', 'success');
+                statusDiv.classList.add('error');
                 parseButton.disabled = true;
             }
         }
     });
-  
+
     function parseIcsData(icsData) {
-      try {
-        // Parse the ICS data
-        const cal = new ICAL.Component(ICAL.parse(icsData));
-        const events = cal.getAllSubcomponents('vevent');
-  
-        // Create blacklist to filter out redundant words
-        const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
-  
-        // Create function to filter out redundant words in string
-        function filter(input) {
-          return input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
-        }
-  
-        // Get all event dates to determine first date and days covered
-        const allDates = [];
-        events.forEach(event => {
-          const start = moment(event.getFirstPropertyValue('dtstart').toString());
-          const sydneyStart = start.clone().tz('Australia/Sydney');
-          allDates.push(sydneyStart);
-        });
-  
-        // Sort dates
-        allDates.sort((a, b) => a - b);
-  
-        if (allDates.length === 0) {
-          statusDiv.textContent = 'No events found in the ICS file.';
-          statusDiv.classList.remove('hidden');
-          statusDiv.classList.add('error');
-          return;
-        }
-  
-        // Determine first date and number of days
-        const firstDate = allDates[0];
-        const lastDate = allDates[allDates.length - 1];
-        const days = lastDate.diff(firstDate, 'days') + 1;
-  
-        // Initialize output text as JSON string that will be converted to text
-        const outputData = {};
-  
-        // Process each day
-        for (let i = 0; i < days; i++) {
-          const currentDate = firstDate.clone().add(i, 'days');
-          const dateString = currentDate.format('YYYY-MM-DD');
-          outputData[dateString] = [];
-  
-          // Process events for this day
-          events.forEach(event => {
-            const startDate = moment(event.getFirstPropertyValue('dtstart').toString());
-            const sydneyStart = startDate.clone().tz('Australia/Sydney');
-  
-            if (sydneyStart.format('YYYY-MM-DD') === dateString) {
-              const endDate = moment(event.getFirstPropertyValue('dtend').toString());
-              const sydneyEnd = endDate.clone().tz('Australia/Sydney');
-  
-              const summary = event.getFirstPropertyValue('summary') || '';
-              const summaryParts = summary.split(': ');
-              const classInfo = summaryParts[0];
-              const name = summaryParts.length > 1 ? summaryParts[1] : '';
-  
-              const location = event.getFirstPropertyValue('location') || '';
-              const locationParts = location.split(': ');
-              const locationValue = locationParts.length > 1 ? locationParts[1] : '';
-  
-              const description = event.getFirstPropertyValue('description') || '';
-              const descriptionLines = description.split('\n');
-  
-              const teacherParts = descriptionLines[0] ? descriptionLines[0].split(': ') : ['', ''];
-              const periodParts = descriptionLines.length > 1 && descriptionLines[1] ? descriptionLines[1].split(': ') : ['', ''];
-  
-              const teacher = teacherParts.length > 1 ? teacherParts[1] : '';
-              const period = periodParts.length > 1 ? periodParts[1] : '';
-  
-              // Add this event to the day's events array
-              outputData[dateString].push({
-                "c": classInfo,                                     // class
-                "n": filter(name),                                  // name
-                "l": locationValue,                                 // location
-                "t": teacher,                                       // teacher
-                "p": period,                                        // period
-                "s": sydneyStart.format('HH:mm'),                   // start_time
-                "e": sydneyEnd.format('HH:mm')                      // end_time
-              });
+        try {
+            if (typeof ICAL === 'undefined' || typeof moment === 'undefined') {
+                throw new Error('Required libraries (ICAL, moment) are not loaded.');
             }
-          });
-  
-          // Sort events by start time
-          outputData[dateString].sort((a, b) => {
-            return a.s.localeCompare(b.s);
-          });
+            const cal = new ICAL.Component(ICAL.parse(icsData));
+            const events = cal.getAllSubcomponents('vevent');
+            const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
+            function filter(input) {
+                return input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
+            }
+            const allDates = [];
+            events.forEach(event => {
+                const start = moment(event.getFirstPropertyValue('dtstart').toString());
+                const sydneyStart = start.clone().tz('Australia/Sydney');
+                allDates.push(sydneyStart);
+            });
+            // Use valueOf for correct sorting
+            allDates.sort((a, b) => a.valueOf() - b.valueOf());
+            if (allDates.length === 0) {
+                statusDiv.textContent = 'No events found in the ICS file.';
+                statusDiv.classList.remove('hidden', 'success');
+                statusDiv.classList.add('error');
+                return;
+            }
+            const firstDate = allDates[0];
+            const lastDate = allDates[allDates.length - 1];
+            const days = lastDate.diff(firstDate, 'days') + 1;
+            const outputData = {};
+            for (let i = 0; i < days; i++) {
+                const currentDate = firstDate.clone().add(i, 'days');
+                const dateString = currentDate.format('YYYY-MM-DD');
+                outputData[dateString] = [];
+                events.forEach(event => {
+                    const startDate = moment(event.getFirstPropertyValue('dtstart').toString());
+                    const sydneyStart = startDate.clone().tz('Australia/Sydney');
+                    if (sydneyStart.format('YYYY-MM-DD') === dateString) {
+                        const endDate = moment(event.getFirstPropertyValue('dtend').toString());
+                        const sydneyEnd = endDate.clone().tz('Australia/Sydney');
+                        const summary = event.getFirstPropertyValue('summary') || '';
+                        const summaryParts = summary.split(': ');
+                        const classInfo = summaryParts[0];
+                        const name = summaryParts.length > 1 ? summaryParts[1] : '';
+                        const location = event.getFirstPropertyValue('location') || '';
+                        const locationParts = location.split(': ');
+                        const locationValue = locationParts.length > 1 ? locationParts[1] : '';
+                        const description = event.getFirstPropertyValue('description') || '';
+                        const descriptionLines = description.split('\n');
+                        const teacherParts = descriptionLines[0] ? descriptionLines[0].split(': ') : ['', ''];
+                        const periodParts = descriptionLines.length > 1 && descriptionLines[1] ? descriptionLines[1].split(': ') : ['', ''];
+                        const teacher = teacherParts.length > 1 ? teacherParts[1] : '';
+                        const period = periodParts.length > 1 ? periodParts[1] : '';
+                        outputData[dateString].push({
+                            "c": classInfo,
+                            "n": filter(name),
+                            "l": locationValue,
+                            "t": teacher,
+                            "p": period,
+                            "s": sydneyStart.format('HH:mm'),
+                            "e": sydneyEnd.format('HH:mm')
+                        });
+                    }
+                });
+                outputData[dateString].sort((a, b) => a.s.localeCompare(b.s));
+            }
+            const outputText = JSON.stringify(outputData);
+            chrome.storage.local.set({ 'parsedIcsData': outputText }, function() {
+                statusDiv.textContent = 'ICS data successfully parsed and stored!';
+                statusDiv.classList.remove('error', 'hidden');
+                statusDiv.classList.add('success');
+                chrome.runtime.sendMessage({ type: 'storageUpdated' });
+                console.log(`Parsed ICS data stored (${outputText.length} characters)`);
+                window.location.href = '../popup/popup.html';
+            });
+        } catch (error) {
+            statusDiv.textContent = 'Error parsing ICS file: ' + error.message;
+            statusDiv.classList.remove('hidden', 'success');
+            statusDiv.classList.add('error');
+            console.error('Error parsing ICS file:', error);
         }
-  
-        // Convert the data object to a JSON string
-        const outputText = JSON.stringify(outputData);
-  
-        // Store the parsed data in Chrome storage as text
-        chrome.storage.local.set({ 'parsedIcsData': outputText }, function() {
-          statusDiv.textContent = 'ICS data successfully parsed and stored!';
-          statusDiv.classList.remove('error', 'hidden');
-          statusDiv.classList.add('success');
-          chrome.runtime.sendMessage({ type: 'storageUpdated' }); // Notify background if needed
-          console.log(`Parsed ICS data stored (${outputText.length} characters)`);
-          
-          // Instead of closing, redirect to popup
-          window.location.href = '../popup/popup.html';
-        });
-  
-      } catch (error) {
-        statusDiv.textContent = 'Error parsing ICS file: ' + error.message;
-        statusDiv.classList.remove('hidden');
-        statusDiv.classList.add('error');
-        console.error('Error parsing ICS file:', error);
-      }
     }
-  });
+});
