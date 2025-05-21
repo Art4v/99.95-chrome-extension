@@ -654,16 +654,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await initialize();
 
-    // --- Midnight rollover ---
-    function scheduleMidnightRollover() {
-        const now = moment.tz("Australia/Sydney");
-        const nextMidnight = now.clone().add(1, 'day').startOf('day');
-        const msUntilMidnight = nextMidnight.diff(now);
-
-        setTimeout(() => {
-            initialize(); // Re-initialize for the new day
-            scheduleMidnightRollover(); // Schedule again for the next midnight
-        }, msUntilMidnight + 1000); // Add 1s buffer to ensure it's the next day
-    }
-    scheduleMidnightRollover();
+    // --- Auto-rollover to next day at midnight ---
+    let lastDate = getLocalISODateString(moment.tz("Australia/Sydney").toDate());
+    setInterval(() => {
+        const now = moment.tz("Australia/Sydney").toDate();
+        const currentDate = getLocalISODateString(now);
+        // Only auto-update if user is viewing today
+        if (displayedDate === lastDate && currentDate !== lastDate) {
+            initialize(currentDate);
+        }
+        lastDate = currentDate;
+    }, 1000 * 30); // check every 30 seconds
 });
