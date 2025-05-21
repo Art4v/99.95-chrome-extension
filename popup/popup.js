@@ -653,4 +653,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
 
     await initialize();
+
+    // --- Midnight rollover ---
+    function scheduleMidnightRollover() {
+        const now = moment.tz("Australia/Sydney");
+        const nextMidnight = now.clone().add(1, 'day').startOf('day');
+        const msUntilMidnight = nextMidnight.diff(now);
+
+        setTimeout(() => {
+            initialize(); // Re-initialize for the new day
+            scheduleMidnightRollover(); // Schedule again for the next midnight
+        }, msUntilMidnight + 1000); // Add 1s buffer to ensure it's the next day
+    }
+    scheduleMidnightRollover();
 });
