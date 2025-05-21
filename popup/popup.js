@@ -664,5 +664,5 @@ document.addEventListener('DOMContentLoaded', async () => {
             initialize(currentDate);
         }
         lastDate = currentDate;
-    }, 1000 * 30); // check every 30 seconds
+    }, 1000 * 5); // check every 5 seconds
 });
