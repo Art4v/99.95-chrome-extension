@@ -172,6 +172,14 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
+        // Add this to fix dragCounter getting stuck
+        window.addEventListener('dragend', function(e) {
+            dragCounter = 0;
+            document.body.classList.remove('window-dragover');
+            const dragDropArea = document.getElementById('drag-drop-area');
+            if (dragDropArea) dragDropArea.classList.remove('dragover');
+        });
+
         fileInput.addEventListener('change', function() {
             handleFiles(fileInput.files, fileInput, fileFeedback);
         });
