@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function winUploadOption() {
         return `<div class="drag-drop-area clickable" id="drag-drop-area" tabindex="0" role="button" aria-label="Click to select ICS file or drag and drop">
-            <div><span class="highlight-pill">Click to choose file</span> or <span class="highlight-pill">drag and drop</span> your timetable file here</div>
+            <div>Click to choose file or drag and drop your timetable file here</div>
             <div class="file-feedback" id="file-feedback"></div>
             <input type="file" id="ics-upload" class="hidden" accept=".ics">
         </div>`;
