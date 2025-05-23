@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <li>Go to your timetable page and click <strong>Export as ICS</strong> (usually at the top right of the timetable).</li>
             <li>Save the downloaded timetable file to your computer.</li>
             <li><strong>To upload your timetable:</strong>
-                <ul><li>Drag and drop the ICS file anywhere on this page <strong>(from the same desktop window as the extension)</strong>.</li></ul>
+                <ul><li>Drag and drop the ICS file anywhere on this page <strong>(from the same desktop window as the extension, minimise the browser)</strong>.</li></ul>
             </li>
             <li>Click <strong>Upload Timetable</strong> to finish.</li>
         </ol>`;
