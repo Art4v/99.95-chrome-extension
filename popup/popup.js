@@ -6,16 +6,13 @@ if (typeof moment === "undefined" || typeof ICAL === "undefined") {
 
 // Utility: Combine date and time string into a Date object (Australia/Sydney)
 function getDateTime(dateString, timeString) {
-    // Use moment.tz for timezone consistency
     return moment.tz(`${dateString}T${timeString}:00`, "Australia/Sydney").toDate();
 }
 
 // Utility: Format time range
 function formatTimeRange(date, start, end) {
     const opts = { hour: '2-digit', minute: '2-digit' };
-    const startTime = getDateTime(date, start).toLocaleTimeString([], opts);
-    const endTime = getDateTime(date, end).toLocaleTimeString([], opts);
-    return `${startTime} – ${endTime}`;
+    return `${getDateTime(date, start).toLocaleTimeString([], opts)} – ${getDateTime(date, end).toLocaleTimeString([], opts)}`;
 }
 
 // Utility: Get today's date in local ISO format (YYYY-MM-DD)
@@ -23,8 +20,8 @@ function getLocalISODateString(date) {
     return moment.tz(date, "Australia/Sydney").format("YYYY-MM-DD");
 }
 
-let notifElem, blocksElem, navDateElem;
-let sidebarBtns = []; // Add this global
+let notifElem, blocksElem, navDateElem, sidebarBtns = [];
+let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer, displayedDate = null;
 
 // Inject sidebar, hamburger, and embed viewer UI
 function injectSidebarUI() {
@@ -82,14 +79,10 @@ function injectSidebarUI() {
     document.body.append(hamburger, sidebar, embedViewer);
 
     // Sidebar toggle (only toggle .visible)
-    hamburger.addEventListener("click", () => {
-        sidebar.classList.toggle("visible");
-    });
+    hamburger.addEventListener("click", () => sidebar.classList.toggle("visible"));
 
     // Restore theme
-    if (localStorage.getItem("theme") === "light") {
-        document.body.classList.add("light-mode");
-    }
+    if (localStorage.getItem("theme") === "light") document.body.classList.add("light-mode");
 
     // Background toggle
     sidebar.querySelector('.toggle-btn').addEventListener("click", () => {
@@ -116,20 +109,14 @@ function injectSidebarUI() {
             const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
             const frame = embedViewer.querySelector('.embed-frame');
             frame.src = src;
-
             embedViewer.classList.remove('pdf-view', 'desmos-view');
-            if (btn.getAttribute('data-pdf')) {
-                embedViewer.classList.add('pdf-view');
-            } else if (btn.getAttribute('data-url')) {
-                embedViewer.classList.add('desmos-view');
-            }
-
+            if (btn.getAttribute('data-pdf')) embedViewer.classList.add('pdf-view');
+            else if (btn.getAttribute('data-url')) embedViewer.classList.add('desmos-view');
             const isCompact = localStorage.getItem('windowSize') === 'compact';
             if (isCompact) {
                 document.documentElement.style.width = '800px';
                 document.body.style.width = '800px';
             }
-
             embedViewer.classList.remove('hidden');
         });
     });
@@ -138,7 +125,6 @@ function injectSidebarUI() {
     embedViewer.querySelector('.close-embed').addEventListener('click', () => {
         embedViewer.classList.add('hidden');
         embedViewer.querySelector('.embed-frame').src = "";
-
         const isCompact = localStorage.getItem('windowSize') === 'compact';
         if (isCompact) {
             document.documentElement.style.width = '630px';
@@ -146,21 +132,14 @@ function injectSidebarUI() {
         }
     });
 
-    // Scrollbar toggle
     const scrollbarToggleBtn = sidebar.querySelector('.scrollbar-toggle-btn');
-    if (localStorage.getItem('scrollbar') === 'off') {
-        document.body.classList.add('scrollbar-off');
-    } else {
-        document.body.classList.remove('scrollbar-off');
-    }
+    document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
     scrollbarToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('scrollbar-off');
         localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
     });
 
-    // Size toggle functionality
     const sizeToggleBtn = sidebar.querySelector('.size-toggle-btn');
-    // Set initial state from localStorage
     const savedSize = localStorage.getItem('windowSize');
     if (savedSize === 'compact') {
         document.documentElement.style.width = '630px';
@@ -169,7 +148,6 @@ function injectSidebarUI() {
     } else {
         sizeToggleBtn.textContent = 'Compact View';
     }
-
     sizeToggleBtn.addEventListener('click', () => {
         const isCompact = document.documentElement.style.width === '630px';
         const newWidth = isCompact ? '800px' : '630px';
@@ -194,20 +172,17 @@ function getCurrentClass(schedule, now, date) {
     }) || null;
 }
 
-let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer, displayedDate = null; // Track the currently displayed date
-
 // Countdown function
 function startCountdown(target, isCurrentClass, schedule, date) {
-    // Use cached notifElem
     const notif = notifElem;
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
-        if (progressBarContainer) progressBarContainer.remove();
+        progressBarContainer && progressBarContainer.remove();
         return;
     }
     const targetTime = getDateTime(date, isCurrentClass ? target.e : target.s);
     const countdownStartTime = isCurrentClass ? getDateTime(date, target.s) : moment.tz("Australia/Sydney").toDate();
-    if (globalTimer) clearInterval(globalTimer);
+    globalTimer && clearInterval(globalTimer);
 
     if (!progressBarContainer) {
         progressBarContainer = document.createElement('div');
@@ -234,16 +209,9 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
         let teacher = (target.t || '').trim();
         let room = (target.l || '').trim();
-        let detailsLine = '';
-        if (teacher && room) {
-            detailsLine = `<h2>With ${teacher} in Room ${room}</h2>`;
-        } else if (teacher) {
-            detailsLine = `<h2>With ${teacher}</h2>`;
-        } else if (room) {
-            detailsLine = `<h2>In Room ${room}</h2>`;
-        } else {
-            detailsLine = '';
-        }
+        let detailsLine = teacher && room ? `<h2>With ${teacher} in Room ${room}</h2>` :
+            teacher ? `<h2>With ${teacher}</h2>` :
+            room ? `<h2>In Room ${room}</h2>` : '';
 
         const newHTML = `
             <h1>${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}</h1>
@@ -258,19 +226,18 @@ function startCountdown(target, isCurrentClass, schedule, date) {
 
         if (timeDiff <= 0) {
             clearInterval(globalTimer);
-            // Always check if a class is currently running
             const current = getCurrentClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
             if (current) {
-                renderSchedule(schedule, date); // <-- Add this line
+                renderSchedule(schedule, date);
                 startCountdown(current, true, schedule, date);
             } else {
                 const next = getNextClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
                 if (next) {
-                    renderSchedule(schedule, date); // <-- Add this line
+                    renderSchedule(schedule, date);
                     startCountdown(next, false, schedule, date);
                 } else {
                     notif.innerHTML = '<h1>No more classes today</h1>';
-                    if (progressBarContainer) progressBarContainer.remove();
+                    progressBarContainer && progressBarContainer.remove();
                 }
             }
         }
@@ -312,16 +279,12 @@ function createScheduleBlock(entry, date, isActive) {
 
 // Render the schedule
 function renderSchedule(schedule, date) {
-    // Use cached blocksElem
     const blocksContainer = blocksElem;
-    blocksContainer.innerHTML = schedule.length
-        ? ''
-        : '<h1>No classes today!</h1>';
-
+    blocksContainer.innerHTML = schedule.length ? '' : '<h1>No classes today!</h1>';
+    const now = moment.tz("Australia/Sydney").toDate();
     schedule.forEach(entry => {
         const start = getDateTime(date, entry.s);
         const end = getDateTime(date, entry.e);
-        const now = moment.tz("Australia/Sydney").toDate();
         const isActive = now >= start && now <= end;
         blocksContainer.appendChild(createScheduleBlock(entry, date, isActive));
     });
@@ -367,20 +330,13 @@ function injectNavigationUI() {
     `;
     // Use cached blocksElem
     blocksElem.parentNode.insertBefore(navContainer, blocksElem);
-
-    // Cache navDateElem
     navDateElem = navContainer.querySelector('.nav-date');
-
     navContainer.querySelector('.yesterday-btn').addEventListener('click', () => {
-        const yesterday = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
-        initialize(yesterday.format('YYYY-MM-DD'));
+        initialize(moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day').format('YYYY-MM-DD'));
     });
-
     navContainer.querySelector('.tomorrow-btn').addEventListener('click', () => {
-        const tomorrow = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
-        initialize(tomorrow.format('YYYY-MM-DD'));
+        initialize(moment.tz(displayedDate, "Australia/Sydney").add(1, 'day').format('YYYY-MM-DD'));
     });
-
     return navContainer;
 }
 
@@ -493,64 +449,36 @@ function injectCalendarUI() {
         const monthEnd = currentMonth.clone().endOf('month');
         const startDate = monthStart.clone().startOf('week');
         const endDate = monthEnd.clone().endOf('week');
-
         datePicker.querySelector('.date-picker-month').textContent = currentMonth.format('MMMM YYYY');
-
         const grid = datePicker.querySelector('.date-picker-grid');
-        while (grid.children.length > 7) {
-            grid.removeChild(grid.lastChild);
-        }
-
+        while (grid.children.length > 7) grid.removeChild(grid.lastChild);
         let currentDate = startDate.clone();
-        const fragment = document.createDocumentFragment(); // Use fragment
-
+        const fragment = document.createDocumentFragment();
         while (currentDate.isBefore(endDate) || currentDate.isSame(endDate, 'day')) {
             const dayElement = document.createElement('div');
             dayElement.className = 'date-picker-day';
             dayElement.textContent = currentDate.date();
-
             dayElement.dataset.date = currentDate.format('YYYY-MM-DD');
-
-
-            if (currentDate.isSame(now, 'day')) {
-                dayElement.classList.add('today');
-            }
-            if (currentDate.isSame(selectedDate, 'day')) {
-                dayElement.classList.add('selected');
-            }
-            
-
-            if (!currentDate.isSame(currentMonth, 'month') || !isDateInRange(currentDate)) {
-                dayElement.classList.add('disabled');
-            }
-
-
+            if (currentDate.isSame(now, 'day')) dayElement.classList.add('today');
+            if (currentDate.isSame(selectedDate, 'day')) dayElement.classList.add('selected');
+            if (!currentDate.isSame(currentMonth, 'month') || !isDateInRange(currentDate)) dayElement.classList.add('disabled');
             dayElement.addEventListener('click', () => {
                 if (!dayElement.classList.contains('disabled')) {
                     const clickedDate = dayElement.dataset.date;
                     selectedDate = moment.tz(clickedDate, "Australia/Sydney");
                     initialize(clickedDate);
-                    datePicker.querySelectorAll('.date-picker-day').forEach(day => {
-                        day.classList.remove('selected');
-                    });
-
+                    grid.querySelectorAll('.date-picker-day').forEach(day => day.classList.remove('selected'));
                     dayElement.classList.add('selected');
                 }
             });
-
             fragment.appendChild(dayElement);
             currentDate.add(1, 'day');
         }
-
-        grid.appendChild(fragment); // Batch append
-
-
+        grid.appendChild(fragment);
         const prevMonthBtn = datePicker.querySelector('.prev-month');
         const nextMonthBtn = datePicker.querySelector('.next-month');
-        
         prevMonthBtn.disabled = monthStart.isSameOrBefore(minDate, 'month');
         nextMonthBtn.disabled = monthEnd.isSameOrAfter(maxDate, 'month');
-        
         prevMonthBtn.style.opacity = prevMonthBtn.disabled ? '0.5' : '1';
         nextMonthBtn.style.opacity = nextMonthBtn.disabled ? '0.5' : '1';
     }
@@ -584,7 +512,6 @@ function injectCalendarUI() {
 
 
 
-
     document.addEventListener('click', (event) => {
         if (!datePicker.contains(event.target) && !calendarIcon.contains(event.target)) {
             datePicker.classList.remove('visible');
@@ -595,41 +522,22 @@ function injectCalendarUI() {
 // Keyboard shortcuts for datasheets, Desmos, and day navigation
 document.addEventListener('keydown', (e) => {
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-
     const key = e.key.toLowerCase();
-
-    // Use cached sidebarBtns
-    if (e.key === '1' && sidebarBtns[0]) {
-        sidebarBtns[0].click();
-        return;
-    } else if (e.key === '2' && sidebarBtns[1]) {
-        sidebarBtns[1].click();
-        return;
-    } else if (e.key === '3' && sidebarBtns[2]) {
-        sidebarBtns[2].click();
-        return;
-    } else if (e.key === '4' && sidebarBtns[3]) {
-        sidebarBtns[3].click();
-        return;
-    } else if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) {
-        sidebarBtns[4].click();
-        return;
-    }
-
-    // Timetable navigation: q/ArrowLeft = previous, e/ArrowRight = next, w/ArrowUp = today
+    if (e.key === '1' && sidebarBtns[0]) { sidebarBtns[0].click(); return; }
+    if (e.key === '2' && sidebarBtns[1]) { sidebarBtns[1].click(); return; }
+    if (e.key === '3' && sidebarBtns[2]) { sidebarBtns[2].click(); return; }
+    if (e.key === '4' && sidebarBtns[3]) { sidebarBtns[3].click(); return; }
+    if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) { sidebarBtns[4].click(); return; }
     if (key === 'q' || e.key === 'ArrowLeft') {
-        const prev = moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day');
-        initialize(prev.format("YYYY-MM-DD"));
+        initialize(moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day').format("YYYY-MM-DD"));
         return;
     }
     if (key === 'e' || e.key === 'ArrowRight') {
-        const next = moment.tz(displayedDate, "Australia/Sydney").add(1, 'day');
-        initialize(next.format("YYYY-MM-DD"));
+        initialize(moment.tz(displayedDate, "Australia/Sydney").add(1, 'day').format("YYYY-MM-DD"));
         return;
     }
     if (key === 'w' || e.key === 'ArrowUp') {
-        const now = moment.tz("Australia/Sydney").toDate();
-        initialize(getLocalISODateString(now));
+        initialize(getLocalISODateString(moment.tz("Australia/Sydney").toDate()));
         return;
     }
 });
@@ -638,31 +546,22 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('DOMContentLoaded', async () => {
     notifElem = document.querySelector('.notif');
     blocksElem = document.querySelector('.blocks');
-
     injectSidebarUI();
     injectNavigationUI();
     injectCalendarUI();
-
-    // Cache sidebar buttons for keyboard shortcuts
     sidebarBtns = [
-        document.querySelector('.sidebar-btn[data-pdf="advmath.pdf"]'),    // 1
-        document.querySelector('.sidebar-btn[data-pdf="standardmath.pdf"]'), // 2
-        document.querySelector('.sidebar-btn[data-pdf="chem.pdf"]'),         // 3
-        document.querySelector('.sidebar-btn[data-pdf="phys.pdf"]'),         // 4
-        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]') // d
+        document.querySelector('.sidebar-btn[data-pdf="advmath.pdf"]'),
+        document.querySelector('.sidebar-btn[data-pdf="standardmath.pdf"]'),
+        document.querySelector('.sidebar-btn[data-pdf="chem.pdf"]'),
+        document.querySelector('.sidebar-btn[data-pdf="phys.pdf"]'),
+        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]')
     ];
-
     await initialize();
-
-    // --- Auto-rollover to next day at midnight ---
     let lastDate = getLocalISODateString(moment.tz("Australia/Sydney").toDate());
     setInterval(() => {
         const now = moment.tz("Australia/Sydney").toDate();
         const currentDate = getLocalISODateString(now);
-        // Only auto-update if user is viewing today
-        if (displayedDate === lastDate && currentDate !== lastDate) {
-            initialize(currentDate);
-        }
+        if (displayedDate === lastDate && currentDate !== lastDate) initialize(currentDate);
         lastDate = currentDate;
-    }, 1000 * 5); // check every 5 seconds
+    }, 5000);
 });
