@@ -134,23 +134,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let dragCounter = 0;
         window.addEventListener('dragenter', function(e) {
-            dragCounter++;
-            if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+            if (e.dataTransfer && e.dataTransfer.types && e.dataTransfer.types.includes('Files')) {
+                dragCounter++;
                 document.body.classList.add('window-dragover');
                 const dragDropArea = document.getElementById('drag-drop-area');
                 if (dragDropArea) dragDropArea.classList.add('dragover');
             }
         });
         window.addEventListener('dragleave', function(e) {
-            dragCounter--;
-            if (dragCounter <= 0) {
-                document.body.classList.remove('window-dragover');
-                const dragDropArea = document.getElementById('drag-drop-area');
-                if (dragDropArea) dragDropArea.classList.remove('dragover');
+            if (e.dataTransfer && e.dataTransfer.types && e.dataTransfer.types.includes('Files')) {
+                dragCounter--;
+                if (dragCounter <= 0) {
+                    dragCounter = 0;
+                    document.body.classList.remove('window-dragover');
+                    const dragDropArea = document.getElementById('drag-drop-area');
+                    if (dragDropArea) dragDropArea.classList.remove('dragover');
+                }
             }
         });
         window.addEventListener('dragover', function(e) {
-            if (e.dataTransfer && e.dataTransfer.types.includes('Files')) {
+            if (e.dataTransfer && e.dataTransfer.types && e.dataTransfer.types.includes('Files')) {
                 e.preventDefault();
                 document.body.classList.add('window-dragover');
                 const dragDropArea = document.getElementById('drag-drop-area');
@@ -171,8 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleFiles(e.dataTransfer.files, fileInput, fileFeedback);
             }
         });
-
-        // Add this to fix dragCounter getting stuck
         window.addEventListener('dragend', function(e) {
             dragCounter = 0;
             document.body.classList.remove('window-dragover');
