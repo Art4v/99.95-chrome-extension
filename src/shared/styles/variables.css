@@ -1,0 +1,39 @@
+:root {
+  /* Colors */
+  --primary-color: #FF746C;
+  --primary-hover: #ffa19c;
+  --background-dark: #1a1a1a;
+  --background-light: #f8f4e6;
+  --text-dark: #2a2a2a;
+  --text-light: #f9fafd;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --border-dark: rgba(0, 0, 0, 0.1);
+  
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Typography */
+  --font-family: 'Varela', Arial, sans-serif;
+  --font-size-sm: 0.8rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.6rem;
+  
+  /* Dimensions */
+  --popup-width: 800px;
+  --popup-height: 600px;
+  --popup-width-compact: 630px;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
