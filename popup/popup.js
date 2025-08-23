@@ -82,45 +82,9 @@ function stopCountdown() {
     try { CountdownController.stop(); } catch (e) { console.debug('Error in stopCountdown:', e && e.message); }
 }
 
-// Inject sidebar, hamburger, and embed viewer UI
-function injectSidebarUI() {
-    // Sidebar
-    const sidebar = document.createElement("div");
-    sidebar.className = "sidebar";
-    sidebar.setAttribute("role", "complementary");
-    sidebar.innerHTML = `
-        <div class="sidebar-content">
-            <div class="sidebar-section">
-                <h2 class="sidebar-heading">Reference Sheets</h2>
-                <div class="sidebar-divider">Maths</div>
-                <button class="sidebar-btn" data-pdf="advmath.pdf">Maths Adv/Ext1/2</button>
-                <button class="sidebar-btn" data-pdf="standardmath.pdf">Maths Standard</button>
-                <div class="sidebar-divider">Science</div>
-                <button class="sidebar-btn" data-pdf="chem.pdf">Chemistry</button>
-                <button class="sidebar-btn" data-pdf="phys.pdf">Physics</button>
-            </div>
-            <div class="sidebar-section">
-                <h2 class="sidebar-heading">Utilities</h2>
-                <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
-        </div>
-        <div class="sidebar-footer" style="margin-top: 48px; position: relative; flex-direction: column;">
-            <div class="sidebar-footer-buttons" style="display: flex; gap: 8px; width: 100%;">
-                <button class="scrollbar-toggle-btn" title="Toggle Scrollbar">Toggle Scrollbar</button>
-                <button class="size-toggle-btn" title="Toggle Window Size">Small View</button>
-                <button class="upload-btn">Upload New</button>
-                <button class="toggle-btn">Toggle Theme</button>
-            </div>
-            <div class="sidebar-footer-info">
-                <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E or ←/↑/→ for Navigation</span>
-                <span class="sidebar-footer-credits">By Aarav B, Sai P, Andy L.</span>
-        </div>
-    `;
+// Inject embed viewer UI
+function injectEmbedViewerUI() {
 
-    // Hamburger
-    const hamburger = document.createElement("button");
-    hamburger.className = "hamburger";
-    hamburger.setAttribute("aria-label", "Toggle Sidebar");
-    hamburger.textContent = "☰";
 
     // Embed Viewer
     const embedViewer = document.createElement("div");
@@ -132,114 +96,16 @@ function injectSidebarUI() {
         <iframe class="embed-frame" frameborder="0"></iframe>
     `;
 
-    document.body.append(hamburger, sidebar, embedViewer);
-
-    // Sidebar toggle (only toggle .visible)
-    hamburger.addEventListener("click", () => sidebar.classList.toggle("visible"));
+    document.body.append(embedViewer);
 
     // Restore theme
     if (localStorage.getItem("theme") === "light") document.body.classList.add("light-mode");
 
-    // Background toggle
-    sidebar.querySelector('.toggle-btn').addEventListener("click", () => {
-        document.body.classList.toggle("light-mode");
-        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
-    });
 
-    // --- Upload timetable functionality ---
-    const uploadBtn = sidebar.querySelector('.upload-btn');
-    uploadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
-            chrome.storage.local.remove('parsedIcsData', () => {
-                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                    window.location.href = '../landing-page/landing.html';
-                }); 
-            });
-        }
-    });
 
-    // Sidebar PDF/URL buttons (accessibility: keyboard + roles)
-    sidebar.querySelectorAll('.sidebar-btn').forEach((btn, idx) => {
-        btn.setAttribute('role', 'button');
-        btn.tabIndex = 0;
-        btn.addEventListener('click', () => openSidebarItem(btn));
-        btn.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter' || ev.key === ' ') {
-                ev.preventDefault();
-                openSidebarItem(btn);
-            }
-            // quick keys: 1-4, d
-            if (/^[1-4]$/.test(ev.key)) {
-                const n = Number(ev.key) - 1;
-                const target = sidebar.querySelectorAll('.sidebar-btn')[n];
-                if (target) openSidebarItem(target);
-            }
-        });
-    });
 
-    function openSidebarItem(btn) {
-        const pdf = btn.getAttribute('data-pdf');
-        const url = btn.getAttribute('data-url');
-        const frame = embedViewer.querySelector('.embed-frame');
-        const closeAndShowError = (msg) => {
-            embedViewer.classList.remove('pdf-view', 'desmos-view');
-            embedViewer.classList.remove('hidden');
-            embedViewer.innerHTML = `<div class="embed-error"><p>${msg}</p><button class="open-new-tab">Open in new tab</button></div>`;
-            const btn = embedViewer.querySelector('.open-new-tab');
-            btn && btn.addEventListener('click', () => {
-                try { chrome.tabs.create({ url }); } catch (e) { window.open(url, '_blank'); }
-            });
-        };
 
-        if (pdf) {
-            // Use chrome.runtime.getURL to produce a correct chrome-extension:// URL
-            const src = chrome.runtime.getURL('popup/' + pdf);
-            embedViewer.innerHTML = `\n                <button class="close-embed" aria-label="Close">×</button>\n                <iframe class="embed-frame" frameborder="0"></iframe>\n            `;
-            const newFrame = embedViewer.querySelector('.embed-frame');
-            newFrame.src = src;
-            embedViewer.classList.remove('hidden');
-            embedViewer.classList.add('pdf-view');
-            // Re-wire close
-            embedViewer.querySelector('.close-embed').addEventListener('click', () => {
-                embedViewer.classList.add('hidden');
-                embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
-            });
-            // Load/error handling: if iframe fails to load show fallback
-            newFrame.addEventListener('error', () => closeAndShowError('Failed to load PDF.')); 
-            return;
-        }
 
-        if (url) {
-            // Attempt to embed Desmos directly
-            embedViewer.innerHTML = `\n                <button class="close-embed" aria-label="Close">×</button>\n                <iframe class="embed-frame" frameborder="0" allowfullscreen></iframe>\n            `;
-            const newFrame = embedViewer.querySelector('.embed-frame');
-            const desmosUrl = url; // expected https://www.desmos.com/calculator
-            newFrame.src = desmosUrl;
-            embedViewer.classList.remove('hidden');
-            embedViewer.classList.add('desmos-view');
-            embedViewer.querySelector('.close-embed').addEventListener('click', () => {
-                embedViewer.classList.add('hidden');
-                embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
-            });
-            // If embedding is blocked by CSP or fails, show a fallback with open-in-new-tab
-            newFrame.addEventListener('error', () => closeAndShowError('Desmos could not be embedded in the popup. Open in a new tab instead?'));
-            // Also set a timeout: if the frame doesn't signal sized content in a few seconds, provide fallback option
-            const loadTimeout = setTimeout(() => {
-                // If iframe is still in document and not hidden, offer fallback
-                if (document.body.contains(newFrame) && !embedViewer.classList.contains('hidden')) {
-                    // Provide unobtrusive fallback (don't immediately close embed)
-                    const notice = document.createElement('div');
-                    notice.className = 'embed-fallback';
-                    notice.innerHTML = '<p>If Desmos does not load, you can <a class="open-tab" href="#">open it in a new tab</a>.</p>';
-                    embedViewer.appendChild(notice);
-                    const a = notice.querySelector('.open-tab');
-                    a.addEventListener('click', (e) => { e.preventDefault(); try { chrome.tabs.create({ url: desmosUrl }); } catch (e) { window.open(desmosUrl, '_blank'); } });
-                }
-            }, 3000);
-            newFrame.addEventListener('load', () => clearTimeout(loadTimeout));
-        }
-    }
 
     // Close embed viewer
     embedViewer.querySelector('.close-embed').addEventListener('click', () => {
@@ -252,30 +118,7 @@ function injectSidebarUI() {
         }
     });
 
-    const scrollbarToggleBtn = sidebar.querySelector('.scrollbar-toggle-btn');
-    document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
-    scrollbarToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('scrollbar-off');
-        localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
-    });
 
-    const sizeToggleBtn = sidebar.querySelector('.size-toggle-btn');
-    const savedSize = localStorage.getItem('windowSize');
-    if (savedSize === 'compact') {
-        document.documentElement.style.width = '630px';
-        document.body.style.width = '630px';
-        sizeToggleBtn.textContent = 'Full View';
-    } else {
-        sizeToggleBtn.textContent = 'Compact View';
-    }
-    sizeToggleBtn.addEventListener('click', () => {
-        const isCompact = document.documentElement.style.width === '630px';
-        const newWidth = isCompact ? '800px' : '630px';
-        document.documentElement.style.width = newWidth;
-        document.body.style.width = newWidth;
-        sizeToggleBtn.textContent = isCompact ? 'Compact View' : 'Full View';
-        localStorage.setItem('windowSize', isCompact ? 'full' : 'compact');
-    });
 }
 
 // Find the next class (assumes schedule times are sorted). All times are epoch ms.
@@ -557,7 +400,526 @@ function injectCalendarUI() {
     calendarIcon.innerHTML = '📅';
     calendarIcon.setAttribute('aria-label', 'Open Calendar');
 
+    // Create to-do list button (positioned between calendar and wolfram)
+    const todoBtn = document.createElement('button');
+    todoBtn.className = 'reference-btn todo-btn';
+    todoBtn.setAttribute('title', 'To-Do List (T)');
+    todoBtn.innerHTML = '<img src="../assets/checkmarktodo.png" alt="To-Do" class="todo-icon">';
+    todoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleTodoSidebar();
+    });
+
+    // Create Wolfram button (positioned between todo and reference buttons)
+    const wolframBtn = document.createElement('button');
+    wolframBtn.className = 'reference-btn wolfram-btn';
+    wolframBtn.setAttribute('title', 'Wolfram Alpha');
+    wolframBtn.innerHTML = '<img src="../assets/wolfram.png" alt="Wolfram" class="reference-icon">';
+    wolframBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openWolframPage();
+    });
+
+    // Create Desmos button (positioned below wolfram button)
+    const desmosBtn = document.createElement('button');
+    desmosBtn.className = 'reference-btn desmos-btn';
+    desmosBtn.setAttribute('title', 'Desmos Calculator');
+    desmosBtn.innerHTML = '<img src="../assets/desmos.png" alt="Desmos" class="reference-icon">';
+    desmosBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openDesmosPage();
+    });
+
+    // Create Integral Calculator button (positioned below desmos button)
+    const integralBtn = document.createElement('button');
+    integralBtn.className = 'reference-btn integral-btn';
+    integralBtn.setAttribute('title', 'Integral Calculator');
+    integralBtn.innerHTML = '<img src="../assets/integral.png" alt="Integral" class="reference-icon">';
+    integralBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openIntegralPage();
+    });
+
+    // Create Derivative Calculator button (positioned below integral button)
+    const derivativeBtn = document.createElement('button');
+    derivativeBtn.className = 'reference-btn derivative-btn';
+    derivativeBtn.setAttribute('title', 'Derivative Calculator');
+    derivativeBtn.innerHTML = '<img src="../assets/derivitive.png" alt="Derivative" class="reference-icon">';
+    derivativeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openDerivativePage();
+    });
+
+    // Create reference sheet buttons container
+    const referenceButtonsContainer = document.createElement('div');
+    referenceButtonsContainer.className = 'reference-buttons-container';
+    
+    // Create reference sheet buttons
+    const referenceButtons = [
+        { pdf: 'advmath.pdf', label: 'Math Advanced', shortcut: '1', icon: '../assets/ma.png' },
+        { pdf: 'standardmath.pdf', label: 'Math Standard', shortcut: '2', icon: '../assets/ms.png' },
+        { pdf: 'chem.pdf', label: 'flask', shortcut: '3', icon: '../assets/flask-with-liquid.svg' },
+        { pdf: 'phys.pdf', label: 'atom', shortcut: '4', icon: '../assets/atom.svg' }
+    ];
+
+    // Create and append reference sheet buttons
+    referenceButtons.forEach(({ pdf, label, shortcut, icon }) => {
+        const btn = document.createElement('button');
+        btn.className = 'reference-btn';
+        btn.setAttribute('data-pdf', pdf);
+        btn.setAttribute('title', `${label} (${shortcut})`);
+        
+        btn.innerHTML = `<img src="${icon}" alt="${label}" class="reference-icon">`;
+        
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openReferenceSheet(pdf);
+        });
+        
+        referenceButtonsContainer.appendChild(btn);
+    });
+
+    // Function to open reference sheet
+    function openReferenceSheet(pdfName) {
+        const embedViewer = document.querySelector('.embed-viewer');
+        if (!embedViewer) return;
+        
+        const src = chrome.runtime.getURL('popup/' + pdfName);
+        embedViewer.innerHTML = `
+            <button class="close-embed" aria-label="Close">×</button>
+            <iframe class="embed-frame" frameborder="0"></iframe>
+        `;
+        const newFrame = embedViewer.querySelector('.embed-frame');
+        newFrame.src = src;
+        embedViewer.classList.remove('hidden');
+        embedViewer.classList.add('pdf-view');
+        
+        // Re-wire close
+        embedViewer.querySelector('.close-embed').addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            embedViewer.classList.add('hidden');
+            embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
+        });
+        
+        // Load/error handling
+        newFrame.addEventListener('error', () => {
+            embedViewer.classList.remove('pdf-view');
+            embedViewer.classList.remove('hidden');
+            embedViewer.innerHTML = `<div class="embed-error"><p>Failed to load PDF.</p><button class="open-new-tab">Open in new tab</button></div>`;
+            const btn = embedViewer.querySelector('.open-new-tab');
+            btn && btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try { chrome.tabs.create({ url: src }); } catch (e) { window.open(src, '_blank'); }
+            });
+        });
+    }
+
+    // Function to open Wolfram Alpha in new tab
+    function openWolframPage() {
+        const wolframUrl = 'https://www.wolframalpha.com/';
+        try { 
+            chrome.tabs.create({ url: wolframUrl }); 
+        } catch (e) { 
+            window.open(wolframUrl, '_blank'); 
+        }
+    }
+
+    // Function to open Desmos in iframe (retaining iframe functionality)
+    function openDesmosPage() {
+        const embedViewer = document.querySelector('.embed-viewer');
+        if (!embedViewer) return;
+        
+        const desmosUrl = 'https://www.desmos.com/calculator';
+        embedViewer.innerHTML = `
+            <button class="close-embed" aria-label="Close">×</button>
+            <iframe class="embed-frame" frameborder="0"></iframe>
+        `;
+        const newFrame = embedViewer.querySelector('.embed-frame');
+        newFrame.src = desmosUrl;
+        embedViewer.classList.remove('hidden');
+        embedViewer.classList.add('desmos-view');
+        
+        // Re-wire close
+        embedViewer.querySelector('.close-embed').addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            embedViewer.classList.add('hidden');
+            embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
+        });
+        
+        // Load/error handling
+        newFrame.addEventListener('error', () => {
+            embedViewer.classList.remove('desmos-view');
+            embedViewer.classList.remove('hidden');
+            embedViewer.innerHTML = `<div class="embed-error"><p>Desmos could not be embedded in the popup. Open in a new tab instead?</p><button class="open-new-tab">Open in new tab</button></div>`;
+            const btn = embedViewer.querySelector('.open-new-tab');
+            btn && btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                try { chrome.tabs.create({ url: desmosUrl }); } catch (e) { window.open(desmosUrl, '_blank'); }
+            });
+        });
+    }
+
+    // Function to open Integral Calculator in new tab
+    function openIntegralPage() {
+        const integralUrl = 'https://www.integral-calculator.com/';
+        try { 
+            chrome.tabs.create({ url: integralUrl }); 
+        } catch (e) { 
+            window.open(integralUrl, '_blank'); 
+        }
+    }
+
+    // Function to open Derivative Calculator in new tab
+    function openDerivativePage() {
+        const derivativeUrl = 'https://www.derivative-calculator.net/';
+        try { 
+            chrome.tabs.create({ url: derivativeUrl }); 
+        } catch (e) { 
+            window.open(derivativeUrl, '_blank'); 
+        }
+    }
+
+    // Create todo sidebar
+    const todoSidebar = document.createElement("div");
+    todoSidebar.className = "todo-sidebar";
+    todoSidebar.setAttribute("role", "complementary");
+    todoSidebar.innerHTML = `
+        <div class="todo-sidebar-content">
+            <div class="todo-sidebar-header">
+                <h2 class="todo-sidebar-heading">To-Do List</h2>
+                <button class="todo-close-btn" aria-label="Close To-Do List">×</button>
+            </div>
+            <div class="todo-input-container">
+                <input type="text" class="todo-input" placeholder="Add a new task..." maxlength="84">
+                <button class="todo-add-btn" aria-label="Add Task">+</button>
+            </div>
+            <div class="todo-list-container">
+                <ul class="todo-list" id="todoList">
+                    <!-- Tasks will be populated here -->
+                </ul>
+            </div>
+            <div class="todo-sidebar-footer">
+                <button class="todo-clear-btn" id="clearCompletedBtn">Clear Completed</button>
+                <button class="todo-clear-all-btn" id="clearAllBtn">Clear All</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(todoSidebar);
+
+    // Todo list functionality
+    let todos = [];
+    
+    function loadTodos() {
+        const saved = localStorage.getItem('todos');
+        todos = saved ? JSON.parse(saved) : [];
+    }
+    
+    function saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }
+    
+    function renderTodos() {
+        const todoList = document.getElementById('todoList');
+        if (!todoList) return;
+        
+        todoList.innerHTML = '';
+        
+        todos.forEach((todo, index) => {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.draggable = true;
+            li.dataset.index = index;
+            li.innerHTML = `
+                <label class="todo-checkbox-container">
+                    <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
+                    <span class="todo-text ${todo.completed ? 'completed' : ''}" title="${todo.text}">${todo.text}</span>
+                </label>
+                <button class="todo-delete-btn" aria-label="Delete Task">×</button>
+            `;
+            
+            // Checkbox event
+            const checkbox = li.querySelector('.todo-checkbox');
+            checkbox.addEventListener('change', (e) => {
+                e.stopPropagation(); // Prevent event bubbling
+                todos[index].completed = checkbox.checked;
+                saveTodos();
+                renderTodos();
+            });
+            
+            // Delete button event
+            const deleteBtn = li.querySelector('.todo-delete-btn');
+            deleteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent event bubbling
+                todos.splice(index, 1);
+                saveTodos();
+                renderTodos();
+            });
+            
+            // Drag and drop events
+            li.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', index);
+                li.classList.add('dragging');
+            });
+
+            li.addEventListener('dragend', () => {
+                li.classList.remove('dragging');
+            });
+
+            li.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                li.classList.add('drag-over');
+            });
+
+            li.addEventListener('dragleave', () => {
+                li.classList.remove('drag-over');
+            });
+
+            li.addEventListener('drop', (e) => {
+                e.preventDefault();
+                li.classList.remove('drag-over');
+
+                const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
+                const dropIndex = index;
+
+                if (draggedIndex !== dropIndex) {
+                    // Reorder the todos array
+                    const draggedTodo = todos[draggedIndex];
+                    todos.splice(draggedIndex, 1);
+                    todos.splice(dropIndex, 0, draggedTodo);
+
+                    // Save and re-render
+                    saveTodos();
+                    renderTodos();
+                }
+            });
+            
+            todoList.appendChild(li);
+        });
+        
+        updateClearButtons();
+    }
+    
+    function updateClearButtons() {
+        const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        
+        if (clearCompletedBtn) {
+            clearCompletedBtn.disabled = !todos.some(todo => todo.completed);
+        }
+        
+        if (clearAllBtn) {
+            clearAllBtn.disabled = todos.length === 0;
+        }
+    }
+    
+    function addTodo(text) {
+        if (todos.length >= 10) {
+            alert('Maximum 10 tasks allowed!');
+            return;
+        }
+        
+        if (text.trim().length === 0) {
+            return;
+        }
+        
+        todos.push({
+            text: text.trim(),
+            completed: false
+        });
+        
+        saveTodos();
+        renderTodos();
+    }
+    
+    function clearCompletedTodos() {
+        todos = todos.filter(todo => !todo.completed);
+        saveTodos();
+        renderTodos();
+    }
+    
+    function clearAllTodos() {
+        if (confirm('Are you sure you want to clear all tasks?')) {
+            todos = [];
+            saveTodos();
+            renderTodos();
+        }
+    }
+    
+    function toggleTodoSidebar() {
+        const todoSidebar = document.querySelector('.todo-sidebar');
+        if (todoSidebar) {
+            todoSidebar.classList.toggle('visible');
+        }
+    }
+    
+    function initTodoFunctionality() {
+        loadTodos();
+        renderTodos();
+        
+        // Input and add button
+        const todoInput = document.querySelector('.todo-input');
+        const todoAddBtn = document.querySelector('.todo-add-btn');
+        
+        if (todoInput && todoAddBtn) {
+            todoInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    addTodo(todoInput.value);
+                    todoInput.value = '';
+                }
+            });
+            
+            todoAddBtn.addEventListener('click', () => {
+                addTodo(todoInput.value);
+                todoInput.value = '';
+            });
+        }
+        
+        // Clear buttons
+        const clearCompletedBtn = document.getElementById('clearCompletedBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        
+        if (clearCompletedBtn) {
+            clearCompletedBtn.addEventListener('click', clearCompletedTodos);
+        }
+        
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', clearAllTodos);
+        }
+        
+        // Close button
+        const todoCloseBtn = document.querySelector('.todo-close-btn');
+        if (todoCloseBtn) {
+            todoCloseBtn.addEventListener('click', toggleTodoSidebar);
+        }
+        
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            const todoSidebar = document.querySelector('.todo-sidebar');
+            if (todoSidebar && todoSidebar.classList.contains('visible')) {
+                // Don't close if clicking on todo elements or buttons
+                if (!todoSidebar.contains(e.target) && 
+                    !e.target.classList.contains('todo-btn') &&
+                    !e.target.closest('.todo-item') &&
+                    !e.target.closest('.todo-delete-btn') &&
+                    !e.target.closest('.todo-checkbox')) {
+                    todoSidebar.classList.remove('visible');
+                }
+            }
+        });
+        
+        // Keyboard shortcut for todo list
+        document.addEventListener('keydown', (e) => {
+            if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+            if (e.key.toLowerCase() === 't') {
+                toggleTodoSidebar();
+            }
+        });
+    }
+    
+    // Initialize todo functionality
+    initTodoFunctionality();
+
+    // Create settings buttons container (right side)
+    const settingsButtonsContainer = document.createElement('div');
+    settingsButtonsContainer.className = 'settings-buttons-container';
+    
+    // Create settings buttons
+    const settingsButtons = [
+        { id: 'scrollbar-toggle-btn', title: 'Toggle Scrollbar', icon: '../assets/scroll toggle.png', shortcut: 'S', isImage: true },
+        { id: 'size-toggle-btn', title: 'Toggle Window Size', icon: '⛶', shortcut: 'V', isImage: false },
+        { id: 'upload-btn', title: 'Upload New Timetable', icon: '../assets/upload.svg', shortcut: 'U', isImage: true },
+        { id: 'toggle-btn', title: 'Toggle Theme', icon: '../assets/light or dark.svg', shortcut: 'T', isImage: true }
+    ];
+
+    // Create and append settings buttons
+    settingsButtons.forEach(({ id, title, icon, shortcut, isImage }) => {
+        const btn = document.createElement('button');
+        btn.className = 'settings-btn';
+        btn.id = id;
+        btn.setAttribute('title', `${title} (${shortcut})`);
+        
+        if (isImage) {
+            const img = document.createElement('img');
+            img.src = icon;
+            img.alt = title;
+            img.className = 'settings-icon';
+            btn.appendChild(img);
+        } else {
+            btn.innerHTML = icon;
+        }
+        
+        settingsButtonsContainer.appendChild(btn);
+    });
+
+    // Add event listeners for settings buttons
+    const scrollbarToggleBtn = settingsButtonsContainer.querySelector('#scrollbar-toggle-btn');
+    const sizeToggleBtn = settingsButtonsContainer.querySelector('#size-toggle-btn');
+    const uploadBtn = settingsButtonsContainer.querySelector('#upload-btn');
+    const toggleBtn = settingsButtonsContainer.querySelector('#toggle-btn');
+
+    // Scrollbar toggle
+    document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
+    scrollbarToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('scrollbar-off');
+        localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
+    });
+
+    // Size toggle
+    const savedSize = localStorage.getItem('windowSize');
+    if (savedSize === 'compact') {
+        document.documentElement.style.width = '630px';
+        document.body.style.width = '630px';
+        sizeToggleBtn.textContent = '⛶';
+    } else {
+        sizeToggleBtn.textContent = '⛶';
+    }
+    sizeToggleBtn.addEventListener('click', () => {
+        const isCompact = document.documentElement.style.width === '630px';
+        const newWidth = isCompact ? '800px' : '630px';
+        document.documentElement.style.width = newWidth;
+        document.body.style.width = newWidth;
+        localStorage.setItem('windowSize', isCompact ? 'full' : 'compact');
+    });
+
+    // Upload timetable
+    uploadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
+            chrome.storage.local.remove('parsedIcsData', () => {
+                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                    window.location.href = '../landing-page/landing.html';
+                }); 
+            });
+        }
+    });
+
+    // Theme toggle
+    if (localStorage.getItem("theme") === "light") document.body.classList.add("light-mode");
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle("light-mode");
+        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+    });
+
+    // Append elements in order: calendar, todo, wolfram, desmos, integral, derivative, reference buttons
     document.body.appendChild(calendarIcon);
+    document.body.appendChild(todoBtn);
+    document.body.appendChild(wolframBtn);
+    document.body.appendChild(desmosBtn);
+    document.body.appendChild(integralBtn);
+    document.body.appendChild(derivativeBtn);
+    document.body.appendChild(referenceButtonsContainer);
+    document.body.appendChild(settingsButtonsContainer);
 
 
     const datePicker = document.createElement('div');
@@ -684,26 +1046,13 @@ function injectCalendarUI() {
 document.addEventListener('DOMContentLoaded', async () => {
     countdownContainer = document.querySelector('.notif');
     scheduleContainer = document.querySelector('.blocks');
-    injectSidebarUI();
+    injectEmbedViewerUI();
     injectNavigationUI();
     injectCalendarUI();
-    sidebarBtns = [
-        document.querySelector('.sidebar-btn[data-pdf="advmath.pdf"]'),
-        document.querySelector('.sidebar-btn[data-pdf="standardmath.pdf"]'),
-        document.querySelector('.sidebar-btn[data-pdf="chem.pdf"]'),
-        document.querySelector('.sidebar-btn[data-pdf="phys.pdf"]'),
-        document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]')
-    ];
-
-    // Keyboard shortcuts for datasheets, Desmos, and day navigation (attach after sidebarBtns available)
+    // Keyboard shortcuts for day navigation
     document.addEventListener('keydown', (e) => {
         if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
         const key = e.key.toLowerCase();
-        if (e.key === '1' && sidebarBtns[0]) { sidebarBtns[0].click(); return; }
-        if (e.key === '2' && sidebarBtns[1]) { sidebarBtns[1].click(); return; }
-        if (e.key === '3' && sidebarBtns[2]) { sidebarBtns[2].click(); return; }
-        if (e.key === '4' && sidebarBtns[3]) { sidebarBtns[3].click(); return; }
-        if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) { sidebarBtns[4].click(); return; }
         if (key === 'q' || e.key === 'ArrowLeft') {
             initialize(moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD'));
             return;

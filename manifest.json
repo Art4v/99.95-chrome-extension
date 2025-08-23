@@ -24,7 +24,7 @@
     }
     ,
     "content_security_policy": {
-      "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self' https://www.desmos.com;"
+      "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self' https://www.desmos.com https://www.wolframalpha.com;"
     }
   }
   
