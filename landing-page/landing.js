@@ -199,61 +199,84 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function parseIcsData(icsData) {
         try {
-            if (typeof ICAL === 'undefined' || typeof moment === 'undefined') {
-                throw new Error('Required libraries (ICAL, moment) are not loaded.');
+            if (typeof ICAL === 'undefined' || typeof moment === 'undefined' || !window._99_95_utils) {
+                throw new Error('Required libraries (ICAL, moment) or shared utilities are not loaded.');
             }
+
             const cal = new ICAL.Component(ICAL.parse(icsData));
-            const events = cal.getAllSubcomponents('vevent');
-            const blacklist = ["Yr7", "Yr8", "Yr9", "Yr10", "Yr11", "Yr12"];
-            const filter = input => input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
-            const allDates = events.map(event => moment(event.getFirstPropertyValue('dtstart').toString()).clone().tz('Australia/Sydney'));
-            allDates.sort((a, b) => a.valueOf() - b.valueOf());
-            if (!allDates.length) {
+            const events = cal.getAllSubcomponents('vevent') || [];
+            if (!events.length) {
                 statusDiv.textContent = 'No events found in the ICS file.';
                 statusDiv.className = 'status error';
                 return;
             }
+
+            const blacklist = ['Yr7', 'Yr8', 'Yr9', 'Yr10', 'Yr11', 'Yr12'];
+            const filter = input => input.split(' ').filter(word => !blacklist.includes(word)).join(' ');
+
+            const allDates = events.map(event => {
+                try {
+                    return moment(event.getFirstPropertyValue('dtstart').toString()).clone().tz(window._99_95_utils.TZ);
+                } catch (e) {
+                    return null;
+                }
+            }).filter(Boolean);
+
+            allDates.sort((a, b) => a.valueOf() - b.valueOf());
+            if (!allDates.length) {
+                statusDiv.textContent = 'No valid event datetimes found in the ICS file.';
+                statusDiv.className = 'status error';
+                return;
+            }
+
             const firstDate = allDates[0], lastDate = allDates[allDates.length - 1];
             const days = lastDate.diff(firstDate, 'days') + 1;
             const outputData = {};
+
             for (let i = 0; i < days; i++) {
                 const currentDate = firstDate.clone().add(i, 'days');
                 const dateString = currentDate.format('YYYY-MM-DD');
                 outputData[dateString] = [];
                 events.forEach(event => {
-                    const startDate = moment(event.getFirstPropertyValue('dtstart').toString()).clone().tz('Australia/Sydney');
-                    if (startDate.format('YYYY-MM-DD') === dateString) {
-                        const endDate = moment(event.getFirstPropertyValue('dtend').toString()).clone().tz('Australia/Sydney');
-                        const summary = event.getFirstPropertyValue('summary') || '';
-                        const [classInfo, name = ''] = summary.split(': ');
-                        const location = event.getFirstPropertyValue('location') || '';
-                        const [, locationValue = ''] = location.split(': ');
-                        const description = event.getFirstPropertyValue('description') || '';
-                        const descriptionLines = description.split('\n');
-                        const [, teacher = ''] = (descriptionLines[0] || '').split(': ');
-                        const [, period = ''] = (descriptionLines[1] || '').split(': ');
-                        outputData[dateString].push({
-                            "c": classInfo,
-                            "n": filter(name),
-                            "l": locationValue,
-                            "t": teacher,
-                            "p": period,
-                            "s": startDate.format('HH:mm'),
-                            "e": endDate.format('HH:mm')
-                        });
+                    try {
+                        const startDate = moment(event.getFirstPropertyValue('dtstart').toString()).clone().tz(window._99_95_utils.TZ);
+                        if (startDate.format('YYYY-MM-DD') === dateString) {
+                            const endDate = moment(event.getFirstPropertyValue('dtend').toString()).clone().tz(window._99_95_utils.TZ);
+                            const summary = event.getFirstPropertyValue('summary') || '';
+                            const [classInfo, name = ''] = summary.split(': ');
+                            const location = event.getFirstPropertyValue('location') || '';
+                            const [, locationValue = ''] = location.split(': ');
+                            const description = event.getFirstPropertyValue('description') || '';
+                            const descriptionLines = description.split('\n');
+                            const [, teacher = ''] = (descriptionLines[0] || '').split(': ');
+                            const [, period = ''] = (descriptionLines[1] || '').split(': ');
+                            outputData[dateString].push({
+                                c: classInfo,
+                                n: filter(name),
+                                l: locationValue,
+                                t: teacher,
+                                p: period,
+                                s: startDate.format('HH:mm'),
+                                e: endDate.format('HH:mm')
+                            });
+                        }
+                    } catch (err) {
+                        // ignore malformed events but keep parsing
+                        console.debug('Skipping malformed event:', err && err.message);
                     }
                 });
                 outputData[dateString].sort((a, b) => a.s.localeCompare(b.s));
             }
+
             const outputText = JSON.stringify(outputData);
-            chrome.storage.local.set({ 'parsedIcsData': outputText }, function() {
+            chrome.storage.local.set({ parsedIcsData: outputText }, function () {
                 statusDiv.textContent = 'ICS data successfully parsed and stored!';
                 statusDiv.className = 'status success';
                 chrome.runtime.sendMessage({ type: 'storageUpdated' });
                 window.location.href = '../popup/popup.html';
             });
         } catch (error) {
-            statusDiv.textContent = 'Error parsing ICS file: ' + error.message;
+            statusDiv.textContent = 'Error parsing ICS file: ' + (error && error.message);
             statusDiv.className = 'status error';
             console.error('Error parsing ICS file:', error);
         }

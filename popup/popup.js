@@ -1,27 +1,94 @@
 // Dependency checks
-if (typeof moment === "undefined" || typeof ICAL === "undefined") {
-    alert("Required libraries (moment.js, ical.js) are not loaded. Please check your extension setup.");
-    throw new Error("Required libraries not loaded.");
+if (typeof moment === 'undefined' || typeof ICAL === 'undefined' || !window._99_95_utils) {
+    alert('Required libraries (moment.js, ical.js) or shared utilities are not loaded. Please check your extension setup.');
+    throw new Error('Required libraries or utilities not loaded.');
 }
 
-// Utility: Combine date and time string into a Date object (Australia/Sydney)
+const TZ = window._99_95_utils.TZ;
+
+// Local wrappers that delegate to shared utils (keeps callsites unchanged)
 function getDateTime(dateString, timeString) {
-    return moment.tz(`${dateString}T${timeString}:00`, "Australia/Sydney").toDate();
+    return window._99_95_utils.getDateTime(dateString, timeString);
 }
 
-// Utility: Format time range
 function formatTimeRange(date, start, end) {
-    const opts = { hour: '2-digit', minute: '2-digit' };
-    return `${getDateTime(date, start).toLocaleTimeString([], opts)} – ${getDateTime(date, end).toLocaleTimeString([], opts)}`;
+    return window._99_95_utils.formatTimeRange(date, start, end);
 }
 
-// Utility: Get today's date in local ISO format (YYYY-MM-DD)
 function getLocalISODateString(date) {
-    return moment.tz(date, "Australia/Sydney").format("YYYY-MM-DD");
+    return window._99_95_utils.getLocalISODateString(date);
 }
 
 let notifElem, blocksElem, navDateElem, sidebarBtns = [];
-let globalTimer, lastNotifHTML = '', progressBar, progressBarContainer, displayedDate = null;
+let progressBar, progressBarContainer, displayedDate = null;
+let rafId = null;
+let lastNotifHTML = '';
+let lastAnimUpdate = 0;
+const ANIM_THROTTLE_MS = 250; // throttle updates to this interval
+
+// CountdownController: encapsulates requestAnimationFrame loop and exposes start/stop
+const CountdownController = (function () {
+    let _rafId = null;
+    let _lastTs = 0;
+
+        function _step(targetTime, countdownStartTime, onTick, onFinish) {
+            _rafId = requestAnimationFrame(function frame(ts) {
+            try {
+                if (!_lastTs || ts - _lastTs >= ANIM_THROTTLE_MS) {
+                    const now = window._99_95_utils.now();
+                    const timeDiff = Math.max(0, targetTime - now);
+                    const total = targetTime - countdownStartTime;
+                    const percent = total > 0 ? Math.max(0, Math.min(1, (now - countdownStartTime) / total)) : 0;
+                    onTick && onTick({ now, timeDiff, percent });
+                    _lastTs = ts;
+                }
+
+                        if (window._99_95_utils.now() >= targetTime) {
+                            // finished
+                            stop();
+                            onTick && onTick({ now: window._99_95_utils.now(), timeDiff: 0, percent: 1 });
+                            onFinish && onFinish();
+                            return;
+                        }
+
+                        _step(targetTime, countdownStartTime, onTick, onFinish);
+            } catch (err) {
+                console.error('CountdownController loop error:', err);
+                stop();
+            }
+        });
+    }
+
+        function start(targetTime, countdownStartTime, onTick, onFinish) {
+            stop();
+            _lastTs = 0;
+            _step(targetTime, countdownStartTime, onTick, onFinish);
+        }
+
+    function stop() {
+        try {
+            if (_rafId) cancelAnimationFrame(_rafId);
+        } catch (e) {
+            console.debug('Error cancelling RAF in CountdownController', e && e.message);
+        }
+        _rafId = null;
+        _lastTs = 0;
+    }
+
+    return { start, stop };
+})();
+
+// Make stopCountdown delegate to CountdownController as well
+function stopCountdown() {
+    try {
+        CountdownController.stop();
+    } catch (e) {
+        console.debug('Error in stopCountdown:', e && e.message);
+    }
+    // backward compatibility: clear any local rafId
+    try { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } } catch(e){}
+    lastAnimUpdate = 0;
+}
 
 // Inject sidebar, hamburger, and embed viewer UI
 function injectSidebarUI() {
@@ -29,7 +96,6 @@ function injectSidebarUI() {
     const sidebar = document.createElement("div");
     sidebar.className = "sidebar";
     sidebar.setAttribute("role", "complementary");
-    sidebar.setAttribute("aria-label", "Sidebar");
     sidebar.innerHTML = `
         <div class="sidebar-content">
             <div class="sidebar-section">
@@ -44,7 +110,6 @@ function injectSidebarUI() {
             <div class="sidebar-section">
                 <h2 class="sidebar-heading">Utilities</h2>
                 <button class="sidebar-btn" data-url="https://www.desmos.com/calculator">Desmos</button>
-            </div>
         </div>
         <div class="sidebar-footer" style="margin-top: 48px; position: relative; flex-direction: column;">
             <div class="sidebar-footer-buttons" style="display: flex; gap: 8px; width: 100%;">
@@ -56,7 +121,6 @@ function injectSidebarUI() {
             <div class="sidebar-footer-info">
                 <span class="sidebar-footer-instructions">1-4/D for Utilities, Q/W/E or ←/↑/→ for Navigation</span>
                 <span class="sidebar-footer-credits">By Aarav B, Sai P, Andy L.</span>
-            </div>
         </div>
     `;
 
@@ -103,23 +167,40 @@ function injectSidebarUI() {
         }
     });
 
-    // Sidebar PDF/URL buttons
-    sidebar.querySelectorAll('.sidebar-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
-            const frame = embedViewer.querySelector('.embed-frame');
-            frame.src = src;
-            embedViewer.classList.remove('pdf-view', 'desmos-view');
-            if (btn.getAttribute('data-pdf')) embedViewer.classList.add('pdf-view');
-            else if (btn.getAttribute('data-url')) embedViewer.classList.add('desmos-view');
-            const isCompact = localStorage.getItem('windowSize') === 'compact';
-            if (isCompact) {
-                document.documentElement.style.width = '800px';
-                document.body.style.width = '800px';
+    // Sidebar PDF/URL buttons (accessibility: keyboard + roles)
+    sidebar.querySelectorAll('.sidebar-btn').forEach((btn, idx) => {
+        btn.setAttribute('role', 'button');
+        btn.tabIndex = 0;
+        btn.addEventListener('click', () => openSidebarItem(btn));
+        btn.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' || ev.key === ' ') {
+                ev.preventDefault();
+                openSidebarItem(btn);
             }
-            embedViewer.classList.remove('hidden');
+            // quick keys: 1-4, d
+            if (/^[1-4]$/.test(ev.key)) {
+                const n = Number(ev.key) - 1;
+                const target = sidebar.querySelectorAll('.sidebar-btn')[n];
+                if (target) openSidebarItem(target);
+            }
         });
     });
+
+    function openSidebarItem(btn) {
+        const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
+        const frame = embedViewer.querySelector('.embed-frame');
+        frame.src = src;
+        embedViewer.classList.remove('pdf-view', 'desmos-view');
+        if (btn.getAttribute('data-pdf')) embedViewer.classList.add('pdf-view');
+        else if (btn.getAttribute('data-url')) embedViewer.classList.add('desmos-view');
+        const isCompact = localStorage.getItem('windowSize') === 'compact';
+        if (isCompact) {
+            document.documentElement.style.width = '800px';
+            document.body.style.width = '800px';
+        }
+        embedViewer.classList.remove('hidden');
+        frame.focus && frame.focus();
+    }
 
     // Close embed viewer
     embedViewer.querySelector('.close-embed').addEventListener('click', () => {
@@ -180,9 +261,10 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         progressBarContainer && progressBarContainer.remove();
         return;
     }
+    // Ensure previous countdown is stopped to avoid races
+    stopCountdown();
     const targetTime = getDateTime(date, isCurrentClass ? target.e : target.s);
-    const countdownStartTime = isCurrentClass ? getDateTime(date, target.s) : moment.tz("Australia/Sydney").toDate();
-    globalTimer && clearInterval(globalTimer);
+    const countdownStartTime = isCurrentClass ? getDateTime(date, target.s) : window._99_95_utils.now();
 
     if (!progressBarContainer) {
         progressBarContainer = document.createElement('div');
@@ -195,56 +277,56 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         notif.appendChild(progressBarContainer);
     }
 
-    function updateCountdown() {
-        const currentTime = moment.tz("Australia/Sydney").toDate();
-        const timeDiff = Math.max(0, targetTime - currentTime);
-        const total = targetTime - countdownStartTime;
-        const percent = total > 0 ? Math.max(0, Math.min(1, (currentTime - countdownStartTime) / total)) : 0;
-        progressBar.style.width = (percent * 100) + '%';
-        progressBar.setAttribute('aria-valuenow', (percent * 100));
+    // Ensure stable DOM nodes for title/details to avoid reflows
+    let titleElem = notif.querySelector('h1');
+    let detailsElem = notif.querySelector('h2');
+    if (!titleElem) { titleElem = document.createElement('h1'); notif.appendChild(titleElem); }
+    if (!detailsElem) { detailsElem = document.createElement('h2'); notif.appendChild(detailsElem); }
 
-        const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
-        const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
-        const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
+    // Use CountdownController to drive updates
+    CountdownController.start(targetTime, countdownStartTime, ({ now, timeDiff, percent }) => {
+        try {
+            progressBar.style.width = (percent * 100) + '%';
+            progressBar.setAttribute('aria-valuenow', Math.round(percent * 100));
 
-        let teacher = (target.t || '').trim();
-        let room = (target.l || '').trim();
-        let detailsLine = teacher && room ? `<h2>With ${teacher} in Room ${room}</h2>` :
-            teacher ? `<h2>With ${teacher}</h2>` :
-            room ? `<h2>In Room ${room}</h2>` : '';
+            const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
+            const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
+            const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
-        const newHTML = `
-            <h1>${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}</h1>
-            ${detailsLine}
-        `;
-
-        if (newHTML !== lastNotifHTML) {
-            notif.innerHTML = newHTML;
-            notif.appendChild(progressBarContainer);
-            lastNotifHTML = newHTML;
+            titleElem.textContent = `${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}`;
+            let teacher = (target.t || '').trim();
+            let room = (target.l || '').trim();
+            if (teacher && room) detailsElem.textContent = `With ${teacher} in Room ${room}`;
+            else if (teacher) detailsElem.textContent = `With ${teacher}`;
+            else if (room) detailsElem.textContent = `In Room ${room}`;
+            else detailsElem.textContent = '';
+        } catch (err) {
+            console.error('Tick handler failed:', err);
+            stopCountdown();
         }
-
-        if (timeDiff <= 0) {
-            clearInterval(globalTimer);
-            const current = getCurrentClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
-            if (current) {
+    }, function onFinish(err) {
+        if (err) {
+            console.error('Countdown finished with error:', err);
+            return;
+        }
+        // When countdown finishes, attempt to advance schedule
+        const current = getCurrentClass(schedule, window._99_95_utils.now(), date);
+        if (current) {
+            renderSchedule(schedule, date);
+            startCountdown(current, true, schedule, date);
+        } else {
+            const next = getNextClass(schedule, window._99_95_utils.now(), date);
+            if (next) {
                 renderSchedule(schedule, date);
-                startCountdown(current, true, schedule, date);
+                startCountdown(next, false, schedule, date);
             } else {
-                const next = getNextClass(schedule, moment.tz("Australia/Sydney").toDate(), date);
-                if (next) {
-                    renderSchedule(schedule, date);
-                    startCountdown(next, false, schedule, date);
-                } else {
-                    notif.innerHTML = '<h1>No more classes today</h1>';
-                    progressBarContainer && progressBarContainer.remove();
-                }
+                // No more classes
+                notifElem.querySelector('h1').textContent = 'No more classes today';
+                const details = notifElem.querySelector('h2'); if (details) details.textContent = '';
+                progressBarContainer && progressBarContainer.remove();
             }
         }
-    }
-
-    updateCountdown();
-    globalTimer = setInterval(updateCountdown, 1000);
+    });
 }
 
 // Render block element
@@ -292,8 +374,7 @@ function renderSchedule(schedule, date) {
 
 // Check if weekend
 function isWeekend(date) {
-    const day = moment.tz(date, "Australia/Sydney").day();
-    return day === 0 || day === 6;
+    return window._99_95_utils.isWeekend(date);
 }
 
 // Fetch schedule from chrome.storage.local
@@ -304,7 +385,8 @@ function fetchSchedule(date) {
             try {
                 const allData = JSON.parse(data.parsedIcsData);
                 resolve(allData[date] || []);
-            } catch {
+            } catch (err) {
+                console.error('Failed to read parsedIcsData from storage:', err);
                 resolve([]);
             }
         });
@@ -332,10 +414,12 @@ function injectNavigationUI() {
     blocksElem.parentNode.insertBefore(navContainer, blocksElem);
     navDateElem = navContainer.querySelector('.nav-date');
     navContainer.querySelector('.yesterday-btn').addEventListener('click', () => {
-        initialize(moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day').format('YYYY-MM-DD'));
+        const d = moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD');
+        initialize(d);
     });
     navContainer.querySelector('.tomorrow-btn').addEventListener('click', () => {
-        initialize(moment.tz(displayedDate, "Australia/Sydney").add(1, 'day').format('YYYY-MM-DD'));
+        const d = moment.tz(displayedDate, TZ).add(1, 'day').format('YYYY-MM-DD');
+        initialize(d);
     });
     return navContainer;
 }
@@ -343,12 +427,12 @@ function injectNavigationUI() {
 // --- Update date display ---
 function updateNavDate(date) {
     // Use cached navDateElem
-    navDateElem.textContent = moment.tz(date, "Australia/Sydney").format("dddd, D MMMM YYYY");
+    navDateElem.textContent = moment.tz(date, TZ).format('dddd, D MMMM YYYY');
 }
 
 // --- Modified main initialization to accept a date ---
 async function initialize(dateOverride) {
-    const now = moment.tz("Australia/Sydney").toDate();
+    const now = window._99_95_utils.now();
     const todayDate = getLocalISODateString(now);
     const currentDate = dateOverride || todayDate;
     displayedDate = currentDate;
@@ -359,7 +443,7 @@ async function initialize(dateOverride) {
         blocksElem.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
         if (currentDate === todayDate) {
             notifElem.innerHTML = '<h1>Enjoy your day off!</h1>';
-            if (globalTimer) clearInterval(globalTimer);
+            stopCountdown();
             if (progressBarContainer) progressBarContainer.remove();
         }
         return;
@@ -371,7 +455,7 @@ async function initialize(dateOverride) {
     if (!schedule.length) {
         if (currentDate === todayDate) {
             notifElem.innerHTML = '<h1>No classes today!</h1>';
-            if (globalTimer) clearInterval(globalTimer);
+            stopCountdown();
             if (progressBarContainer) progressBarContainer.remove();
         }
         return;
@@ -529,15 +613,15 @@ document.addEventListener('keydown', (e) => {
     if (e.key === '4' && sidebarBtns[3]) { sidebarBtns[3].click(); return; }
     if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) { sidebarBtns[4].click(); return; }
     if (key === 'q' || e.key === 'ArrowLeft') {
-        initialize(moment.tz(displayedDate, "Australia/Sydney").subtract(1, 'day').format("YYYY-MM-DD"));
+    initialize(moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD'));
         return;
     }
     if (key === 'e' || e.key === 'ArrowRight') {
-        initialize(moment.tz(displayedDate, "Australia/Sydney").add(1, 'day').format("YYYY-MM-DD"));
+    initialize(moment.tz(displayedDate, TZ).add(1, 'day').format('YYYY-MM-DD'));
         return;
     }
     if (key === 'w' || e.key === 'ArrowUp') {
-        initialize(getLocalISODateString(moment.tz("Australia/Sydney").toDate()));
+    initialize(getLocalISODateString(window._99_95_utils.now()));
         return;
     }
 });
@@ -558,10 +642,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     ];
     await initialize();
     let lastDate = getLocalISODateString(moment.tz("Australia/Sydney").toDate());
-    setInterval(() => {
-        const now = moment.tz("Australia/Sydney").toDate();
+    let lastDateCheck = getLocalISODateString(window._99_95_utils.now());
+    const DATE_CHECK_INTERVAL_MS = 30000; // 30s
+    const dateInterval = setInterval(() => {
+        const now = window._99_95_utils.now();
         const currentDate = getLocalISODateString(now);
-        if (displayedDate === lastDate && currentDate !== lastDate) initialize(currentDate);
-        lastDate = currentDate;
-    }, 5000);
+        if (displayedDate === lastDateCheck && currentDate !== lastDateCheck) initialize(currentDate);
+        lastDateCheck = currentDate;
+    }, DATE_CHECK_INTERVAL_MS);
+
+    // Cancel countdown and intervals on unload to avoid leaks
+    window.addEventListener('unload', () => {
+        stopCountdown();
+        clearInterval(dateInterval);
+    });
 });
