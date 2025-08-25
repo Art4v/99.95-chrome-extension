@@ -19,39 +19,36 @@ function getLocalISODateString(date) {
     return window._99_95_utils.getLocalISODateString(date);
 }
 
-let notifElem, blocksElem, navDateElem, sidebarBtns = [];
+let countdownContainer, scheduleContainer, navDateElem, sidebarBtns = [];
 let progressBar, progressBarContainer, displayedDate = null;
-let rafId = null;
-let lastNotifHTML = '';
-let lastAnimUpdate = 0;
-const ANIM_THROTTLE_MS = 250; // throttle updates to this interval
+const ANIM_THROTTLE_MS = 250; // throttle updates to this interval (ms)
 
 // CountdownController: encapsulates requestAnimationFrame loop and exposes start/stop
 const CountdownController = (function () {
     let _rafId = null;
     let _lastTs = 0;
 
-        function _step(targetTime, countdownStartTime, onTick, onFinish) {
-            _rafId = requestAnimationFrame(function frame(ts) {
+    function _step(targetTs, startTs, onTick, onFinish) {
+        _rafId = requestAnimationFrame(function frame(ts) {
             try {
+                const nowTs = window._99_95_utils.now();
                 if (!_lastTs || ts - _lastTs >= ANIM_THROTTLE_MS) {
-                    const now = window._99_95_utils.now();
-                    const timeDiff = Math.max(0, targetTime - now);
-                    const total = targetTime - countdownStartTime;
-                    const percent = total > 0 ? Math.max(0, Math.min(1, (now - countdownStartTime) / total)) : 0;
-                    onTick && onTick({ now, timeDiff, percent });
+                    const timeDiff = Math.max(0, targetTs - nowTs);
+                    const total = Math.max(0, targetTs - startTs);
+                    const percent = total > 0 ? Math.max(0, Math.min(1, (nowTs - startTs) / total)) : 0;
+                    onTick && onTick({ nowTs, timeDiff, percent });
                     _lastTs = ts;
                 }
 
-                        if (window._99_95_utils.now() >= targetTime) {
-                            // finished
-                            stop();
-                            onTick && onTick({ now: window._99_95_utils.now(), timeDiff: 0, percent: 1 });
-                            onFinish && onFinish();
-                            return;
-                        }
+                if (nowTs >= targetTs) {
+                    // finished
+                    stop();
+                    onTick && onTick({ nowTs: window._99_95_utils.now(), timeDiff: 0, percent: 1 });
+                    onFinish && onFinish();
+                    return;
+                }
 
-                        _step(targetTime, countdownStartTime, onTick, onFinish);
+                _step(targetTs, startTs, onTick, onFinish);
             } catch (err) {
                 console.error('CountdownController loop error:', err);
                 stop();
@@ -59,11 +56,11 @@ const CountdownController = (function () {
         });
     }
 
-        function start(targetTime, countdownStartTime, onTick, onFinish) {
-            stop();
-            _lastTs = 0;
-            _step(targetTime, countdownStartTime, onTick, onFinish);
-        }
+    function start(targetTs, startTs, onTick, onFinish) {
+        stop();
+        _lastTs = 0;
+        _step(targetTs, startTs, onTick, onFinish);
+    }
 
     function stop() {
         try {
@@ -78,16 +75,11 @@ const CountdownController = (function () {
     return { start, stop };
 })();
 
-// Make stopCountdown delegate to CountdownController as well
+/**
+ * stopCountdown - stop any running countdown.
+ */
 function stopCountdown() {
-    try {
-        CountdownController.stop();
-    } catch (e) {
-        console.debug('Error in stopCountdown:', e && e.message);
-    }
-    // backward compatibility: clear any local rafId
-    try { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } } catch(e){}
-    lastAnimUpdate = 0;
+    try { CountdownController.stop(); } catch (e) { console.debug('Error in stopCountdown:', e && e.message); }
 }
 
 // Inject sidebar, hamburger, and embed viewer UI
@@ -187,19 +179,66 @@ function injectSidebarUI() {
     });
 
     function openSidebarItem(btn) {
-        const src = btn.getAttribute('data-pdf') || btn.getAttribute('data-url');
+        const pdf = btn.getAttribute('data-pdf');
+        const url = btn.getAttribute('data-url');
         const frame = embedViewer.querySelector('.embed-frame');
-        frame.src = src;
-        embedViewer.classList.remove('pdf-view', 'desmos-view');
-        if (btn.getAttribute('data-pdf')) embedViewer.classList.add('pdf-view');
-        else if (btn.getAttribute('data-url')) embedViewer.classList.add('desmos-view');
-        const isCompact = localStorage.getItem('windowSize') === 'compact';
-        if (isCompact) {
-            document.documentElement.style.width = '800px';
-            document.body.style.width = '800px';
+        const closeAndShowError = (msg) => {
+            embedViewer.classList.remove('pdf-view', 'desmos-view');
+            embedViewer.classList.remove('hidden');
+            embedViewer.innerHTML = `<div class="embed-error"><p>${msg}</p><button class="open-new-tab">Open in new tab</button></div>`;
+            const btn = embedViewer.querySelector('.open-new-tab');
+            btn && btn.addEventListener('click', () => {
+                try { chrome.tabs.create({ url }); } catch (e) { window.open(url, '_blank'); }
+            });
+        };
+
+        if (pdf) {
+            // Use chrome.runtime.getURL to produce a correct chrome-extension:// URL
+            const src = chrome.runtime.getURL('popup/' + pdf);
+            embedViewer.innerHTML = `\n                <button class="close-embed" aria-label="Close">×</button>\n                <iframe class="embed-frame" frameborder="0"></iframe>\n            `;
+            const newFrame = embedViewer.querySelector('.embed-frame');
+            newFrame.src = src;
+            embedViewer.classList.remove('hidden');
+            embedViewer.classList.add('pdf-view');
+            // Re-wire close
+            embedViewer.querySelector('.close-embed').addEventListener('click', () => {
+                embedViewer.classList.add('hidden');
+                embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
+            });
+            // Load/error handling: if iframe fails to load show fallback
+            newFrame.addEventListener('error', () => closeAndShowError('Failed to load PDF.')); 
+            return;
         }
-        embedViewer.classList.remove('hidden');
-        frame.focus && frame.focus();
+
+        if (url) {
+            // Attempt to embed Desmos directly
+            embedViewer.innerHTML = `\n                <button class="close-embed" aria-label="Close">×</button>\n                <iframe class="embed-frame" frameborder="0" allowfullscreen></iframe>\n            `;
+            const newFrame = embedViewer.querySelector('.embed-frame');
+            const desmosUrl = url; // expected https://www.desmos.com/calculator
+            newFrame.src = desmosUrl;
+            embedViewer.classList.remove('hidden');
+            embedViewer.classList.add('desmos-view');
+            embedViewer.querySelector('.close-embed').addEventListener('click', () => {
+                embedViewer.classList.add('hidden');
+                embedViewer.querySelector('.embed-frame') && (embedViewer.querySelector('.embed-frame').src = '');
+            });
+            // If embedding is blocked by CSP or fails, show a fallback with open-in-new-tab
+            newFrame.addEventListener('error', () => closeAndShowError('Desmos could not be embedded in the popup. Open in a new tab instead?'));
+            // Also set a timeout: if the frame doesn't signal sized content in a few seconds, provide fallback option
+            const loadTimeout = setTimeout(() => {
+                // If iframe is still in document and not hidden, offer fallback
+                if (document.body.contains(newFrame) && !embedViewer.classList.contains('hidden')) {
+                    // Provide unobtrusive fallback (don't immediately close embed)
+                    const notice = document.createElement('div');
+                    notice.className = 'embed-fallback';
+                    notice.innerHTML = '<p>If Desmos does not load, you can <a class="open-tab" href="#">open it in a new tab</a>.</p>';
+                    embedViewer.appendChild(notice);
+                    const a = notice.querySelector('.open-tab');
+                    a.addEventListener('click', (e) => { e.preventDefault(); try { chrome.tabs.create({ url: desmosUrl }); } catch (e) { window.open(desmosUrl, '_blank'); } });
+                }
+            }, 3000);
+            newFrame.addEventListener('load', () => clearTimeout(loadTimeout));
+        }
     }
 
     // Close embed viewer
@@ -239,23 +278,30 @@ function injectSidebarUI() {
     });
 }
 
-// Find the next class (assumes sorted input)
-function getNextClass(schedule, now, date) {
-    return schedule.find(entry => getDateTime(date, entry.s) > now) || null;
+// Find the next class (assumes schedule times are sorted). All times are epoch ms.
+function getNextClass(schedule, nowTs, date) {
+    return schedule.find(entry => getDateTime(date, entry.s) > nowTs) || null;
 }
 
 // Find current class
-function getCurrentClass(schedule, now, date) {
+function getCurrentClass(schedule, nowTs, date) {
     return schedule.find(entry => {
         const start = getDateTime(date, entry.s);
         const end = getDateTime(date, entry.e);
-        return now >= start && now <= end;
+        return nowTs >= start && nowTs <= end;
     }) || null;
 }
 
 // Countdown function
+/**
+ * startCountdown - begin the visual countdown for a target entry.
+ * @param {object} target - schedule entry
+ * @param {boolean} isCurrentClass
+ * @param {Array} schedule
+ * @param {string} date - YYYY-MM-DD
+ */
 function startCountdown(target, isCurrentClass, schedule, date) {
-    const notif = notifElem;
+    const notif = countdownContainer;
     if (!target) {
         notif.innerHTML = '<h1>No more classes today</h1>';
         progressBarContainer && progressBarContainer.remove();
@@ -271,6 +317,10 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         progressBarContainer.className = 'progress-bar-container';
         progressBar = document.createElement('div');
         progressBar.className = 'progress-bar';
+        // Accessibility: role and basic aria attributes
+        progressBar.setAttribute('role', 'progressbar');
+        progressBar.setAttribute('aria-valuemin', '0');
+        progressBar.setAttribute('aria-valuemax', '100');
         progressBarContainer.appendChild(progressBar);
         notif.appendChild(progressBarContainer);
     } else if (!notif.contains(progressBarContainer)) {
@@ -284,9 +334,10 @@ function startCountdown(target, isCurrentClass, schedule, date) {
     if (!detailsElem) { detailsElem = document.createElement('h2'); notif.appendChild(detailsElem); }
 
     // Use CountdownController to drive updates
-    CountdownController.start(targetTime, countdownStartTime, ({ now, timeDiff, percent }) => {
+    CountdownController.start(targetTime, countdownStartTime, ({ nowTs, timeDiff, percent }) => {
         try {
-            progressBar.style.width = (percent * 100) + '%';
+            // Use transform for smoother, GPU-composited updates
+            progressBar.style.transform = 'scaleX(' + percent + ')';
             progressBar.setAttribute('aria-valuenow', Math.round(percent * 100));
 
             const hours = String(Math.floor(timeDiff / 3.6e6)).padStart(2, '0');
@@ -305,27 +356,32 @@ function startCountdown(target, isCurrentClass, schedule, date) {
             stopCountdown();
         }
     }, function onFinish(err) {
-        if (err) {
-            console.error('Countdown finished with error:', err);
-            return;
-        }
-        // When countdown finishes, attempt to advance schedule
-        const current = getCurrentClass(schedule, window._99_95_utils.now(), date);
-        if (current) {
-            renderSchedule(schedule, date);
-            startCountdown(current, true, schedule, date);
-        } else {
-            const next = getNextClass(schedule, window._99_95_utils.now(), date);
-            if (next) {
-                renderSchedule(schedule, date);
-                startCountdown(next, false, schedule, date);
-            } else {
+        // When countdown finishes, re-fetch schedule to avoid stale objects
+        (async () => {
+            try {
+                const fresh = await fetchSchedule(date);
+                const nowTs = window._99_95_utils.now();
+                const current = getCurrentClass(fresh, nowTs, date);
+                if (current) {
+                    renderSchedule(fresh, date);
+                    startCountdown(current, true, fresh, date);
+                    return;
+                }
+                const next = getNextClass(fresh, nowTs, date);
+                if (next) {
+                    renderSchedule(fresh, date);
+                    startCountdown(next, false, fresh, date);
+                    return;
+                }
                 // No more classes
-                notifElem.querySelector('h1').textContent = 'No more classes today';
-                const details = notifElem.querySelector('h2'); if (details) details.textContent = '';
+                const h1 = countdownContainer.querySelector('h1'); if (h1) h1.textContent = 'No more classes today';
+                const details = countdownContainer.querySelector('h2'); if (details) details.textContent = '';
                 progressBarContainer && progressBarContainer.remove();
+            } catch (e) {
+                console.error('Error advancing schedule after finish:', e);
+                stopCountdown();
             }
-        }
+        })();
     });
 }
 
@@ -361,15 +417,24 @@ function createScheduleBlock(entry, date, isActive) {
 
 // Render the schedule
 function renderSchedule(schedule, date) {
-    const blocksContainer = blocksElem;
-    blocksContainer.innerHTML = schedule.length ? '' : '<h1>No classes today!</h1>';
-    const now = moment.tz("Australia/Sydney").toDate();
-    schedule.forEach(entry => {
+    const container = scheduleContainer;
+    if (!schedule.length) {
+        container.innerHTML = '<h1>No classes today!</h1>';
+        return;
+    }
+    // Build fragment to minimize reflows
+    const frag = document.createDocumentFragment();
+    const nowTs = window._99_95_utils.now();
+    for (let i = 0; i < schedule.length; i++) {
+        const entry = schedule[i];
         const start = getDateTime(date, entry.s);
         const end = getDateTime(date, entry.e);
-        const isActive = now >= start && now <= end;
-        blocksContainer.appendChild(createScheduleBlock(entry, date, isActive));
-    });
+        const isActive = nowTs >= start && nowTs <= end;
+        frag.appendChild(createScheduleBlock(entry, date, isActive));
+    }
+    // Replace children in one operation
+    container.innerHTML = '';
+    container.appendChild(frag);
 }
 
 // Check if weekend
@@ -384,9 +449,19 @@ function fetchSchedule(date) {
             if (!data.parsedIcsData) return resolve([]);
             try {
                 const allData = JSON.parse(data.parsedIcsData);
-                resolve(allData[date] || []);
+                const day = allData[date] || [];
+                // Basic validation: ensure array of objects with s/e
+                if (!Array.isArray(day)) return resolve([]);
+                const filtered = day.filter(d => d && d.s && d.e && d.n);
+                resolve(filtered);
             } catch (err) {
                 console.error('Failed to read parsedIcsData from storage:', err);
+                // Show a user-facing message to repair timetable
+                if (countdownContainer) {
+                    countdownContainer.innerHTML = '<h1>Timetable data is corrupted.</h1><p>Please re-upload your timetable.</p><button class="repair-btn">Re-upload timetable</button>';
+                    const btn = countdownContainer.querySelector('.repair-btn');
+                    btn && btn.addEventListener('click', () => window.location.href = '../landing-page/landing.html');
+                }
                 resolve([]);
             }
         });
@@ -411,7 +486,7 @@ function injectNavigationUI() {
         </div>
     `;
     // Use cached blocksElem
-    blocksElem.parentNode.insertBefore(navContainer, blocksElem);
+    scheduleContainer.parentNode.insertBefore(navContainer, scheduleContainer);
     navDateElem = navContainer.querySelector('.nav-date');
     navContainer.querySelector('.yesterday-btn').addEventListener('click', () => {
         const d = moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD');
@@ -437,12 +512,14 @@ async function initialize(dateOverride) {
     const currentDate = dateOverride || todayDate;
     displayedDate = currentDate;
 
+    // Always stop previous countdown while (re)initializing
+    stopCountdown();
     updateNavDate(currentDate);
 
     if (isWeekend(currentDate)) {
-        blocksElem.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
+        scheduleContainer.innerHTML = '<h1>No classes today! It\'s a weekend.</h1>';
         if (currentDate === todayDate) {
-            notifElem.innerHTML = '<h1>Enjoy your day off!</h1>';
+            countdownContainer.innerHTML = '<h1>Enjoy your day off!</h1>';
             stopCountdown();
             if (progressBarContainer) progressBarContainer.remove();
         }
@@ -454,7 +531,7 @@ async function initialize(dateOverride) {
 
     if (!schedule.length) {
         if (currentDate === todayDate) {
-            notifElem.innerHTML = '<h1>No classes today!</h1>';
+            countdownContainer.innerHTML = '<h1>No classes today!</h1>';
             stopCountdown();
             if (progressBarContainer) progressBarContainer.remove();
         }
@@ -462,11 +539,12 @@ async function initialize(dateOverride) {
     }
 
     if (currentDate === todayDate) {
-        const currentClass = getCurrentClass(schedule, now, currentDate);
+        const nowTs = window._99_95_utils.now();
+        const currentClass = getCurrentClass(schedule, nowTs, currentDate);
         if (currentClass) {
             startCountdown(currentClass, true, schedule, currentDate);
         } else {
-            startCountdown(getNextClass(schedule, now, currentDate), false, schedule, currentDate);
+            startCountdown(getNextClass(schedule, nowTs, currentDate), false, schedule, currentDate);
         }
     }
 }
@@ -509,11 +587,11 @@ function injectCalendarUI() {
     `;
     document.body.appendChild(datePicker);
 
-    let currentMonth = moment.tz("Australia/Sydney");
-    let selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+    let currentMonth = moment.tz(TZ);
+    let selectedDate = moment.tz(displayedDate, TZ);
 
 
-    const now = moment.tz("Australia/Sydney");
+    const now = moment.tz(TZ);
     const minDate = now.clone().subtract(2, 'years');
     const maxDate = now.clone().add(2, 'years');
 
@@ -549,7 +627,7 @@ function injectCalendarUI() {
             dayElement.addEventListener('click', () => {
                 if (!dayElement.classList.contains('disabled')) {
                     const clickedDate = dayElement.dataset.date;
-                    selectedDate = moment.tz(clickedDate, "Australia/Sydney");
+                        selectedDate = moment.tz(clickedDate, TZ);
                     initialize(clickedDate);
                     grid.querySelectorAll('.date-picker-day').forEach(day => day.classList.remove('selected'));
                     dayElement.classList.add('selected');
@@ -572,8 +650,8 @@ function injectCalendarUI() {
     datePicker.querySelector('.today-btn').addEventListener('click', goToToday);
 
     calendarIcon.addEventListener('click', () => {
-        currentMonth = moment.tz(displayedDate, "Australia/Sydney");
-        selectedDate = moment.tz(displayedDate, "Australia/Sydney");
+    currentMonth = moment.tz(displayedDate, TZ);
+    selectedDate = moment.tz(displayedDate, TZ);
 
         renderCalendar();
         datePicker.classList.toggle('visible');
@@ -602,34 +680,10 @@ function injectCalendarUI() {
         }
     });
 }
-
-// Keyboard shortcuts for datasheets, Desmos, and day navigation
-document.addEventListener('keydown', (e) => {
-    if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
-    const key = e.key.toLowerCase();
-    if (e.key === '1' && sidebarBtns[0]) { sidebarBtns[0].click(); return; }
-    if (e.key === '2' && sidebarBtns[1]) { sidebarBtns[1].click(); return; }
-    if (e.key === '3' && sidebarBtns[2]) { sidebarBtns[2].click(); return; }
-    if (e.key === '4' && sidebarBtns[3]) { sidebarBtns[3].click(); return; }
-    if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) { sidebarBtns[4].click(); return; }
-    if (key === 'q' || e.key === 'ArrowLeft') {
-    initialize(moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD'));
-        return;
-    }
-    if (key === 'e' || e.key === 'ArrowRight') {
-    initialize(moment.tz(displayedDate, TZ).add(1, 'day').format('YYYY-MM-DD'));
-        return;
-    }
-    if (key === 'w' || e.key === 'ArrowUp') {
-    initialize(getLocalISODateString(window._99_95_utils.now()));
-        return;
-    }
-});
-
 // Update DOMContentLoaded handler
 document.addEventListener('DOMContentLoaded', async () => {
-    notifElem = document.querySelector('.notif');
-    blocksElem = document.querySelector('.blocks');
+    countdownContainer = document.querySelector('.notif');
+    scheduleContainer = document.querySelector('.blocks');
     injectSidebarUI();
     injectNavigationUI();
     injectCalendarUI();
@@ -640,8 +694,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.sidebar-btn[data-pdf="phys.pdf"]'),
         document.querySelector('.sidebar-btn[data-url="https://www.desmos.com/calculator"]')
     ];
+
+    // Keyboard shortcuts for datasheets, Desmos, and day navigation (attach after sidebarBtns available)
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        const key = e.key.toLowerCase();
+        if (e.key === '1' && sidebarBtns[0]) { sidebarBtns[0].click(); return; }
+        if (e.key === '2' && sidebarBtns[1]) { sidebarBtns[1].click(); return; }
+        if (e.key === '3' && sidebarBtns[2]) { sidebarBtns[2].click(); return; }
+        if (e.key === '4' && sidebarBtns[3]) { sidebarBtns[3].click(); return; }
+        if ((e.key === 'd' || e.key === 'D') && sidebarBtns[4]) { sidebarBtns[4].click(); return; }
+        if (key === 'q' || e.key === 'ArrowLeft') {
+            initialize(moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD'));
+            return;
+        }
+        if (key === 'e' || e.key === 'ArrowRight') {
+            initialize(moment.tz(displayedDate, TZ).add(1, 'day').format('YYYY-MM-DD'));
+            return;
+        }
+        if (key === 'w' || e.key === 'ArrowUp') {
+            initialize(getLocalISODateString(window._99_95_utils.now()));
+            return;
+        }
+    });
+
     await initialize();
-    let lastDate = getLocalISODateString(moment.tz("Australia/Sydney").toDate());
+    let lastDate = getLocalISODateString(moment.tz(TZ).toDate());
     let lastDateCheck = getLocalISODateString(window._99_95_utils.now());
     const DATE_CHECK_INTERVAL_MS = 30000; // 30s
     const dateInterval = setInterval(() => {
@@ -650,6 +728,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (displayedDate === lastDateCheck && currentDate !== lastDateCheck) initialize(currentDate);
         lastDateCheck = currentDate;
     }, DATE_CHECK_INTERVAL_MS);
+
+    // Listen for storage changes (e.g., user uploads new timetable in another page)
+    chrome.storage.onChanged.addListener((changes, area) => {
+        if (changes.parsedIcsData) {
+            initialize(displayedDate);
+        }
+    });
 
     // Cancel countdown and intervals on unload to avoid leaks
     window.addEventListener('unload', () => {

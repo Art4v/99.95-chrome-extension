@@ -22,5 +22,9 @@
         "128": "assets/favicon.png"
       }
     }
+    ,
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self' https://www.desmos.com;"
+    }
   }
   
