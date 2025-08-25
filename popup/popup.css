@@ -410,9 +410,6 @@ body.light-mode .size-toggle-btn:hover {
 
 /* Calendar icon */
 .calendar-icon {
-    position: fixed;
-    top: 16px;
-    left: 16px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
@@ -426,7 +423,6 @@ body.light-mode .size-toggle-btn:hover {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: background-color 0.2s ease, border-color 0.2s ease;
-    z-index: 100;
     color: #fff;
 }
 
@@ -437,12 +433,8 @@ body.light-mode .size-toggle-btn:hover {
 
 /* To-do button (positioned between calendar and reference buttons) */
 .todo-btn {
-    position: fixed;
-    top: 60px;
-    left: 16px;
     background: transparent !important; /* Transparent background */
     border-color: rgba(255, 255, 255, 0.2) !important;
-    z-index: 100;
 }
 
 .todo-btn:hover {
@@ -468,13 +460,10 @@ body.light-mode .todo-btn:hover {
 
 /* Dividing line between todo and wolfram */
 .todo-wolfram-divider {
-    position: fixed;
-    top: 105px;
-    left: 16px;
     width: 36px;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.3);
-    z-index: 100;
+    margin: 8px 0;
 }
 
 body.light-mode .todo-wolfram-divider {
@@ -483,12 +472,8 @@ body.light-mode .todo-wolfram-divider {
 
 /* Wolfram button (positioned between todo and reference buttons) */
 .wolfram-btn {
-    position: fixed;
-    top: 117px;
-    left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    z-index: 100;
 }
 
 .wolfram-btn:hover {
@@ -513,12 +498,8 @@ body.light-mode .wolfram-btn:hover {
 
 /* Desmos button (positioned below wolfram button) */
 .desmos-btn {
-    position: fixed;
-    top: 161px;
-    left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    z-index: 100;
 }
 
 .desmos-btn:hover {
@@ -543,12 +524,8 @@ body.light-mode .desmos-btn:hover {
 
 /* Integral button (positioned below desmos button) */
 .integral-btn {
-    position: fixed;
-    top: 205px;
-    left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    z-index: 100;
 }
 
 .integral-btn:hover {
@@ -573,12 +550,8 @@ body.light-mode .integral-btn:hover {
 
 /* Derivative button (positioned below integral button) */
 .derivative-btn {
-    position: fixed;
-    top: 249px;
-    left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
-    z-index: 100;
 }
 
 .derivative-btn:hover {
@@ -603,13 +576,10 @@ body.light-mode .derivative-btn:hover {
 
 /* Dividing line between websites and reference sheets */
 .dividing-line {
-    position: fixed;
-    top: 294px;
-    left: 16px;
     width: 36px;
     height: 1px;
     background-color: rgba(255, 255, 255, 0.3);
-    z-index: 100;
+    margin: 8px 0;
 }
 
 body.light-mode .dividing-line {
@@ -618,9 +588,6 @@ body.light-mode .dividing-line {
 
 /* Reference buttons container */
 .reference-buttons-container {
-    position: fixed;
-    top: 303px;
-    left: 16px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -634,7 +601,7 @@ body.light-mode .dividing-line {
     right: 0;
     height: 100vh;
     width: 200px;
-    background-color: #363533;
+    background-color: #2a2a2a;
     color: #fff;
     padding: 20px;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
@@ -686,35 +653,6 @@ body.sidebar-open .reference-buttons-container {
     filter: none !important;
 }
 
-/* Left column proximity sensor */
-body:not(.left-column-visible) .calendar-icon,
-body:not(.left-column-visible) .todo-btn,
-body:not(.left-column-visible) .todo-wolfram-divider,
-body:not(.left-column-visible) .wolfram-btn,
-body:not(.left-column-visible) .desmos-btn,
-body:not(.left-column-visible) .integral-btn,
-body:not(.left-column-visible) .derivative-btn,
-body:not(.left-column-visible) .dividing-line,
-body:not(.left-column-visible) .reference-buttons-container {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-body.left-column-visible .calendar-icon,
-body.left-column-visible .todo-btn,
-body.left-column-visible .todo-wolfram-divider,
-body.left-column-visible .wolfram-btn,
-body.left-column-visible .desmos-btn,
-body.left-column-visible .integral-btn,
-body.left-column-visible .derivative-btn,
-body.left-column-visible .dividing-line,
-body.left-column-visible .reference-buttons-container {
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.3s ease;
-}
-
 body.light-mode .settings-sidebar {
     background-color: #f8f4e6;
     color: #2a2a2a;
@@ -760,56 +698,6 @@ body.light-mode .settings-sidebar-heading {
     padding: 8px 0;
 }
 
-/* Proximity sensor toggle */
-.proximity-toggle-container {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    padding: 16px;
-    margin-top: 8px;
-}
-
-body.light-mode .proximity-toggle-container {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.1);
-}
-
-.proximity-toggle-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    cursor: pointer;
-    margin-bottom: 8px;
-}
-
-.proximity-toggle-checkbox {
-    width: 20px;
-    height: 20px;
-    accent-color: #f44336;
-    cursor: pointer;
-}
-
-.proximity-toggle-text {
-    font-weight: 600;
-    font-size: 1rem;
-    color: #fff;
-}
-
-body.light-mode .proximity-toggle-text {
-    color: #2a2a2a;
-}
-
-.proximity-toggle-description {
-    font-size: 0.8rem;
-    color: #aaa;
-    margin: 0;
-    line-height: 1.4;
-}
-
-body.light-mode .proximity-toggle-description {
-    color: #666;
-}
-
 .settings-sidebar-footer {
     border-top: 1px solid #444;
     padding-top: 12px;
@@ -843,6 +731,20 @@ body.light-mode .settings-credit {
 .credit-link:hover {
     color: #d32f2f;
     text-decoration: underline;
+}
+
+/* Left-side container for all buttons and dividers */
+.left-side-container {
+    position: fixed;
+    left: 16px;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    z-index: 100;
 }
 
 /* Settings toggle button */

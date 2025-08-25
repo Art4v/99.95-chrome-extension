@@ -911,26 +911,33 @@ function injectCalendarUI() {
         localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
     });
 
+    // Create left-side container for all buttons and dividers
+    const leftSideContainer = document.createElement('div');
+    leftSideContainer.className = 'left-side-container';
+    
     // Append elements in order: calendar, todo, wolfram, desmos, integral, derivative, reference buttons
-    document.body.appendChild(calendarIcon);
-    document.body.appendChild(todoBtn);
+    leftSideContainer.appendChild(calendarIcon);
+    leftSideContainer.appendChild(todoBtn);
     
     // Add dividing line between todo and wolfram
     const todoWolframDivider = document.createElement('div');
     todoWolframDivider.className = 'todo-wolfram-divider';
-    document.body.appendChild(todoWolframDivider);
+    leftSideContainer.appendChild(todoWolframDivider);
     
-    document.body.appendChild(wolframBtn);
-    document.body.appendChild(desmosBtn);
-    document.body.appendChild(integralBtn);
-    document.body.appendChild(derivativeBtn);
+    leftSideContainer.appendChild(wolframBtn);
+    leftSideContainer.appendChild(desmosBtn);
+    leftSideContainer.appendChild(integralBtn);
+    leftSideContainer.appendChild(derivativeBtn);
     
     // Add dividing line between websites and reference sheets
     const dividingLine = document.createElement('div');
     dividingLine.className = 'dividing-line';
-    document.body.appendChild(dividingLine);
+    leftSideContainer.appendChild(dividingLine);
     
-    document.body.appendChild(referenceButtonsContainer);
+    leftSideContainer.appendChild(referenceButtonsContainer);
+    
+    // Append the container to body
+    document.body.appendChild(leftSideContainer);
     
     // Create settings toggle button
     const settingsToggleBtn = document.createElement('button');
@@ -944,15 +951,10 @@ function injectCalendarUI() {
     });
     document.body.appendChild(settingsToggleBtn);
     
-        // Proximity detection and timing for settings button
+    // Proximity detection and timing for settings button
     let settingsButtonTimeout;
     let isSettingsButtonVisible = false;
-
-    // Proximity detection for left column (all buttons and dividers)
-    let leftColumnTimeout;
-    let isLeftColumnVisible = true; // Start visible by default
-    let proximitySensorEnabled = true; // Default to enabled
-
+    
     document.addEventListener('mousemove', (e) => {
         // Don't hide button if sidebar is open
         if (settingsSidebar.classList.contains('visible')) {
@@ -981,20 +983,6 @@ function injectCalendarUI() {
                 hideSettingsButton();
             }, 500); // Minimum 0.5 seconds visibility
         }
-
-        // Left column proximity detection (only if enabled)
-        if (proximitySensorEnabled) {
-            // Check if mouse is near the left side (within 150px of left edge)
-            if (mouseX <= 150 && !isLeftColumnVisible) {
-                showLeftColumn();
-            } else if (mouseX > 150 && isLeftColumnVisible) {
-                // Start countdown to hide left column
-                clearTimeout(leftColumnTimeout);
-                leftColumnTimeout = setTimeout(() => {
-                    hideLeftColumn();
-                }, 1000); // Minimum 1 second visibility for left column
-            }
-        }
     });
     
     function showSettingsButton() {
@@ -1007,17 +995,6 @@ function injectCalendarUI() {
         isSettingsButtonVisible = false;
         settingsToggleBtn.classList.remove('visible');
     }
-
-    function showLeftColumn() {
-        isLeftColumnVisible = true;
-        document.body.classList.add('left-column-visible');
-        clearTimeout(leftColumnTimeout);
-    }
-
-    function hideLeftColumn() {
-        isLeftColumnVisible = false;
-        document.body.classList.remove('left-column-visible');
-    }
     
     // Create settings sidebar
     const settingsSidebar = document.createElement('div');
@@ -1028,15 +1005,6 @@ function injectCalendarUI() {
         </div>
         <div class="settings-sidebar-content">
             <!-- Settings buttons will be moved here -->
-            
-            <!-- Proximity sensor toggle -->
-            <div class="proximity-toggle-container">
-                <label class="proximity-toggle-label">
-                    <input type="checkbox" id="proximityToggle" class="proximity-toggle-checkbox" checked>
-                    <span class="proximity-toggle-text">Proximity Sensor</span>
-                </label>
-                <p class="proximity-toggle-description">Show left column only when mouse is near</p>
-            </div>
         </div>
         <div class="settings-sidebar-footer">
             <p class="settings-credit">Made with love by the team at <a href="https://www.instagram.com/99.95_chrome_extension/" target="_blank" class="credit-link">99.95</a></p>
@@ -1049,23 +1017,6 @@ function injectCalendarUI() {
     while (settingsButtonsContainer.firstChild) {
         settingsContent.appendChild(settingsButtonsContainer.firstChild);
     }
-
-    // Initialize proximity sensor toggle
-    const proximityToggle = document.getElementById('proximityToggle');
-    proximityToggle.checked = proximitySensorEnabled;
-    
-    proximityToggle.addEventListener('change', (e) => {
-        proximitySensorEnabled = e.target.checked;
-        if (proximitySensorEnabled) {
-            // If re-enabled and mouse is near, show the column
-            if (isLeftColumnVisible) {
-                showLeftColumn();
-            }
-        } else {
-            // If disabled, always show the column
-            showLeftColumn();
-        }
-    });
     
     // Add event listeners for settings sidebar
     // Close button removed - sidebar can be closed by clicking outside or pressing S key
