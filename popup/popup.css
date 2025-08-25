@@ -431,6 +431,17 @@ body.light-mode .size-toggle-btn:hover {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Light mode for calendar button */
+body.light-mode .calendar-icon {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #2a2a2a;
+}
+
+body.light-mode .calendar-icon:hover {
+    background: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
 /* To-do button (positioned between calendar and reference buttons) */
 .todo-btn {
     background: transparent !important; /* Transparent background */
