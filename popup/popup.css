@@ -466,10 +466,25 @@ body.light-mode .todo-btn:hover {
     object-fit: contain;
 }
 
+/* Dividing line between todo and wolfram */
+.todo-wolfram-divider {
+    position: fixed;
+    top: 105px;
+    left: 16px;
+    width: 36px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 100;
+}
+
+body.light-mode .todo-wolfram-divider {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 /* Wolfram button (positioned between todo and reference buttons) */
 .wolfram-btn {
     position: fixed;
-    top: 104px;
+    top: 117px;
     left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -499,7 +514,7 @@ body.light-mode .wolfram-btn:hover {
 /* Desmos button (positioned below wolfram button) */
 .desmos-btn {
     position: fixed;
-    top: 148px;
+    top: 161px;
     left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -529,7 +544,7 @@ body.light-mode .desmos-btn:hover {
 /* Integral button (positioned below desmos button) */
 .integral-btn {
     position: fixed;
-    top: 192px;
+    top: 205px;
     left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -559,7 +574,7 @@ body.light-mode .integral-btn:hover {
 /* Derivative button (positioned below integral button) */
 .derivative-btn {
     position: fixed;
-    top: 236px;
+    top: 249px;
     left: 16px;
     background: transparent !important;
     border-color: rgba(255, 255, 255, 0.2) !important;
@@ -586,10 +601,25 @@ body.light-mode .derivative-btn:hover {
     filter: hue-rotate(0deg) saturate(2) brightness(0.8) !important; /* Make it red */
 }
 
+/* Dividing line between websites and reference sheets */
+.dividing-line {
+    position: fixed;
+    top: 294px;
+    left: 16px;
+    width: 36px;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+    z-index: 100;
+}
+
+body.light-mode .dividing-line {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 /* Reference buttons container */
 .reference-buttons-container {
     position: fixed;
-    top: 280px;
+    top: 303px;
     left: 16px;
     display: flex;
     flex-direction: column;

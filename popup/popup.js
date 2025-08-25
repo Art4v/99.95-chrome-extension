@@ -914,10 +914,22 @@ function injectCalendarUI() {
     // Append elements in order: calendar, todo, wolfram, desmos, integral, derivative, reference buttons
     document.body.appendChild(calendarIcon);
     document.body.appendChild(todoBtn);
+    
+    // Add dividing line between todo and wolfram
+    const todoWolframDivider = document.createElement('div');
+    todoWolframDivider.className = 'todo-wolfram-divider';
+    document.body.appendChild(todoWolframDivider);
+    
     document.body.appendChild(wolframBtn);
     document.body.appendChild(desmosBtn);
     document.body.appendChild(integralBtn);
     document.body.appendChild(derivativeBtn);
+    
+    // Add dividing line between websites and reference sheets
+    const dividingLine = document.createElement('div');
+    dividingLine.className = 'dividing-line';
+    document.body.appendChild(dividingLine);
+    
     document.body.appendChild(referenceButtonsContainer);
     document.body.appendChild(settingsButtonsContainer);
 
