@@ -931,7 +931,184 @@ function injectCalendarUI() {
     document.body.appendChild(dividingLine);
     
     document.body.appendChild(referenceButtonsContainer);
-    document.body.appendChild(settingsButtonsContainer);
+    
+    // Create settings toggle button
+    const settingsToggleBtn = document.createElement('button');
+    settingsToggleBtn.className = 'settings-toggle-btn';
+    settingsToggleBtn.setAttribute('title', 'Settings (S)');
+    settingsToggleBtn.innerHTML = '<img src="../assets/temporary settings tag.png" alt="Settings" class="settings-icon">';
+    settingsToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSettingsSidebar();
+    });
+    document.body.appendChild(settingsToggleBtn);
+    
+        // Proximity detection and timing for settings button
+    let settingsButtonTimeout;
+    let isSettingsButtonVisible = false;
+
+    // Proximity detection for left column (all buttons and dividers)
+    let leftColumnTimeout;
+    let isLeftColumnVisible = true; // Start visible by default
+    let proximitySensorEnabled = true; // Default to enabled
+
+    document.addEventListener('mousemove', (e) => {
+        // Don't hide button if sidebar is open
+        if (settingsSidebar.classList.contains('visible')) {
+            return;
+        }
+        
+        const buttonRect = settingsToggleBtn.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        // Calculate distance from mouse to button center
+        const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+        const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+        const distance = Math.sqrt(
+            Math.pow(mouseX - buttonCenterX, 2) + 
+            Math.pow(mouseY - buttonCenterY, 2)
+        );
+        
+        // Show button when mouse is within 100px proximity
+        if (distance <= 100 && !isSettingsButtonVisible) {
+            showSettingsButton();
+        } else if (distance > 100 && isSettingsButtonVisible) {
+            // Start countdown to hide button
+            clearTimeout(settingsButtonTimeout);
+            settingsButtonTimeout = setTimeout(() => {
+                hideSettingsButton();
+            }, 500); // Minimum 0.5 seconds visibility
+        }
+
+        // Left column proximity detection (only if enabled)
+        if (proximitySensorEnabled) {
+            // Check if mouse is near the left side (within 150px of left edge)
+            if (mouseX <= 150 && !isLeftColumnVisible) {
+                showLeftColumn();
+            } else if (mouseX > 150 && isLeftColumnVisible) {
+                // Start countdown to hide left column
+                clearTimeout(leftColumnTimeout);
+                leftColumnTimeout = setTimeout(() => {
+                    hideLeftColumn();
+                }, 1000); // Minimum 1 second visibility for left column
+            }
+        }
+    });
+    
+    function showSettingsButton() {
+        isSettingsButtonVisible = true;
+        settingsToggleBtn.classList.add('visible');
+        clearTimeout(settingsButtonTimeout);
+    }
+    
+    function hideSettingsButton() {
+        isSettingsButtonVisible = false;
+        settingsToggleBtn.classList.remove('visible');
+    }
+
+    function showLeftColumn() {
+        isLeftColumnVisible = true;
+        document.body.classList.add('left-column-visible');
+        clearTimeout(leftColumnTimeout);
+    }
+
+    function hideLeftColumn() {
+        isLeftColumnVisible = false;
+        document.body.classList.remove('left-column-visible');
+    }
+    
+    // Create settings sidebar
+    const settingsSidebar = document.createElement('div');
+    settingsSidebar.className = 'settings-sidebar';
+    settingsSidebar.innerHTML = `
+        <div class="settings-sidebar-header">
+            <h2 class="settings-sidebar-heading">Preferences</h2>
+        </div>
+        <div class="settings-sidebar-content">
+            <!-- Settings buttons will be moved here -->
+            
+            <!-- Proximity sensor toggle -->
+            <div class="proximity-toggle-container">
+                <label class="proximity-toggle-label">
+                    <input type="checkbox" id="proximityToggle" class="proximity-toggle-checkbox" checked>
+                    <span class="proximity-toggle-text">Proximity Sensor</span>
+                </label>
+                <p class="proximity-toggle-description">Show left column only when mouse is near</p>
+            </div>
+        </div>
+        <div class="settings-sidebar-footer">
+            <p class="settings-credit">Made with love by the team at <a href="https://www.instagram.com/99.95_chrome_extension/" target="_blank" class="credit-link">99.95</a></p>
+        </div>
+    `;
+    document.body.appendChild(settingsSidebar);
+    
+    // Move settings buttons to sidebar
+    const settingsContent = settingsSidebar.querySelector('.settings-sidebar-content');
+    while (settingsButtonsContainer.firstChild) {
+        settingsContent.appendChild(settingsButtonsContainer.firstChild);
+    }
+
+    // Initialize proximity sensor toggle
+    const proximityToggle = document.getElementById('proximityToggle');
+    proximityToggle.checked = proximitySensorEnabled;
+    
+    proximityToggle.addEventListener('change', (e) => {
+        proximitySensorEnabled = e.target.checked;
+        if (proximitySensorEnabled) {
+            // If re-enabled and mouse is near, show the column
+            if (isLeftColumnVisible) {
+                showLeftColumn();
+            }
+        } else {
+            // If disabled, always show the column
+            showLeftColumn();
+        }
+    });
+    
+    // Add event listeners for settings sidebar
+    // Close button removed - sidebar can be closed by clicking outside or pressing S key
+    
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+        if (settingsSidebar.classList.contains('visible') && 
+            !settingsSidebar.contains(e.target) && 
+            !settingsToggleBtn.contains(e.target)) {
+            settingsSidebar.classList.remove('visible');
+            // Remove sidebar-open immediately so button starts moving
+            document.body.classList.remove('sidebar-open');
+            // Keep blur during sidebar closing animation, then remove it
+            setTimeout(() => {
+                // Blur effect is already removed with sidebar-open class
+            }, 300); // Keep timing for blur transition
+        }
+    });
+    
+    // Keyboard shortcut for settings
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        if (e.key.toLowerCase() === 's') {
+            toggleSettingsSidebar();
+        }
+    });
+    
+    function toggleSettingsSidebar() {
+        const isVisible = settingsSidebar.classList.toggle('visible');
+        // Add/remove blur effect on the body
+        if (isVisible) {
+            document.body.classList.add('sidebar-open');
+            // Keep button visible when sidebar opens
+            showSettingsButton();
+        } else {
+            // Remove sidebar-open immediately so button starts moving
+            document.body.classList.remove('sidebar-open');
+            // Keep blur during sidebar closing animation, then remove it
+            setTimeout(() => {
+                // Blur effect is already removed with sidebar-open class
+            }, 300); // Keep timing for blur transition
+        }
+    }
 
 
     const datePicker = document.createElement('div');

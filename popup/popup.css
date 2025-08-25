@@ -627,12 +627,277 @@ body.light-mode .dividing-line {
     z-index: 100;
 }
 
-/* Settings buttons container (right side) */
+/* Settings sidebar */
+.settings-sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #363533;
+    color: #fff;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 10px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+/* Blur effect for the main content when sidebar is open */
+body.sidebar-open .notif,
+body.sidebar-open .blocks,
+body.sidebar-open .timetable-nav,
+body.sidebar-open .calendar-icon,
+body.sidebar-open .todo-btn,
+body.sidebar-open .todo-wolfram-divider,
+body.sidebar-open .wolfram-btn,
+body.sidebar-open .desmos-btn,
+body.sidebar-open .integral-btn,
+body.sidebar-open .derivative-btn,
+body.sidebar-open .dividing-line,
+body.sidebar-open .reference-buttons-container {
+    filter: blur(3px);
+    transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure all elements have smooth blur transitions even when not blurred */
+.notif,
+.blocks,
+.timetable-nav,
+.calendar-icon,
+.todo-btn,
+.todo-wolfram-divider,
+.wolfram-btn,
+.desmos-btn,
+.integral-btn,
+.derivative-btn,
+.dividing-line,
+.reference-buttons-container {
+    transition: filter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ensure the sidebar itself is never blurred */
+.settings-sidebar {
+    filter: none !important;
+}
+
+/* Left column proximity sensor */
+body:not(.left-column-visible) .calendar-icon,
+body:not(.left-column-visible) .todo-btn,
+body:not(.left-column-visible) .todo-wolfram-divider,
+body:not(.left-column-visible) .wolfram-btn,
+body:not(.left-column-visible) .desmos-btn,
+body:not(.left-column-visible) .integral-btn,
+body:not(.left-column-visible) .derivative-btn,
+body:not(.left-column-visible) .dividing-line,
+body:not(.left-column-visible) .reference-buttons-container {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+body.left-column-visible .calendar-icon,
+body.left-column-visible .todo-btn,
+body.left-column-visible .todo-wolfram-divider,
+body.left-column-visible .wolfram-btn,
+body.left-column-visible .desmos-btn,
+body.left-column-visible .integral-btn,
+body.left-column-visible .derivative-btn,
+body.left-column-visible .dividing-line,
+body.left-column-visible .reference-buttons-container {
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+}
+
+body.light-mode .settings-sidebar {
+    background-color: #f8f4e6;
+    color: #2a2a2a;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.settings-sidebar.visible {
+    transform: translateX(0);
+}
+
+.settings-sidebar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    flex-shrink: 0;
+}
+
+body.light-mode .settings-sidebar-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.settings-sidebar-heading {
+    font-size: 1.6rem;
+    margin: 0;
+    color: #fff;
+    font-weight: 700;
+}
+
+body.light-mode .settings-sidebar-heading {
+    color: #2a2a2a;
+}
+
+
+
+.settings-sidebar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0;
+}
+
+/* Proximity sensor toggle */
+.proximity-toggle-container {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 8px;
+}
+
+body.light-mode .proximity-toggle-container {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.proximity-toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.proximity-toggle-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #f44336;
+    cursor: pointer;
+}
+
+.proximity-toggle-text {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #fff;
+}
+
+body.light-mode .proximity-toggle-text {
+    color: #2a2a2a;
+}
+
+.proximity-toggle-description {
+    font-size: 0.8rem;
+    color: #aaa;
+    margin: 0;
+    line-height: 1.4;
+}
+
+body.light-mode .proximity-toggle-description {
+    color: #666;
+}
+
+.settings-sidebar-footer {
+    border-top: 1px solid #444;
+    padding-top: 12px;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+body.light-mode .settings-sidebar-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.settings-credit {
+    font-size: 0.7rem;
+    color: #888;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+body.light-mode .settings-credit {
+    color: #666;
+}
+
+.credit-link {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.credit-link:hover {
+    color: #d32f2f;
+    text-decoration: underline;
+}
+
+/* Settings toggle button */
+.settings-toggle-btn {
+    position: fixed;
+    top: 16px;
+    right: -30px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s ease, right 0.3s ease;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.settings-toggle-btn.visible {
+    opacity: 1;
+    right: -5px;
+    pointer-events: auto;
+}
+
+/* When sidebar is open, make button stick to it */
+body.sidebar-open .settings-toggle-btn {
+    right: 192px; /* Position relative to sidebar width, nudged 8px to the right */
+    transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+/* Ensure button starts moving immediately when sidebar closes */
+.settings-toggle-btn {
+    transition: opacity 0.3s ease, right 0.3s ease;
+}
+
+
+
+.settings-toggle-btn .settings-icon {
+    width: auto;
+    height: auto;
+    max-width: 135px;
+    max-height: 135px;
+    display: block;
+    pointer-events: auto;
+}
+
+/* Settings buttons container (right side) - now hidden by default */
 .settings-buttons-container {
     position: fixed;
     top: 16px;
     right: 16px;
-    display: flex;
+    display: none; /* Hide the original container */
     flex-direction: column;
     gap: 8px;
     z-index: 100;
