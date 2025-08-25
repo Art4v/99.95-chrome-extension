@@ -1316,12 +1316,236 @@ body.light-mode .todo-sidebar {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
     padding: 8px 0;
     min-height: 0; /* Allow content to shrink */
+    overflow: hidden; /* Remove scrolling from main container */
+}
+
+/* Main sidebar header (title and close button) */
+.todo-sidebar > .todo-sidebar-content > .todo-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+    flex-shrink: 0; /* Prevent header from shrinking */
+    position: sticky;
+    top: 0;
+    background: inherit;
+    z-index: 20;
+}
+
+body.light-mode .todo-sidebar > .todo-sidebar-content > .todo-sidebar-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Todo sections */
+.todo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 0; /* Allow sections to shrink */
+}
+
+/* Middle content area - this should be scrollable */
+.todo-sections-container {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    padding: 8px 0;
+}
+
+/* Input container styling */
+.todo-input-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+body.light-mode .todo-input {
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+    color: #2a2a2a;
+}
+
+.todo-input:focus {
+    outline: none;
+    border-color: #f44336;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-input:focus {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.todo-add-btn {
+    background: #f44336;
+    border: none;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    min-width: 40px;
+}
+
+.todo-add-btn:hover {
+    background: #d32f2f;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(244, 67, 54, 0.4);
+}
+
+/* List container styling */
+.todo-list-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    max-height: 300px; /* Prevent lists from taking too much space */
+}
+
+.todo-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: default;
+}
+
+body.light-mode .todo-section-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.todo-section-header.collapsible {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    border-radius: 6px;
+    padding: 8px 12px;
+}
+
+.todo-section-header.collapsible:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .todo-section-header.collapsible:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.todo-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+}
+
+body.light-mode .todo-section-title {
+    color: #2a2a2a;
+}
+
+.todo-section-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.todo-count {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+}
+
+body.light-mode .todo-count {
+    background: rgba(0, 0, 0, 0.1);
+    color: #2a2a2a;
+}
+
+.todo-section-toggle {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+body.light-mode .todo-section-toggle {
+    color: #2a2a2a;
+}
+
+.todo-section-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-section-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.2s ease;
+}
+
+/* Completed tasks container */
+.completed-tasks-container {
+    transition: all 0.3s ease;
+    overflow: hidden;
+    max-height: 500px; /* Set a reasonable max height */
+}
+
+.completed-tasks-container.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Ensure completed tasks have a subtle appearance */
+.completed-tasks .todo-item {
+    opacity: 0.7;
+}
+
+.completed-tasks .todo-item:hover {
+    opacity: 1;
+}
+
+/* Active tasks section should be more prominent */
+.active-tasks-section {
+    flex-shrink: 0;
+}
+
+/* Completed tasks section should be collapsible */
+.completed-tasks-section {
+    flex-shrink: 0;
 }
 
 .todo-sidebar-header {
@@ -1640,7 +1864,8 @@ body.light-mode .todo-text.completed {
     flex-shrink: 0; /* Prevent footer from shrinking */
     margin-top: 8px;
     background: inherit; /* Ensure footer is visible */
-    position: relative;
+    position: sticky;
+    bottom: 0;
     z-index: 10;
 }
 

@@ -599,15 +599,45 @@ function injectCalendarUI() {
                 <h2 class="todo-sidebar-heading">To-Do List</h2>
                 <button class="todo-close-btn" aria-label="Close To-Do List">×</button>
             </div>
-            <div class="todo-input-container">
-                <input type="text" class="todo-input" placeholder="Add a new task..." maxlength="84">
-                <button class="todo-add-btn" aria-label="Add Task">+</button>
+            
+            <!-- Middle content area - scrollable -->
+            <div class="todo-sections-container">
+                <!-- Active Tasks Section -->
+                <div class="todo-section active-tasks-section">
+                    <div class="todo-section-header">
+                        <h3 class="todo-section-title">Active Tasks</h3>
+                        <span class="todo-count" id="activeTaskCount">0</span>
+                    </div>
+                    <div class="todo-input-container">
+                        <input type="text" class="todo-input" placeholder="Add a new task..." maxlength="84">
+                        <button class="todo-add-btn" aria-label="Add Task">+</button>
+                    </div>
+                    <div class="todo-list-container">
+                        <ul class="todo-list active-tasks" id="activeTodoList">
+                            <!-- Active tasks will be populated here -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Completed Tasks Section -->
+                <div class="todo-section completed-tasks-section">
+                    <div class="todo-section-header collapsible" id="completedTasksHeader">
+                        <h3 class="todo-section-title">Completed Tasks</h3>
+                        <div class="todo-section-controls">
+                            <span class="todo-count" id="completedTaskCount">0</span>
+                            <button class="todo-section-toggle" aria-label="Toggle Completed Tasks">
+                                <span class="toggle-icon">▼</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="todo-list-container completed-tasks-container collapsed" id="completedTasksContainer">
+                        <ul class="todo-list completed-tasks" id="completedTodoList">
+                            <!-- Completed tasks will be populated here -->
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="todo-list-container">
-                <ul class="todo-list" id="todoList">
-                    <!-- Tasks will be populated here -->
-                </ul>
-            </div>
+            
             <div class="todo-sidebar-footer">
                 <button class="todo-clear-btn" id="clearCompletedBtn">Clear Completed</button>
                 <button class="todo-clear-all-btn" id="clearAllBtn">Clear All</button>
@@ -629,46 +659,76 @@ function injectCalendarUI() {
     }
     
     function renderTodos() {
-        const todoList = document.getElementById('todoList');
-        if (!todoList) return;
+        const activeTodoList = document.getElementById('activeTodoList');
+        const completedTodoList = document.getElementById('completedTodoList');
+        const activeTaskCount = document.getElementById('activeTaskCount');
+        const completedTaskCount = document.getElementById('completedTaskCount');
         
-        todoList.innerHTML = '';
+        if (!activeTodoList || !completedTodoList) return;
         
-        todos.forEach((todo, index) => {
-            const li = document.createElement('li');
-            li.className = 'todo-item';
-            li.draggable = true;
-            li.dataset.index = index;
-            li.innerHTML = `
-                <label class="todo-checkbox-container">
-                    <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
-                    <span class="todo-text ${todo.completed ? 'completed' : ''}" title="${todo.text}">${todo.text}</span>
-                </label>
-                <button class="todo-delete-btn" aria-label="Delete Task">×</button>
-            `;
-            
-            // Checkbox event
-            const checkbox = li.querySelector('.todo-checkbox');
-            checkbox.addEventListener('change', (e) => {
-                e.stopPropagation(); // Prevent event bubbling
-                todos[index].completed = checkbox.checked;
-                saveTodos();
-                renderTodos();
-            });
-            
-            // Delete button event
-            const deleteBtn = li.querySelector('.todo-delete-btn');
-            deleteBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation(); // Prevent event bubbling
-                todos.splice(index, 1);
-                saveTodos();
-                renderTodos();
-            });
-            
-            // Drag and drop events
+        // Clear both lists
+        activeTodoList.innerHTML = '';
+        completedTodoList.innerHTML = '';
+        
+        // Separate active and completed tasks
+        const activeTodos = todos.filter(todo => !todo.completed);
+        const completedTodos = todos.filter(todo => todo.completed);
+        
+        // Update task counts
+        if (activeTaskCount) activeTaskCount.textContent = activeTodos.length;
+        if (completedTaskCount) completedTaskCount.textContent = completedTodos.length;
+        
+        // Render active tasks
+        activeTodos.forEach((todo, index) => {
+            const li = createTodoItem(todo, todos.indexOf(todo));
+            activeTodoList.appendChild(li);
+        });
+        
+        // Render completed tasks
+        completedTodos.forEach((todo, index) => {
+            const li = createTodoItem(todo, todos.indexOf(todo));
+            completedTodoList.appendChild(li);
+        });
+        
+        updateClearButtons();
+    }
+    
+    function createTodoItem(todo, originalIndex) {
+        const li = document.createElement('li');
+        li.className = 'todo-item';
+        li.draggable = true;
+        li.dataset.index = originalIndex;
+        li.innerHTML = `
+            <label class="todo-checkbox-container">
+                <input type="checkbox" class="todo-checkbox" ${todo.completed ? 'checked' : ''}>
+                <span class="todo-text ${todo.completed ? 'completed' : ''}" title="${todo.text}">${todo.text}</span>
+            </label>
+            <button class="todo-delete-btn" aria-label="Delete Task">×</button>
+        `;
+        
+        // Checkbox event
+        const checkbox = li.querySelector('.todo-checkbox');
+        checkbox.addEventListener('change', (e) => {
+            e.stopPropagation();
+            todos[originalIndex].completed = checkbox.checked;
+            saveTodos();
+            renderTodos();
+        });
+        
+        // Delete button event
+        const deleteBtn = li.querySelector('.todo-delete-btn');
+        deleteBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            todos.splice(originalIndex, 1);
+            saveTodos();
+            renderTodos();
+        });
+        
+        // Drag and drop events (only for active tasks)
+        if (!todo.completed) {
             li.addEventListener('dragstart', (e) => {
-                e.dataTransfer.setData('text/plain', index);
+                e.dataTransfer.setData('text/plain', originalIndex);
                 li.classList.add('dragging');
             });
 
@@ -690,7 +750,7 @@ function injectCalendarUI() {
                 li.classList.remove('drag-over');
 
                 const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
-                const dropIndex = index;
+                const dropIndex = originalIndex;
 
                 if (draggedIndex !== dropIndex) {
                     // Reorder the todos array
@@ -703,11 +763,9 @@ function injectCalendarUI() {
                     renderTodos();
                 }
             });
-            
-            todoList.appendChild(li);
-        });
+        }
         
-        updateClearButtons();
+        return li;
     }
     
     function updateClearButtons() {
@@ -795,6 +853,20 @@ function injectCalendarUI() {
         
         if (clearAllBtn) {
             clearAllBtn.addEventListener('click', clearAllTodos);
+        }
+        
+        // Collapsible completed tasks section
+        const completedTasksHeader = document.getElementById('completedTasksHeader');
+        const completedTasksContainer = document.getElementById('completedTasksContainer');
+        
+        if (completedTasksHeader && completedTasksContainer) {
+            completedTasksHeader.addEventListener('click', () => {
+                completedTasksContainer.classList.toggle('collapsed');
+                const toggleIcon = completedTasksHeader.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = completedTasksContainer.classList.contains('collapsed') ? '▼' : '▲';
+                }
+            });
         }
         
         // Close button
