@@ -1335,14 +1335,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             message: 'Open your to-do list to keep track of homework and tasks.',
         },
         {
-            selector: '.refsheet-btn',
-            title: 'Reference Sheets',
-            message: 'Access quick reference sheets for advanced math, standard math, chemistry, and physics.',
-        },
-        {
             selector: '.utilities-btn',
             title: 'Utilities',
             message: 'Use the utilities for graphing (Desmos), calculations (Wolfram), and integral/derivative calculators. Great for quick problem solving!',
+        },
+        {
+            selector: '.refsheet-btn',
+            title: 'Reference Sheets',
+            message: 'Access quick reference sheets for advanced math, standard math, chemistry, and physics.',
         },
     ];
 
@@ -1361,14 +1361,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         let target = document.querySelector(step.selector);
         // Special group highlight for Reference Sheets and Utilities
-        if (step.title === 'Reference Sheets') {
-            const btns = Array.from(document.querySelectorAll('.refsheet-btn, .refsheet-btn ~ .reference-btn'));
-            if (btns.length) {
-                const rects = btns.map(btn => btn.getBoundingClientRect());
-                const minTop = Math.min(...rects.map(r => r.top));
-                const maxBottom = Math.max(...rects.map(r => r.bottom));
-                const minLeft = Math.min(...rects.map(r => r.left));
-                const maxRight = Math.max(...rects.map(r => r.right));
+        if (step.title === 'Navigate Days') {
+            // Highlight the nav bar and arrows as a group
+            const nav = document.querySelector('.timetable-nav');
+            const navArrows = Array.from(document.querySelectorAll('.timetable-nav .nav-quick-nav'));
+            if (nav) {
+                const navRect = nav.getBoundingClientRect();
+                let minTop = navRect.top;
+                let maxBottom = navRect.bottom;
+                let minLeft = navRect.left;
+                let maxRight = navRect.right;
+                navArrows.forEach(arrow => {
+                    const r = arrow.getBoundingClientRect();
+                    minTop = Math.min(minTop, r.top);
+                    maxBottom = Math.max(maxBottom, r.bottom);
+                    minLeft = Math.min(minLeft, r.left);
+                    maxRight = Math.max(maxRight, r.right);
+                });
                 const box = document.createElement('div');
                 box.id = 'tutorial-highlight-box';
                 box.className = 'tutorial-highlight-group';
@@ -1381,14 +1390,33 @@ document.addEventListener('DOMContentLoaded', async () => {
                 box.style.height = `${maxBottom - minTop + 8}px`;
                 document.body.appendChild(box);
             }
-        } else if (step.title === 'Utilities') {
-            const btns = Array.from(document.querySelectorAll('.utilities-btn'));
+        } else if (step.title === 'Reference Sheets' || step.title === 'Utilities') {
+            // Get all relevant buttons
+            let btns;
+            if (step.title === 'Reference Sheets') {
+                btns = Array.from(document.querySelectorAll('.refsheet-btn, .refsheet-btn ~ .reference-btn'));
+            } else {
+                btns = Array.from(document.querySelectorAll('.utilities-btn'));
+            }
+            // Get nav arrows
+            const navArrows = Array.from(document.querySelectorAll('.nav-quick-nav'));
             if (btns.length) {
-                const rects = btns.map(btn => btn.getBoundingClientRect());
-                const minTop = Math.min(...rects.map(r => r.top));
-                const maxBottom = Math.max(...rects.map(r => r.bottom));
-                const minLeft = Math.min(...rects.map(r => r.left));
-                const maxRight = Math.max(...rects.map(r => r.right));
+                const btnRects = btns.map(btn => btn.getBoundingClientRect());
+                let minTop = Math.min(...btnRects.map(r => r.top));
+                let maxBottom = Math.max(...btnRects.map(r => r.bottom));
+                let minLeft = Math.min(...btnRects.map(r => r.left));
+                let maxRight = Math.max(...btnRects.map(r => r.right));
+                // Expand to include nav arrows if they overlap vertically
+                navArrows.forEach(arrow => {
+                    const r = arrow.getBoundingClientRect();
+                    // Check for vertical overlap
+                    if (r.bottom > minTop && r.top < maxBottom) {
+                        minTop = Math.min(minTop, r.top);
+                        maxBottom = Math.max(maxBottom, r.bottom);
+                        minLeft = Math.min(minLeft, r.left);
+                        maxRight = Math.max(maxRight, r.right);
+                    }
+                });
                 const box = document.createElement('div');
                 box.id = 'tutorial-highlight-box';
                 box.className = 'tutorial-highlight-group';
