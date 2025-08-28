@@ -912,7 +912,8 @@ function injectCalendarUI() {
         { id: 'size-toggle-btn', title: 'Toggle Window Size', icon: '⛶', shortcut: 'V', isImage: false },
         { id: 'upload-btn', title: 'Upload New Timetable', icon: '../assets/upload.svg', shortcut: 'U', isImage: true },
         { id: 'toggle-btn', title: 'Toggle Theme', icon: '../assets/light or dark.svg', shortcut: 'T', isImage: true },
-        { id: 'cherry-toggle-btn', title: 'Cherry Blossom Theme', icon: '', shortcut: 'C', isImage: false }
+        { id: 'cherry-toggle-btn', title: 'Cherry Blossom Theme', icon: '', shortcut: 'C', isImage: false },
+        { id: 'navy-toggle-btn', title: 'Navy Blue Theme', icon: '', shortcut: 'N', isImage: false }
     ];
 
     // Create and append settings buttons
@@ -941,6 +942,7 @@ function injectCalendarUI() {
     const uploadBtn = settingsButtonsContainer.querySelector('#upload-btn');
     const toggleBtn = settingsButtonsContainer.querySelector('#toggle-btn');
     const cherryToggleBtn = settingsButtonsContainer.querySelector('#cherry-toggle-btn');
+    const navyToggleBtn = settingsButtonsContainer.querySelector('#navy-toggle-btn');
 
     // Scrollbar toggle
     document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
@@ -982,19 +984,22 @@ function injectCalendarUI() {
     const theme = localStorage.getItem("theme");
     if (theme === "light") {
         document.body.classList.add("light-mode");
-        document.body.classList.remove("cherry-blossom-mode");
+        document.body.classList.remove("cherry-blossom-mode", "navy-blue-mode");
     } else if (theme === "cherry") {
         document.body.classList.add("cherry-blossom-mode");
-        document.body.classList.remove("light-mode");
-    } else {
+        document.body.classList.remove("light-mode", "navy-blue-mode");
+    } else if (theme === "navy") {
+        document.body.classList.add("navy-blue-mode");
         document.body.classList.remove("light-mode", "cherry-blossom-mode");
+    } else {
+        document.body.classList.remove("light-mode", "cherry-blossom-mode", "navy-blue-mode");
     }
     toggleBtn.addEventListener('click', () => {
         if (document.body.classList.contains("light-mode")) {
             document.body.classList.remove("light-mode");
             localStorage.setItem("theme", "dark");
         } else {
-            document.body.classList.remove("cherry-blossom-mode");
+            document.body.classList.remove("cherry-blossom-mode", "navy-blue-mode");
             document.body.classList.add("light-mode");
             localStorage.setItem("theme", "light");
         }
@@ -1006,9 +1011,21 @@ function injectCalendarUI() {
             document.body.classList.remove("cherry-blossom-mode");
             localStorage.setItem("theme", "dark");
         } else {
-            document.body.classList.remove("light-mode");
+            document.body.classList.remove("light-mode", "navy-blue-mode");
             document.body.classList.add("cherry-blossom-mode");
             localStorage.setItem("theme", "cherry");
+        }
+    });
+    // Navy blue theme toggle
+    navyToggleBtn.textContent = '🌑';
+    navyToggleBtn.addEventListener('click', () => {
+        if (document.body.classList.contains("navy-blue-mode")) {
+            document.body.classList.remove("navy-blue-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("light-mode", "cherry-blossom-mode");
+            document.body.classList.add("navy-blue-mode");
+            localStorage.setItem("theme", "navy");
         }
     });
 
