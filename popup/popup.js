@@ -1353,8 +1353,58 @@ document.addEventListener('DOMContentLoaded', async () => {
             container.style.display = 'none';
             return;
         }
-        const step = tutorialSteps[stepIdx];
-        const target = document.querySelector(step.selector);
+    const step = tutorialSteps[stepIdx];
+        // Remove highlight from any previously highlighted element and remove highlight box if present
+        document.querySelectorAll('.tutorial-highlight').forEach(el => el.classList.remove('tutorial-highlight'));
+        const oldBox = document.getElementById('tutorial-highlight-box');
+        if (oldBox) oldBox.remove();
+
+        let target = document.querySelector(step.selector);
+        // Special group highlight for Reference Sheets and Utilities
+        if (step.title === 'Reference Sheets') {
+            const btns = Array.from(document.querySelectorAll('.refsheet-btn, .refsheet-btn ~ .reference-btn'));
+            if (btns.length) {
+                const rects = btns.map(btn => btn.getBoundingClientRect());
+                const minTop = Math.min(...rects.map(r => r.top));
+                const maxBottom = Math.max(...rects.map(r => r.bottom));
+                const minLeft = Math.min(...rects.map(r => r.left));
+                const maxRight = Math.max(...rects.map(r => r.right));
+                const box = document.createElement('div');
+                box.id = 'tutorial-highlight-box';
+                box.className = 'tutorial-highlight-group';
+                box.style.position = 'absolute';
+                box.style.pointerEvents = 'none';
+                box.style.zIndex = '2101';
+                box.style.top = `${minTop + window.scrollY - 4}px`;
+                box.style.left = `${minLeft + window.scrollX - 4}px`;
+                box.style.width = `${maxRight - minLeft + 8}px`;
+                box.style.height = `${maxBottom - minTop + 8}px`;
+                document.body.appendChild(box);
+            }
+        } else if (step.title === 'Utilities') {
+            const btns = Array.from(document.querySelectorAll('.utilities-btn'));
+            if (btns.length) {
+                const rects = btns.map(btn => btn.getBoundingClientRect());
+                const minTop = Math.min(...rects.map(r => r.top));
+                const maxBottom = Math.max(...rects.map(r => r.bottom));
+                const minLeft = Math.min(...rects.map(r => r.left));
+                const maxRight = Math.max(...rects.map(r => r.right));
+                const box = document.createElement('div');
+                box.id = 'tutorial-highlight-box';
+                box.className = 'tutorial-highlight-group';
+                box.style.position = 'absolute';
+                box.style.pointerEvents = 'none';
+                box.style.zIndex = '2101';
+                box.style.top = `${minTop + window.scrollY - 4}px`;
+                box.style.left = `${minLeft + window.scrollX - 4}px`;
+                box.style.width = `${maxRight - minLeft + 8}px`;
+                box.style.height = `${maxBottom - minTop + 8}px`;
+                document.body.appendChild(box);
+            }
+        } else {
+            // Add highlight to the current target
+            if (target) target.classList.add('tutorial-highlight');
+        }
         // Special: force nav arrows visible for Navigate Days step
         if (step.title === 'Navigate Days') {
             document.body.classList.add('tutorial-nav-arrows');
@@ -1421,6 +1471,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         container.style.display = 'block';
         // Next/Finish button
         tooltip.querySelector('#tutorial-next-btn').onclick = () => {
+            // Remove highlight from all on finish/next
+            document.querySelectorAll('.tutorial-highlight').forEach(el => el.classList.remove('tutorial-highlight'));
+            const oldBox = document.getElementById('tutorial-highlight-box');
+            if (oldBox) oldBox.remove();
             if (stepIdx === tutorialSteps.length-1) {
                 container.style.display = 'none';
                 document.body.classList.remove('tutorial-nav-arrows');

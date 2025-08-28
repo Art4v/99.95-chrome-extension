@@ -1,3 +1,16 @@
+.tutorial-highlight-group {
+    box-shadow: 0 0 0 4px #e53935, 0 4px 32px #0008 !important;
+    border-radius: 12px !important;
+    transition: box-shadow 0.2s;
+    background: rgba(229,57,53,0.06);
+}
+.tutorial-highlight {
+    box-shadow: 0 0 0 4px #e53935, 0 4px 32px #0008 !important;
+    z-index: 2101 !important;
+    position: relative;
+    border-radius: 10px !important;
+    transition: box-shadow 0.2s;
+}
 .tutorial-nav-arrows .timetable-nav .nav-quick-nav {
     opacity: 1 !important;
     transition: opacity 0.2s;
