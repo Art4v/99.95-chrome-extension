@@ -413,7 +413,7 @@ function injectCalendarUI() {
 
     // Create Wolfram button (positioned between todo and reference buttons)
     const wolframBtn = document.createElement('button');
-    wolframBtn.className = 'reference-btn wolfram-btn';
+    wolframBtn.className = 'reference-btn wolfram-btn utilities-btn';
     wolframBtn.setAttribute('title', 'Wolfram Alpha');
     wolframBtn.innerHTML = '<img src="../assets/wolfram.png" alt="Wolfram" class="reference-icon">';
     wolframBtn.addEventListener('click', (e) => {
@@ -424,7 +424,7 @@ function injectCalendarUI() {
 
     // Create Desmos button (positioned below wolfram button)
     const desmosBtn = document.createElement('button');
-    desmosBtn.className = 'reference-btn desmos-btn';
+    desmosBtn.className = 'reference-btn desmos-btn utilities-btn';
     desmosBtn.setAttribute('title', 'Desmos Calculator');
     desmosBtn.innerHTML = '<img src="../assets/desmos.png" alt="Desmos" class="reference-icon">';
     desmosBtn.addEventListener('click', (e) => {
@@ -435,7 +435,7 @@ function injectCalendarUI() {
 
     // Create Integral Calculator button (positioned below desmos button)
     const integralBtn = document.createElement('button');
-    integralBtn.className = 'reference-btn integral-btn';
+    integralBtn.className = 'reference-btn integral-btn utilities-btn';
     integralBtn.setAttribute('title', 'Integral Calculator');
     integralBtn.innerHTML = '<img src="../assets/integral.png" alt="Integral" class="reference-icon">';
     integralBtn.addEventListener('click', (e) => {
@@ -446,7 +446,7 @@ function injectCalendarUI() {
 
     // Create Derivative Calculator button (positioned below integral button)
     const derivativeBtn = document.createElement('button');
-    derivativeBtn.className = 'reference-btn derivative-btn';
+    derivativeBtn.className = 'reference-btn derivative-btn utilities-btn';
     derivativeBtn.setAttribute('title', 'Derivative Calculator');
     derivativeBtn.innerHTML = '<img src="../assets/derivitive.png" alt="Derivative" class="reference-icon">';
     derivativeBtn.addEventListener('click', (e) => {
@@ -468,20 +468,18 @@ function injectCalendarUI() {
     ];
 
     // Create and append reference sheet buttons
-    referenceButtons.forEach(({ pdf, label, shortcut, icon }) => {
+    referenceButtons.forEach(({ pdf, label, shortcut, icon }, idx) => {
         const btn = document.createElement('button');
         btn.className = 'reference-btn';
+        if (idx === 0) btn.classList.add('refsheet-btn'); // Unique class for tutorial
         btn.setAttribute('data-pdf', pdf);
         btn.setAttribute('title', `${label} (${shortcut})`);
-        
         btn.innerHTML = `<img src="${icon}" alt="${label}" class="reference-icon">`;
-        
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
             openReferenceSheet(pdf);
         });
-        
         referenceButtonsContainer.appendChild(btn);
     });
 
@@ -1337,12 +1335,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             message: 'Open your to-do list to keep track of homework and tasks.',
         },
         {
-            selector: '.reference-btn',
+            selector: '.refsheet-btn',
             title: 'Reference Sheets',
             message: 'Access quick reference sheets for advanced math, standard math, chemistry, and physics.',
         },
         {
-            selector: '.reference-btn',
+            selector: '.utilities-btn',
             title: 'Utilities',
             message: 'Use the utilities for graphing (Desmos), calculations (Wolfram), and integral/derivative calculators. Great for quick problem solving!',
         },
@@ -1387,7 +1385,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <h3 style="margin-top:0;margin-bottom:10px;">${step.title}</h3>
             <p style="margin:0 0 16px 0;">${step.message}</p>
             <div style="text-align:right;">
-                <button id="tutorial-next-btn" style="padding:7px 18px;font-size:1rem;border:none;border-radius:6px;background:#4caf50;color:#fff;cursor:pointer;">${stepIdx === tutorialSteps.length-1 ? 'Finish' : 'Next'}</button>
+                <button id="tutorial-next-btn" style="padding:7px 18px;font-size:1rem;border:none;border-radius:6px;background:#e53935;color:#fff;cursor:pointer;">${stepIdx === tutorialSteps.length-1 ? 'Finish' : 'Next'}</button>
             </div>
         `;
         // Custom positioning for sidebar steps
