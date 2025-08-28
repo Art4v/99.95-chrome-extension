@@ -1,3 +1,7 @@
+.tutorial-nav-arrows .timetable-nav .nav-quick-nav {
+    opacity: 1 !important;
+    transition: opacity 0.2s;
+}
 /* Navy Blue Theme */
 body.navy-blue-mode {
     background-color: #232733;

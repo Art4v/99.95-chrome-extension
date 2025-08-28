@@ -1307,6 +1307,141 @@ document.addEventListener('DOMContentLoaded', async () => {
     injectEmbedViewerUI();
     injectNavigationUI();
     injectCalendarUI();
+
+
+    // Step-by-step tutorial tooltips logic
+    const tutorialSteps = [
+        {
+            selector: '.notif',
+            title: 'Next Class Countdown',
+            message: 'This area shows a live countdown to your next class, including details like teacher and room.',
+        },
+        {
+            selector: '.blocks',
+            title: 'Today\'s Schedule',
+            message: 'Scroll here to see your full schedule for today. Each block shows class, time, teacher, and room.',
+        },
+        {
+            selector: '.timetable-nav',
+            title: 'Navigate Days',
+            message: 'Use these arrows to move between days. You can also use the calendar or keyboard shortcuts.',
+        },
+        {
+            selector: '.calendar-icon',
+            title: 'Calendar',
+            message: 'Click the calendar icon to quickly jump to any date.',
+        },
+        {
+            selector: '.todo-btn',
+            title: 'To-Do List',
+            message: 'Open your to-do list to keep track of homework and tasks.',
+        },
+        {
+            selector: '.reference-btn',
+            title: 'Reference Sheets',
+            message: 'Access quick reference sheets for advanced math, standard math, chemistry, and physics.',
+        },
+        {
+            selector: '.reference-btn',
+            title: 'Utilities',
+            message: 'Use the utilities for graphing (Desmos), calculations (Wolfram), and integral/derivative calculators. Great for quick problem solving!',
+        },
+    ];
+
+    function showTutorialStep(stepIdx) {
+        const container = document.getElementById('tutorial-tooltip-container');
+        container.innerHTML = '';
+        if (stepIdx < 0 || stepIdx >= tutorialSteps.length) {
+            container.style.display = 'none';
+            return;
+        }
+        const step = tutorialSteps[stepIdx];
+        const target = document.querySelector(step.selector);
+        // Special: force nav arrows visible for Navigate Days step
+        if (step.title === 'Navigate Days') {
+            document.body.classList.add('tutorial-nav-arrows');
+        } else {
+            document.body.classList.remove('tutorial-nav-arrows');
+        }
+        if (!target) {
+            // If the element is not found, skip to next
+            showTutorialStep(stepIdx + 1);
+            return;
+        }
+        // Get bounding rect for positioning
+        const rect = target.getBoundingClientRect();
+        // Tooltip element
+        const tooltip = document.createElement('div');
+        tooltip.className = 'tutorial-tooltip';
+        tooltip.style.position = 'absolute';
+        tooltip.style.pointerEvents = 'auto';
+        tooltip.style.background = '#222';
+        tooltip.style.color = '#fff';
+        tooltip.style.padding = '20px 24px 16px 24px';
+        tooltip.style.borderRadius = '14px';
+        tooltip.style.boxShadow = '0 4px 32px #0008';
+        tooltip.style.maxWidth = '320px';
+        tooltip.style.zIndex = '2100';
+        tooltip.style.fontFamily = "'Varela',sans-serif";
+        tooltip.innerHTML = `
+            <h3 style="margin-top:0;margin-bottom:10px;">${step.title}</h3>
+            <p style="margin:0 0 16px 0;">${step.message}</p>
+            <div style="text-align:right;">
+                <button id="tutorial-next-btn" style="padding:7px 18px;font-size:1rem;border:none;border-radius:6px;background:#4caf50;color:#fff;cursor:pointer;">${stepIdx === tutorialSteps.length-1 ? 'Finish' : 'Next'}</button>
+            </div>
+        `;
+        // Custom positioning for sidebar steps
+        let top = 0, left = 0;
+        if (step.title === 'Reference Sheets' || step.title === 'Utilities') {
+            // Place to the right of the sidebar, vertically centered on the button group
+            top = rect.top + window.scrollY;
+            // Ensure the tooltip is vertically centered relative to the sidebar button group
+            const sidebarHeight = rect.height;
+            const tooltipHeight = 160; // Approximate height of the tooltip
+            top = top + (sidebarHeight / 2) - (tooltipHeight / 2);
+            // Clamp to viewport
+            top = Math.max(12, Math.min(top, window.innerHeight - tooltipHeight - 12 + window.scrollY));
+            left = rect.right + 18 + window.scrollX;
+            tooltip.style.top = `${top}px`;
+            tooltip.style.left = `${left}px`;
+        } else {
+            // Default: above or below
+            const topSpace = rect.top;
+            const bottomSpace = window.innerHeight - rect.bottom;
+            if (bottomSpace > 180) {
+                // Place below
+                top = rect.bottom + 12;
+            } else {
+                // Place above
+                top = Math.max(0, rect.top - 180);
+            }
+            left = Math.max(12, rect.left + (rect.width/2) - 160);
+            tooltip.style.top = `${top + window.scrollY}px`;
+            tooltip.style.left = `${left + window.scrollX}px`;
+        }
+        container.appendChild(tooltip);
+        container.style.display = 'block';
+        // Next/Finish button
+        tooltip.querySelector('#tutorial-next-btn').onclick = () => {
+            if (stepIdx === tutorialSteps.length-1) {
+                container.style.display = 'none';
+                document.body.classList.remove('tutorial-nav-arrows');
+            } else {
+                showTutorialStep(stepIdx+1);
+            }
+        };
+    }
+
+    // Start tutorial if flag is set
+    if (localStorage.getItem('showTutorial') === 'true') {
+        // Wait for DOM and features to render
+        setTimeout(() => {
+            showTutorialStep(0);
+        }, 400);
+        // Remove flag so it only shows once
+        localStorage.removeItem('showTutorial');
+    }
+
     // Keyboard shortcuts for day navigation
     document.addEventListener('keydown', (e) => {
         if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;

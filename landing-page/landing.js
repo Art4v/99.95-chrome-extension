@@ -273,6 +273,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusDiv.textContent = 'ICS data successfully parsed and stored!';
                 statusDiv.className = 'status success';
                 chrome.runtime.sendMessage({ type: 'storageUpdated' });
+                // Set tutorial flag for first upload
+                localStorage.setItem('showTutorial', 'true');
                 window.location.href = '../popup/popup.html';
             });
         } catch (error) {
