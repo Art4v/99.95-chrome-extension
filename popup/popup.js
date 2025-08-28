@@ -911,7 +911,8 @@ function injectCalendarUI() {
         { id: 'scrollbar-toggle-btn', title: 'Toggle Scrollbar', icon: '../assets/scroll toggle.png', shortcut: 'S', isImage: true },
         { id: 'size-toggle-btn', title: 'Toggle Window Size', icon: '⛶', shortcut: 'V', isImage: false },
         { id: 'upload-btn', title: 'Upload New Timetable', icon: '../assets/upload.svg', shortcut: 'U', isImage: true },
-        { id: 'toggle-btn', title: 'Toggle Theme', icon: '../assets/light or dark.svg', shortcut: 'T', isImage: true }
+        { id: 'toggle-btn', title: 'Toggle Theme', icon: '../assets/light or dark.svg', shortcut: 'T', isImage: true },
+        { id: 'cherry-toggle-btn', title: 'Cherry Blossom Theme', icon: '', shortcut: 'C', isImage: false }
     ];
 
     // Create and append settings buttons
@@ -939,6 +940,7 @@ function injectCalendarUI() {
     const sizeToggleBtn = settingsButtonsContainer.querySelector('#size-toggle-btn');
     const uploadBtn = settingsButtonsContainer.querySelector('#upload-btn');
     const toggleBtn = settingsButtonsContainer.querySelector('#toggle-btn');
+    const cherryToggleBtn = settingsButtonsContainer.querySelector('#cherry-toggle-btn');
 
     // Scrollbar toggle
     document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
@@ -977,10 +979,37 @@ function injectCalendarUI() {
     });
 
     // Theme toggle
-    if (localStorage.getItem("theme") === "light") document.body.classList.add("light-mode");
+    const theme = localStorage.getItem("theme");
+    if (theme === "light") {
+        document.body.classList.add("light-mode");
+        document.body.classList.remove("cherry-blossom-mode");
+    } else if (theme === "cherry") {
+        document.body.classList.add("cherry-blossom-mode");
+        document.body.classList.remove("light-mode");
+    } else {
+        document.body.classList.remove("light-mode", "cherry-blossom-mode");
+    }
     toggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle("light-mode");
-        localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+        if (document.body.classList.contains("light-mode")) {
+            document.body.classList.remove("light-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("cherry-blossom-mode");
+            document.body.classList.add("light-mode");
+            localStorage.setItem("theme", "light");
+        }
+    });
+    // Cherry blossom theme toggle
+    cherryToggleBtn.textContent = '🌸';
+    cherryToggleBtn.addEventListener('click', () => {
+        if (document.body.classList.contains("cherry-blossom-mode")) {
+            document.body.classList.remove("cherry-blossom-mode");
+            localStorage.setItem("theme", "dark");
+        } else {
+            document.body.classList.remove("light-mode");
+            document.body.classList.add("cherry-blossom-mode");
+            localStorage.setItem("theme", "cherry");
+        }
     });
 
     // Create left-side container for all buttons and dividers
