@@ -1,36 +1,36 @@
 /* Navy Blue Theme */
 body.navy-blue-mode {
-    background-color: #0a1833;
-    color: #c7d6f3;
+    background-color: #232733;
+    color: #c3c7d1;
 }
 
 body.navy-blue-mode .blocks {
-    background: rgba(10, 24, 51, 0.7);
-    border: 1px solid #274472;
+    background: rgba(35, 39, 51, 0.92);
+    border: 1px solid #444857;
 }
 
 body.navy-blue-mode .b {
-    background: rgba(39, 68, 114, 0.25);
-    border: 1px solid #274472;
+    background: rgba(68, 72, 87, 0.22);
+    border: 1px solid #444857;
 }
 
 body.navy-blue-mode .b.active {
-    box-shadow: 0 0 0 1.5px #3a5ba0, 0 0 12px 2px #3a5ba044;
-    border-color: #3a5ba0;
-    background: rgba(39, 68, 114, 0.35);
+    box-shadow: 0 0 0 1.5px #5a5e6e, 0 0 12px 2px #5a5e6e44;
+    border-color: #5a5e6e;
+    background: rgba(68, 72, 87, 0.32);
 }
 
 body.navy-blue-mode .notif {
-    color: #c7d6f3;
+    color: #c3c7d1;
 }
 
 body.navy-blue-mode .notif .progress-bar-container {
-    border: 1px solid #274472;
+    border: 1px solid #444857;
 }
 
 body.navy-blue-mode .notif .progress-bar {
-    background: #3a5ba0;
-    box-shadow: 0 0 16px 2px #3a5ba088, 0 0 4px 1px #3a5ba044;
+    background: #5a5e6e;
+    box-shadow: 0 0 16px 2px #5a5e6e88, 0 0 4px 1px #5a5e6e44;
 }
 /* Cherry Blossom Pink Theme */
 body.cherry-blossom-mode {
