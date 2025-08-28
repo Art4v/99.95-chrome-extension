@@ -1504,6 +1504,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const oldBox = document.getElementById('tutorial-highlight-box');
             if (oldBox) oldBox.remove();
             if (stepIdx === tutorialSteps.length-1) {
+                // Only clear the flag after the user finishes the tutorial
+                localStorage.removeItem('showTutorial');
                 container.style.display = 'none';
                 document.body.classList.remove('tutorial-nav-arrows');
             } else {
@@ -1518,8 +1520,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTimeout(() => {
             showTutorialStep(0);
         }, 400);
-        // Remove flag so it only shows once
-        localStorage.removeItem('showTutorial');
+        // Do not remove flag here; it will be removed after Finish is pressed
     }
 
     // Keyboard shortcuts for day navigation
