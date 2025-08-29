@@ -83,6 +83,41 @@ body.cherry-blossom-mode .notif .progress-bar {
     background: #ffc2da;
     box-shadow: 0 0 16px 2px #e87ca788, 0 0 4px 1px #e87ca744;
 }
+body.cherry-blossom-mode .reference-btn {
+    background: transparent !important;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: #2a2a2a;
+}
+
+body.cherry-blossom-mode .reference-btn:hover {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+body.cherry-blossom-mode .reference-btn .reference-icon {
+    filter: brightness(0) invert(0);
+}
+body.cherry-blossom-mode .calendar-icon,
+body.cherry-blossom-mode .todo-btn,
+body.cherry-blossom-mode .wolfram-btn,
+body.cherry-blossom-mode .desmos-btn,
+body.cherry-blossom-mode .integral-btn,
+body.cherry-blossom-mode .derivative-btn {
+    border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+body.cherry-blossom-mode .calendar-icon:hover,
+body.cherry-blossom-mode .todo-btn:hover,
+body.cherry-blossom-mode .wolfram-btn:hover,
+body.cherry-blossom-mode .desmos-btn:hover,
+body.cherry-blossom-mode .integral-btn:hover,
+body.cherry-blossom-mode .derivative-btn:hover {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+}
+body.cherry-blossom-mode .dividing-line,
+body.cherry-blossom-mode .todo-wolfram-divider {
+    background-color: rgba(0, 0, 0, 0.3);
+}
 /* Change the html selector to target only body */
 body {
     height: 600px;
