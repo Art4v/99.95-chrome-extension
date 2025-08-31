@@ -282,13 +282,39 @@ body.light-mode .b.active {
     background: rgba(117,98,79,0.13);
 }
 
+
+/* Period number (left) */
 .b h1 {
     display: flex;
     font-family: 'Inter', sans-serif;
     font-size: 1.6rem;
     margin: 0 15px 0 0;
     white-space: nowrap;
-    font-weight: 500; /* Medium weight for a modern look */
+    font-weight: 500;
+}
+
+/* Class name (center) - responsive font size and ellipsis */
+.bt p {
+    font-size: 1.1rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48vw;
+    display: block;
+    font-weight: 500;
+    transition: font-size 0.2s;
+}
+
+/* Shrink font size if text is too long (applied by JS) */
+.bt p.shrink {
+    font-size: 0.95rem;
+}
+.bt p.shrink2 {
+    font-size: 0.82rem;
+}
+.bt p.shrink3 {
+    font-size: 0.7rem;
 }
 
 .bt p {

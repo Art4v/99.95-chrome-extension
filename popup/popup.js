@@ -243,6 +243,29 @@ function createScheduleBlock(entry, date, isActive) {
     details.className = 'bt';
     const className = document.createElement('p');
     className.textContent = entry.n;
+
+    // Responsive font size: shrink if text is too long
+    // Use a temporary span to measure width
+    const tempSpan = document.createElement('span');
+    tempSpan.style.visibility = 'hidden';
+    tempSpan.style.position = 'absolute';
+    tempSpan.style.whiteSpace = 'nowrap';
+    tempSpan.style.fontSize = '1.1rem';
+    tempSpan.style.fontWeight = '500';
+    tempSpan.textContent = entry.n;
+    document.body.appendChild(tempSpan);
+    const maxWidth = window.innerWidth * 0.47; // match max-width in CSS
+    if (tempSpan.offsetWidth > maxWidth) {
+        className.classList.add('shrink');
+    }
+    if (tempSpan.offsetWidth > maxWidth * 1.15) {
+        className.classList.add('shrink2');
+    }
+    if (tempSpan.offsetWidth > maxWidth * 1.35) {
+        className.classList.add('shrink3');
+    }
+    document.body.removeChild(tempSpan);
+
     const teacherDetails = document.createElement('h4');
     const teacherName = (entry.t || '').trim();
     teacherDetails.textContent = formatTimeRange(date, entry.s, entry.e) + (teacherName ? `: ${teacherName}` : '');
