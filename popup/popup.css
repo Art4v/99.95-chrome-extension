@@ -1398,6 +1398,15 @@ body.light-mode .today-btn:hover {
     justify-content: center;
 }
 
+body.cherry-blossom-mode .nav-quick-nav button {
+    background: rgba(0, 0, 0, 0.07);
+    color: #2a2a2a;
+}
+
+body.cherry-blossom-mode .nav-quick-nav button:hover {
+    background: rgba(0, 0, 0, 0.13);
+}
+
 .nav-quick-nav button:hover {
     background: rgba(255, 255, 255, 0.15);
     transform: translateY(-1px);
