@@ -977,27 +977,51 @@ body.light-mode .settings-credit {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Hover-only mode for utilities panel */
-.left-side-container.hover-only {
-    transform: translateX(-45px);
-    opacity: 0.4;
+/* Click-only mode for utilities panel */
+.left-side-container.click-only {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
-.left-side-container.hover-only:hover {
+.left-side-container.click-only.visible {
     transform: translateX(0);
     opacity: 1;
+    pointer-events: auto;
 }
 
-/* Create invisible hover area */
-.left-side-container.hover-only::after {
-    content: '';
-    position: absolute;
-    left: -50px;
-    top: 0;
-    width: 120px;
-    height: 100%;
-    background: transparent;
-    z-index: -1;
+/* Utilities toggle button */
+.utilities-toggle-btn {
+    position: fixed;
+    top: 16px;
+    left: -30px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s ease, left 0.3s ease;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.utilities-toggle-btn.visible {
+    opacity: 1;
+    left: -5px;
+    pointer-events: auto;
+}
+
+.utilities-toggle-btn .utilities-icon {
+    width: auto;
+    height: auto;
+    max-width: 135px;
+    max-height: 135px;
+    display: block;
+    pointer-events: auto;
 }
 
 /* Settings toggle button */
