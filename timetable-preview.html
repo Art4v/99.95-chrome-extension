@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Preview - 99.95</title>
+    <link rel="stylesheet" type="text/css" href="timetable-preview.css">
+    <link rel="icon" href="assets/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela&display=swap" rel="stylesheet">
+    <script src="landing-page/moment.min.js"></script>
+    <script src="landing-page/moment-timezone-with-data.min.js"></script>
+    <script src="shared/utils.js"></script>
+</head>
+<body>
+    <div class="preview-container">
+        <header class="preview-header">
+            <h1>Timetable Preview</h1>
+            <p>Review your uploaded timetable before proceeding</p>
+        </header>
+        
+        <div class="timetable-info">
+            <div class="info-card">
+                <h3>Schedule Type</h3>
+                <p id="schedule-type">Analyzing...</p>
+            </div>
+        </div>
+        
+        <div class="timetable-container">
+            <div id="week-a" class="week-schedule">
+                <h2>Week A</h2>
+                <div class="week-table">
+                    <div class="time-column">
+                        <div class="time-header">Time</div>
+                        <div class="time-slot" data-period="0">8:45 AM</div>
+                        <div class="time-slot" data-period="1">9:30 AM</div>
+                        <div class="time-slot" data-period="2">10:15 AM</div>
+                        <div class="time-slot" data-period="3">11:00 AM</div>
+                        <div class="time-slot" data-period="4">11:45 AM</div>
+                        <div class="time-slot" data-period="5">12:30 PM</div>
+                        <div class="time-slot" data-period="6">1:15 PM</div>
+                        <div class="time-slot" data-period="7">2:00 PM</div>
+                        <div class="time-slot" data-period="8">2:45 PM</div>
+                        <div class="time-slot" data-period="9">3:30 PM</div>
+                        <div class="time-slot" data-period="10">4:15 PM</div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Monday</div>
+                        <div class="class-slot" data-day="monday" data-period="0"></div>
+                        <div class="class-slot" data-day="monday" data-period="1"></div>
+                        <div class="class-slot" data-day="monday" data-period="2"></div>
+                        <div class="class-slot" data-day="monday" data-period="3"></div>
+                        <div class="class-slot" data-day="monday" data-period="4"></div>
+                        <div class="class-slot" data-day="monday" data-period="5"></div>
+                        <div class="class-slot" data-day="monday" data-period="6"></div>
+                        <div class="class-slot" data-day="monday" data-period="7"></div>
+                        <div class="class-slot" data-day="monday" data-period="8"></div>
+                        <div class="class-slot" data-day="monday" data-period="9"></div>
+                        <div class="class-slot" data-day="monday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Tuesday</div>
+                        <div class="class-slot" data-day="tuesday" data-period="0"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="1"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="2"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="3"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="4"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="5"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="6"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="7"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="8"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="9"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Wednesday</div>
+                        <div class="class-slot" data-day="wednesday" data-period="0"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="1"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="2"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="3"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="4"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="5"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="6"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="7"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="8"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="9"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Thursday</div>
+                        <div class="class-slot" data-day="thursday" data-period="0"></div>
+                        <div class="class-slot" data-day="thursday" data-period="1"></div>
+                        <div class="class-slot" data-day="thursday" data-period="2"></div>
+                        <div class="class-slot" data-day="thursday" data-period="3"></div>
+                        <div class="class-slot" data-day="thursday" data-period="4"></div>
+                        <div class="class-slot" data-day="thursday" data-period="5"></div>
+                        <div class="class-slot" data-day="thursday" data-period="6"></div>
+                        <div class="class-slot" data-day="thursday" data-period="7"></div>
+                        <div class="class-slot" data-day="thursday" data-period="8"></div>
+                        <div class="class-slot" data-day="thursday" data-period="9"></div>
+                        <div class="class-slot" data-day="thursday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Friday</div>
+                        <div class="class-slot" data-day="friday" data-period="0"></div>
+                        <div class="class-slot" data-day="friday" data-period="1"></div>
+                        <div class="class-slot" data-day="friday" data-period="2"></div>
+                        <div class="class-slot" data-day="friday" data-period="3"></div>
+                        <div class="class-slot" data-day="friday" data-period="4"></div>
+                        <div class="class-slot" data-day="friday" data-period="5"></div>
+                        <div class="class-slot" data-day="friday" data-period="6"></div>
+                        <div class="class-slot" data-day="friday" data-period="7"></div>
+                        <div class="class-slot" data-day="friday" data-period="8"></div>
+                        <div class="class-slot" data-day="friday" data-period="9"></div>
+                        <div class="class-slot" data-day="friday" data-period="10"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="week-b" class="week-schedule">
+                <h2>Week B</h2>
+                <div class="week-table">
+                    <div class="time-column">
+                        <div class="time-header">Time</div>
+                        <div class="time-slot" data-period="0">8:45 AM</div>
+                        <div class="time-slot" data-period="1">9:30 AM</div>
+                        <div class="time-slot" data-period="2">10:15 AM</div>
+                        <div class="time-slot" data-period="3">11:00 AM</div>
+                        <div class="time-slot" data-period="4">11:45 AM</div>
+                        <div class="time-slot" data-period="5">12:30 PM</div>
+                        <div class="time-slot" data-period="6">1:15 PM</div>
+                        <div class="time-slot" data-period="7">2:00 PM</div>
+                        <div class="time-slot" data-period="8">2:45 PM</div>
+                        <div class="time-slot" data-period="9">3:30 PM</div>
+                        <div class="time-slot" data-period="10">4:15 PM</div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Monday</div>
+                        <div class="class-slot" data-day="monday" data-period="0"></div>
+                        <div class="class-slot" data-day="monday" data-period="1"></div>
+                        <div class="class-slot" data-day="monday" data-period="2"></div>
+                        <div class="class-slot" data-day="monday" data-period="3"></div>
+                        <div class="class-slot" data-day="monday" data-period="4"></div>
+                        <div class="class-slot" data-day="monday" data-period="5"></div>
+                        <div class="class-slot" data-day="monday" data-period="6"></div>
+                        <div class="class-slot" data-day="monday" data-period="7"></div>
+                        <div class="class-slot" data-day="monday" data-period="8"></div>
+                        <div class="class-slot" data-day="monday" data-period="9"></div>
+                        <div class="class-slot" data-day="monday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Tuesday</div>
+                        <div class="class-slot" data-day="tuesday" data-period="0"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="1"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="2"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="3"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="4"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="5"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="6"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="7"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="8"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="9"></div>
+                        <div class="class-slot" data-day="tuesday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Wednesday</div>
+                        <div class="class-slot" data-day="wednesday" data-period="0"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="1"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="2"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="3"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="4"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="5"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="6"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="7"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="8"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="9"></div>
+                        <div class="class-slot" data-day="wednesday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Thursday</div>
+                        <div class="class-slot" data-day="thursday" data-period="0"></div>
+                        <div class="class-slot" data-day="thursday" data-period="1"></div>
+                        <div class="class-slot" data-day="thursday" data-period="2"></div>
+                        <div class="class-slot" data-day="thursday" data-period="3"></div>
+                        <div class="class-slot" data-day="thursday" data-period="4"></div>
+                        <div class="class-slot" data-day="thursday" data-period="5"></div>
+                        <div class="class-slot" data-day="thursday" data-period="6"></div>
+                        <div class="class-slot" data-day="thursday" data-period="7"></div>
+                        <div class="class-slot" data-day="thursday" data-period="8"></div>
+                        <div class="class-slot" data-day="thursday" data-period="9"></div>
+                        <div class="class-slot" data-day="thursday" data-period="10"></div>
+                    </div>
+                    <div class="day-column">
+                        <div class="day-header">Friday</div>
+                        <div class="class-slot" data-day="friday" data-period="0"></div>
+                        <div class="class-slot" data-day="friday" data-period="1"></div>
+                        <div class="class-slot" data-day="friday" data-period="2"></div>
+                        <div class="class-slot" data-day="friday" data-period="3"></div>
+                        <div class="class-slot" data-day="friday" data-period="4"></div>
+                        <div class="class-slot" data-day="friday" data-period="5"></div>
+                        <div class="class-slot" data-day="friday" data-period="6"></div>
+                        <div class="class-slot" data-day="friday" data-period="7"></div>
+                        <div class="class-slot" data-day="friday" data-period="8"></div>
+                        <div class="class-slot" data-day="friday" data-period="9"></div>
+                        <div class="class-slot" data-day="friday" data-period="10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="preview-actions">
+            <button id="proceed-btn" class="proceed-button">
+                Proceed to Main Interface
+            </button>
+        </div>
+    </div>
+    
+    <script src="timetable-preview.js"></script>
+</body>
+</html>

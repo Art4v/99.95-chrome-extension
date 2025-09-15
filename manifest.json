@@ -21,7 +21,13 @@
         "48": "assets/favicon.png",
         "128": "assets/favicon.png"
       }
-    }
+    },
+    "web_accessible_resources": [
+      {
+        "resources": ["timetable-preview.html", "timetable-preview.css", "timetable-preview.js"],
+        "matches": ["<all_urls>"]
+      }
+    ]
     ,
     "content_security_policy": {
       "extension_pages": "script-src 'self'; object-src 'self'; frame-src 'self' https://www.desmos.com https://www.wolframalpha.com;"

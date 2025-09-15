@@ -1,0 +1,373 @@
+/* Timetable Preview Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Varela', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #ffffff;
+    height: 600px;
+    width: 800px;
+    margin: 0;
+    padding: 1%;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #64646444 transparent;
+}
+
+html {
+    height: 600px;
+    width: 800px;
+    margin: 0;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.preview-container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.preview-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.preview-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    background: linear-gradient(45deg, #e53935, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.preview-header p {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+}
+
+.timetable-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    min-width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.info-card h3 {
+    font-size: 0.9rem;
+    color: #b0b0b0;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-card p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.timetable-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.week-schedule {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.week-schedule h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #e53935;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.week-table {
+    display: grid;
+    grid-template-columns: 60px repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.time-column {
+    background: rgba(229, 57, 53, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+.time-header {
+    background: rgba(229, 57, 53, 1);
+    padding: 12px 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.time-slot {
+    padding: 4px 3px;
+    font-size: 0.65rem;
+    text-align: center;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.day-column {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.day-header {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 12px 8px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.class-slot {
+    min-height: 30px;
+    padding: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.class-slot:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.class-content {
+    background: linear-gradient(135deg, #e53935, #ff6b6b);
+    color: white;
+    padding: 3px 4px;
+    border-radius: 4px;
+    font-size: 0.6rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    min-height: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.1;
+}
+
+.class-name {
+    font-weight: bold;
+    margin-bottom: 1px;
+    font-size: 0.6rem;
+}
+
+.class-teacher {
+    font-size: 0.5rem;
+    opacity: 0.9;
+    margin-bottom: 1px;
+}
+
+.class-room {
+    font-size: 0.45rem;
+    opacity: 0.8;
+}
+
+.class-period {
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 0.5rem;
+    padding: 1px 2px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.preview-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.proceed-button {
+    background: linear-gradient(135deg, #e53935, #ff6b6b);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(229, 57, 53, 0.4);
+    font-family: 'Varela', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.proceed-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 57, 53, 0.6);
+    background: linear-gradient(135deg, #d32f2f, #f44336);
+}
+
+.proceed-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(229, 57, 53, 0.4);
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #e53935;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .week-table {
+        font-size: 0.7rem;
+    }
+    
+    .class-content {
+        font-size: 0.7rem;
+        padding: 4px 6px;
+    }
+    
+    .time-slot {
+        font-size: 0.7rem;
+        padding: 6px 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .preview-container {
+        padding: 15px;
+    }
+    
+    .preview-header h1 {
+        font-size: 2rem;
+    }
+    
+    .timetable-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .week-table {
+        grid-template-columns: 60px repeat(5, 1fr);
+        gap: 1px;
+    }
+    
+    .time-slot, .class-slot {
+        min-height: 35px;
+    }
+    
+    .class-content {
+        font-size: 0.65rem;
+        padding: 3px 4px;
+    }
+}
+
+/* Empty state styling */
+.class-slot.empty {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.class-slot.empty:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Week B specific styling */
+#week-b .week-schedule {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#week-b .class-content {
+    background: linear-gradient(135deg, #1976d2, #42a5f5);
+}
+
+/* Animation for timetable loading */
+.timetable-container {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scrollbar styling */
+body::-webkit-scrollbar, *::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+body::-webkit-scrollbar-track, *::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px;
+}
+
+body::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb {
+    background: #8a8a8a52 !important;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+}

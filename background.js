@@ -8,11 +8,17 @@ chrome.runtime.onInstalled.addListener(() => {
 
 // Core function to update popup based on storage state
 function updatePopup() {
-    chrome.storage.local.get('parsedIcsData', (data) => {
+    chrome.storage.local.get(['parsedIcsData', 'timetableConfirmed'], (data) => {
       try {
-        const popupPath = data.parsedIcsData 
-          ? 'popup/popup.html'
-          : 'landing-page/landing.html';
+        let popupPath;
+        if (!data.parsedIcsData) {
+          popupPath = 'landing-page/landing.html';
+        } else if (!data.timetableConfirmed) {
+          popupPath = 'timetable-editor/timetable-editor.html';
+        } else {
+          popupPath = 'popup/popup.html';
+        }
+        
         chrome.action.setPopup({ popup: popupPath });
         
         // Safe message passing with error handling
@@ -25,7 +31,7 @@ function updatePopup() {
         
       } catch (error) {
         console.error('Popup update failed:', error);
-        chrome.action.setPopup({ popup: 'assets/landing.html' });
+        chrome.action.setPopup({ popup: 'landing-page/landing.html' });
       }
     });
 }
