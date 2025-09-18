@@ -1813,7 +1813,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Only clear the flag after the user finishes the tutorial
                 localStorage.removeItem('showTutorial');
                 container.style.display = 'none';
-                document.body.classList.remove('tutorial-nav-arrows');
+                document.body.classList.remove('tutorial-nav-arrows', 'tutorial-active');
             } else {
                 showTutorialStep(stepIdx+1);
             }
@@ -1822,6 +1822,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Start tutorial if flag is set
     if (localStorage.getItem('showTutorial') === 'true') {
+        // Add tutorial-active class to show all buttons
+        document.body.classList.add('tutorial-active');
         // Wait for DOM and features to render
         setTimeout(() => {
             showTutorialStep(0);

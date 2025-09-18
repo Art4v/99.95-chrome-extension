@@ -15,6 +15,24 @@
     opacity: 1 !important;
     transition: opacity 0.2s;
 }
+
+/* Force show all buttons during tutorial */
+body.tutorial-active .left-side-container.hover-only,
+body.tutorial-active .left-side-container.click-only {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+body.tutorial-active .utilities-toggle-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+body.tutorial-active .settings-toggle-btn {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
 /* Navy Blue Theme */
 body.navy-blue-mode {
     background-color: #232733;
@@ -1224,15 +1242,13 @@ body.light-mode .upload-btn:hover {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
     z-index: 2000;
 }
 
 .todo-sidebar.visible {
-    opacity: 1;
-    visibility: visible;
+    transform: translateX(0);
 }
 
 body.light-mode .todo-sidebar {
