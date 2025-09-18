@@ -1106,7 +1106,7 @@ function injectCalendarUI() {
     const settingsToggleBtn = document.createElement('button');
     settingsToggleBtn.className = 'settings-toggle-btn';
     settingsToggleBtn.setAttribute('title', 'Settings (S)');
-    settingsToggleBtn.innerHTML = '<img src="../assets/temporary settings tag.png" alt="Settings" class="settings-icon">';
+    settingsToggleBtn.innerHTML = '<img src="../assets/temporary%20settings%20tag.png" alt="Settings" class="settings-icon">';
     settingsToggleBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -1405,6 +1405,43 @@ function injectCalendarUI() {
             toggleSettingsSidebar();
         }
     });
+    
+    // Proximity detection for settings button
+    let settingsButtonTimeout;
+    let isSettingsButtonVisible = false;
+
+    document.addEventListener('mousemove', (e) => {
+        const buttonRect = settingsToggleBtn.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+
+        const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+        const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+        const distance = Math.sqrt(
+            Math.pow(mouseX - buttonCenterX, 2) +
+            Math.pow(mouseY - buttonCenterY, 2)
+        );
+
+        if (distance <= 100 && !isSettingsButtonVisible) {
+            showSettingsButton();
+        } else if (distance > 100 && isSettingsButtonVisible) {
+            clearTimeout(settingsButtonTimeout);
+            settingsButtonTimeout = setTimeout(() => {
+                hideSettingsButton();
+            }, 500);
+        }
+    });
+
+    function showSettingsButton() {
+        isSettingsButtonVisible = true;
+        settingsToggleBtn.classList.add('visible');
+        clearTimeout(settingsButtonTimeout);
+    }
+
+    function hideSettingsButton() {
+        isSettingsButtonVisible = false;
+        settingsToggleBtn.classList.remove('visible');
+    }
     
     function toggleSettingsSidebar() {
         const isVisible = settingsSidebar.classList.toggle('visible');

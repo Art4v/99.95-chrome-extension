@@ -1724,6 +1724,7 @@ body.light-mode .nav-quick-nav button:hover {
     transform: translateX(-100%);
     opacity: 0;
     pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 .left-side-container.click-only.visible {
     transform: translateX(0);
