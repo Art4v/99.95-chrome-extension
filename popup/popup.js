@@ -1195,6 +1195,16 @@ function injectCalendarUI() {
                         <span class="radio-button"></span>
                         <span class="radio-text">Light</span>
                     </label>
+                    <label class="radio-item">
+                        <input type="radio" name="theme" value="cherry" id="theme-cherry">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Cherry Blossom</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="theme" value="navy" id="theme-navy">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Navy Blue</span>
+                    </label>
                 </div>
             </div>
             
@@ -1288,9 +1298,14 @@ function injectCalendarUI() {
         // Theme radio buttons
         document.querySelectorAll('input[name="theme"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
-                const isLight = e.target.value === 'light';
-                document.body.classList.toggle('light-mode', isLight);
-                document.body.classList.remove('cherry-blossom-mode', 'navy-blue-mode');
+                document.body.classList.remove('light-mode', 'cherry-blossom-mode', 'navy-blue-mode');
+                if (e.target.value === 'light') {
+                    document.body.classList.add('light-mode');
+                } else if (e.target.value === 'cherry') {
+                    document.body.classList.add('cherry-blossom-mode');
+                } else if (e.target.value === 'navy') {
+                    document.body.classList.add('navy-blue-mode');
+                }
                 localStorage.setItem('theme', e.target.value);
             });
         });
