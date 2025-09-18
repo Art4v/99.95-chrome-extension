@@ -835,6 +835,18 @@ body.light-mode .settings-sidebar {
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
 }
 
+body.cherry-blossom-mode .settings-sidebar {
+    background-color: #ffeded;
+    color: #a14c6c;
+    box-shadow: -2px 0 20px rgba(161, 76, 108, 0.15);
+}
+
+body.navy-blue-mode .settings-sidebar {
+    background-color: #232733;
+    color: #c3c7d1;
+    box-shadow: -2px 0 20px rgba(35, 39, 51, 0.3);
+}
+
 .settings-sidebar.visible {
     transform: translateX(0);
 }
@@ -853,6 +865,14 @@ body.light-mode .settings-sidebar-header {
     border-bottom-color: rgba(0, 0, 0, 0.1);
 }
 
+body.cherry-blossom-mode .settings-sidebar-header {
+    border-bottom-color: rgba(161, 76, 108, 0.2);
+}
+
+body.navy-blue-mode .settings-sidebar-header {
+    border-bottom-color: rgba(195, 199, 209, 0.2);
+}
+
 .settings-sidebar-heading {
     font-size: 1.8rem;
     margin: 0;
@@ -863,6 +883,14 @@ body.light-mode .settings-sidebar-header {
 
 body.light-mode .settings-sidebar-heading {
     color: #2a2a2a;
+}
+
+body.cherry-blossom-mode .settings-sidebar-heading {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .settings-sidebar-heading {
+    color: #c3c7d1;
 }
 
 
@@ -902,6 +930,26 @@ body.light-mode .settings-group:hover {
     border-color: rgba(0, 0, 0, 0.18);
 }
 
+body.cherry-blossom-mode .settings-group {
+    background: rgba(161, 76, 108, 0.08);
+    border-color: rgba(161, 76, 108, 0.15);
+}
+
+body.cherry-blossom-mode .settings-group:hover {
+    background: rgba(161, 76, 108, 0.12);
+    border-color: rgba(161, 76, 108, 0.25);
+}
+
+body.navy-blue-mode .settings-group {
+    background: rgba(195, 199, 209, 0.08);
+    border-color: rgba(195, 199, 209, 0.15);
+}
+
+body.navy-blue-mode .settings-group:hover {
+    background: rgba(195, 199, 209, 0.12);
+    border-color: rgba(195, 199, 209, 0.25);
+}
+
 .settings-group-label {
     font-size: 0.9rem;
     font-weight: 600;
@@ -914,6 +962,14 @@ body.light-mode .settings-group:hover {
 
 body.light-mode .settings-group-label {
     color: rgba(42, 42, 42, 0.9);
+}
+
+body.cherry-blossom-mode .settings-group-label {
+    color: rgba(161, 76, 108, 0.9);
+}
+
+body.navy-blue-mode .settings-group-label {
+    color: rgba(195, 199, 209, 0.9);
 }
 
 /* Toggle Item Styling */
