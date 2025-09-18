@@ -1078,6 +1078,30 @@ function injectCalendarUI() {
     // Append the container to body
     document.body.appendChild(leftSideContainer);
     
+    // Create hover trigger area for hover-only mode
+    const hoverTriggerArea = document.createElement('div');
+    hoverTriggerArea.className = 'hover-trigger-area';
+    document.body.appendChild(hoverTriggerArea);
+    
+    // Hover functionality for hover-only mode
+    let hoverTimeout;
+    
+    function showUtilitiesOnHover() {
+        clearTimeout(hoverTimeout);
+        leftSideContainer.classList.add('show');
+    }
+    
+    function hideUtilitiesOnHover() {
+        hoverTimeout = setTimeout(() => {
+            leftSideContainer.classList.remove('show');
+        }, 200);
+    }
+    
+    hoverTriggerArea.addEventListener('mouseenter', showUtilitiesOnHover);
+    hoverTriggerArea.addEventListener('mouseleave', hideUtilitiesOnHover);
+    leftSideContainer.addEventListener('mouseenter', showUtilitiesOnHover);
+    leftSideContainer.addEventListener('mouseleave', hideUtilitiesOnHover);
+    
     // Create settings toggle button
     const settingsToggleBtn = document.createElement('button');
     settingsToggleBtn.className = 'settings-toggle-btn';
@@ -1294,15 +1318,24 @@ function injectCalendarUI() {
             radio.addEventListener('change', (e) => {
                 const leftContainer = document.querySelector('.left-side-container');
                 const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+                const hoverTriggerArea = document.querySelector('.hover-trigger-area');
                 if (e.target.value === 'click') {
                     leftContainer.classList.add('click-only');
                     leftContainer.classList.remove('hover-only');
                     utilitiesToggleBtn.style.display = 'block';
+                    hoverTriggerArea.classList.remove('active');
+                } else if (e.target.value === 'hover') {
+                    leftContainer.classList.add('hover-only');
+                    leftContainer.classList.remove('click-only');
+                    leftContainer.classList.remove('visible');
+                    utilitiesToggleBtn.style.display = 'none';
+                    hoverTriggerArea.classList.add('active');
                 } else {
                     leftContainer.classList.remove('click-only');
                     leftContainer.classList.remove('hover-only');
                     leftContainer.classList.remove('visible');
                     utilitiesToggleBtn.style.display = 'none';
+                    hoverTriggerArea.classList.remove('active');
                 }
                 localStorage.setItem('utilities', e.target.value);
             });
@@ -1311,15 +1344,24 @@ function injectCalendarUI() {
         // Apply initial utilities setting
         const leftContainer = document.querySelector('.left-side-container');
         const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+        const hoverTriggerArea = document.querySelector('.hover-trigger-area');
         if (currentUtilities === 'click') {
             leftContainer.classList.add('click-only');
             leftContainer.classList.remove('hover-only');
             utilitiesToggleBtn.style.display = 'block';
+            hoverTriggerArea.classList.remove('active');
+        } else if (currentUtilities === 'hover') {
+            leftContainer.classList.add('hover-only');
+            leftContainer.classList.remove('click-only');
+            leftContainer.classList.remove('visible');
+            utilitiesToggleBtn.style.display = 'none';
+            hoverTriggerArea.classList.add('active');
         } else {
             leftContainer.classList.remove('click-only');
             leftContainer.classList.remove('hover-only');
             leftContainer.classList.remove('visible');
             utilitiesToggleBtn.style.display = 'none';
+            hoverTriggerArea.classList.remove('active');
         }
         
         if (uploadBtn) {

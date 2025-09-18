@@ -1084,25 +1084,31 @@ body.light-mode .settings-credit {
 
 /* Hover-only mode for utilities panel */
 .left-side-container.hover-only {
-    transform: translateX(-45px);
-    opacity: 0.4;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.left-side-container.hover-only:hover {
+.left-side-container.hover-only.show {
     transform: translateX(0);
     opacity: 1;
 }
 
-/* Create invisible hover area */
-.left-side-container.hover-only::after {
-    content: '';
-    position: absolute;
-    left: -50px;
+/* Create invisible hover area that extends to the left */
+.hover-trigger-area {
+    position: fixed;
+    left: 0;
     top: 0;
-    width: 120px;
-    height: 100%;
+    width: 100px;
+    height: 100vh;
     background: transparent;
-    z-index: -1;
+    z-index: 99;
+    pointer-events: auto;
+    display: none;
+}
+
+.hover-trigger-area.active {
+    display: block;
 }
 
 body.light-mode .settings-sidebar-footer {
