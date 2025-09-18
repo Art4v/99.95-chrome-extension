@@ -1238,22 +1238,17 @@ function injectCalendarUI() {
             
             <div class="settings-group">
                 <label class="settings-group-label">Utilities Panel</label>
-                <div class="radio-group">
-                    <label class="radio-item">
-                        <input type="radio" name="utilities" value="always" id="utilities-always">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Always Show</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="utilities" value="hover" id="utilities-hover">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Show on Hover</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="utilities" value="click" id="utilities-click">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Show on Click</span>
-                    </label>
+                <div class="settings-subheading">Show</div>
+                <div class="utilities-selector">
+                    <div class="utility-option" data-utility="always">
+                        <span class="utility-text">Always</span>
+                    </div>
+                    <div class="utility-option" data-utility="hover">
+                        <span class="utility-text">On Hover</span>
+                    </div>
+                    <div class="utility-option" data-utility="click">
+                        <span class="utility-text">On Click</span>
+                    </div>
                 </div>
             </div>
             
@@ -1332,18 +1327,23 @@ function injectCalendarUI() {
             });
         });
         
-        // Utilities radio buttons
-        document.querySelectorAll('input[name="utilities"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
+        // Utilities selector
+        document.querySelectorAll('.utility-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const utility = option.dataset.utility;
+                document.querySelectorAll('.utility-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
                 const leftContainer = document.querySelector('.left-side-container');
                 const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
                 const hoverTriggerArea = document.querySelector('.hover-trigger-area');
-                if (e.target.value === 'click') {
+                
+                if (utility === 'click') {
                     leftContainer.classList.add('click-only');
                     leftContainer.classList.remove('hover-only');
                     utilitiesToggleBtn.style.display = 'block';
                     hoverTriggerArea.classList.remove('active');
-                } else if (e.target.value === 'hover') {
+                } else if (utility === 'hover') {
                     leftContainer.classList.add('hover-only');
                     leftContainer.classList.remove('click-only');
                     leftContainer.classList.remove('visible');
@@ -1356,9 +1356,13 @@ function injectCalendarUI() {
                     utilitiesToggleBtn.style.display = 'none';
                     hoverTriggerArea.classList.remove('active');
                 }
-                localStorage.setItem('utilities', e.target.value);
+                localStorage.setItem('utilities', utility);
             });
         });
+        
+        // Set initial utilities selection
+        const selectedUtility = document.querySelector(`[data-utility="${currentUtilities}"]`);
+        if (selectedUtility) selectedUtility.classList.add('selected');
         
         // Apply initial utilities setting
         const leftContainer = document.querySelector('.left-side-container');
