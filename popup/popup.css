@@ -860,31 +860,42 @@ body.light-mode .settings-sidebar-heading {
 
 /* Settings Group Styling */
 .settings-group {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 12px;
-    backdrop-filter: blur(8px);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(12px);
+    transition: all 0.2s ease;
+}
+
+.settings-group:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
 }
 
 body.light-mode .settings-group {
-    background: rgba(0, 0, 0, 0.03);
-    border-color: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .settings-group:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.18);
 }
 
 .settings-group-label {
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin-bottom: 12px;
-    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
 body.light-mode .settings-group-label {
-    color: rgba(42, 42, 42, 0.7);
+    color: rgba(42, 42, 42, 0.9);
 }
 
 /* Toggle Item Styling */
@@ -925,28 +936,38 @@ body.light-mode .toggle-text {
 /* Radio Button Styling */
 .radio-group {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
 .radio-item {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: background-color 0.2s ease;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
     flex: 1;
     min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .radio-item:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+body.light-mode .radio-item {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
 }
 
 body.light-mode .radio-item:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 .radio-item input[type="radio"] {
@@ -954,9 +975,9 @@ body.light-mode .radio-item:hover {
 }
 
 .radio-button {
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     position: relative;
     transition: all 0.2s ease;
@@ -964,7 +985,7 @@ body.light-mode .radio-item:hover {
 }
 
 body.light-mode .radio-button {
-    border-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.4);
 }
 
 .radio-button:before {
@@ -972,8 +993,8 @@ body.light-mode .radio-button {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #f44336;
     transform: translate(-50%, -50%) scale(0);
@@ -982,6 +1003,7 @@ body.light-mode .radio-button {
 
 .radio-item input[type="radio"]:checked + .radio-button {
     border-color: #f44336;
+    box-shadow: 0 0 0 2px rgba(244, 67, 54, 0.2);
 }
 
 .radio-item input[type="radio"]:checked + .radio-button:before {
@@ -991,7 +1013,7 @@ body.light-mode .radio-button {
 .radio-text {
     font-size: 0.9rem;
     color: #fff;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 body.light-mode .radio-text {
@@ -1009,25 +1031,35 @@ body.light-mode .radio-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 8px;
+    gap: 10px;
+    padding: 16px 12px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
-    border: 2px solid transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .theme-option:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+body.light-mode .theme-option {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
 }
 
 body.light-mode .theme-option:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
 }
 
 .theme-option.selected {
     border-color: #f44336;
-    background: rgba(244, 67, 54, 0.1);
+    background: rgba(244, 67, 54, 0.12);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2);
 }
 
 .theme-swatch {
@@ -1095,8 +1127,8 @@ body.light-mode .settings-subheading {
 }
 
 .utility-option {
-    padding: 12px 16px;
-    border-radius: 8px;
+    padding: 14px 20px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.2s ease;
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -1107,6 +1139,7 @@ body.light-mode .settings-subheading {
 .utility-option:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }
 
 body.light-mode .utility-option {
@@ -1121,7 +1154,8 @@ body.light-mode .utility-option:hover {
 
 .utility-option.selected {
     border-color: #f44336;
-    background: rgba(244, 67, 54, 0.1);
+    background: rgba(244, 67, 54, 0.12);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
 }
 
 .utility-text {
@@ -1137,30 +1171,31 @@ body.light-mode .utility-text {
 /* Upload Button Styling */
 .upload-btn {
     width: 100%;
-    padding: 12px 16px;
-    background: rgba(244, 67, 54, 0.1);
+    padding: 14px 20px;
+    background: rgba(244, 67, 54, 0.12);
     color: #f44336;
-    border: 1px solid rgba(244, 67, 54, 0.3);
-    border-radius: 8px;
+    border: 2px solid rgba(244, 67, 54, 0.3);
+    border-radius: 12px;
     cursor: pointer;
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    backdrop-filter: blur(8px);
+    gap: 10px;
+    backdrop-filter: blur(12px);
 }
 
 .upload-btn:hover {
     background: rgba(244, 67, 54, 0.2);
     border-color: rgba(244, 67, 54, 0.5);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2);
 }
 
 body.light-mode .upload-btn {
-    background: rgba(244, 67, 54, 0.1);
+    background: rgba(244, 67, 54, 0.12);
     color: #f44336;
     border-color: rgba(244, 67, 54, 0.3);
 }
@@ -1174,6 +1209,253 @@ body.light-mode .upload-btn:hover {
     width: 16px;
     height: 16px;
     filter: none;
+}
+
+/* Todo Sidebar Styling */
+.todo-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 2000;
+}
+
+.todo-sidebar.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+body.light-mode .todo-sidebar {
+    background-color: #f8f4e6;
+    color: #2a2a2a;
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.todo-sidebar-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.todo-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-sidebar-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.todo-sidebar-heading {
+    font-size: 1.5rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.todo-close-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.todo-close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.todo-sections-container {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.todo-section {
+    margin-bottom: 20px;
+}
+
+.todo-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.todo-section-title {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+.todo-count {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+body.light-mode .todo-count {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.todo-input-container {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.todo-input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: inherit;
+    font-size: 0.9rem;
+}
+
+body.light-mode .todo-input {
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.todo-add-btn {
+    padding: 8px 12px;
+    background: #f44336;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .todo-item {
+    border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+.todo-checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.todo-text {
+    font-size: 0.9rem;
+}
+
+.todo-text.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.todo-delete-btn {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.todo-delete-btn:hover {
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.todo-sidebar-footer {
+    display: flex;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-sidebar-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.todo-clear-btn, .todo-clear-all-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: inherit;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.todo-clear-btn:hover, .todo-clear-all-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .todo-clear-btn, body.light-mode .todo-clear-all-btn {
+    border-color: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .todo-clear-btn:hover, body.light-mode .todo-clear-all-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.completed-tasks-container.collapsed {
+    display: none;
+}
+
+.todo-section-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.todo-section-toggle {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.collapsible {
+    cursor: pointer;
 }
 
 .settings-sidebar-footer {
