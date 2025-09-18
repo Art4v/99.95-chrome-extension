@@ -998,6 +998,81 @@ body.light-mode .radio-text {
     color: #2a2a2a;
 }
 
+/* Theme Selector Styling */
+.theme-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.theme-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.theme-option:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .theme-option:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.theme-option.selected {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.1);
+}
+
+.theme-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.2s ease;
+}
+
+body.light-mode .theme-swatch {
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.theme-option:hover .theme-swatch {
+    transform: scale(1.1);
+}
+
+.dark-theme {
+    background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+}
+
+.light-theme {
+    background: linear-gradient(135deg, #f8f4e6 0%, #fff 100%);
+}
+
+.cherry-theme {
+    background: linear-gradient(135deg, #ffeded 0%, #ffc2da 100%);
+}
+
+.navy-theme {
+    background: linear-gradient(135deg, #232733 0%, #5a5e6e 100%);
+}
+
+.theme-name {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #fff;
+    text-align: center;
+}
+
+body.light-mode .theme-name {
+    color: #2a2a2a;
+}
+
 /* Upload Button Styling */
 .upload-btn {
     width: 100%;

@@ -1184,27 +1184,23 @@ function injectCalendarUI() {
             <!-- Settings buttons will be moved here -->
             <div class="settings-group">
                 <label class="settings-group-label">Theme</label>
-                <div class="radio-group">
-                    <label class="radio-item">
-                        <input type="radio" name="theme" value="dark" id="theme-dark">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Dark</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="theme" value="light" id="theme-light">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Light</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="theme" value="cherry" id="theme-cherry">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Cherry Blossom</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="theme" value="navy" id="theme-navy">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Navy Blue</span>
-                    </label>
+                <div class="theme-selector">
+                    <div class="theme-option" data-theme="dark">
+                        <div class="theme-swatch dark-theme"></div>
+                        <span class="theme-name">Dark</span>
+                    </div>
+                    <div class="theme-option" data-theme="light">
+                        <div class="theme-swatch light-theme"></div>
+                        <span class="theme-name">Light</span>
+                    </div>
+                    <div class="theme-option" data-theme="cherry">
+                        <div class="theme-swatch cherry-theme"></div>
+                        <span class="theme-name">Cherry</span>
+                    </div>
+                    <div class="theme-option" data-theme="navy">
+                        <div class="theme-swatch navy-theme"></div>
+                        <span class="theme-name">Navy</span>
+                    </div>
                 </div>
             </div>
             
@@ -1295,20 +1291,28 @@ function injectCalendarUI() {
         const utilitiesRadio = document.getElementById(`utilities-${currentUtilities}`);
         if (utilitiesRadio) utilitiesRadio.checked = true;
         
-        // Theme radio buttons
-        document.querySelectorAll('input[name="theme"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
+        // Theme selector
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const theme = option.dataset.theme;
+                document.querySelectorAll('.theme-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
                 document.body.classList.remove('light-mode', 'cherry-blossom-mode', 'navy-blue-mode');
-                if (e.target.value === 'light') {
+                if (theme === 'light') {
                     document.body.classList.add('light-mode');
-                } else if (e.target.value === 'cherry') {
+                } else if (theme === 'cherry') {
                     document.body.classList.add('cherry-blossom-mode');
-                } else if (e.target.value === 'navy') {
+                } else if (theme === 'navy') {
                     document.body.classList.add('navy-blue-mode');
                 }
-                localStorage.setItem('theme', e.target.value);
+                localStorage.setItem('theme', theme);
             });
         });
+        
+        // Set initial theme selection
+        const selectedTheme = document.querySelector(`[data-theme="${currentTheme}"]`);
+        if (selectedTheme) selectedTheme.classList.add('selected');
         
         // Size radio buttons
         document.querySelectorAll('input[name="size"]').forEach(radio => {
