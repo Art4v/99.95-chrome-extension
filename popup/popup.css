@@ -136,6 +136,40 @@ body.cherry-blossom-mode .dividing-line,
 body.cherry-blossom-mode .todo-wolfram-divider {
     background-color: rgba(0, 0, 0, 0.3);
 }
+/* CSS Custom Properties for themes */
+:root {
+    /* Dark theme (default) */
+    --bg-color: #1a1a1a;
+    --text-color: #f9fafd;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.1);
+    --accent-color: rgba(255, 255, 255, 0.7);
+}
+
+body.light-mode {
+    --bg-color: #f8f4e6;
+    --text-color: #2a2a2a;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --hover-bg: rgba(0, 0, 0, 0.1);
+    --accent-color: #75624f;
+}
+
+body.cherry-blossom-mode {
+    --bg-color: #ffeded;
+    --text-color: #a14c6c;
+    --border-color: rgba(161, 76, 108, 0.2);
+    --hover-bg: rgba(161, 76, 108, 0.1);
+    --accent-color: #e87ca7;
+}
+
+body.navy-blue-mode {
+    --bg-color: #232733;
+    --text-color: #c3c7d1;
+    --border-color: rgba(195, 199, 209, 0.2);
+    --hover-bg: rgba(195, 199, 209, 0.1);
+    --accent-color: #5a5e6e;
+}
+
 /* Change the html selector to target only body */
 body {
     height: 600px;
@@ -148,10 +182,9 @@ body {
     scrollbar-width: thin;
     scrollbar-color: #64646444 transparent;
     
-    /* Move background properties here */
-    background-color: #1a1a1a;
+    background-color: var(--bg-color);
     background-size: 20px 20px;
-    color: #f9fafd;
+    color: var(--text-color);
     font-family: 'Varela', Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -280,6 +313,7 @@ body.light-mode .notif .progress-bar {
     box-sizing: border-box;
     transition: transform 0.2s ease;
     overflow: hidden;
+    will-change: transform;
 }
 
 .b:hover {
@@ -528,12 +562,7 @@ body.scrollbar-off::-webkit-scrollbar {
     display: none; /* Chrome, Safari */
 }
 
-/* Remove old size control styles */
-.size-control, .size-display, .slider, .slider::-webkit-slider-thumb, .slider::-moz-range-thumb,
-body.light-mode .size-control, body.light-mode .size-display, body.light-mode .slider,
-body.light-mode .slider::-webkit-slider-thumb, body.light-mode .slider::-moz-range-thumb {
-    display: none;
-}
+
 
 /* Add size toggle button style matching scrollbar toggle */
 .size-toggle-btn {
@@ -574,96 +603,12 @@ body.light-mode .size-toggle-btn:hover {
 
 /* Calendar icon */
 .calendar-icon {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     font-size: 1.2rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-    color: #fff;
 }
 
-.calendar-icon:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
 
-/* Light mode for calendar button */
-body.light-mode .calendar-icon {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #2a2a2a;
-}
 
-body.light-mode .calendar-icon:hover {
-    background: rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.3);
-}
 
-body.cherry-blossom-mode .calendar-icon {
-    border-color: rgba(161, 76, 108, 0.2) !important;
-}
-
-body.cherry-blossom-mode .calendar-icon:hover {
-    background: rgba(161, 76, 108, 0.1);
-    border: 1px solid rgba(161, 76, 108, 0.3);
-}
-
-body.navy-blue-mode .calendar-icon {
-    border-color: rgba(195, 199, 209, 0.2) !important;
-}
-
-body.navy-blue-mode .calendar-icon:hover {
-    background: rgba(195, 199, 209, 0.1);
-    border: 1px solid rgba(195, 199, 209, 0.3);
-}
-
-/* To-do button (positioned between calendar and reference buttons) */
-.todo-btn {
-    background: transparent !important; /* Transparent background */
-    border-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-.todo-btn:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.3) !important;
-}
-
-body.light-mode .todo-btn {
-    background: transparent !important;
-    border-color: rgba(0, 0, 0, 0.2) !important;
-}
-
-body.light-mode .todo-btn:hover {
-    background: rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 0, 0, 0.3) !important;
-}
-
-body.cherry-blossom-mode .todo-btn {
-    background: transparent !important;
-    border-color: rgba(161, 76, 108, 0.2) !important;
-}
-
-body.cherry-blossom-mode .todo-btn:hover {
-    background: rgba(161, 76, 108, 0.1) !important;
-    border-color: rgba(161, 76, 108, 0.3) !important;
-}
-
-body.navy-blue-mode .todo-btn {
-    background: transparent !important;
-    border-color: rgba(195, 199, 209, 0.2) !important;
-}
-
-body.navy-blue-mode .todo-btn:hover {
-    background: rgba(195, 199, 209, 0.1) !important;
-    border-color: rgba(195, 199, 209, 0.3) !important;
-}
 
 .todo-icon {
     width: 20px;
@@ -2029,22 +1974,6 @@ body.light-mode .settings-sidebar-footer {
     line-height: 1.4;
 }
 
-body.light-mode .settings-credit {
-    color: #666;
-}
-
-.credit-link {
-    color: #f44336;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.2s ease;
-}
-
-.credit-link:hover {
-    color: #d32f2f;
-    text-decoration: underline;
-}
-
 /* Left-side container for all buttons and dividers */
 .left-side-container {
     position: fixed;
@@ -2132,16 +2061,21 @@ body.sidebar-open .settings-toggle-btn {
     z-index: 100;
 }
 
-/* Individual settings buttons */
+/* Consolidated button styles using CSS variables */
+.calendar-icon,
+.todo-btn,
+.wolfram-btn,
+.desmos-btn,
+.integral-btn,
+.derivative-btn,
+.reference-btn,
 .settings-btn {
-    background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
     padding: 0;
     text-align: center;
     cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
     transition: all 0.2s ease;
     border-radius: 50%;
     width: 36px;
@@ -2152,28 +2086,29 @@ body.sidebar-open .settings-toggle-btn {
     align-items: center;
     justify-content: center;
     line-height: 1;
+    will-change: transform;
 }
 
+.calendar-icon:hover,
+.todo-btn:hover,
+.wolfram-btn:hover,
+.desmos-btn:hover,
+.integral-btn:hover,
+.derivative-btn:hover,
+.reference-btn:hover,
 .settings-btn:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.3);
+    background: var(--hover-bg);
     transform: translateY(-1px);
+}
+
+/* Individual settings buttons */
+.settings-btn {
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .settings-btn:active {
     transform: translateY(0);
-}
-
-/* Light mode for settings buttons */
-body.light-mode .settings-btn {
-    background: transparent !important;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #2a2a2a;
-}
-
-body.light-mode .settings-btn:hover {
-    background: rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Settings button icons */
@@ -2228,30 +2163,8 @@ body.light-mode .toggle-icon {
 
 /* Individual reference buttons */
 .reference-btn {
-    background: transparent !important;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 0;
-    text-align: center;
-    cursor: pointer;
     font-size: 12px;
     font-weight: 500;
-    transition: all 0.2s ease;
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-}
-
-.reference-btn:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-1px);
 }
 
 .reference-btn:active {
@@ -2264,18 +2177,6 @@ body.light-mode .toggle-icon {
     height: 20px;
     object-fit: contain;
     filter: brightness(0) invert(1); /* Make all icons white in dark mode */
-}
-
-/* Light mode for reference buttons */
-body.light-mode .reference-btn {
-    background: transparent !important;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: #2a2a2a;
-}
-
-body.light-mode .reference-btn:hover {
-    background: rgba(0, 0, 0, 0.1) !important;
-    border-color: rgba(0, 0, 0, 0.3);
 }
 
 body.light-mode .reference-btn .reference-icon {
