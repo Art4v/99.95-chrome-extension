@@ -1090,6 +1090,64 @@ function injectCalendarUI() {
     });
     document.body.appendChild(settingsToggleBtn);
     
+    // Create utilities toggle button
+    const utilitiesToggleBtn = document.createElement('button');
+    utilitiesToggleBtn.className = 'utilities-toggle-btn';
+    utilitiesToggleBtn.setAttribute('title', 'Toggle Utilities (U)');
+    utilitiesToggleBtn.innerHTML = '<img src="../assets/utilities_button.png" alt="Utilities" class="utilities-icon">';
+    utilitiesToggleBtn.style.display = 'none';
+    utilitiesToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleUtilitiesPanel();
+    });
+    document.body.appendChild(utilitiesToggleBtn);
+    
+    function toggleUtilitiesPanel() {
+        const leftContainer = document.querySelector('.left-side-container');
+        leftContainer.classList.toggle('visible');
+    }
+    
+    // Proximity detection for utilities button
+    let utilitiesButtonTimeout;
+    let isUtilitiesButtonVisible = false;
+    
+    document.addEventListener('mousemove', (e) => {
+        const currentUtilities = localStorage.getItem('utilities') || 'always';
+        if (currentUtilities !== 'hover') return;
+        
+        const buttonRect = utilitiesToggleBtn.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        
+        const buttonCenterX = buttonRect.left + buttonRect.width / 2;
+        const buttonCenterY = buttonRect.top + buttonRect.height / 2;
+        const distance = Math.sqrt(
+            Math.pow(mouseX - buttonCenterX, 2) + 
+            Math.pow(mouseY - buttonCenterY, 2)
+        );
+        
+        if (distance <= 100 && !isUtilitiesButtonVisible) {
+            showUtilitiesButton();
+        } else if (distance > 100 && isUtilitiesButtonVisible) {
+            clearTimeout(utilitiesButtonTimeout);
+            utilitiesButtonTimeout = setTimeout(() => {
+                hideUtilitiesButton();
+            }, 500);
+        }
+    });
+    
+    function showUtilitiesButton() {
+        isUtilitiesButtonVisible = true;
+        utilitiesToggleBtn.classList.add('visible');
+        clearTimeout(utilitiesButtonTimeout);
+    }
+    
+    function hideUtilitiesButton() {
+        isUtilitiesButtonVisible = false;
+        utilitiesToggleBtn.classList.remove('visible');
+    }
+    
     // Proximity detection and timing for settings button
     let settingsButtonTimeout;
     let isSettingsButtonVisible = false;
@@ -1140,22 +1198,172 @@ function injectCalendarUI() {
     settingsSidebar.className = 'settings-sidebar';
     settingsSidebar.innerHTML = `
         <div class="settings-sidebar-header">
-            <h2 class="settings-sidebar-heading">Preferences</h2>
+            <h2 class="settings-sidebar-heading">Settings</h2>
         </div>
+        
         <div class="settings-sidebar-content">
-            <!-- Settings buttons will be moved here -->
+            <div class="settings-group">
+                <label class="settings-group-label">Theme</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="theme" value="dark" id="theme-dark">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Dark</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="theme" value="light" id="theme-light">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Light</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-group-label">Layout</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="size" value="full" id="size-full">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Full Size</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="size" value="compact" id="size-compact">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Compact</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-group-label">Scrollbar</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="scrollbar" value="on" id="scrollbar-on">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Show</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="scrollbar" value="off" id="scrollbar-off">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Hide</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-group-label">Utilities Panel</label>
+                <div class="radio-group">
+                    <label class="radio-item">
+                        <input type="radio" name="utilities" value="always" id="utilities-always">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Always Show</span>
+                    </label>
+                    <label class="radio-item">
+                        <input type="radio" name="utilities" value="hover" id="utilities-hover">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Show on Click</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="settings-group">
+                <label class="settings-group-label">Timetable</label>
+                <button class="upload-btn" id="upload-timetable-btn">
+                    <img src="../assets/upload.svg" alt="Upload" class="toggle-icon">
+                    Upload New Timetable
+                </button>
+            </div>
         </div>
+        
         <div class="settings-sidebar-footer">
-            <p class="settings-credit">Made with love by the team at <a href="https://www.instagram.com/99.95_chrome_extension/" target="_blank" class="credit-link">99.95</a></p>
+            <p class="settings-credit">Made with love by the team behind <a href="#" class="credit-link">99.95</a></p>
         </div>
     `;
     document.body.appendChild(settingsSidebar);
     
-    // Move settings buttons to sidebar
-    const settingsContent = settingsSidebar.querySelector('.settings-sidebar-content');
-    while (settingsButtonsContainer.firstChild) {
-        settingsContent.appendChild(settingsButtonsContainer.firstChild);
+    // Initialize settings radio buttons
+    function initSettingsToggles() {
+        const uploadBtn = document.getElementById('upload-timetable-btn');
+        
+        // Set initial states
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        const currentSize = localStorage.getItem('windowSize') || 'full';
+        const currentScrollbar = localStorage.getItem('scrollbar') || 'on';
+        const currentUtilities = localStorage.getItem('utilities') || 'always';
+        
+        document.getElementById(`theme-${currentTheme}`).checked = true;
+        document.getElementById(`size-${currentSize}`).checked = true;
+        document.getElementById(`scrollbar-${currentScrollbar}`).checked = true;
+        document.getElementById(`utilities-${currentUtilities}`).checked = true;
+        
+        // Theme radio buttons
+        document.querySelectorAll('input[name="theme"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const isLight = e.target.value === 'light';
+                document.body.classList.toggle('light-mode', isLight);
+                localStorage.setItem('theme', e.target.value);
+            });
+        });
+        
+        // Size radio buttons
+        document.querySelectorAll('input[name="size"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const newWidth = e.target.value === 'compact' ? '630px' : '800px';
+                document.documentElement.style.width = newWidth;
+                document.body.style.width = newWidth;
+                localStorage.setItem('windowSize', e.target.value);
+            });
+        });
+        
+        // Scrollbar radio buttons
+        document.querySelectorAll('input[name="scrollbar"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                document.body.classList.toggle('scrollbar-off', e.target.value === 'off');
+                localStorage.setItem('scrollbar', e.target.value);
+            });
+        });
+        
+        // Utilities radio buttons
+        document.querySelectorAll('input[name="utilities"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const leftContainer = document.querySelector('.left-side-container');
+                const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+                if (e.target.value === 'hover') {
+                    leftContainer.classList.add('click-only');
+                    utilitiesToggleBtn.style.display = 'block';
+                } else {
+                    leftContainer.classList.remove('click-only');
+                    utilitiesToggleBtn.style.display = 'none';
+                }
+                localStorage.setItem('utilities', e.target.value);
+            });
+        });
+        
+        // Apply initial utilities setting
+        const leftContainer = document.querySelector('.left-side-container');
+        const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+        if (currentUtilities === 'hover') {
+            leftContainer.classList.add('click-only');
+            utilitiesToggleBtn.style.display = 'block';
+        } else {
+            utilitiesToggleBtn.style.display = 'none';
+        }
+        
+        if (uploadBtn) {
+            uploadBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
+                    chrome.storage.local.remove('parsedIcsData', () => {
+                        chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                            window.location.href = '../landing-page/landing.html';
+                        }); 
+                    });
+                }
+            });
+        }
     }
+    
+    initSettingsToggles();
     
     // Add event listeners for settings sidebar
     // Close button removed - sidebar can be closed by clicking outside or pressing S key
@@ -1588,3 +1796,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         clearInterval(dateInterval);
     });
 });
+

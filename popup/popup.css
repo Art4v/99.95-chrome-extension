@@ -757,19 +757,20 @@ body.light-mode .dividing-line {
     top: 0;
     right: 0;
     height: 100vh;
-    width: 200px;
-    background-color: #2a2a2a;
+    width: 320px;
+    background-color: #1a1a1a;
     color: #fff;
-    padding: 20px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    gap: 10px;
+    gap: 16px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     z-index: 1000;
     box-sizing: border-box;
+    backdrop-filter: blur(10px);
 }
 
 /* Blur effect for the main content when sidebar is open */
@@ -813,7 +814,7 @@ body.sidebar-open .reference-buttons-container {
 body.light-mode .settings-sidebar {
     background-color: #f8f4e6;
     color: #2a2a2a;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
 }
 
 .settings-sidebar.visible {
@@ -824,9 +825,9 @@ body.light-mode .settings-sidebar {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #444;
-    padding-bottom: 10px;
-    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 16px;
+    margin-bottom: 20px;
     flex-shrink: 0;
 }
 
@@ -835,17 +836,16 @@ body.light-mode .settings-sidebar-header {
 }
 
 .settings-sidebar-heading {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin: 0;
     color: #fff;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 body.light-mode .settings-sidebar-heading {
     color: #2a2a2a;
 }
-
-
 
 .settings-sidebar-content {
     flex: 1;
@@ -853,6 +853,224 @@ body.light-mode .settings-sidebar-heading {
     flex-direction: column;
     gap: 12px;
     padding: 8px 0;
+    overflow-y: auto;
+}
+
+/* Settings Group Styling */
+.settings-group {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(8px);
+}
+
+body.light-mode .settings-group {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.settings-group-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+body.light-mode .settings-group-label {
+    color: rgba(42, 42, 42, 0.7);
+}
+
+/* Toggle Item Styling */
+.toggle-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.toggle-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.toggle-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    opacity: 0.8;
+}
+
+.toggle-text {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+body.light-mode .toggle-text {
+    color: #2a2a2a;
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    flex: 1;
+    min-width: 0;
+}
+
+.radio-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+body.light-mode .radio-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.radio-item input[type="radio"] {
+    display: none;
+}
+
+.radio-button {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+body.light-mode .radio-button {
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.radio-button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #f44336;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s ease;
+}
+
+.radio-item input[type="radio"]:checked + .radio-button {
+    border-color: #f44336;
+}
+
+.radio-item input[type="radio"]:checked + .radio-button:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.radio-text {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 400;
+}
+
+body.light-mode .radio-text {
+    color: #2a2a2a;
+}
+
+/* Upload Button Styling */
+.upload-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    backdrop-filter: blur(8px);
+}
+
+.upload-btn:hover {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.5);
+    transform: translateY(-1px);
+}
+
+body.light-mode .upload-btn {
+    background: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+    border-color: rgba(244, 67, 54, 0.3);
+}
+
+body.light-mode .upload-btn:hover {
+    background: rgba(244, 67, 54, 0.2);
+    border-color: rgba(244, 67, 54, 0.5);
+}
+
+.upload-btn .toggle-icon {
+    width: 16px;
+    height: 16px;
+    filter: none;
+}
+
+.settings-sidebar-footer {
+    border-top: 1px solid #444;
+    padding-top: 12px;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+body.light-mode .settings-sidebar-footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+.settings-credit {
+    font-size: 0.7rem;
+    color: #888;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+body.light-mode .settings-credit {
+    color: #666;
+}
+
+.credit-link {
+    color: #f44336;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.credit-link:hover {
+    color: #d32f2f;
+    text-decoration: underline;
 }
 
 .settings-sidebar-footer {
@@ -902,6 +1120,54 @@ body.light-mode .settings-credit {
     align-items: flex-start;
     gap: 5px;
     z-index: 100;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Click-only mode for utilities panel */
+.left-side-container.click-only {
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.left-side-container.click-only.visible {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Utilities toggle button */
+.utilities-toggle-btn {
+    position: fixed;
+    top: 16px;
+    left: -30px;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: auto;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    transition: opacity 0.3s ease, left 0.3s ease;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.utilities-toggle-btn.visible {
+    opacity: 1;
+    left: -5px;
+    pointer-events: auto;
+}
+
+.utilities-toggle-btn .utilities-icon {
+    width: auto;
+    height: auto;
+    max-width: 135px;
+    max-height: 135px;
+    display: block;
+    pointer-events: auto;
 }
 
 /* Settings toggle button */
@@ -939,8 +1205,6 @@ body.sidebar-open .settings-toggle-btn {
 .settings-toggle-btn {
     transition: opacity 0.3s ease, right 0.3s ease;
 }
-
-
 
 .settings-toggle-btn .settings-icon {
     width: auto;
@@ -1033,6 +1297,21 @@ body.light-mode .settings-btn .settings-icon {
     height: 16px;
 }
 
+/* Specific icon size adjustments */
+#scrollbar-toggle-btn .settings-icon {
+    width: 24px;
+    height: 24px;
+}
+
+#size-toggle-btn {
+    font-size: 24px; /* Larger emoji for size toggle */
+}
+
+#upload-btn .settings-icon {
+    width: 16px;
+    height: 16px;
+}
+
 /* Individual reference buttons */
 .reference-btn {
     background: transparent !important;
@@ -1087,6 +1366,29 @@ body.light-mode .reference-btn:hover {
 
 body.light-mode .reference-btn .reference-icon {
     filter: brightness(0) invert(0); /* Make all icons black in light mode */
+}
+
+/* Settings button icons */
+.settings-btn .settings-icon {
+    filter: brightness(0) invert(1); /* Make all icons white in dark mode */
+}
+
+body.light-mode .settings-btn .settings-icon {
+    filter: brightness(0) invert(0); /* Make all icons black in light mode */
+}
+
+/* Toggle icons in settings */
+.toggle-icon {
+    filter: brightness(0) invert(1); /* Make all icons white in dark mode */
+}
+
+body.light-mode .toggle-icon {
+    filter: brightness(0) invert(0); /* Make all icons black in light mode */
+}
+
+/* Upload button icon should not be filtered */
+.upload-btn .toggle-icon {
+    filter: none !important;
 }
 
 /* Math superscript styling - no longer needed but keeping for reference */
