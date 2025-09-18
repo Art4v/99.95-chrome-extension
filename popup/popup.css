@@ -606,6 +606,24 @@ body.light-mode .calendar-icon:hover {
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+body.cherry-blossom-mode .calendar-icon {
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .calendar-icon:hover {
+    background: rgba(161, 76, 108, 0.1);
+    border: 1px solid rgba(161, 76, 108, 0.3);
+}
+
+body.navy-blue-mode .calendar-icon {
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .calendar-icon:hover {
+    background: rgba(195, 199, 209, 0.1);
+    border: 1px solid rgba(195, 199, 209, 0.3);
+}
+
 /* To-do button (positioned between calendar and reference buttons) */
 .todo-btn {
     background: transparent !important; /* Transparent background */
@@ -627,6 +645,26 @@ body.light-mode .todo-btn:hover {
     border-color: rgba(0, 0, 0, 0.3) !important;
 }
 
+body.cherry-blossom-mode .todo-btn {
+    background: transparent !important;
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .todo-btn:hover {
+    background: rgba(161, 76, 108, 0.1) !important;
+    border-color: rgba(161, 76, 108, 0.3) !important;
+}
+
+body.navy-blue-mode .todo-btn {
+    background: transparent !important;
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .todo-btn:hover {
+    background: rgba(195, 199, 209, 0.1) !important;
+    border-color: rgba(195, 199, 209, 0.3) !important;
+}
+
 .todo-icon {
     width: 20px;
     height: 20px;
@@ -643,6 +681,14 @@ body.light-mode .todo-btn:hover {
 
 body.light-mode .todo-wolfram-divider {
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.cherry-blossom-mode .todo-wolfram-divider {
+    background-color: rgba(161, 76, 108, 0.3);
+}
+
+body.navy-blue-mode .todo-wolfram-divider {
+    background-color: rgba(195, 199, 209, 0.3);
 }
 
 /* Wolfram button (positioned between todo and reference buttons) */
@@ -664,6 +710,26 @@ body.light-mode .wolfram-btn {
 body.light-mode .wolfram-btn:hover {
     background: rgba(0, 0, 0, 0.1) !important;
     border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.cherry-blossom-mode .wolfram-btn {
+    background: transparent !important;
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .wolfram-btn:hover {
+    background: rgba(161, 76, 108, 0.1) !important;
+    border-color: rgba(161, 76, 108, 0.3) !important;
+}
+
+body.navy-blue-mode .wolfram-btn {
+    background: transparent !important;
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .wolfram-btn:hover {
+    background: rgba(195, 199, 209, 0.1) !important;
+    border-color: rgba(195, 199, 209, 0.3) !important;
 }
 
 /* Wolfram icon - keep original colors like todo icon */
@@ -692,6 +758,26 @@ body.light-mode .desmos-btn:hover {
     border-color: rgba(0, 0, 0, 0.3) !important;
 }
 
+body.cherry-blossom-mode .desmos-btn {
+    background: transparent !important;
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .desmos-btn:hover {
+    background: rgba(161, 76, 108, 0.1) !important;
+    border-color: rgba(161, 76, 108, 0.3) !important;
+}
+
+body.navy-blue-mode .desmos-btn {
+    background: transparent !important;
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .desmos-btn:hover {
+    background: rgba(195, 199, 209, 0.1) !important;
+    border-color: rgba(195, 199, 209, 0.3) !important;
+}
+
 /* Desmos icon - keep original colors like todo icon */
 .desmos-btn .reference-icon {
     filter: none !important; /* No color filters applied */
@@ -716,6 +802,26 @@ body.light-mode .integral-btn {
 body.light-mode .integral-btn:hover {
     background: rgba(0, 0, 0, 0.1) !important;
     border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+body.cherry-blossom-mode .integral-btn {
+    background: transparent !important;
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .integral-btn:hover {
+    background: rgba(161, 76, 108, 0.1) !important;
+    border-color: rgba(161, 76, 108, 0.3) !important;
+}
+
+body.navy-blue-mode .integral-btn {
+    background: transparent !important;
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .integral-btn:hover {
+    background: rgba(195, 199, 209, 0.1) !important;
+    border-color: rgba(195, 199, 209, 0.3) !important;
 }
 
 /* Integral icon - make it red */
@@ -744,6 +850,26 @@ body.light-mode .derivative-btn:hover {
     border-color: rgba(0, 0, 0, 0.3) !important;
 }
 
+body.cherry-blossom-mode .derivative-btn {
+    background: transparent !important;
+    border-color: rgba(161, 76, 108, 0.2) !important;
+}
+
+body.cherry-blossom-mode .derivative-btn:hover {
+    background: rgba(161, 76, 108, 0.1) !important;
+    border-color: rgba(161, 76, 108, 0.3) !important;
+}
+
+body.navy-blue-mode .derivative-btn {
+    background: transparent !important;
+    border-color: rgba(195, 199, 209, 0.2) !important;
+}
+
+body.navy-blue-mode .derivative-btn:hover {
+    background: rgba(195, 199, 209, 0.1) !important;
+    border-color: rgba(195, 199, 209, 0.3) !important;
+}
+
 /* Derivative icon - make it red */
 .derivative-btn .reference-icon {
     filter: hue-rotate(0deg) saturate(2) brightness(0.8) !important; /* Make it red */
@@ -759,6 +885,14 @@ body.light-mode .derivative-btn:hover {
 
 body.light-mode .dividing-line {
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.cherry-blossom-mode .dividing-line {
+    background-color: rgba(161, 76, 108, 0.3);
+}
+
+body.navy-blue-mode .dividing-line {
+    background-color: rgba(195, 199, 209, 0.3);
 }
 
 /* Reference buttons container */
@@ -1007,6 +1141,14 @@ body.light-mode .toggle-text {
     color: #2a2a2a;
 }
 
+body.cherry-blossom-mode .toggle-text {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .toggle-text {
+    color: #c3c7d1;
+}
+
 /* Radio Button Styling */
 .radio-group {
     display: flex;
@@ -1094,6 +1236,14 @@ body.light-mode .radio-text {
     color: #2a2a2a;
 }
 
+body.cherry-blossom-mode .radio-text {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .radio-text {
+    color: #c3c7d1;
+}
+
 /* Theme Selector Styling */
 .theme-selector {
     display: grid;
@@ -1179,6 +1329,14 @@ body.light-mode .theme-name {
     color: #2a2a2a;
 }
 
+body.cherry-blossom-mode .theme-name {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .theme-name {
+    color: #c3c7d1;
+}
+
 /* Settings Subheading */
 .settings-subheading {
     font-size: 0.75rem;
@@ -1191,6 +1349,14 @@ body.light-mode .theme-name {
 
 body.light-mode .settings-subheading {
     color: rgba(42, 42, 42, 0.6);
+}
+
+body.cherry-blossom-mode .settings-subheading {
+    color: rgba(161, 76, 108, 0.6);
+}
+
+body.navy-blue-mode .settings-subheading {
+    color: rgba(195, 199, 209, 0.6);
 }
 
 /* Utilities Selector Styling */
@@ -1240,6 +1406,14 @@ body.light-mode .utility-option:hover {
 
 body.light-mode .utility-text {
     color: #2a2a2a;
+}
+
+body.cherry-blossom-mode .utility-text {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .utility-text {
+    color: #c3c7d1;
 }
 
 /* Layout Selector Styling */
@@ -1293,6 +1467,14 @@ body.light-mode .layout-text {
     color: #2a2a2a;
 }
 
+body.cherry-blossom-mode .layout-text {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .layout-text {
+    color: #c3c7d1;
+}
+
 .layout-desc {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.6);
@@ -1301,6 +1483,14 @@ body.light-mode .layout-text {
 
 body.light-mode .layout-desc {
     color: rgba(42, 42, 42, 0.6);
+}
+
+body.cherry-blossom-mode .layout-desc {
+    color: rgba(161, 76, 108, 0.6);
+}
+
+body.navy-blue-mode .layout-desc {
+    color: rgba(195, 199, 209, 0.6);
 }
 
 /* Scrollbar Selector Styling */
@@ -1354,6 +1544,14 @@ body.light-mode .scrollbar-text {
     color: #2a2a2a;
 }
 
+body.cherry-blossom-mode .scrollbar-text {
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .scrollbar-text {
+    color: #c3c7d1;
+}
+
 .scrollbar-desc {
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.6);
@@ -1362,6 +1560,14 @@ body.light-mode .scrollbar-text {
 
 body.light-mode .scrollbar-desc {
     color: rgba(42, 42, 42, 0.6);
+}
+
+body.cherry-blossom-mode .scrollbar-desc {
+    color: rgba(161, 76, 108, 0.6);
+}
+
+body.navy-blue-mode .scrollbar-desc {
+    color: rgba(195, 199, 209, 0.6);
 }
 
 /* Upload Button Styling */
@@ -1435,6 +1641,18 @@ body.light-mode .todo-sidebar {
     box-shadow: -2px 0 20px rgba(0, 0, 0, 0.15);
 }
 
+body.cherry-blossom-mode .todo-sidebar {
+    background-color: #ffeded;
+    color: #a14c6c;
+    box-shadow: -2px 0 20px rgba(161, 76, 108, 0.15);
+}
+
+body.navy-blue-mode .todo-sidebar {
+    background-color: #232733;
+    color: #c3c7d1;
+    box-shadow: -2px 0 20px rgba(35, 39, 51, 0.3);
+}
+
 .todo-sidebar-content {
     display: flex;
     flex-direction: column;
@@ -1454,6 +1672,14 @@ body.light-mode .todo-sidebar {
 
 body.light-mode .todo-sidebar-header {
     border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.cherry-blossom-mode .todo-sidebar-header {
+    border-bottom-color: rgba(161, 76, 108, 0.2);
+}
+
+body.navy-blue-mode .todo-sidebar-header {
+    border-bottom-color: rgba(195, 199, 209, 0.2);
 }
 
 .todo-sidebar-heading {
@@ -1479,6 +1705,14 @@ body.light-mode .todo-sidebar-header {
 
 body.light-mode .todo-close-btn:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+body.cherry-blossom-mode .todo-close-btn:hover {
+    background: rgba(161, 76, 108, 0.1);
+}
+
+body.navy-blue-mode .todo-close-btn:hover {
+    background: rgba(195, 199, 209, 0.1);
 }
 
 .todo-sections-container {
@@ -1515,6 +1749,14 @@ body.light-mode .todo-count {
     background: rgba(0, 0, 0, 0.1);
 }
 
+body.cherry-blossom-mode .todo-count {
+    background: rgba(161, 76, 108, 0.1);
+}
+
+body.navy-blue-mode .todo-count {
+    background: rgba(195, 199, 209, 0.1);
+}
+
 .todo-input-container {
     display: flex;
     gap: 8px;
@@ -1534,6 +1776,16 @@ body.light-mode .todo-count {
 body.light-mode .todo-input {
     border-color: rgba(0, 0, 0, 0.2);
     background: rgba(0, 0, 0, 0.05);
+}
+
+body.cherry-blossom-mode .todo-input {
+    border-color: rgba(161, 76, 108, 0.2);
+    background: rgba(161, 76, 108, 0.05);
+}
+
+body.navy-blue-mode .todo-input {
+    border-color: rgba(195, 199, 209, 0.2);
+    background: rgba(195, 199, 209, 0.05);
 }
 
 .todo-add-btn {
@@ -1562,6 +1814,14 @@ body.light-mode .todo-input {
 
 body.light-mode .todo-item {
     border-bottom-color: rgba(0, 0, 0, 0.05);
+}
+
+body.cherry-blossom-mode .todo-item {
+    border-bottom-color: rgba(161, 76, 108, 0.05);
+}
+
+body.navy-blue-mode .todo-item {
+    border-bottom-color: rgba(195, 199, 209, 0.05);
 }
 
 .todo-checkbox-container {
@@ -1605,6 +1865,14 @@ body.light-mode .todo-sidebar-footer {
     border-top-color: rgba(0, 0, 0, 0.1);
 }
 
+body.cherry-blossom-mode .todo-sidebar-footer {
+    border-top-color: rgba(161, 76, 108, 0.1);
+}
+
+body.navy-blue-mode .todo-sidebar-footer {
+    border-top-color: rgba(195, 199, 209, 0.1);
+}
+
 .todo-clear-btn, .todo-clear-all-btn {
     flex: 1;
     padding: 8px 12px;
@@ -1628,6 +1896,24 @@ body.light-mode .todo-clear-btn, body.light-mode .todo-clear-all-btn {
 
 body.light-mode .todo-clear-btn:hover, body.light-mode .todo-clear-all-btn:hover {
     background: rgba(0, 0, 0, 0.1);
+}
+
+body.cherry-blossom-mode .todo-clear-btn, body.cherry-blossom-mode .todo-clear-all-btn {
+    border-color: rgba(161, 76, 108, 0.2);
+    background: rgba(161, 76, 108, 0.05);
+}
+
+body.cherry-blossom-mode .todo-clear-btn:hover, body.cherry-blossom-mode .todo-clear-all-btn:hover {
+    background: rgba(161, 76, 108, 0.1);
+}
+
+body.navy-blue-mode .todo-clear-btn, body.navy-blue-mode .todo-clear-all-btn {
+    border-color: rgba(195, 199, 209, 0.2);
+    background: rgba(195, 199, 209, 0.05);
+}
+
+body.navy-blue-mode .todo-clear-btn:hover, body.navy-blue-mode .todo-clear-all-btn:hover {
+    background: rgba(195, 199, 209, 0.1);
 }
 
 .completed-tasks-container.collapsed {
@@ -1673,6 +1959,14 @@ body.light-mode .settings-sidebar-footer {
 
 body.light-mode .settings-credit {
     color: #666;
+}
+
+body.cherry-blossom-mode .settings-credit {
+    color: rgba(161, 76, 108, 0.7);
+}
+
+body.navy-blue-mode .settings-credit {
+    color: rgba(195, 199, 209, 0.7);
 }
 
 .credit-link {
@@ -2026,6 +2320,18 @@ body.light-mode .date-picker-popup {
     border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+body.cherry-blossom-mode .date-picker-popup {
+    background: #ffeded;
+    border: 1px solid rgba(161, 76, 108, 0.1);
+    color: #a14c6c;
+}
+
+body.navy-blue-mode .date-picker-popup {
+    background: #232733;
+    border: 1px solid rgba(195, 199, 209, 0.1);
+    color: #c3c7d1;
+}
+
 .date-picker-header {
     display: flex;
     justify-content: space-between;
@@ -2086,6 +2392,28 @@ body.light-mode .date-picker-quick-nav button {
 body.light-mode .date-picker-quick-nav button:hover {
     background: rgba(0, 0, 0, 0.08);
     border-color: rgba(0, 0, 0, 0.15);
+}
+
+body.cherry-blossom-mode .date-picker-quick-nav button {
+    background: rgba(161, 76, 108, 0.05);
+    border: 1px solid rgba(161, 76, 108, 0.1);
+    color: #a14c6c;
+}
+
+body.cherry-blossom-mode .date-picker-quick-nav button:hover {
+    background: rgba(161, 76, 108, 0.08);
+    border-color: rgba(161, 76, 108, 0.15);
+}
+
+body.navy-blue-mode .date-picker-quick-nav button {
+    background: rgba(195, 199, 209, 0.05);
+    border: 1px solid rgba(195, 199, 209, 0.1);
+    color: #c3c7d1;
+}
+
+body.navy-blue-mode .date-picker-quick-nav button:hover {
+    background: rgba(195, 199, 209, 0.08);
+    border-color: rgba(195, 199, 209, 0.15);
 }
 
 .date-picker-header:hover .date-picker-quick-nav {
@@ -2151,6 +2479,22 @@ body.light-mode .date-picker-nav button:hover {
     background: rgba(0, 0, 0, 0.1);
 }
 
+body.cherry-blossom-mode .date-picker-nav button {
+    color: #a14c6c;
+}
+
+body.cherry-blossom-mode .date-picker-nav button:hover {
+    background: rgba(161, 76, 108, 0.1);
+}
+
+body.navy-blue-mode .date-picker-nav button {
+    color: #c3c7d1;
+}
+
+body.navy-blue-mode .date-picker-nav button:hover {
+    background: rgba(195, 199, 209, 0.1);
+}
+
 .date-picker-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -2207,6 +2551,38 @@ body.light-mode .date-picker-day.disabled {
     color: #999;
 }
 
+body.cherry-blossom-mode .date-picker-day:hover {
+    background: rgba(161, 76, 108, 0.1);
+}
+
+body.cherry-blossom-mode .date-picker-day.today {
+    background: rgba(255, 182, 193, 0.4);
+}
+
+body.cherry-blossom-mode .date-picker-day.selected {
+    background: rgba(161, 76, 108, 0.2);
+}
+
+body.cherry-blossom-mode .date-picker-day.disabled {
+    color: rgba(161, 76, 108, 0.5);
+}
+
+body.navy-blue-mode .date-picker-day:hover {
+    background: rgba(195, 199, 209, 0.1);
+}
+
+body.navy-blue-mode .date-picker-day.today {
+    background: rgba(90, 94, 110, 0.4);
+}
+
+body.navy-blue-mode .date-picker-day.selected {
+    background: rgba(195, 199, 209, 0.2);
+}
+
+body.navy-blue-mode .date-picker-day.disabled {
+    color: rgba(195, 199, 209, 0.5);
+}
+
 .date-picker-today {
     text-align: center;
     margin: 8px 0;
@@ -2244,6 +2620,28 @@ body.light-mode .today-btn {
 body.light-mode .today-btn:hover {
     background: rgba(0, 0, 0, 0.08);
     border-color: rgba(0, 0, 0, 0.15);
+}
+
+body.cherry-blossom-mode .today-btn {
+    background: rgba(161, 76, 108, 0.05);
+    border: 1px solid rgba(161, 76, 108, 0.1);
+    color: #a14c6c;
+}
+
+body.cherry-blossom-mode .today-btn:hover {
+    background: rgba(161, 76, 108, 0.08);
+    border-color: rgba(161, 76, 108, 0.15);
+}
+
+body.navy-blue-mode .today-btn {
+    background: rgba(195, 199, 209, 0.05);
+    border: 1px solid rgba(195, 199, 209, 0.1);
+    color: #c3c7d1;
+}
+
+body.navy-blue-mode .today-btn:hover {
+    background: rgba(195, 199, 209, 0.08);
+    border-color: rgba(195, 199, 209, 0.15);
 }
 
 .timetable-nav {
