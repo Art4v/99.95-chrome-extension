@@ -23,13 +23,23 @@ let countdownContainer, scheduleContainer, navDateElem, sidebarBtns = [];
 let progressBar, progressBarContainer, displayedDate = null;
 const ANIM_THROTTLE_MS = 250; // throttle updates to this interval (ms)
 
+// DOM cache for countdown elements
+let cachedTitleElem = null;
+let cachedDetailsElem = null;
+let isCountdownActive = false;
+
 // CountdownController: encapsulates requestAnimationFrame loop and exposes start/stop
 const CountdownController = (function () {
     let _rafId = null;
     let _lastTs = 0;
+    let _isActive = false;
 
     function _step(targetTs, startTs, onTick, onFinish) {
+        if (!_isActive) return;
+        
         _rafId = requestAnimationFrame(function frame(ts) {
+            if (!_isActive) return;
+            
             try {
                 const nowTs = window._99_95_utils.now();
                 if (!_lastTs || ts - _lastTs >= ANIM_THROTTLE_MS) {
@@ -58,11 +68,15 @@ const CountdownController = (function () {
 
     function start(targetTs, startTs, onTick, onFinish) {
         stop();
+        _isActive = true;
+        isCountdownActive = true;
         _lastTs = 0;
         _step(targetTs, startTs, onTick, onFinish);
     }
 
     function stop() {
+        _isActive = false;
+        isCountdownActive = false;
         try {
             if (_rafId) cancelAnimationFrame(_rafId);
         } catch (e) {
@@ -170,11 +184,15 @@ function startCountdown(target, isCurrentClass, schedule, date) {
         notif.appendChild(progressBarContainer);
     }
 
-    // Ensure stable DOM nodes for title/details to avoid reflows
-    let titleElem = notif.querySelector('h1');
-    let detailsElem = notif.querySelector('h2');
-    if (!titleElem) { titleElem = document.createElement('h1'); notif.appendChild(titleElem); }
-    if (!detailsElem) { detailsElem = document.createElement('h2'); notif.appendChild(detailsElem); }
+    // Use cached DOM elements to avoid repeated queries
+    if (!cachedTitleElem) {
+        cachedTitleElem = notif.querySelector('h1') || document.createElement('h1');
+        if (!notif.contains(cachedTitleElem)) notif.appendChild(cachedTitleElem);
+    }
+    if (!cachedDetailsElem) {
+        cachedDetailsElem = notif.querySelector('h2') || document.createElement('h2');
+        if (!notif.contains(cachedDetailsElem)) notif.appendChild(cachedDetailsElem);
+    }
 
     // Use CountdownController to drive updates
     CountdownController.start(targetTime, countdownStartTime, ({ nowTs, timeDiff, percent }) => {
@@ -187,13 +205,13 @@ function startCountdown(target, isCurrentClass, schedule, date) {
             const minutes = String(Math.floor((timeDiff % 3.6e6) / 6e4)).padStart(2, '0');
             const seconds = String(Math.floor((timeDiff % 6e4) / 1000)).padStart(2, '0');
 
-            titleElem.textContent = `${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}`;
+            cachedTitleElem.textContent = `${isCurrentClass ? `${target.n} ends in` : `${target.n} in`} ${hours}:${minutes}:${seconds}`;
             let teacher = (target.t || '').trim();
             let room = (target.l || '').trim();
-            if (teacher && room) detailsElem.textContent = `With ${teacher} in Room ${room}`;
-            else if (teacher) detailsElem.textContent = `With ${teacher}`;
-            else if (room) detailsElem.textContent = `In Room ${room}`;
-            else detailsElem.textContent = '';
+            if (teacher && room) cachedDetailsElem.textContent = `With ${teacher} in Room ${room}`;
+            else if (teacher) cachedDetailsElem.textContent = `With ${teacher}`;
+            else if (room) cachedDetailsElem.textContent = `In Room ${room}`;
+            else cachedDetailsElem.textContent = '';
         } catch (err) {
             console.error('Tick handler failed:', err);
             stopCountdown();
@@ -498,12 +516,17 @@ function injectCalendarUI() {
         btn.setAttribute('data-pdf', pdf);
         btn.setAttribute('title', `${label} (${shortcut})`);
         btn.innerHTML = `<img src="${icon}" alt="${label}" class="reference-icon">`;
-        btn.addEventListener('click', (e) => {
+        referenceButtonsContainer.appendChild(btn);
+    });
+    
+    // Event delegation for reference buttons
+    referenceButtonsContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.reference-btn');
+        if (btn && btn.dataset.pdf) {
             e.preventDefault();
             e.stopPropagation();
-            openReferenceSheet(pdf);
-        });
-        referenceButtonsContainer.appendChild(btn);
+            openReferenceSheet(btn.dataset.pdf);
+        }
     });
 
     // Function to open reference sheet
@@ -943,6 +966,7 @@ function injectCalendarUI() {
         btn.className = 'settings-btn';
         btn.id = id;
         btn.setAttribute('title', `${title} (${shortcut})`);
+        btn.setAttribute('data-action', id.replace('-btn', ''));
         
         if (isImage) {
             const img = document.createElement('img');
@@ -956,50 +980,80 @@ function injectCalendarUI() {
         
         settingsButtonsContainer.appendChild(btn);
     });
-
-    // Add event listeners for settings buttons
-    const scrollbarToggleBtn = settingsButtonsContainer.querySelector('#scrollbar-toggle-btn');
-    const sizeToggleBtn = settingsButtonsContainer.querySelector('#size-toggle-btn');
-    const uploadBtn = settingsButtonsContainer.querySelector('#upload-btn');
-    const toggleBtn = settingsButtonsContainer.querySelector('#toggle-btn');
-    const cherryToggleBtn = settingsButtonsContainer.querySelector('#cherry-toggle-btn');
-    const navyToggleBtn = settingsButtonsContainer.querySelector('#navy-toggle-btn');
-
-    // Scrollbar toggle
-    document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
-    scrollbarToggleBtn.addEventListener('click', () => {
-        document.body.classList.toggle('scrollbar-off');
-        localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
+    
+    // Event delegation for settings buttons
+    settingsButtonsContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('.settings-btn');
+        if (!btn) return;
+        
+        const action = btn.dataset.action;
+        switch (action) {
+            case 'scrollbar-toggle':
+                document.body.classList.toggle('scrollbar-off');
+                localStorage.setItem('scrollbar', document.body.classList.contains('scrollbar-off') ? 'off' : 'on');
+                break;
+            case 'size-toggle':
+                const isCompact = document.documentElement.style.width === '630px';
+                const newWidth = isCompact ? '800px' : '630px';
+                document.documentElement.style.width = newWidth;
+                document.body.style.width = newWidth;
+                localStorage.setItem('windowSize', isCompact ? 'full' : 'compact');
+                break;
+            case 'upload':
+                if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
+                    chrome.storage.local.remove('parsedIcsData', () => {
+                        chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
+                            window.location.href = '../landing-page/landing.html';
+                        });
+                    });
+                }
+                break;
+            case 'toggle':
+                if (document.body.classList.contains('light-mode')) {
+                    document.body.classList.remove('light-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('cherry-blossom-mode', 'navy-blue-mode');
+                    document.body.classList.add('light-mode');
+                    localStorage.setItem('theme', 'light');
+                }
+                break;
+            case 'cherry-toggle':
+                if (document.body.classList.contains('cherry-blossom-mode')) {
+                    document.body.classList.remove('cherry-blossom-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('light-mode', 'navy-blue-mode');
+                    document.body.classList.add('cherry-blossom-mode');
+                    localStorage.setItem('theme', 'cherry');
+                }
+                break;
+            case 'navy-toggle':
+                if (document.body.classList.contains('navy-blue-mode')) {
+                    document.body.classList.remove('navy-blue-mode');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.remove('light-mode', 'cherry-blossom-mode');
+                    document.body.classList.add('navy-blue-mode');
+                    localStorage.setItem('theme', 'navy');
+                }
+                break;
+        }
     });
 
-    // Size toggle
+    // Initialize settings state
+    document.body.classList.toggle('scrollbar-off', localStorage.getItem('scrollbar') === 'off');
+    
     const savedSize = localStorage.getItem('windowSize');
     if (savedSize === 'compact') {
         document.documentElement.style.width = '630px';
         document.body.style.width = '630px';
-        sizeToggleBtn.textContent = '⛶';
-    } else {
-        sizeToggleBtn.textContent = '⛶';
     }
-    sizeToggleBtn.addEventListener('click', () => {
-        const isCompact = document.documentElement.style.width === '630px';
-        const newWidth = isCompact ? '800px' : '630px';
-        document.documentElement.style.width = newWidth;
-        document.body.style.width = newWidth;
-        localStorage.setItem('windowSize', isCompact ? 'full' : 'compact');
-    });
 
-    // Upload timetable
-    uploadBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (confirm('Are you sure you want to remove your timetable and upload a new one?')) {
-            chrome.storage.local.remove('parsedIcsData', () => {
-                chrome.runtime.sendMessage({ type: 'storageUpdated' }, () => {
-                    window.location.href = '../landing-page/landing.html';
-                }); 
-            });
-        }
-    });
+    // Get theme button references
+    const toggleBtn = settingsButtonsContainer.querySelector('#toggle-btn');
+    const cherryToggleBtn = settingsButtonsContainer.querySelector('#cherry-toggle-btn');
+    const navyToggleBtn = settingsButtonsContainer.querySelector('#navy-toggle-btn');
 
     // Theme toggle
     const theme = localStorage.getItem("theme");
@@ -1015,40 +1069,10 @@ function injectCalendarUI() {
     } else {
         document.body.classList.remove("light-mode", "cherry-blossom-mode", "navy-blue-mode");
     }
-    toggleBtn.addEventListener('click', () => {
-        if (document.body.classList.contains("light-mode")) {
-            document.body.classList.remove("light-mode");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.body.classList.remove("cherry-blossom-mode", "navy-blue-mode");
-            document.body.classList.add("light-mode");
-            localStorage.setItem("theme", "light");
-        }
-    });
-    // Cherry blossom theme toggle
-    cherryToggleBtn.textContent = '🌸';
-    cherryToggleBtn.addEventListener('click', () => {
-        if (document.body.classList.contains("cherry-blossom-mode")) {
-            document.body.classList.remove("cherry-blossom-mode");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.body.classList.remove("light-mode", "navy-blue-mode");
-            document.body.classList.add("cherry-blossom-mode");
-            localStorage.setItem("theme", "cherry");
-        }
-    });
-    // Navy blue theme toggle
-    navyToggleBtn.textContent = '🌑';
-    navyToggleBtn.addEventListener('click', () => {
-        if (document.body.classList.contains("navy-blue-mode")) {
-            document.body.classList.remove("navy-blue-mode");
-            localStorage.setItem("theme", "dark");
-        } else {
-            document.body.classList.remove("light-mode", "cherry-blossom-mode");
-            document.body.classList.add("navy-blue-mode");
-            localStorage.setItem("theme", "navy");
-        }
-    });
+    
+    // Set theme button content
+    if (cherryToggleBtn) cherryToggleBtn.textContent = '🌸';
+    if (navyToggleBtn) navyToggleBtn.textContent = '🌑';
 
     // Create left-side container for all buttons and dividers
     const leftSideContainer = document.createElement('div');
