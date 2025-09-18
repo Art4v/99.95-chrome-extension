@@ -1206,33 +1206,31 @@ function injectCalendarUI() {
             
             <div class="settings-group">
                 <label class="settings-group-label">Layout</label>
-                <div class="radio-group">
-                    <label class="radio-item">
-                        <input type="radio" name="size" value="full" id="size-full">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Full Size</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="size" value="compact" id="size-compact">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Compact</span>
-                    </label>
+                <div class="settings-subheading">Window Size</div>
+                <div class="layout-selector">
+                    <div class="layout-option" data-size="full">
+                        <span class="layout-text">Full Size</span>
+                        <span class="layout-desc">800px wide</span>
+                    </div>
+                    <div class="layout-option" data-size="compact">
+                        <span class="layout-text">Compact</span>
+                        <span class="layout-desc">630px wide</span>
+                    </div>
                 </div>
             </div>
             
             <div class="settings-group">
                 <label class="settings-group-label">Scrollbar</label>
-                <div class="radio-group">
-                    <label class="radio-item">
-                        <input type="radio" name="scrollbar" value="on" id="scrollbar-on">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Show</span>
-                    </label>
-                    <label class="radio-item">
-                        <input type="radio" name="scrollbar" value="off" id="scrollbar-off">
-                        <span class="radio-button"></span>
-                        <span class="radio-text">Hide</span>
-                    </label>
+                <div class="settings-subheading">Visibility</div>
+                <div class="scrollbar-selector">
+                    <div class="scrollbar-option" data-scrollbar="on">
+                        <span class="scrollbar-text">Show</span>
+                        <span class="scrollbar-desc">Display scrollbar</span>
+                    </div>
+                    <div class="scrollbar-option" data-scrollbar="off">
+                        <span class="scrollbar-text">Hide</span>
+                        <span class="scrollbar-desc">Hide scrollbar</span>
+                    </div>
                 </div>
             </div>
             
@@ -1309,23 +1307,39 @@ function injectCalendarUI() {
         const selectedTheme = document.querySelector(`[data-theme="${currentTheme}"]`);
         if (selectedTheme) selectedTheme.classList.add('selected');
         
-        // Size radio buttons
-        document.querySelectorAll('input[name="size"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                const newWidth = e.target.value === 'compact' ? '630px' : '800px';
+        // Layout selector
+        document.querySelectorAll('.layout-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const size = option.dataset.size;
+                document.querySelectorAll('.layout-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
+                const newWidth = size === 'compact' ? '630px' : '800px';
                 document.documentElement.style.width = newWidth;
                 document.body.style.width = newWidth;
-                localStorage.setItem('windowSize', e.target.value);
+                localStorage.setItem('windowSize', size);
             });
         });
         
-        // Scrollbar radio buttons
-        document.querySelectorAll('input[name="scrollbar"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                document.body.classList.toggle('scrollbar-off', e.target.value === 'off');
-                localStorage.setItem('scrollbar', e.target.value);
+        // Set initial layout selection
+        const selectedLayout = document.querySelector(`[data-size="${currentSize}"]`);
+        if (selectedLayout) selectedLayout.classList.add('selected');
+        
+        // Scrollbar selector
+        document.querySelectorAll('.scrollbar-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                const scrollbar = option.dataset.scrollbar;
+                document.querySelectorAll('.scrollbar-option').forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
+                document.body.classList.toggle('scrollbar-off', scrollbar === 'off');
+                localStorage.setItem('scrollbar', scrollbar);
             });
         });
+        
+        // Set initial scrollbar selection
+        const selectedScrollbar = document.querySelector(`[data-scrollbar="${currentScrollbar}"]`);
+        if (selectedScrollbar) selectedScrollbar.classList.add('selected');
         
         // Utilities selector
         document.querySelectorAll('.utility-option').forEach(option => {

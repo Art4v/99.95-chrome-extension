@@ -1186,6 +1186,128 @@ body.light-mode .utility-text {
     color: #2a2a2a;
 }
 
+/* Layout Selector Styling */
+.layout-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.layout-option {
+    padding: 14px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+}
+
+.layout-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+body.light-mode .layout-option {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .layout-option:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.layout-option.selected {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.12);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+}
+
+.layout-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+}
+
+body.light-mode .layout-text {
+    color: #2a2a2a;
+}
+
+.layout-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+body.light-mode .layout-desc {
+    color: rgba(42, 42, 42, 0.6);
+}
+
+/* Scrollbar Selector Styling */
+.scrollbar-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.scrollbar-option {
+    padding: 14px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+    text-align: center;
+}
+
+.scrollbar-option:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+body.light-mode .scrollbar-option {
+    border-color: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .scrollbar-option:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+.scrollbar-option.selected {
+    border-color: #f44336;
+    background: rgba(244, 67, 54, 0.12);
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2);
+}
+
+.scrollbar-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    display: block;
+    margin-bottom: 4px;
+}
+
+body.light-mode .scrollbar-text {
+    color: #2a2a2a;
+}
+
+.scrollbar-desc {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+body.light-mode .scrollbar-desc {
+    color: rgba(42, 42, 42, 0.6);
+}
+
 /* Upload Button Styling */
 .upload-btn {
     width: 100%;
@@ -1614,7 +1736,7 @@ body.light-mode .settings-credit {
 
 /* When sidebar is open, make button stick to it */
 body.sidebar-open .settings-toggle-btn {
-    right: 192px; /* Position relative to sidebar width, nudged 8px to the right */
+    right: 320px; /* Position at sidebar edge (320px sidebar width) */
     transition: opacity 0.3s ease, right 0.3s ease;
 }
 
