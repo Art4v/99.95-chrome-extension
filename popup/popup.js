@@ -1089,52 +1089,65 @@ function injectCalendarUI() {
         toggleSettingsSidebar();
     });
     document.body.appendChild(settingsToggleBtn);
-    
-    // Proximity detection and timing for settings button
-    let settingsButtonTimeout;
-    let isSettingsButtonVisible = false;
-    
+
+    // --- NEW: Create utilities toggle button for click-only mode ---
+    const utilitiesToggleBtn = document.createElement('button');
+    utilitiesToggleBtn.className = 'utilities-toggle-btn';
+    utilitiesToggleBtn.setAttribute('title', 'Toggle Utilities (U)');
+    utilitiesToggleBtn.innerHTML = '<img src="../assets/utilities_button.png" alt="Utilities" class="utilities-icon">';
+    utilitiesToggleBtn.style.display = 'none';
+    utilitiesToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleUtilitiesPanel();
+    });
+    document.body.appendChild(utilitiesToggleBtn);
+
+    function toggleUtilitiesPanel() {
+        const leftContainer = document.querySelector('.left-side-container');
+        leftContainer.classList.toggle('visible');
+    }
+
+    // Proximity detection for utilities button (like settings button)
+    let utilitiesButtonTimeout;
+    let isUtilitiesButtonVisible = false;
+
     document.addEventListener('mousemove', (e) => {
-        // Don't hide button if sidebar is open
-        if (settingsSidebar.classList.contains('visible')) {
-            return;
-        }
-        
-        const buttonRect = settingsToggleBtn.getBoundingClientRect();
+        const currentUtilities = localStorage.getItem('utilities') || 'always';
+        if (currentUtilities !== 'click') return;
+
+        const buttonRect = utilitiesToggleBtn.getBoundingClientRect();
         const mouseX = e.clientX;
         const mouseY = e.clientY;
-        
-        // Calculate distance from mouse to button center
+
         const buttonCenterX = buttonRect.left + buttonRect.width / 2;
         const buttonCenterY = buttonRect.top + buttonRect.height / 2;
         const distance = Math.sqrt(
-            Math.pow(mouseX - buttonCenterX, 2) + 
+            Math.pow(mouseX - buttonCenterX, 2) +
             Math.pow(mouseY - buttonCenterY, 2)
         );
-        
-        // Show button when mouse is within 100px proximity
-        if (distance <= 100 && !isSettingsButtonVisible) {
-            showSettingsButton();
-        } else if (distance > 100 && isSettingsButtonVisible) {
-            // Start countdown to hide button
-            clearTimeout(settingsButtonTimeout);
-            settingsButtonTimeout = setTimeout(() => {
-                hideSettingsButton();
-            }, 500); // Minimum 0.5 seconds visibility
+
+        if (distance <= 100 && !isUtilitiesButtonVisible) {
+            showUtilitiesButton();
+        } else if (distance > 100 && isUtilitiesButtonVisible) {
+            clearTimeout(utilitiesButtonTimeout);
+            utilitiesButtonTimeout = setTimeout(() => {
+                hideUtilitiesButton();
+            }, 500);
         }
     });
-    
-    function showSettingsButton() {
-        isSettingsButtonVisible = true;
-        settingsToggleBtn.classList.add('visible');
-        clearTimeout(settingsButtonTimeout);
+
+    function showUtilitiesButton() {
+        isUtilitiesButtonVisible = true;
+        utilitiesToggleBtn.classList.add('visible');
+        clearTimeout(utilitiesButtonTimeout);
     }
-    
-    function hideSettingsButton() {
-        isSettingsButtonVisible = false;
-        settingsToggleBtn.classList.remove('visible');
+
+    function hideUtilitiesButton() {
+        isUtilitiesButtonVisible = false;
+        utilitiesToggleBtn.classList.remove('visible');
     }
-    
+
     // Create settings sidebar
     const settingsSidebar = document.createElement('div');
     settingsSidebar.className = 'settings-sidebar';
@@ -1206,6 +1219,11 @@ function injectCalendarUI() {
                         <span class="radio-button"></span>
                         <span class="radio-text">Show on Hover</span>
                     </label>
+                    <label class="radio-item">
+                        <input type="radio" name="utilities" value="click" id="utilities-click">
+                        <span class="radio-button"></span>
+                        <span class="radio-text">Show on Click</span>
+                    </label>
                 </div>
             </div>
             
@@ -1275,12 +1293,16 @@ function injectCalendarUI() {
         document.querySelectorAll('input[name="utilities"]').forEach(radio => {
             radio.addEventListener('change', (e) => {
                 const leftContainer = document.querySelector('.left-side-container');
-                if (leftContainer) {
-                    if (e.target.value === 'hover') {
-                        leftContainer.classList.add('hover-only');
-                    } else {
-                        leftContainer.classList.remove('hover-only');
-                    }
+                const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+                if (e.target.value === 'click') {
+                    leftContainer.classList.add('click-only');
+                    leftContainer.classList.remove('hover-only');
+                    utilitiesToggleBtn.style.display = 'block';
+                } else {
+                    leftContainer.classList.remove('click-only');
+                    leftContainer.classList.remove('hover-only');
+                    leftContainer.classList.remove('visible');
+                    utilitiesToggleBtn.style.display = 'none';
                 }
                 localStorage.setItem('utilities', e.target.value);
             });
@@ -1288,8 +1310,16 @@ function injectCalendarUI() {
         
         // Apply initial utilities setting
         const leftContainer = document.querySelector('.left-side-container');
-        if (leftContainer && currentUtilities === 'hover') {
-            leftContainer.classList.add('hover-only');
+        const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
+        if (currentUtilities === 'click') {
+            leftContainer.classList.add('click-only');
+            leftContainer.classList.remove('hover-only');
+            utilitiesToggleBtn.style.display = 'block';
+        } else {
+            leftContainer.classList.remove('click-only');
+            leftContainer.classList.remove('hover-only');
+            leftContainer.classList.remove('visible');
+            utilitiesToggleBtn.style.display = 'none';
         }
         
         if (uploadBtn) {
