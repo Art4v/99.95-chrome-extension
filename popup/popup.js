@@ -539,7 +539,16 @@ function injectCalendarUI() {
         // Reference sheets: 1-4
         if (referenceShortcutMap[key]) {
             e.preventDefault();
-            openReferenceSheet(referenceShortcutMap[key]);
+            const pdfName = referenceShortcutMap[key];
+            const embedViewer = document.querySelector('.embed-viewer');
+            const isOpen = embedViewer && !embedViewer.classList.contains('hidden') && embedViewer.classList.contains('pdf-view') && embedViewer.querySelector('.embed-frame') && embedViewer.querySelector('.embed-frame').src.includes(pdfName);
+            if (isOpen) {
+                // Close if already open
+                embedViewer.classList.add('hidden');
+                embedViewer.querySelector('.embed-frame').src = "";
+            } else {
+                openReferenceSheet(pdfName);
+            }
             return;
         }
         // Desmos: 'd'
