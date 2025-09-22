@@ -354,6 +354,24 @@ function fetchSchedule(date) {
 
 // --- Add navigation arrows and date display ---
 function injectNavigationUI() {
+    // Keyboard navigation for day switching
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        const key = e.key;
+        if (key === 'ArrowLeft') {
+            e.preventDefault();
+            const d = moment.tz(displayedDate, TZ).subtract(1, 'day').format('YYYY-MM-DD');
+            initialize(d);
+        } else if (key === 'ArrowRight') {
+            e.preventDefault();
+            const d = moment.tz(displayedDate, TZ).add(1, 'day').format('YYYY-MM-DD');
+            initialize(d);
+        } else if (key === 'ArrowUp') {
+            e.preventDefault();
+            const today = getLocalISODateString(window._99_95_utils.now());
+            initialize(today);
+        }
+    });
     const navContainer = document.createElement('div');
     navContainer.className = 'timetable-nav';
     navContainer.style.display = 'flex';
