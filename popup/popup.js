@@ -1284,10 +1284,26 @@ function injectCalendarUI() {
         </div>
         
         <div class="settings-sidebar-footer">
-            <p class="settings-credit">Made with love by the team behind <a href="#" class="credit-link">99.95</a></p>
+            <p class="settings-credit">By <a href="https://www.instagram.com/99.95_chrome_extension/" class="credit-link" target="_blank" rel="noopener noreferrer">Aarav Bhatt, Sai Prakhya, Andy Li, and Ken Nguyen</a></p>
         </div>
     `;
     document.body.appendChild(settingsSidebar);
+
+    // Make the credit link open in a new tab using chrome.tabs.create for Chrome extension compatibility
+    setTimeout(() => {
+        const creditLink = settingsSidebar.querySelector('.credit-link');
+        if (creditLink) {
+            creditLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const url = this.href;
+                try {
+                    chrome.tabs.create({ url });
+                } catch (err) {
+                    window.open(url, '_blank', 'noopener');
+                }
+            });
+        }
+    }, 0);
 
     // Initialize settings radio buttons and logic
     function initSettingsToggles() {
