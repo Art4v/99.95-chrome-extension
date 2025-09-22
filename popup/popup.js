@@ -507,6 +507,30 @@ function injectCalendarUI() {
         { pdf: 'chem.pdf', label: 'flask', shortcut: '3', icon: '../assets/flask-with-liquid.svg' },
         { pdf: 'phys.pdf', label: 'atom', shortcut: '4', icon: '../assets/atom.svg' }
     ];
+    // Map for quick access by shortcut
+    const referenceShortcutMap = {
+        '1': 'advmath.pdf',
+        '2': 'standardmath.pdf',
+        '3': 'chem.pdf',
+        '4': 'phys.pdf'
+    };
+    // Keyboard shortcuts for reference sheets and Desmos
+    document.addEventListener('keydown', (e) => {
+        if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+        const key = e.key.toLowerCase();
+        // Reference sheets: 1-4
+        if (referenceShortcutMap[key]) {
+            e.preventDefault();
+            openReferenceSheet(referenceShortcutMap[key]);
+            return;
+        }
+        // Desmos: 'd'
+        if (key === 'd') {
+            e.preventDefault();
+            openDesmosPage();
+            return;
+        }
+    });
 
     // Create and append reference sheet buttons
     referenceButtons.forEach(({ pdf, label, shortcut, icon }, idx) => {
