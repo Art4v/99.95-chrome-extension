@@ -466,7 +466,7 @@ function injectCalendarUI() {
     // Create Desmos button (positioned below wolfram button)
     const desmosBtn = document.createElement('button');
     desmosBtn.className = 'reference-btn desmos-btn utilities-btn';
-    desmosBtn.setAttribute('title', 'Desmos Calculator');
+    desmosBtn.setAttribute('title', 'Desmos (D)');
     desmosBtn.innerHTML = '<img src="../assets/desmos.png" alt="Desmos" class="reference-icon">';
     desmosBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -504,8 +504,8 @@ function injectCalendarUI() {
     const referenceButtons = [
         { pdf: 'advmath.pdf', label: 'Math Advanced', shortcut: '1', icon: '../assets/ma.png' },
         { pdf: 'standardmath.pdf', label: 'Math Standard', shortcut: '2', icon: '../assets/ms.png' },
-        { pdf: 'chem.pdf', label: 'flask', shortcut: '3', icon: '../assets/flask-with-liquid.svg' },
-        { pdf: 'phys.pdf', label: 'atom', shortcut: '4', icon: '../assets/atom.svg' }
+        { pdf: 'chem.pdf', label: 'Chemistry', shortcut: '3', icon: '../assets/flask-with-liquid.svg' },
+        { pdf: 'phys.pdf', label: 'Physics', shortcut: '4', icon: '../assets/atom.svg' }
     ];
     // Map for quick access by shortcut
     const referenceShortcutMap = {
