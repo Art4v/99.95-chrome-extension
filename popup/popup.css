@@ -1,3 +1,23 @@
+body.light-mode .utility-option.selected {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.12) !important;
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2) !important;
+}
+body.light-mode .layout-option.selected {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.12) !important;
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2) !important;
+}
+body.light-mode .scrollbar-option.selected {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.12) !important;
+    box-shadow: 0 2px 8px rgba(244, 67, 54, 0.2) !important;
+}
+body.light-mode .theme-option.selected {
+    border-color: #f44336 !important;
+    background: rgba(244, 67, 54, 0.12) !important;
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.2) !important;
+}
 .tutorial-highlight-group {
     box-shadow: 0 0 0 4px #e53935, 0 4px 32px #0008 !important;
     border-radius: 12px !important;
