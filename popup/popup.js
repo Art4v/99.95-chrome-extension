@@ -1009,14 +1009,14 @@ function injectCalendarUI() {
                 dark: '../assets/settings_darkmode.png',
                 light: '../assets/settings_lightmode.png',
                 navy: '../assets/settings_navy.png',
-                cherry: '../assets/settings_darkmode.png', // fallback
+                cherry: '../assets/settings_cherry.png', // fallback
                 default: '../assets/settings_darkmode.png'
             },
             utilities: {
                 dark: '../assets/utilities_darkmode.png',
                 light: '../assets/utilities_lightmode.png',
-                navy: '../assets/utilities_darkmode.png', // fallback
-                cherry: '../assets/utilities_darkmode.png', // fallback
+                navy: '../assets/utilities_navy.png', // fallback
+                cherry: '../assets/utilities_cherry.png', // fallback
                 default: '../assets/utilities_darkmode.png'
             }
         };
