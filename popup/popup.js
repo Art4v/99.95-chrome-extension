@@ -1001,36 +1001,77 @@ function injectCalendarUI() {
     const settingsButtonsContainer = document.createElement('div');
     settingsButtonsContainer.className = 'settings-buttons-container';
     
-    // Create settings buttons
-    const settingsButtons = [
-        { id: 'scrollbar-toggle-btn', title: 'Toggle Scrollbar', icon: '../assets/scroll toggle.png', shortcut: 'S', isImage: true },
-        { id: 'size-toggle-btn', title: 'Toggle Window Size', icon: '⛶', shortcut: 'V', isImage: false },
-        { id: 'upload-btn', title: 'Upload New Timetable', icon: '../assets/upload.svg', shortcut: 'U', isImage: true },
-        { id: 'toggle-btn', title: 'Toggle Theme', icon: '../assets/light or dark.svg', shortcut: 'T', isImage: true },
-        { id: 'cherry-toggle-btn', title: 'Cherry Blossom Theme', icon: '', shortcut: 'C', isImage: false },
-        { id: 'navy-toggle-btn', title: 'Navy Blue Theme', icon: '', shortcut: 'N', isImage: false }
-    ];
 
-    // Create and append settings buttons
-    settingsButtons.forEach(({ id, title, icon, shortcut, isImage }) => {
-        const btn = document.createElement('button');
-        btn.className = 'settings-btn';
-        btn.id = id;
-        btn.setAttribute('title', `${title} (${shortcut})`);
-        btn.setAttribute('data-action', id.replace('-btn', ''));
-        
-        if (isImage) {
-            const img = document.createElement('img');
-            img.src = icon;
-            img.alt = title;
-            img.className = 'settings-icon';
-            btn.appendChild(img);
-        } else {
-            btn.innerHTML = icon;
-        }
-        
-        settingsButtonsContainer.appendChild(btn);
+    // Helper: get theme-specific asset or fallback
+    function getThemeAsset(type, theme) {
+        const assets = {
+            settings: {
+                dark: '../assets/settings_darkmode.png',
+                light: '../assets/settings_lightmode.png',
+                navy: '../assets/settings_navy.png',
+                cherry: '../assets/settings_darkmode.png', // fallback
+                default: '../assets/settings_darkmode.png'
+            },
+            utilities: {
+                dark: '../assets/utilities_darkmode.png',
+                light: '../assets/utilities_lightmode.png',
+                navy: '../assets/utilities_darkmode.png', // fallback
+                cherry: '../assets/utilities_darkmode.png', // fallback
+                default: '../assets/utilities_darkmode.png'
+            }
+        };
+        return (assets[type][theme] || assets[type].default);
+    }
+
+    // Create settings toggle button
+    const settingsToggleBtn = document.createElement('button');
+    settingsToggleBtn.className = 'settings-toggle-btn';
+    settingsToggleBtn.setAttribute('title', 'Settings (S)');
+    settingsToggleBtn.innerHTML = `<img src="${getThemeAsset('settings', localStorage.getItem('theme') || 'dark')}" alt="Settings" class="settings-icon">`;
+    settingsToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleSettingsSidebar();
     });
+    document.body.appendChild(settingsToggleBtn);
+
+    // --- NEW: Create utilities toggle button for click-only mode ---
+    const utilitiesToggleBtn = document.createElement('button');
+    utilitiesToggleBtn.className = 'utilities-toggle-btn';
+    utilitiesToggleBtn.setAttribute('title', 'Toggle Utilities (U)');
+    utilitiesToggleBtn.innerHTML = `<img src="${getThemeAsset('utilities', localStorage.getItem('theme') || 'dark')}" alt="Utilities" class="utilities-icon">`;
+    utilitiesToggleBtn.style.display = 'none';
+    utilitiesToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleUtilitiesPanel();
+    });
+    document.body.appendChild(utilitiesToggleBtn);
+
+    // Update theme button images on theme change
+    function updateThemeButtons(theme) {
+        const settingsImg = settingsToggleBtn.querySelector('img');
+        const utilitiesImg = utilitiesToggleBtn.querySelector('img');
+        if (settingsImg) settingsImg.src = getThemeAsset('settings', theme);
+        if (utilitiesImg) utilitiesImg.src = getThemeAsset('utilities', theme);
+    }
+
+    // Listen for theme changes (when theme is changed in settings)
+    document.addEventListener('themechange', (e) => {
+        const theme = e.detail && e.detail.theme ? e.detail.theme : (localStorage.getItem('theme') || 'dark');
+        updateThemeButtons(theme);
+    });
+
+    // Patch: also update on settings sidebar theme selector click
+    setTimeout(() => {
+        const themeOptions = document.querySelectorAll('.theme-option');
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.getAttribute('data-theme');
+                updateThemeButtons(theme);
+            });
+        });
+    }, 0);
     
     // Event delegation for settings buttons
     settingsButtonsContainer.addEventListener('click', (e) => {
@@ -1177,30 +1218,6 @@ function injectCalendarUI() {
     leftSideContainer.addEventListener('mouseenter', showUtilitiesOnHover);
     leftSideContainer.addEventListener('mouseleave', hideUtilitiesOnHover);
     
-    // Create settings toggle button
-    const settingsToggleBtn = document.createElement('button');
-    settingsToggleBtn.className = 'settings-toggle-btn';
-    settingsToggleBtn.setAttribute('title', 'Settings (S)');
-    settingsToggleBtn.innerHTML = '<img src="../assets/temporary%20settings%20tag.png" alt="Settings" class="settings-icon">';
-    settingsToggleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleSettingsSidebar();
-    });
-    document.body.appendChild(settingsToggleBtn);
-
-    // --- NEW: Create utilities toggle button for click-only mode ---
-    const utilitiesToggleBtn = document.createElement('button');
-    utilitiesToggleBtn.className = 'utilities-toggle-btn';
-    utilitiesToggleBtn.setAttribute('title', 'Toggle Utilities (U)');
-    utilitiesToggleBtn.innerHTML = '<img src="../assets/utilities_button.png" alt="Utilities" class="utilities-icon">';
-    utilitiesToggleBtn.style.display = 'none';
-    utilitiesToggleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleUtilitiesPanel();
-    });
-    document.body.appendChild(utilitiesToggleBtn);
 
     function toggleUtilitiesPanel() {
         const leftContainer = document.querySelector('.left-side-container');
