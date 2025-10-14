@@ -2047,8 +2047,8 @@ body.sidebar-open .settings-toggle-btn {
 
 
 .settings-toggle-btn .settings-icon {
-    width: 168px;
-    height: 54px;
+    width: 140px;
+    height: 45px;
     display: block;
     pointer-events: auto;
 }
