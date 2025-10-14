@@ -2047,10 +2047,8 @@ body.sidebar-open .settings-toggle-btn {
 
 
 .settings-toggle-btn .settings-icon {
-    width: auto;
-    height: auto;
-    max-width: 135px;
-    max-height: 135px;
+    width: 168px;
+    height: 54px;
     display: block;
     pointer-events: auto;
 }

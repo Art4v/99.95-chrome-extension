@@ -1371,12 +1371,18 @@ function injectCalendarUI() {
                     document.body.classList.add('navy-blue-mode');
                 }
                 localStorage.setItem('theme', theme);
+                // Update settings button image immediately
+                const settingsImg = settingsToggleBtn.querySelector('img');
+                if (settingsImg) settingsImg.src = getThemeAsset('settings', theme);
             });
         });
         
         // Set initial theme selection
-        const selectedTheme = document.querySelector(`[data-theme="${currentTheme}"]`);
-        if (selectedTheme) selectedTheme.classList.add('selected');
+    const selectedTheme = document.querySelector(`[data-theme="${currentTheme}"]`);
+    if (selectedTheme) selectedTheme.classList.add('selected');
+    // On initial load, ensure settings button image matches theme
+    const settingsImg = settingsToggleBtn.querySelector('img');
+    if (settingsImg) settingsImg.src = getThemeAsset('settings', currentTheme);
         
         // Layout selector
         document.querySelectorAll('.layout-option').forEach(option => {
