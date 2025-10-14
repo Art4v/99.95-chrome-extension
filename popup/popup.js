@@ -1036,17 +1036,7 @@ function injectCalendarUI() {
     document.body.appendChild(settingsToggleBtn);
 
     // --- NEW: Create utilities toggle button for click-only mode ---
-    const utilitiesToggleBtn = document.createElement('button');
-    utilitiesToggleBtn.className = 'utilities-toggle-btn';
-    utilitiesToggleBtn.setAttribute('title', 'Toggle Utilities (U)');
-    utilitiesToggleBtn.innerHTML = `<img src="${getThemeAsset('utilities', localStorage.getItem('theme') || 'dark')}" alt="Utilities" class="utilities-icon">`;
-    utilitiesToggleBtn.style.display = 'none';
-    utilitiesToggleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        toggleUtilitiesPanel();
-    });
-    document.body.appendChild(utilitiesToggleBtn);
+    // Utilities toggle button and click-only mode removed
 
     // Update theme button images on theme change
     function updateThemeButtons(theme) {
@@ -1219,38 +1209,14 @@ function injectCalendarUI() {
     leftSideContainer.addEventListener('mouseleave', hideUtilitiesOnHover);
     
 
-    function toggleUtilitiesPanel() {
-        const leftContainer = document.querySelector('.left-side-container');
-        leftContainer.classList.toggle('visible');
-    }
+    // toggleUtilitiesPanel removed
 
     // Proximity detection for utilities button (like settings button)
     let utilitiesButtonTimeout;
     let isUtilitiesButtonVisible = false;
 
     document.addEventListener('mousemove', (e) => {
-        const currentUtilities = localStorage.getItem('utilities') || 'always';
-        if (currentUtilities !== 'click') return;
-
-        const buttonRect = utilitiesToggleBtn.getBoundingClientRect();
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        const buttonCenterX = buttonRect.left + buttonRect.width / 2;
-        const buttonCenterY = buttonRect.top + buttonRect.height / 2;
-        const distance = Math.sqrt(
-            Math.pow(mouseX - buttonCenterX, 2) +
-            Math.pow(mouseY - buttonCenterY, 2)
-        );
-
-        if (distance <= 100 && !isUtilitiesButtonVisible) {
-            showUtilitiesButton();
-        } else if (distance > 100 && isUtilitiesButtonVisible) {
-            clearTimeout(utilitiesButtonTimeout);
-            utilitiesButtonTimeout = setTimeout(() => {
-                hideUtilitiesButton();
-            }, 500);
-        }
+        // Removed click-only mode logic for utilities
     });
 
     function showUtilitiesButton() {
@@ -1335,9 +1301,6 @@ function injectCalendarUI() {
                     </div>
                     <div class="utility-option" data-utility="hover">
                         <span class="utility-text">On Hover</span>
-                    </div>
-                    <div class="utility-option" data-utility="click">
-                        <span class="utility-text">On Click</span>
                     </div>
                 </div>
             </div>
@@ -1455,27 +1418,15 @@ function injectCalendarUI() {
                 const utility = option.dataset.utility;
                 document.querySelectorAll('.utility-option').forEach(opt => opt.classList.remove('selected'));
                 option.classList.add('selected');
-                
                 const leftContainer = document.querySelector('.left-side-container');
-                const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
                 const hoverTriggerArea = document.querySelector('.hover-trigger-area');
-                
-                if (utility === 'click') {
-                    leftContainer.classList.add('click-only');
-                    leftContainer.classList.remove('hover-only');
-                    utilitiesToggleBtn.style.display = 'block';
-                    hoverTriggerArea.classList.remove('active');
-                } else if (utility === 'hover') {
+                if (utility === 'hover') {
                     leftContainer.classList.add('hover-only');
-                    leftContainer.classList.remove('click-only');
                     leftContainer.classList.remove('visible');
-                    utilitiesToggleBtn.style.display = 'none';
                     hoverTriggerArea.classList.add('active');
                 } else {
-                    leftContainer.classList.remove('click-only');
                     leftContainer.classList.remove('hover-only');
                     leftContainer.classList.remove('visible');
-                    utilitiesToggleBtn.style.display = 'none';
                     hoverTriggerArea.classList.remove('active');
                 }
                 localStorage.setItem('utilities', utility);
@@ -1485,27 +1436,16 @@ function injectCalendarUI() {
         // Set initial utilities selection
         const selectedUtility = document.querySelector(`[data-utility="${currentUtilities}"]`);
         if (selectedUtility) selectedUtility.classList.add('selected');
-        
         // Apply initial utilities setting
         const leftContainer = document.querySelector('.left-side-container');
-        const utilitiesToggleBtn = document.querySelector('.utilities-toggle-btn');
         const hoverTriggerArea = document.querySelector('.hover-trigger-area');
-        if (currentUtilities === 'click') {
-            leftContainer.classList.add('click-only');
-            leftContainer.classList.remove('hover-only');
-            utilitiesToggleBtn.style.display = 'block';
-            hoverTriggerArea.classList.remove('active');
-        } else if (currentUtilities === 'hover') {
+        if (currentUtilities === 'hover') {
             leftContainer.classList.add('hover-only');
-            leftContainer.classList.remove('click-only');
             leftContainer.classList.remove('visible');
-            utilitiesToggleBtn.style.display = 'none';
             hoverTriggerArea.classList.add('active');
         } else {
-            leftContainer.classList.remove('click-only');
             leftContainer.classList.remove('hover-only');
             leftContainer.classList.remove('visible');
-            utilitiesToggleBtn.style.display = 'none';
             hoverTriggerArea.classList.remove('active');
         }
         
